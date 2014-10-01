@@ -1,0 +1,35 @@
+.login-container
+  .flat-form
+    %ul.tabs
+      %li
+        = link_to '#login' do
+          Login
+      %li
+        = link_to '#reset', class: 'active' do
+          Reset Password
+
+    #login.form-action.show.animated.bounceInDown
+      %h1
+        Login on GA
+      %p
+        Welcome to GA
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        %ul
+          %li
+            = f.email_field :email, placeholder: 'Ingrese email', autofocus: true
+          %li
+            = f.password_field :password, autocomplete: 'off', placeholder: 'Password'
+
+        = f.submit 'Log in', class: 'button'
+
+    #reset.form-action.hide.animated.flipInX
+      %h1
+        Reset Password
+      %p
+        To reset your password enter your email and your birthday and we'll send you a link to reset your password.
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        %ul
+          %li
+            = f.email_field :email, autofocus: true, placeholder: 'Email'
+
+        = f.submit 'Enviar token', class: 'button'

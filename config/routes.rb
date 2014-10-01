@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :admins, controllers: { sessions: 'admin/sessions', passwords: 'admin/passwords' }
+
   constraints subdomain: 'consulta' do
     scope module: 'consulta', as: 'consulta' do
       defaults subdomain: 'consulta' do
