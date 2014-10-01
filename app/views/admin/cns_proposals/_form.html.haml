@@ -1,0 +1,9 @@
+.form-group
+  = f.label :cns_category_id
+  = f.select :cns_category_id, @cns_categories.map{ |cns_category| [cns_category.name, cns_category.id] }, { include_blank: true }, class: 'form-control', required: true
+.form-group
+  = f.label :name
+  = f.text_field :name, class: 'form-control', required: true
+.form-group
+  = f.label :description
+  = f.text_area :description, class: 'form-control', rows: 5

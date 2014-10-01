@@ -1,0 +1,55 @@
+// Place all the styles related to the Admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'theme/bootstrap';
+@import 'theme/font-awesome';
+@import 'theme/font-awesome-ie7';
+@import 'theme/datepicker';
+@import 'theme/main';
+@import 'theme/animate';
+@import 'theme/daterange';
+@import 'theme/fullcalendar';
+@import 'theme/slidebars';
+
+@import 'admin/icons';
+
+.top-bar {
+  .logo {
+    color: gray;
+    font-size: 3.6em;
+    line-height: 1.6em;
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.alert {
+  margin-top: 1.5em;
+}
+
+.data-table {
+  div {
+    white-space: nowrap;
+  }
+}
+
+.show {
+  blockquote {
+    font-size: 1.2em;
+  }
+}
+
+.dataTables_filter {
+  label {
+    font-size: 1.1em;
+    font-style: italic;
+    font-weight: normal;
+  }
+
+  input {
+    margin: 0 0 0 1em;
+    padding: 6px 12px;
+  }
+}

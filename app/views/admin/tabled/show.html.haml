@@ -1,0 +1,19 @@
+.row-fluid
+  .col-xs-11.col-sm-11.col-md-11.col-lg-7.col-lg-offset-2
+    .panel.panel-warning
+      .panel-heading.clearfix
+        %i.icon-file-text
+        %h3.panel-title
+          = t("activerecord.models.#{model.to_s.underscore}")
+      .panel-sub-heading
+        %a
+          = t '.info'
+      .panel-body.show
+        = render partial: 'info'
+  .col-xs-1.col-sm-1.col-md-1.col-lg
+    = link_to edit_item_url(@item), class: 'btn btn-info' do
+      %i.icon-pencil
+    %br
+    %br
+    = link_to item_url(@item), class: 'btn btn-danger', method: :delete, 'data-confirm' => t('.confirm_delete') do
+      %i.icon-trash

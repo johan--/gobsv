@@ -1,0 +1,24 @@
+!!! 5
+%html
+  %head
+    %title= t '.title'
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
+    = stylesheet_link_tag 'admin'
+    = javascript_include_tag 'admin'
+    = csrf_meta_tags
+  %body.animated.fadeInDown
+    .top-bar
+      = link_to admin_root_url, class: 'logo' do
+        %i.ga-icon-logo
+      = render partial: 'layouts/admin/top_menu'
+
+    = render partial: 'layouts/admin/right_bar'
+    = render partial: 'layouts/admin/left_bar'
+
+    .dashboard-wrapper
+      .container
+        = render partial: 'layouts/admin/breadcrumb' rescue nil
+        %hr
+        = render partial: 'layouts/admin/notice' rescue nil
+        = yield

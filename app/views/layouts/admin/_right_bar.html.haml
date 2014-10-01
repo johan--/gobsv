@@ -1,0 +1,119 @@
+.sb-slidebar.sb-right.sb-close
+  / User Profile Start
+  %section.user-profile
+    .profile-container
+      %img.user-img{:alt => "User Image", :src => "img/avatar-4.jpg"}/
+      .desc
+        %h4 John Doe
+        %p.text-info UX Designer
+    %ul.ftr-link
+      %li.active
+        %a{:href => "javascript:;"}
+          %i.icon-eye-open
+          375
+      %li
+        %a.text-success{:href => "javascript:;"}
+          %i.icon-comment
+          999
+      %li
+        %a.text-danger{:href => "javascript:;"}
+          %i.icon-heart
+          143
+  / User Profile End
+  / Online Users start
+  .block
+    .heading Users Online
+    .wrapper
+      / Online Users Start
+      %ul.online-users
+        %li
+          %a{"data-lastname" => "Sandhya", "data-original-title" => "", "data-status" => "online", :href => ""}
+            %span Sunny
+            .user-status.online
+        %li
+          %a{"data-lastname" => "Sandhya", "data-original-title" => "", "data-status" => "online", :href => ""}
+            %span Henrik
+            .user-status.online
+        %li
+          %a{"data-lastname" => "Sandhya", "data-original-title" => "", "data-status" => "online", :href => ""}
+            %span John Doe
+            .user-status.busy
+        %li
+          %a{"data-lastname" => "Sandhya", "data-original-title" => "", "data-status" => "online", :href => ""}
+            %span Fleming
+            .user-status.away
+        %li
+          %a{"data-lastname" => "Sandhya", "data-original-title" => "", "data-status" => "online", :href => ""}
+            %span Wills
+            .user-status
+      / Online Users End
+  / Online Users end
+  / Checkout start
+  .block
+    .heading Checkout
+    %ul.cart
+      %li.cart-item
+        %span.cart-item-pic
+          %img{:alt => "EarthSquare", :src => "img/avatar-2.jpg"}/
+        Item #1
+        %span.cart-item-desc Description
+        %span.cart-item-price $16.80
+      %li.cart-item
+        %span.cart-item-pic
+          %img{:alt => "EarthSquare", :src => "img/avatar-5.png"}/
+        Item #2
+        %span.cart-item-desc Description
+        %span.cart-item-price $15.00
+      %li.cart-item
+        %span.cart-item-pic
+          %img{:alt => "EarthSquare", :src => "img/avatar-3.jpg"}/
+        Item #3
+        %span.cart-item-desc Description
+        %span.cart-item-price $23.00
+    .cart-bottom
+      Total: $54.80
+      %a.cart-button{:href => "#"} Continue
+  / Checkout end
+  / Notifications Start
+  .block
+    .heading Notifications
+    / Notifications
+    %ul.infos
+      %li
+        %span.label.label-primary.pull-left
+          %i.icon-twitter
+        .info
+          %h6 Guru Tweeted
+          %p.designation Few seconds ago
+      %li
+        %span.label.label-danger.pull-left
+          %i.icon-warning-sign
+        .info
+          %h6 Server #999 Crashed
+          %p.designation 2 minutes ago
+      %li
+        %span.label.label-info.pull-left
+          %i.icon-plus
+        .info
+          %h6 Kiri's account was created
+          %p.designation 5 days ago
+  / Notifications End
+  / Sliding Tags Start
+  %ul.sliding-tags.tags-blue
+    %li
+      %a{:href => "index.html"}
+        Friends
+        %span 4
+    %li
+      %a{:href => "index.html"}
+        Family
+        %span 8
+    %li
+      %a{:href => "index.html"}
+        Books
+        %span 16
+    %li
+      %a{:href => "index.html"}
+        Colleagues
+        %span 15
+  / Sliding Tags End

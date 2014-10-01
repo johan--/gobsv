@@ -1,0 +1,23 @@
+.row
+  .col-sx-12.col-sm-12.col-md-12.col-lg-12
+    .panel.panel-warning
+      .panel-heading.clearfix
+        %i.icon-list-alt
+        %h3.panel-title
+          = t("activerecord.models.#{model.to_s.underscore}").pluralize(I18n.locale)
+      .panel-body
+        .table-responsive
+          #table-list.clearfix
+            %table.table.table-hover.table-striped.data-table
+              %thead
+                %tr
+                  = render partial: 'table_header'
+
+%script#buttonstpl{ type: "text/x-handlebars-template" }
+  .record-actions
+    = link_to URI.decode(item_url('{{id}}')), class: 'btn btn-info btn-sm' do
+      = t '.show'
+    = link_to URI.decode(edit_item_url('{{id}}')), class: 'btn btn-info btn-sm' do
+      = t '.edit'
+    = link_to URI.decode(item_url('{{id}}')), class: 'btn btn-danger btn-sm', method: :delete, 'data-confirm' => t('.confirm_delete') do
+      = t '.delete'

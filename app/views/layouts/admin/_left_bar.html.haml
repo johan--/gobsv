@@ -1,0 +1,87 @@
+:ruby
+  menus = [
+    { controller: :dashboard },
+    { module: :cns, controllers: [:cns_categories, :cns_proposals] }
+  ]
+
+%aside#sidebar
+  / Search bar start
+  .custom-search
+    %input.search-query{ placeholder: "Search here", type: "text"}
+    %i.icon-search
+  / Search bar end
+  / Menu start
+  #menu
+    %ul
+      - menus.each do |menu|
+        - if menu.has_key? :module
+          - highlight = menu[:controllers].include? controller.controller_name.to_sym
+          %li.has-sub{ class: highlight ? 'highlight active' : nil }
+            = link_to '#' do
+              %i.icon-list-alt
+              %span
+                = t ".#{menu[:module]}"
+              - if highlight
+                %em.arrow-active
+              - else
+                %em.arrow
+            - if menu.has_key?(:controllers) && menu[:controllers].any?
+              %ul{ style: (highlight ? 'display: block' : nil) }
+                - menu[:controllers].each do |control|
+                  %li
+                    = link_to url_for(controller: control, action: :index), class: (controller.controller_name.to_sym == control ? 'current' : nil)  do
+                      %i.icon-double-angle-right
+                      %span
+                        = t("activerecord.models.#{control.to_s.singularize}").pluralize(I18n.locale)
+        - elsif menu.has_key? :controller
+          - highlight = menu[:controller] == controller.controller_name.to_sym
+          %li{ class: highlight ? 'highlight active' : nil }
+            = link_to url_for(controller: menu[:controller], action: :index) do
+              %i.icon-list-alt
+              = t ".#{menu[:controller]}"
+              - if highlight
+                %em.arrow-active
+
+  / Menu End
+  / Extras start
+  .extras
+    / Notifications
+    %ul.notifications
+      %li
+        %i.icon-user.success-bg
+        .details
+          %p New Account
+          %small 3 hours ago...
+      %li
+        %i.icon-fire.danger-bg
+        .details
+          %p Server 29 Crashed
+          %small 1 hour ago...
+      %li
+        %i.icon-warning-sign.warning-bg
+        .details
+          %p New Alert
+          %small 30 mins ago...
+    / Tasks
+    %ul.tasks
+      %li
+        .details
+          %span International Visits
+          %span.pull-right 90%
+        .progress.progress-mini.no-margin
+          .progress-bar.progress-bar-danger{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "90", :role => "progressbar", :style => "width: 90%"}
+            %span.sr-only 90% Complete (danger)
+      %li
+        .details
+          %span National Visits
+          %span.pull-right 60%
+        .progress.progress-mini.no-margin
+          .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 60%"}
+            %span.sr-only 60% Complete (success)
+      %li
+        .details
+          %span Local Visits
+          %span.pull-right 25%
+        .progress.progress-mini.no-margin
+          .progress-bar.progress-bar-warning{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: 25%"}
+            %span.sr-only 25% Complete (success)
