@@ -1,0 +1,21 @@
+.login-container
+  .flat-form
+    %ul.tabs
+      %li
+        = link_to '#reset', class: 'active' do
+          Reset Password
+
+    #reset.form-action.show.animated.bounceInDown
+      %h1
+        Reset Password
+      %p
+        To reset your password enter your email and your birthday and we'll send you a link to reset your password.
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        = f.hidden_field :reset_password_token
+        %ul
+          %li
+            = f.password_field :password, autofocus: true, autocomplete: 'off', placeholder: 'New password'
+          %li
+            = f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Confirm new password'
+
+        = f.submit 'Change my password', class: 'button'

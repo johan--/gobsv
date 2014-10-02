@@ -9,6 +9,6 @@ class Admin::CnsProposalsController < Admin::TabledController
   end
 
   def init_form
-    @cns_categories = CnsCategory.all
+    @cns_categories = CnsCategory.order(:name)
   end
 end
