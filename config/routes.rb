@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         root to: 'dashboard#index'
         resources :cns_categories
         resources :cns_proposals
+        resources :cns_events
       end
     end
   end

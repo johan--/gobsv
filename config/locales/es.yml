@@ -194,12 +194,17 @@ es:
     models:
       cns_category: Categoría
       cns_proposal: Propuesta
+      cns_event: Evento
     attributes:
       cns_category:
         name: Nombre
         description: Descripción
       cns_proposal:
         cns_category_id: Categoría
+        name: Nombre
+        description: Descripción
+      cns_event:
+        event_date: Fecha
         name: Nombre
         description: Descripción
 

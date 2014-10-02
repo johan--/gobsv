@@ -1,0 +1,17 @@
+%h2
+  = @item.name
+
+%hr
+
+%h4
+  = t 'activerecord.attributes.cns_event.event_date'
+%blockquote
+  = l @item.event_date, format: :default
+%h4
+  = t 'activerecord.attributes.cns_event.name'
+%blockquote
+  = @item.name
+%h4
+  = t 'activerecord.attributes.cns_event.description'
+%blockquote
+  = @item.description
