@@ -4,8 +4,8 @@
     %title= t '.title'
     %meta{ charset: 'utf-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
-    = stylesheet_link_tag 'admin/sessions'
-    = javascript_include_tag 'admin/sessions'
+    = stylesheet_link_tag 'admin/login'
+    = javascript_include_tag 'admin/login'
     = csrf_meta_tags
   %body.animated.fadeInDown
     .container
@@ -19,4 +19,4 @@
 
     %footer#footer
       %p.copyright
-        Gobierno Abierto El Salvador es Open Source ...
+        = t '.footer'

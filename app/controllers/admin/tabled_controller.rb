@@ -62,7 +62,7 @@ class Admin::TabledController < AdminController
   def create
     @item = model.new item_params
     if @item.save
-      redirect_to url_for(action: :show, id: @item.id), notice: :created
+      redirect_to url_for(action: :show, id: @item.id), notice: t('layouts.admin.notice.created')
     else
       init_form
       add_breadcrumb t("activerecord.models.#{model.to_s.underscore}").pluralize(I18n.locale), index_url
@@ -81,7 +81,7 @@ class Admin::TabledController < AdminController
   def update
     @item = model.find params[:id]
     if @item.update_attributes item_params
-      redirect_to url_for(action: :show, id: @item.id), notice: :updated
+      redirect_to url_for(action: :show, id: @item.id), notice: t('layouts.admin.notice.updated')
     else
       init_form
       add_breadcrumb t("activerecord.models.#{model.to_s.underscore}").pluralize(I18n.locale), index_url
@@ -92,7 +92,7 @@ class Admin::TabledController < AdminController
 
   def destroy
     model.find(params[:id]).destroy
-    redirect_to url_for(action: :index), notice: :deleted
+    redirect_to url_for(action: :index), notice: t('layouts.admin.notice.deleted')
   end
 
 end

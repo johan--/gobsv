@@ -3,33 +3,33 @@
     %ul.tabs
       %li
         = link_to '#login' do
-          Login
+          = t '.login'
       %li
         = link_to '#reset', class: 'active' do
-          Reset Password
+          = t '.reset_password'
 
     #login.form-action.hide.animated.bounceInDown
       %h1
-        Login on GA
+        = t '.login'
       %p
-        Welcome to GA
+        = t '.welcome'
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         %ul
           %li
-            = f.email_field :email, placeholder: 'Ingrese email', autofocus: true
+            = f.email_field :email, placeholder: t('.enter_email'), autofocus: true
           %li
-            = f.password_field :password, autocomplete: 'off', placeholder: 'Password'
+            = f.password_field :password, autocomplete: 'off', placeholder: t('.enter_password')
 
-        = f.submit 'Log in', class: 'button'
+        = f.submit t('.login'), class: 'button'
 
     #reset.form-action.show.animated.flipInX
       %h1
-        Reset Password
+        = t '.reset_password'
       %p
-        To reset your password enter your email and your birthday and we'll send you a link to reset your password.
+        = t '.reset_password_explanation'
       = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
         %ul
           %li
-            = f.email_field :email, autofocus: true, placeholder: 'Email'
+            = f.email_field :email, autofocus: true, placeholder: t('.enter_email')
 
-        = f.submit 'Enviar token', class: 'button'
+        = f.submit t('.send_instructions'), class: 'button'

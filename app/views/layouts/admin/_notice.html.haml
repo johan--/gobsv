@@ -1,4 +1,4 @@
 - if flash[:notice]
   .alert.alert-success
-    = t ".#{flash[:notice]}"
+    = flash[:notice]
     = button_tag 'x', class: 'close', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'
