@@ -217,6 +217,7 @@ es:
         show: Ver registro
       left_bar:
         cns: Consulta ciudadana
+
   admin:
     tabled:
       index:

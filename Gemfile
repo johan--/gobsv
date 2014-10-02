@@ -62,3 +62,9 @@ group :test do
   gem 'timecop', '~> 0.7.1'
   gem 'shoulda', '~> 3.5.0'
 end
+
+# For bootstrap use
+gem 'twitter-bootstrap-rails'
+
+# For compass mixins
+gem 'compass-rails'

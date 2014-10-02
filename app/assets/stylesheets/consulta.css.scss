@@ -1,0 +1,19 @@
+// Place all the styles related to the Admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+
+@import 'twitter-bootstrap-static/bootstrap';
+@import 'twitter-bootstrap-static/fontawesome';
+@import 'compass';
+
+@include font-face('Ubuntu', font-files("ubuntu/Ubuntu-R-webfont.ttf", "ubuntu/Ubuntu-R-webfont.svg", "ubuntu/Ubuntu-R-webfont.woff", "ubuntu/Ubuntu-R-webfont.eot"));
+
+body{
+  font-family: 'Ubuntu,Helvetica,Arial,sans-serif';
+}
+
+#header {
+   @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
+   height: 300px;
+}

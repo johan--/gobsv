@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   constraints subdomain: 'consulta' do
     scope module: 'consulta', as: 'consulta' do
       defaults subdomain: 'consulta' do
-        root to: 'cns_categories#index'
-        resources :cns_categories
+        root to: 'dashboard#index'
       end
     end
   end
