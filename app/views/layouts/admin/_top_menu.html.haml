@@ -103,7 +103,7 @@
 / Mini Nav Right Start
 %ul#mini-nav-right
   %li.list-box.hidden-xs
-    %a{:href => "login.html"}
+    = link_to destroy_admin_session_path, method: :delete do
       %i.icon-signout
   %li.list-box.hidden-xs
     %a.sb-open-right.sb-close{:href => "#"}

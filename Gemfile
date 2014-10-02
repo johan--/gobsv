@@ -35,6 +35,9 @@ gem 'draper', '~> 1.4.0'
 # A simple Ruby on Rails plugin for creating and managing a breadcrumb navigation.
 gem 'breadcrumbs_on_rails', '~> 2.3.0'
 
+# Flexible authentication solution for Rails with Warden.
+gem 'devise', '~> 3.3.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

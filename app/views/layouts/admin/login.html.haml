@@ -1,0 +1,22 @@
+!!! 5
+%html
+  %head
+    %title= t '.title'
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
+    = stylesheet_link_tag 'admin/login'
+    = javascript_include_tag 'admin/login'
+    = csrf_meta_tags
+  %body.animated.fadeInDown
+    .container
+      .row
+        .col-md-push-4.col-md-4.col-sm-push-3.col-sm-6.col-sx-12.animated.flipInY
+          %header
+            = link_to admin_root_url, class: 'logo' do
+              %i.ga-icon-logo
+
+          = yield
+
+    %footer#footer
+      %p.copyright
+        = t '.footer'

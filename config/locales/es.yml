@@ -194,6 +194,7 @@ es:
     models:
       cns_category: Categoría
       cns_proposal: Propuesta
+      cns_event: Evento
     attributes:
       cns_category:
         name: Nombre
@@ -202,10 +203,14 @@ es:
         cns_category_id: Categoría
         name: Nombre
         description: Descripción
+      cns_event:
+        event_date: Fecha
+        name: Nombre
+        description: Descripción
 
   layouts:
     admin:
-      title: Portal Gobierno Abierto El Salvador | Panel de control
+      title: Panel de control | Gobierno Abierto El Salvador
       notice:
         created: Registro creado con éxito
         updated: Registro actualizado con éxito
@@ -217,8 +222,34 @@ es:
         show: Ver registro
       left_bar:
         cns: Consulta ciudadana
-
+      login:
+        title: Panel de control | Gobierno Abierto El Salvador
+        footer: 2014 - Gobierno Abierto El Salvador
   admin:
+    sessions:
+      new:
+        login: Ingresar
+        welcome: Bienvenid@ al panel de control del sistema de Gobierno Abierto de El Salvador. Por favor digite sus datos para ingresar.
+        enter_email: Digite su correo electrónico
+        enter_password: Digite su contraseña
+        reset_password: Reestablecer contraseña
+        reset_password_explanation: Enviaremos un mensaje a su dirección de correo electrónico con instrucciones para reestablecer su contraseña.
+        send_instructions: Enviar instrucciones
+    passwords:
+      new:
+        login: Ingresar
+        welcome: Bienvenid@ al panel de control del sistema de Gobierno Abierto de El Salvador. Por favor digite sus datos para ingresar.
+        enter_email: Digite su correo electrónico
+        enter_password: Digite su contraseña
+        reset_password: Reestablecer contraseña
+        reset_password_explanation: Enviaremos un mensaje a su dirección de correo electrónico con instrucciones para reestablecer su contraseña.
+        send_instructions: Enviar instrucciones
+      edit:
+        change_password: Reestablecer contraseña
+        change_password_explanation: Por favor escriba una nueva contraseña (la que usted quiera) y luego confirmela.
+        new_password: Nueva contraseña
+        new_password_confirm: Confirme su nueva contraseña
+        change_password: Cambiar contraseña
     tabled:
       index:
         confirm_delete: ¿Realmente desea eliminar este registro?
