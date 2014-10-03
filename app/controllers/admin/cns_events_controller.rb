@@ -5,6 +5,6 @@ class Admin::CnsEventsController < Admin::TabledController
   end
 
   def item_params
-    params.require(:cns_event).permit(:name, :description, :event_date)
+    params.require(:cns_event).permit(:name, :description, :event_date, :picture)
   end
 end
