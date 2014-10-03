@@ -36,3 +36,4 @@ module Gobsv
 
   end
 end
+Config = YAML.load_file("#{Rails.root}/config/config.yml").with_indifferent_access
