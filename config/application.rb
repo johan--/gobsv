@@ -37,3 +37,4 @@ module Gobsv
   end
 end
 Config = YAML.load_file("#{Rails.root}/config/config.yml").with_indifferent_access
+SocialKeys = YAML.load_file("#{Rails.root}/config/social_keys.yml").with_indifferent_access
