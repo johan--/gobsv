@@ -5,6 +5,7 @@
 
     = render_breadcrumbs('')
 
-  .col-lg-3.col-md-4.col-sm-3.clearfix
-    = link_to new_item_url, class: 'btn btn-info pull-right' do
-      = t('.new')
+  - unless controller.controller_name == 'trash'
+    .col-lg-3.col-md-4.col-sm-3.clearfix
+      = link_to new_item_url, class: 'btn btn-info pull-right' do
+        = t('.new')

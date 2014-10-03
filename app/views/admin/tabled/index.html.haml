@@ -17,11 +17,14 @@
   .record-actions
     = link_to URI.decode(item_url('{{id}}')), class: 'btn btn-info btn-sm' do
       = t '.show'
-    = link_to URI.decode(edit_item_url('{{id}}')), class: 'btn btn-info btn-sm' do
-      = t '.edit'
-    = link_to URI.decode(item_url('{{id}}')), class: 'btn btn-danger btn-sm', method: :delete, 'data-confirm' => t('.confirm_delete') do
-      = t '.delete'
 
     - if controller.controller_name == 'trash'
       = link_to URI.decode(restore_admin_trash_url('{{id}}')), class: 'btn btn-success btn-sm', 'data-confirm' => t('.confirm_restore') do
         = t '.restore'
+
+    - unless controller.controller_name == 'trash'
+      = link_to URI.decode(edit_item_url('{{id}}')), class: 'btn btn-info btn-sm' do
+        = t '.edit'
+
+    = link_to URI.decode(item_url('{{id}}')), class: 'btn btn-danger btn-sm', method: :delete, 'data-confirm' => t('.confirm_delete') do
+      = t '.delete'

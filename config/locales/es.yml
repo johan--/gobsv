@@ -281,4 +281,6 @@ es:
         save: Guardar
       show:
         confirm_delete: ¿Realmente desea eliminar este registro?
+        confirm_restore: ¿Realmente desea restaurar este registro?
         info: Información
+        restore: Restaurar

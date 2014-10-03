@@ -1,5 +1,7 @@
 class CnsEvent < ActiveRecord::Base
 
+  has_paper_trail
+
   validates :name, presence: true
   validates :name, uniqueness: { case_sensitive: false }
 

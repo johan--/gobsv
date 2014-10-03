@@ -5,11 +5,13 @@
   ]
 
 %aside#sidebar
-  / Search bar start
-  .custom-search
-    %input.search-query{ placeholder: "Search here", type: "text" }
-    %i.icon-search
-  / Search bar end
+  -#
+    / Search bar start
+    .custom-search
+      %input.search-query{ placeholder: "Search here", type: "text" }
+      %i.icon-search
+    / Search bar end
+  %br
   / Menu start
   #menu
     %ul
@@ -56,26 +58,28 @@
             %small
               = DeletedElement.count
               = t '.elements'
-    / Tasks
-    %ul.tasks
-      %li
-        .details
-          %span International Visits
-          %span.pull-right 90%
-        .progress.progress-mini.no-margin
-          .progress-bar.progress-bar-danger{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "90", :role => "progressbar", :style => "width: 90%"}
-            %span.sr-only 90% Complete (danger)
-      %li
-        .details
-          %span National Visits
-          %span.pull-right 60%
-        .progress.progress-mini.no-margin
-          .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 60%"}
-            %span.sr-only 60% Complete (success)
-      %li
-        .details
-          %span Local Visits
-          %span.pull-right 25%
-        .progress.progress-mini.no-margin
-          .progress-bar.progress-bar-warning{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: 25%"}
-            %span.sr-only 25% Complete (success)
+
+    -#
+      / Tasks
+      %ul.tasks
+        %li
+          .details
+            %span International Visits
+            %span.pull-right 90%
+          .progress.progress-mini.no-margin
+            .progress-bar.progress-bar-danger{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "90", :role => "progressbar", :style => "width: 90%"}
+              %span.sr-only 90% Complete (danger)
+        %li
+          .details
+            %span National Visits
+            %span.pull-right 60%
+          .progress.progress-mini.no-margin
+            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 60%"}
+              %span.sr-only 60% Complete (success)
+        %li
+          .details
+            %span Local Visits
+            %span.pull-right 25%
+          .progress.progress-mini.no-margin
+            .progress-bar.progress-bar-warning{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: 25%"}
+              %span.sr-only 25% Complete (success)

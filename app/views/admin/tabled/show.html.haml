@@ -10,10 +10,19 @@
           = t '.info'
       .panel-body.show
         = render partial: 'info'
+
   .col-xs-1.col-sm-1.col-md-1.col-lg
-    = link_to edit_item_url(@item), class: 'btn btn-info' do
-      %i.icon-pencil
-    %br
-    %br
+    - unless controller.controller_name == 'trash'
+      = link_to edit_item_url(@item), class: 'btn btn-info' do
+        %i.icon-pencil
+      %br
+      %br
+
+    - if controller.controller_name == 'trash'
+      = link_to URI.decode(restore_admin_trash_url('{{id}}')), class: 'btn btn-success btn-sm', 'data-confirm' => t('.confirm_restore') do
+        %i.icon-refresh
+      %br
+      %br
+
     = link_to item_url(@item), class: 'btn btn-danger', method: :delete, 'data-confirm' => t('.confirm_delete') do
       %i.icon-trash

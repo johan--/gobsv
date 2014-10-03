@@ -1,6 +1,7 @@
 class CnsProposal < ActiveRecord::Base
 
   belongs_to :cns_category
+  has_paper_trail
 
   validates :cns_category_id, presence: true
 
