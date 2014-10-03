@@ -50,7 +50,7 @@
     / Notifications
     %ul.notifications
       %li
-        = link_to admin_trash_index_url do
+        = link_to url_for(controller: :trash, action: :index) do
           %i.icon-trash.danger-bg
           .details
             %p

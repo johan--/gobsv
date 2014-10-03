@@ -19,7 +19,7 @@
       = t '.show'
 
     - if controller.controller_name == 'trash'
-      = link_to URI.decode(restore_admin_trash_url('{{id}}')), class: 'btn btn-success btn-sm', 'data-confirm' => t('.confirm_restore') do
+      = link_to URI.decode(url_for(action: :restore, id: '{{id}}')), class: 'btn btn-success btn-sm', 'data-confirm' => t('.confirm_restore') do
         = t '.restore'
 
     - unless controller.controller_name == 'trash'
