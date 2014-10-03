@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         resources :cns_categories
         resources :cns_proposals
         resources :cns_events
+        resources :cns_articles
       end
     end
   end

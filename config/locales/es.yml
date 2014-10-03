@@ -195,6 +195,7 @@ es:
       cns_category: Categoría
       cns_proposal: Propuesta
       cns_event: Evento
+      cns_article: Noticia
     attributes:
       cns_category:
         name: Nombre
@@ -205,6 +206,10 @@ es:
         description: Descripción
       cns_event:
         event_date: Fecha
+        name: Nombre
+        description: Descripción
+      cns_article:
+        article_date: Fecha
         name: Nombre
         description: Descripción
 
