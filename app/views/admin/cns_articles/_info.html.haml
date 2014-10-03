@@ -15,3 +15,7 @@
   = t 'activerecord.attributes.cns_article.description'
 %blockquote
   = @item.description
+%h4
+  = t 'activerecord.attributes.cns_event.picture'
+%blockquote
+  = image_tag @item.picture.url(:medium)

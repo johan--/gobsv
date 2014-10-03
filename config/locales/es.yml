@@ -212,10 +212,12 @@ es:
         event_date: Fecha
         name: Nombre
         description: Descripción
+        picture: Imagen
       cns_article:
         article_date: Fecha
         name: Nombre
         description: Descripción
+        picture: Imagen
       deleted_element:
         item_type: Tipo
         object_name: Nombre
@@ -284,3 +286,9 @@ es:
         confirm_restore: ¿Realmente desea restaurar este registro?
         info: Información
         restore: Restaurar
+    cns_events:
+      form:
+        picture_recommended_size: "Dimensiones recomendadas: 386x160"
+    cns_articles:
+      form:
+        picture_recommended_size: "Dimensiones recomendadas: 386x160"

@@ -81,3 +81,6 @@ gem 'paper_trail', '~> 3.0.5'
 
 # A Ruby interface to the Twitter API.
 gem 'twitter', '~> 5.11.0'
+
+# Easy file attachment management for ActiveRecord
+gem 'paperclip', '~> 4.2'
