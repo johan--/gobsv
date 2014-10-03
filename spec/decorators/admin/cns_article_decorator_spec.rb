@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Admin::CnsArticlesDecorator do
+describe Admin::CnsArticleDecorator do
 end

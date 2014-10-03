@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :cns_event do
-    name "MyString"
-    description "MyText"
-    event_date "2014-10-02"
+    name { Faker::Name.name }
+    description { Faker::Lorem.paragraph }
+    event_date { Faker::Business.credit_card_expiry_date }
   end
 end
