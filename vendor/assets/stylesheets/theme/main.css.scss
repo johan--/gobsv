@@ -634,6 +634,8 @@ aside#sidebar {
           padding: 0;
           line-height: 12px;
           margin: 0; }
+          aside#sidebar ul.notifications li .details p a {
+            color: #aaaaaa; }
         aside#sidebar ul.notifications li .details small {
           color: #777777; }
       aside#sidebar ul.notifications li:last-child {

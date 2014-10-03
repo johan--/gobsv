@@ -7,6 +7,10 @@ class Admin::TabledController < AdminController
     add_breadcrumb I18n.t("layouts.admin.breadcrumb.home"), admin_root_url
   end
 
+  def conditions conditions = {}
+    conditions
+  end
+
   def namespace
     :admin
   end
@@ -41,7 +45,7 @@ class Admin::TabledController < AdminController
   end
 
   def index
-    @items = model.all
+    @items = model.where(conditions)
     add_breadcrumb t("activerecord.models.#{model.to_s.underscore}").pluralize(I18n.locale), index_url
     respond_with @items
   end

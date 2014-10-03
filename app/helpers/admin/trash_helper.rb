@@ -1,0 +1,2 @@
+module Admin::TrashHelper
+end

@@ -71,3 +71,6 @@ gem 'compass-rails', '~> 2.0.0'
 
 # A simple, ORM agnostic, Ruby 1.9 compatible date validator for Rails 3, based on ActiveModel.
 gem 'date_validator', '~> 0.7.0'
+
+# Track changes to your models' data. Good for auditing or versioning.
+gem 'paper_trail', '~> 3.0.5'

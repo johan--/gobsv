@@ -7,7 +7,7 @@
 %aside#sidebar
   / Search bar start
   .custom-search
-    %input.search-query{ placeholder: "Search here", type: "text"}
+    %input.search-query{ placeholder: "Search here", type: "text" }
     %i.icon-search
   / Search bar end
   / Menu start
@@ -48,20 +48,14 @@
     / Notifications
     %ul.notifications
       %li
-        %i.icon-user.success-bg
-        .details
-          %p New Account
-          %small 3 hours ago...
-      %li
-        %i.icon-fire.danger-bg
-        .details
-          %p Server 29 Crashed
-          %small 1 hour ago...
-      %li
-        %i.icon-warning-sign.warning-bg
-        .details
-          %p New Alert
-          %small 30 mins ago...
+        = link_to admin_trash_index_url do
+          %i.icon-trash.danger-bg
+          .details
+            %p
+              = t("activerecord.models.deleted_element").pluralize(I18n.locale)
+            %small
+              = DeletedElement.count
+              = t '.elements'
     / Tasks
     %ul.tasks
       %li

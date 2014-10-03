@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   constraints subdomain: 'admin' do
     scope module: 'admin', as: 'admin' do
       defaults subdomain: 'admin' do
+
         root to: 'dashboard#index'
+
+        resources :trash do
+          get :restore, on: :member
+        end
 
         [ :cns_categories,
           :cns_proposals,

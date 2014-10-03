@@ -1,0 +1,15 @@
+%h2
+  = @item.hash_object[:name]
+
+%hr
+
+- @item.hash_object.each do |key, val|
+  %h4
+    = t("activerecord.attributes.#{@item.item_type.underscore}.#{key}")
+  %blockquote
+    = val
+
+%h4
+  = t("activerecord.attributes.deleted_element.deleted_at")
+%blockquote
+  = @item.created_at

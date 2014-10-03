@@ -13,4 +13,5 @@ ActiveSupport::Inflector.inflections(:es) do |inflect|
   inflect.singular(/es$/, '')
 
   inflect.irregular('el', 'los')
+  inflect.irregular('elemento eliminado', 'elementos eliminados')
 end

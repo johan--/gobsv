@@ -196,7 +196,11 @@ es:
       cns_proposal: Propuesta
       cns_event: Evento
       cns_article: Noticia
+      deleted_element: Elemento eliminado
     attributes:
+      id: ID
+      created_at: Creado el
+      updated_at: Última actualización
       cns_category:
         name: Nombre
         description: Descripción
@@ -212,7 +216,10 @@ es:
         article_date: Fecha
         name: Nombre
         description: Descripción
-
+      deleted_element:
+        item_type: Tipo
+        object_name: Nombre
+        deleted_at: Eliminado el
   layouts:
     admin:
       title: Panel de control | Gobierno Abierto El Salvador
@@ -220,6 +227,7 @@ es:
         created: Registro creado con éxito
         updated: Registro actualizado con éxito
         deleted: Registro eliminado con éxito
+        restored: Registro restaurado con éxito
       breadcrumb:
         edit: Editar registro
         home: Inicio
@@ -227,6 +235,7 @@ es:
         show: Ver registro
       left_bar:
         cns: Consulta ciudadana
+        elements: Elementos
       login:
         title: Panel de control | Gobierno Abierto El Salvador
         footer: 2014 - Gobierno Abierto El Salvador
@@ -258,8 +267,10 @@ es:
     tabled:
       index:
         confirm_delete: ¿Realmente desea eliminar este registro?
+        confirm_restore: ¿Realmente desea restaurar este registro?
         delete: Eliminar
         edit: Editar
+        restore: Restaurar
         show: Ver
       new:
         complete_info: Complete la información
