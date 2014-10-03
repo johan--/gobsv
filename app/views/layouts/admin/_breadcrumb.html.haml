@@ -3,7 +3,7 @@
     %h2
       = t("activerecord.models.#{model.to_s.underscore}").pluralize(I18n.locale)
     %ul.breadcrumb
-      = render_breadcrumbs tag: :li, separator: ''
+      = render_breadcrumbs('')
 
   .col-lg-3.col-md-4.col-sm-3.clearfix
     = link_to new_item_url, class: 'btn btn-info pull-right' do

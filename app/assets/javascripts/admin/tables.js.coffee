@@ -10,6 +10,9 @@ $(document).ready ->
     $(this).find("[data-attribute]").each ->
       columns.push { data: $(this).attr("data-attribute") }
 
+    $(this).find("[data-invisible]").each ->
+      columns.push { data: $(this).attr("data-invisible"), visible: false }
+
     $(this).find("thead tr:first").append($("<th />"))
 
     $(this).dataTable {

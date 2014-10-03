@@ -14,9 +14,15 @@ Rails.application.routes.draw do
     scope module: 'admin', as: 'admin' do
       defaults subdomain: 'admin' do
         root to: 'dashboard#index'
-        resources :cns_categories
-        resources :cns_proposals
-        resources :cns_events
+
+        [ :cns_categories,
+          :cns_proposals,
+          :cns_events,
+          :cns_articles
+        ].each do |resource|
+          resources resource
+        end
+
       end
     end
   end

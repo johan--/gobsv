@@ -32,9 +32,6 @@ gem 'haml-rails', '~> 0.5.3'
 # Decorators/View-Models for Rails Applications
 gem 'draper', '~> 1.4.0'
 
-# A simple Ruby on Rails plugin for creating and managing a breadcrumb navigation.
-gem 'breadcrumbs_on_rails', '~> 2.3.0'
-
 # Flexible authentication solution for Rails with Warden.
 gem 'devise', '~> 3.3.0'
 
@@ -70,8 +67,11 @@ group :test do
   gem 'shoulda', '~> 3.5.0'
 end
 
-# For bootstrap use
-gem 'twitter-bootstrap-rails'
+# Twitter Bootstrap for Rails 3.x - 4 Asset Pipeline
+gem 'twitter-bootstrap-rails', '~> 3.2.0'
 
-# For compass mixins
-gem 'compass-rails'
+# # Compass rails integration
+gem 'compass-rails', '~> 2.0.0'
+
+# A simple, ORM agnostic, Ruby 1.9 compatible date validator for Rails 3, based on ActiveModel.
+gem 'date_validator', '~> 0.7.0'
