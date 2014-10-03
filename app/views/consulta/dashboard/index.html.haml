@@ -64,47 +64,26 @@
               .clearfix
         = link_to "Ver todas las noticias", cns_articles_url, class: "news-link"
 
-.container-fluid.social-networks-comments.visible-lg
-  = image_tag('consulta/twitter-icon2.png', alt: 'Twitter')
-  %h2
-    = "Que esta diciendo la gente"
-  %span
-    = "#ConsultaCiudadana"
-  .row
-    .col-md-8.col-md-offset-2.text-center.comments-wrapper
-
-      .social-media-item
-        .twitter-image
-          = image_tag('consulta/twitter-profile-image.png') #image_tag(tweet.user.profile_image_url)
-        .twitter-profile
-          = "{tweet.user.screen_name}"
-          %span.tweet
-            = "{tweet.user.name}"
-        .twitter-text
-          = "{tweet.user.tweet.text}" + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies porttitor dui vel semper."
-        .clearfix
-
-      .social-media-item
-        .twitter-image
-          = image_tag('consulta/twitter-profile-image.png') #image_tag(tweet.user.profile_image_url)
-        .twitter-profile
-          = "{tweet.user.screen_name}"
-          %span.tweet
-            = "{tweet.user.name}"
-        .twitter-text
-          = "{tweet.user.tweet.text}" + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies porttitor dui vel semper."
-        .clearfix
-
-      .social-media-item
-        .twitter-image
-          = image_tag('consulta/twitter-profile-image.png') #image_tag(tweet.user.profile_image_url)
-        .twitter-profile
-          = "{tweet.user.screen_name}"
-          %span.tweet
-            = "{tweet.user.name}"
-        .twitter-text
-          = "{tweet.user.tweet.text}" + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies porttitor dui vel semper."
-        .clearfix
+- unless @tweets.nil?
+  .container-fluid.social-networks-comments.visible-lg
+    = image_tag('consulta/twitter-icon2.png', alt: 'Twitter')
+    %h2
+      = "Que esta diciendo la gente"
+    %span
+      = "#ConsultaCiudadana"
+    .row
+      .col-md-8.col-md-offset-2.text-center.comments-wrapper
+        - @tweets.collect do |tweet|
+          .social-media-item
+            .twitter-image
+              = image_tag(tweet.user.profile_image_url)
+            .twitter-profile
+              = tweet.user.screen_name
+              %span.tweet
+                = tweet.user.name
+            .twitter-text
+              = tweet.user.tweet.text
+            .clearfix
 
 -#
   @tweets.collect do |tweet|
