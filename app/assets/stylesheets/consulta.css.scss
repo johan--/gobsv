@@ -26,7 +26,7 @@ h2{
   font-size: 26px;
 }
 
-// General
+// General index
 #header {
   @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
   height: 300px;
@@ -231,6 +231,55 @@ h2{
   }
 }
 
+// General Subpages
+#header-subpage{
+  @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
+  border-bottom: 10px solid #29AAE3; 
+  margin-bottom: 20px;
+  h1, h2{
+    font-weight: bold;
+  }
+  h1{
+    font-size: 38px;
+  }
+  .slogan{
+    margin-top: 25px;
+    text-align: left;
+    .slogan-description{
+      color: #0E76BB;
+      font-size: 26px;
+    }
+  }
+  .wrapper-logo{
+    background-color: #FFF;
+    padding: 10px 0 15px;
+    h2{
+      font-size: 24px;
+    }
+    p.title-plan{
+      margin: 0; 
+    }
+  }
+}
+.main-content{
+  .left-side-menu{
+    ul{
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      list-style: none;
+      li, li a{
+        color: #29ABE2; 
+        text-decoration: none;
+      }
+      li{
+        padding: 5px;
+        border-bottom: 1px solid #B8B8B8;
+      }
+    }
+  }
+}
+
 // Media Queries
 @media only screen and (max-width: 1080px){
   #header{
@@ -254,7 +303,6 @@ h2{
       }
     }
   }
-
   .download-plan{
     background: #ECF9FF;
     height: auto;
@@ -284,6 +332,47 @@ h2{
   #footer{
     .goverment-slogan, .social-media-buttons, .goverment-info{
       text-align: center;
+    }
+  }
+
+  #header-subpage{
+    @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
+    border-bottom: 10px solid #29AAE3; 
+    margin-bottom: 20px;
+    h1, h2{
+      font-weight: bold;
+    }
+    h1{
+      font-size: 24px;
+    }
+    .slogan{
+      margin-top: 25px;
+      text-align: center;
+      .slogan-description{
+        color: #0E76BB;
+        font-size: 18px;
+      }
+    }
+    .wrapper-logo{
+      background: none;
+      h2{
+        font-size: 20px;
+      }
+      p.title-plan{
+        margin: 0; 
+      }
+    }
+  }
+  .main-content{
+    .left-side-menu{
+      ul{
+        text-align: center;
+        list-style: none;
+        li, li a{
+          color: #29ABE2; 
+          text-decoration: none;
+        }
+      }
     }
   }
 
