@@ -81,7 +81,3 @@ gem 'paper_trail', '~> 3.0.5'
 
 # A Ruby interface to the Twitter API.
 gem 'twitter', '~> 5.11.0'
-
-# A lightweight, flexible library for Facebook with support for OAuth authentication, the Graph and
-# REST APIs, realtime updates, and test users.
-gem 'koala', '~> 1.10.1'
