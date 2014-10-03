@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  constraints subdomain: 'admin' do
+  constraints subdomain: 'apps.gobiernoabierto' do
     scope module: 'admin', as: 'admin' do
       defaults subdomain: 'admin' do
 
