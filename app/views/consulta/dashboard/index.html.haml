@@ -45,9 +45,9 @@
                 .col-md-2
                   = event.event_date
                 .col-md-10
-                  - if i == 0
+                  - if event.picture.present?
                     .event-image.img-responsive
-                      = image_tag("consulta/event-image-test.png")
+                      = image_tag(event.picture.url(:medium)) rescue image_tag("consulta/event-image-test.png")
                   = event.description
               .clearfix
         = link_to "Ver Calendario Completo", "#", class: "news-link"
@@ -63,3 +63,53 @@
               = article.description
               .clearfix
         = link_to "Ver todas las noticias", "#", class: "news-link"
+
+.container-fluid.social-networks-comments.visible-lg
+  = image_tag('consulta/twitter-icon2.png', alt: 'Twitter')
+  %h2
+    = "Que esta diciendo la gente"
+  %span
+    = "#ConsultaCiudadana"
+  .row
+    .col-md-8.col-md-offset-2.text-center.comments-wrapper
+
+      .social-media-item
+        .twitter-image
+          = image_tag('consulta/twitter-profile-image.png') #image_tag(tweet.user.profile_image_url)
+        .twitter-profile
+          = "{tweet.user.screen_name}"
+          %span.tweet
+            = "{tweet.user.name}"
+        .twitter-text
+          = "{tweet.user.tweet.text}" + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies porttitor dui vel semper."
+        .clearfix
+
+      .social-media-item
+        .twitter-image
+          = image_tag('consulta/twitter-profile-image.png') #image_tag(tweet.user.profile_image_url)
+        .twitter-profile
+          = "{tweet.user.screen_name}"
+          %span.tweet
+            = "{tweet.user.name}"
+        .twitter-text
+          = "{tweet.user.tweet.text}" + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies porttitor dui vel semper."
+        .clearfix
+
+      .social-media-item
+        .twitter-image
+          = image_tag('consulta/twitter-profile-image.png') #image_tag(tweet.user.profile_image_url)
+        .twitter-profile
+          = "{tweet.user.screen_name}"
+          %span.tweet
+            = "{tweet.user.name}"
+        .twitter-text
+          = "{tweet.user.tweet.text}" + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies porttitor dui vel semper."
+        .clearfix
+
+-#
+  @tweets.collect do |tweet|
+    puts "#{tweet.user.profile_image_url}"
+    puts "#{tweet.user.screen_name}"
+    puts "#{tweet.user.name}"
+    puts "#{tweet.user.tweet.text}"
+  end

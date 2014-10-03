@@ -127,9 +127,9 @@ h2{
   }
   .event-section{
     .event-item{
-      border-bottom: 1px solid;
+      border-bottom: 1px solid #B1B3B5;
       margin: 10px 0 20px;
-      padding-bottom: 20px;
+      padding: 20px 0;
       .event-date, .event-image, .event-description{
         float: left;
       }
@@ -158,12 +158,58 @@ h2{
   }
   .article-section{
     .article-item{
-      border-bottom: 1px solid;
+      border-bottom: 1px solid #B1B3B5;
       margin: 10px 0 15px;
       padding: 15px 0 20px;
       text-align: justify;
       .article-name{
         color: #29ABE2;
+      }
+    }
+  }
+}
+
+.social-networks-comments{
+  margin: 70px 0 20px;
+  text-align: center;
+  h2{
+    color: #29ABE2;
+    font-size: 36px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  span{
+    color: #0E76BB;
+    font-size: 22px;
+  }
+  .comments-wrapper{
+    margin-bottom: 10px;
+    margin-top: 50px;
+    .social-media-item{
+      float: left;
+      width: 50%;
+      .twitter-image, .twitter-profile, .twitter-text{
+        float: left;
+      }
+      .twitter-image{
+        width: 10%;
+        height: 120px;
+      }
+      .twitter-profile{
+        color: #1A1A1A;
+        margin-left: 5%;
+        text-align: left;
+        width: 85%;
+        span.tweet{
+          font-size: 14px;
+          color: #B3B3B3;
+        }
+      }
+      .twitter-text{
+        color: #4D4D4D;
+        margin-left: 5%;
+        text-align: left;
+        width: 85%;
       }
     }
   }
