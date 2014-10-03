@@ -19,39 +19,17 @@
 
 
   %body
-    .container-fluid#header
-      .row
-        .col-md-2.col-md-offset-2.text-center
-          = image_tag('consulta/logo.png')
-          %h2
-            = t '.title'
-          %p.title-plan
-            = t '.five_year_plan'
-          %p.title-join.visible-lg
-            = t '.join_us'
-        .col-md-7.col-md-offset-1.text-center
-          .slogan
-            %h1
-              = t '.slogan'
-            %p.slogan-description
-              = t('layouts.consulta.slogan_description').html_safe
-            .proposal-buttons
-              = link_to t('layouts.consulta.read_proposals'), "#"
-              = link_to t('layouts.consulta.about'), "#"
-    .container-fluid.download-plan
-      .row
-        .col-md-3.col-md-offset-2.text-center
-          .download-section-1
-            = image_tag('consulta/manual1.png')
-        .col-md-7.text-center
-          .download-section-2
-            %h2.plan
-              = t '.plan_title'
-            %p
-              = t '.plan_date'
-            .download-documents
-              = link_to image_tag('consulta/pdf-icon.png') + t('layouts.consulta.download_pdf'), "#", class: "pdf-icon"
-              = link_to image_tag('consulta/ppt-icon.png') + t('layouts.consulta.download_ppt'), "#", class: "ppt-icon"
-        .clearfix
-
+    = yield
     .container-fluid#footer
+      .row
+        .col-md-2.col-md-offset-2
+          .goverment-slogan
+            = image_tag('consulta/goverment-slogan.png', alt: t('layouts.consulta.title'))
+        .col-md-3.text-center
+          .social-media-buttons
+            = link_to image_tag('consulta/facebook-icon.png', alt: 'Facebook'), "https://www.facebook.com/ConsultaSV", class: "footer-icon", title: "Facebook"
+            = link_to image_tag('consulta/twitter-icon.png', alt: 'Twitter'), "https://twitter.com/ConsultaSV", class: "footer-icon", title: "Twitter"
+            = link_to image_tag('consulta/googleplus-icon.png', alt: 'Google+'), "#", class: "footer-icon", title: "Google+"
+        .col-md-3
+          .goverment-info
+            = t('layouts.consulta.goverment_info').html_safe

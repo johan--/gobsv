@@ -1,1 +1,65 @@
-= "HOLA"
+.container-fluid#header
+  .row
+    .col-md-3.col-md-offset-2.text-center
+      = image_tag('consulta/logo.png')
+      %h2
+        = t('layouts.consulta.title')
+      %p.title-plan
+        = t('layouts.consulta.five_year_plan')
+      %p.title-join.visible-lg
+        = t('layouts.consulta.join_us')
+    .col-md-5.text-center
+      .slogan
+        %h1
+          = t('layouts.consulta.slogan')
+        %p.slogan-description
+          = t('layouts.consulta.slogan_description').html_safe
+        .proposal-buttons
+          = link_to t('layouts.consulta.read_proposals'), "#"
+          = link_to t('layouts.consulta.about'), "#"
+.container-fluid.download-plan
+  .row
+    .col-md-3.col-md-offset-2.text-center
+      .download-section-1
+        = image_tag('consulta/manual1.png')
+    .col-md-5.text-center
+      .download-section-2
+        %h2.plan
+          = t('layouts.consulta.plan_title')
+        %p
+          = t('layouts.consulta.plan_date')
+        .download-documents
+          = link_to image_tag('consulta/pdf-icon.png') + t('layouts.consulta.download_pdf'), "#", class: "pdf-icon"
+          = link_to image_tag('consulta/ppt-icon.png') + t('layouts.consulta.download_ppt'), "#", class: "ppt-icon"
+    .clearfix
+.container-fluid.news-section
+  .row
+    .col-md-4.col-md-offset-2
+      .event-section
+        %h3
+          = "Eventos"
+        - unless @events.nil?
+          - @events.each_with_index do |event,i|
+            .container-fluid.event-item{class: "#{i == @events.size - 1 ? 'disable-border' : ''}"}
+              .row
+                .col-md-2
+                  = event.event_date
+                .col-md-10
+                  - if i == 0
+                    .event-image.img-responsive
+                      = image_tag("consulta/event-image-test.png")
+                  = event.description
+              .clearfix
+        = link_to "Ver Calendario Completo", "#", class: "news-link"
+    .col-md-4
+      .article-section
+        %h3.plan
+          = "Noticias"
+        - unless @articles.nil?
+          - @articles.each_with_index do |article,i|
+            .article-item{class: "#{i == @articles.size - 1 ? 'disable-border' : ''}"}
+              = article.article_date
+              = article.name
+              = article.description
+              .clearfix
+        = link_to "Ver todas las noticias", "#", class: "news-link"
