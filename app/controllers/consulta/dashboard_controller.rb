@@ -7,7 +7,7 @@ class Consulta::DashboardController < ConsultaController
 
     begin
       tclient = TwitterBot.client
-      @tweets = tclient.search('#ConsultaCiudadana', type: 'recent').take(6)
+      @tweets = tclient.search('#ConsultaPQD', type: 'recent').take(6)
     rescue
       nil
     end
