@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :cns_articles, only: [:index, :show]
+
   constraints subdomain: 'apps.gobiernoabierto' do
     scope module: 'admin', as: 'admin' do
       defaults subdomain: 'admin' do
