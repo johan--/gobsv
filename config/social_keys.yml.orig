@@ -1,0 +1,31 @@
+development:
+  facebook_key: ""
+  facebook_secret: ""
+
+  twitter_key: ""
+  twitter_secret: ""
+
+  github_key: ""
+  github_secret: ""
+
+  linkedin_key: ""
+  linkedin_secret: ""
+
+  google_key: ""
+  google_secret: ""
+
+production:
+  facebook_key: ""
+  facebook_secret: ""
+
+  twitter_key: ""
+  twitter_secret: ""
+
+  github_key: ""
+  github_secret: ""
+
+  linkedin_key: ""
+  linkedin_secret: ""
+
+  google_key: ""
+  google_secret: ""
