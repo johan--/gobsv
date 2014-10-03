@@ -20,7 +20,7 @@ h1, h2{
 }
 h1{
   text-transform: uppercase;
-  font-size: 32px;
+  font-size: 40px;
 }
 h2{
   font-size: 26px;
@@ -48,7 +48,7 @@ h2{
     text-align: left;
     .slogan-description{
       color: #0E76BB;
-      font-size: 20px;
+      font-size: 24px;
     }
     .proposal-buttons{
       a{
@@ -113,6 +113,78 @@ h2{
   }
 }
 
+.news-section{
+  .event-section, .article-section{
+    h3{
+      font-size: 32px;
+      color: #0B5B91;
+      text-align: center;
+    }
+  }
+  .disable-border{
+    border: none !important;
+  }
+  .event-section{
+    .event-item{
+      border-bottom: 1px solid;
+      margin: 10px 0 20px;
+      padding-bottom: 20px;
+      .event-date, .event-image, .event-description{
+        float: left;
+      }
+      .event-date{
+        margin-right: 15px;
+        text-align: center;
+        .event-day{
+          background-color: #94A5B5;
+          color: #FFFFFF;
+          font-size: 18px;
+          font-weight: bold;
+          height: 53px;
+          line-height: 1.3;
+          width: 50px;
+        }
+      }
+      .event-image{
+        border: 10px solid #F2F2F2;
+        max-height: 150px;
+        overflow: hidden;
+      }
+      .event-description{
+        text-align: justify;
+      }
+    }
+  }
+  .article-section{
+    .article-item{
+      border-bottom: 1px solid;
+      margin: 10px 0 15px;
+      padding: 15px 0 20px;
+      text-align: justify;
+      .article-name{
+        color: #29ABE2;
+      }
+    }
+  }
+}
+
+#footer{
+  border-top: 2px solid #D9D9D9;
+  margin-top: 20px;
+  .goverment-slogan, .social-media-buttons, .goverment-info{
+    margin-top: 20px;
+  }
+  .footer-icon{
+    margin: 0 5px;
+  }
+  .goverment-info{
+    text-align: right;
+    color: #4D4D4D;
+    font-size: 11px;
+  }
+}
+
+// Media Queries
 @media only screen and (max-width: 1080px){
   #header{
     background-color: #cbddf0; // Old browsers
@@ -147,7 +219,7 @@ h2{
       }
     }
     .download-section-2{
-      margin-top: 20px;
+      margin: 20px;
       text-align: center;
       h2.plan{
         font-size: 36px;
@@ -160,6 +232,11 @@ h2{
       .download-documents{
         text-align: center;
       }
+    }
+  }
+  #footer{
+    .goverment-slogan, .social-media-buttons, .goverment-info{
+      text-align: center;
     }
   }
 
@@ -177,7 +254,6 @@ h2{
       }
     }
     .download-section-2{
-      margin-top: 20px;
       text-align: center;
       h2.plan{
         font-size: 36px;
@@ -190,4 +266,17 @@ h2{
 
     }
   }
+}
+
+@media (min-width: 1900px){
+  .download-plan{
+    background: #ECF9FF;
+    .download-section-1{
+      img{
+        display: block;
+        max-width: 419px;
+        margin: 0 auto;
+      }
+    } 
+  } 
 }
