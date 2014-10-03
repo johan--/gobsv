@@ -10,10 +10,184 @@
 @include font-face('Ubuntu', font-files("ubuntu/Ubuntu-R-webfont.ttf", "ubuntu/Ubuntu-R-webfont.svg", "ubuntu/Ubuntu-R-webfont.woff", "ubuntu/Ubuntu-R-webfont.eot"));
 
 body{
-  font-family: 'Ubuntu,Helvetica,Arial,sans-serif';
+  font-family: 'Ubuntu', Helvetica,Arial,sans-serif;
 }
 
+// Overrides
+h1, h2{
+  color: #0E76BB;
+  margin: 5px 0;
+}
+h1{
+  text-transform: uppercase;
+  font-size: 32px;
+}
+h2{
+  font-size: 26px;
+}
+
+// General
 #header {
-   @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
-   height: 300px;
+  @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
+  height: 300px;
+  
+  p.title-plan{
+    color: #0E76BB;
+  }
+
+  p.title-join{
+    color: #29ABE2;
+  }
+
+  p.title-plan, p.title-join{
+    font-size: 18px;
+  }
+
+  .slogan{
+    margin-top: 35px;
+    text-align: left;
+    .slogan-description{
+      color: #0E76BB;
+      font-size: 20px;
+    }
+    .proposal-buttons{
+      a{
+        display: inline-block;
+        color: #0E76BB;
+        margin: 15px 20px 0 0;
+        @include border-radius(5px);
+        border: 1px solid;
+        padding: 8px 5px;
+        text-align: center;
+        width: 155px;
+        text-decoration: none;
+      }
+    }
+  }
+}
+.download-plan{
+  background: image-url("consulta/bg-quinquenal.png") repeat-x #FFF;
+  height: 300px;
+  .download-section-1{
+    margin-top: 20px;
+    img{
+      display: block;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  .download-section-2{
+    margin-top: 50px;
+    text-align: left;
+    h2.plan{
+      font-size: 50px;
+      color: #00A99D;
+    }
+    p{
+      color: #0071BC;
+      font-size: 36px;
+    }
+    .download-documents{
+      a.pdf-icon, a.ppt-icon{
+        display: inline-block;
+        padding: 5px 12px 5px;
+        margin: 10px 20px 0 0;
+        text-decoration: none;
+        font-size: 16px;
+        text-transform: uppercase;
+        @include border-radius(5px);
+        color: #fff;
+        img{
+          display: inline;
+          margin-right: 5px;
+          vertical-align: text-top;
+        }
+      }
+      a.pdf-icon{
+        background-color: #00A99D;
+      }
+      a.ppt-icon{
+        background-color: #0071BC;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1080px){
+  #header{
+    background-color: #cbddf0; // Old browsers
+    @include filter-gradient(#cbddf0, #cbddf0, vertical);
+    @include background-image(linear-gradient(top, #cbddf0 0%,#ecf3f9 51%,#cbddf0 100%));
+    height: auto;
+    h1{
+      font-size: 28px;
+    }
+    .slogan{
+      text-align: center;
+      margin-bottom: 30px;
+      .slogan-description{
+        font-size: 18px;
+      }
+      .proposal-buttons{
+        a{
+          margin: 5px 10px;
+        }
+      }
+    }
+  }
+
+  .download-plan{
+    background: #ECF9FF;
+    height: auto;
+    .download-section-1{
+      img{
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+    .download-section-2{
+      margin-top: 20px;
+      text-align: center;
+      h2.plan{
+        font-size: 36px;
+        color: #00A99D;
+      }
+      p{
+        color: #0071BC;
+        font-size: 24px;
+      }
+      .download-documents{
+        text-align: center;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 560px) and (max-width: 990px){
+  .download-plan{
+    background: #ECF9FF;
+    height: auto;
+    .download-section-1{
+      img{
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+      }
+    }
+    .download-section-2{
+      margin-top: 20px;
+      text-align: center;
+      h2.plan{
+        font-size: 36px;
+        color: #00A99D;
+      }
+      p{
+        color: #0071BC;
+        font-size: 24px;
+      }
+
+    }
+  }
 }

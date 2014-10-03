@@ -23,7 +23,35 @@
       .row
         .col-md-2.col-md-offset-2.text-center
           = image_tag('consulta/logo.png')
-          %strong
+          %h2
             = t '.title'
-          Plan Quinquenal de Desarrollo 2014 - 2019
-          Unámonos para crecer
+          %p.title-plan
+            = t '.five_year_plan'
+          %p.title-join.visible-lg
+            = t '.join_us'
+        .col-md-7.col-md-offset-1.text-center
+          .slogan
+            %h1
+              = t '.slogan'
+            %p.slogan-description
+              = t('layouts.consulta.slogan_description').html_safe
+            .proposal-buttons
+              = link_to t('layouts.consulta.read_proposals'), "#"
+              = link_to t('layouts.consulta.about'), "#"
+    .container-fluid.download-plan
+      .row
+        .col-md-3.col-md-offset-2.text-center
+          .download-section-1
+            = image_tag('consulta/manual1.png')
+        .col-md-7.text-center
+          .download-section-2
+            %h2.plan
+              = t '.plan_title'
+            %p
+              = t '.plan_date'
+            .download-documents
+              = link_to image_tag('consulta/pdf-icon.png') + t('layouts.consulta.download_pdf'), "#", class: "pdf-icon"
+              = link_to image_tag('consulta/ppt-icon.png') + t('layouts.consulta.download_ppt'), "#", class: "ppt-icon"
+        .clearfix
+
+    .container-fluid#footer

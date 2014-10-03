@@ -31,5 +31,6 @@ Rails.application.routes.draw do
       end
     end
   end
+  root :to => 'consulta/dashboard#index'
 
 end
