@@ -30,7 +30,8 @@ Rails.application.routes.draw do
         [ :cns_categories,
           :cns_proposals,
           :cns_events,
-          :cns_articles
+          :cns_articles,
+          :cns_timelines
         ].each do |resource|
           resources resource
         end

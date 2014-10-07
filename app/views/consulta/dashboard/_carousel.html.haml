@@ -1,0 +1,17 @@
+- if timelines.size > 0
+  .row-fluid
+    .clearfix
+      = link_to 'javascript:;', class: 'litoral-prev pull-left' do
+        = image_tag('consulta/slider-prev.png')
+      = link_to 'javascript:;', class: 'litoral-next pull-right' do
+        = image_tag('consulta/slider-next.png')
+    .litoral
+      %ul
+        - timelines.each do |timeline|
+          %li
+            %strong
+              = timeline.name
+            %p
+              = timeline.description
+            .sign
+              = l(timeline.timeline_date, format: :tiny)

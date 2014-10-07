@@ -34,6 +34,7 @@ es:
       default: ! '%d/%m/%Y'
       long: ! '%d de %B de %Y'
       short: ! '%d de %b'
+      tiny: ! '%d/%b'
     month_names:
     -
     - enero
@@ -197,6 +198,7 @@ es:
       cns_event: Evento
       cns_article: Noticia
       deleted_element: Elemento eliminado
+      cns_timeline: Timeline
     attributes:
       id: ID
       created_at: Creado el
@@ -224,6 +226,11 @@ es:
         item_type: Tipo
         object_name: Nombre
         deleted_at: Eliminado el
+      cns_timeline:
+        timeline_date: Fecha
+        name: Nombre
+        description: Descripción
+        url: Enlace
   layouts:
     admin:
       title: Panel de control | Gobierno Abierto El Salvador

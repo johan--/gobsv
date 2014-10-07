@@ -16,4 +16,10 @@ class Consulta::DashboardController < ConsultaController
   def show
     @event = CnsEvent.find(params[:id])
   end
+
+  private
+    def timelines
+      @timelines ||= CnsTimeline.order(:timeline_date)
+    end
+    helper_method :timelines
 end
