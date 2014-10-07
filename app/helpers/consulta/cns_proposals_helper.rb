@@ -1,0 +1,2 @@
+module Consulta::CnsProposalsHelper
+end

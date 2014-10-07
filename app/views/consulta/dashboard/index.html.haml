@@ -1,22 +1,3 @@
-.container-fluid#header
-  .row
-    .col-md-3.col-md-offset-2.text-center
-      = image_tag('consulta/logo.png')
-      %h2
-        = t('layouts.consulta.title')
-      %p.title-plan
-        = t('layouts.consulta.five_year_plan')
-      %p.title-join.visible-lg
-        = t('layouts.consulta.join_us')
-    .col-md-5.text-center
-      .slogan
-        %h1
-          = t('layouts.consulta.slogan')
-        %p.slogan-description
-          = t('layouts.consulta.slogan_description').html_safe
-        .proposal-buttons
-          = link_to t('layouts.consulta.read_proposals'), "#"
-          = link_to t('layouts.consulta.about'), "#"
 .container-fluid.download-plan
   .row
     .col-md-3.col-md-offset-2.text-center
@@ -62,7 +43,7 @@
               = article.name
               = article.description
               .clearfix
-        = link_to "Ver todas las noticias", cns_articles_url, class: "news-link"
+        =# link_to "Ver todas las noticias", cns_articles_url, class: "news-link"
 
 - unless @tweets.nil?
   .container-fluid.social-networks-comments.visible-lg

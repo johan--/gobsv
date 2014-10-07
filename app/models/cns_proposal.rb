@@ -4,7 +4,7 @@ class CnsProposal < ActiveRecord::Base
   has_paper_trail
 
   validates :cns_category_id, presence: true
-
+  validates :priority, presence: true
   validates :name, presence: true
   validates :name, uniqueness: { case_sensitive: false }
 

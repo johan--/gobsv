@@ -19,6 +19,10 @@
 
 
   %body
+    - if controller_name == 'dashboard'
+      = render partial: 'shared/index_header'
+    - else
+      = render partial: 'shared/pages_header'
     = yield
     .container-fluid#footer
       .row
