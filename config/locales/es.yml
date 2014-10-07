@@ -204,9 +204,11 @@ es:
       cns_category:
         name: Nombre
         description: Descripción
+        icon: Icono
       cns_proposal:
         cns_category_id: Categoría
         name: Nombre
+        priority: Prioridad
         description: Descripción
       cns_event:
         event_date: Fecha
@@ -292,3 +294,6 @@ es:
     cns_articles:
       form:
         picture_recommended_size: "Dimensiones recomendadas: 386x160"
+  forms:
+    picture_select: Seleccionar Archivo
+    no_picture_selected: No hay imagen

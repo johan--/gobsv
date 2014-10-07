@@ -7,12 +7,17 @@ Rails.application.routes.draw do
       defaults subdomain: 'consulta' do
         root to: 'dashboard#index'
       end
+      resources :cns_articles, only: [:index, :show]
+      resources :cns_categories, only: [:index, :show] do
+        resources :cns_proposals, only: [:index, :show] do
+          resources :cns_comments
+        end
+      end
     end
   end
 
-  resources :cns_articles, only: [:index, :show]
 
-  constraints subdomain: 'apps.gobiernoabierto' do
+  constraints subdomain: 'admin' do
     scope module: 'admin', as: 'admin' do
       defaults subdomain: 'admin' do
 
