@@ -5,6 +5,6 @@ class Admin::CnsCategoriesController < Admin::TabledController
   end
 
   def item_params
-    params.require(:cns_category).permit(:name, :description)
+    params.require(:cns_category).permit(:name, :description, :icon)
   end
 end

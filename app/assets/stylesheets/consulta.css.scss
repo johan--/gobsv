@@ -11,7 +11,6 @@
 
 body{
   font-family: 'Ubuntu', Helvetica,Arial,sans-serif;
-  padding-bottom: 40px;
 }
 
 // Overrides
@@ -21,7 +20,7 @@ h1, h2{
 }
 h1{
   text-transform: uppercase;
-  font-size: 40px;
+  font-size: 38px;
 }
 h2{
   font-size: 26px;
@@ -30,7 +29,7 @@ h2{
 // General index
 #header {
   @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
-
+  padding-bottom: 20px;
   p.title-plan{
     color: #0E76BB;
   }
@@ -48,7 +47,7 @@ h2{
     text-align: left;
     .slogan-description{
       color: #0E76BB;
-      font-size: 24px;
+      font-size: 22px;
     }
     .proposal-buttons{
       a{
@@ -65,9 +64,46 @@ h2{
     }
   }
 }
+
+.main-categories{
+  background-color: #F2F2F2;
+  padding-top: 30px;
+  h2{
+    color: #29ABE2;
+  }
+  span{
+    color: #787878;
+  }
+  .list{   
+    margin: 30px 0;
+    .list-category{
+      color: #29ABE2;
+      width: 50%; 
+      float: left; 
+      display: inline-block;
+      padding: 15px 0;
+      a.list-category-name, .list-category-image{
+        display: block;
+        float: left;
+      }
+      .list-category-image{
+        text-align: right;
+        width: 20%
+      }
+      a.list-category-name{
+        color: #29ABE2;
+        width: 72%;
+        margin-left: 8%;
+        text-align: left;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
 .download-plan{
   background: image-url("consulta/bg-quinquenal.png") repeat-x #FFF;
-  height: 300px;
+  height: 284px;
   .download-section-1{
     margin-top: 20px;
     img{
@@ -77,10 +113,10 @@ h2{
     }
   }
   .download-section-2{
-    margin-top: 50px;
+    margin-top: 40px;
     text-align: left;
     h2.plan{
-      font-size: 50px;
+      font-size: 44px;
       color: #00A99D;
     }
     p{
@@ -170,7 +206,9 @@ h2{
 }
 
 .social-networks-comments{
-  margin: 70px 0 20px;
+  background-color: #F2F2F2;
+  margin: 20px 0 0;
+  padding: 30px;
   text-align: center;
   h2{
     color: #29ABE2;
@@ -217,7 +255,7 @@ h2{
 
 #footer{
   border-top: 2px solid #D9D9D9;
-  margin-top: 20px;
+  padding: 20px 0 40px;
   .goverment-slogan, .social-media-buttons, .goverment-info{
     margin-top: 20px;
   }
@@ -229,6 +267,10 @@ h2{
     color: #4D4D4D;
     font-size: 11px;
   }
+}
+
+.footer-background{
+  background-color: #F2F2F2;
 }
 
 // General Subpages

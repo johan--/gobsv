@@ -20,15 +20,19 @@
 
   %body
     - if controller_name == 'dashboard'
-      = render partial: 'shared/index_header'
+      = render partial: 'consulta/shared/index_header'
     - else
-      = render partial: 'shared/pages_header'
+      = render partial: 'consulta/shared/pages_header'
+      .container-fluid.main-content
+        .row
+          .col-md-2.col-md-offset-2.left-side-menu
+            = render partial: 'consulta/shared/side_menu'
     = yield
-    .container-fluid#footer
+    .container-fluid#footer{class: controller_name == 'dashboard' ? 'footer-background' : ''}
       .row
         .col-md-2.col-md-offset-2
           .goverment-slogan
-            = image_tag('consulta/goverment-slogan.jpg', alt: t('layouts.consulta.title'))
+            = image_tag('consulta/goverment-slogan.png', alt: t('layouts.consulta.title'))
         .col-md-3.text-center
           .social-media-buttons
             = link_to image_tag('consulta/facebook-icon.png', alt: 'Facebook'), "https://www.facebook.com/ConsultaSV", class: "footer-icon", title: "Facebook"

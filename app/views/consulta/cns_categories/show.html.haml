@@ -1,0 +1,9 @@
+.col-md-6
+	- if @proposals.size == 0
+		%h3
+			= t("layouts.consulta.no_proposals")
+	- else
+		%ul.proposals
+			- @proposals.each_with_index do |proposal|
+				%li
+					= link_to proposal.name, consulta_cns_category_cns_proposal_path(@category, proposal)
