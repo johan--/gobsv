@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003101925) do
+ActiveRecord::Schema.define(version: 20141007163321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,22 @@ ActiveRecord::Schema.define(version: 20141003101925) do
   end
 
   create_table "cns_categories", force: true do |t|
-    t.string   "name",        null: false
+    t.string   "name",              null: false
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+  end
+
+  create_table "cns_comments", force: true do |t|
+    t.integer  "cns_proposals_id"
+    t.integer  "active"
+    t.integer  "featured"
+    t.string   "email"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,10 +81,11 @@ ActiveRecord::Schema.define(version: 20141003101925) do
 
   create_table "cns_proposals", force: true do |t|
     t.integer  "cns_category_id"
-    t.string   "name",            null: false
+    t.string   "name",                        null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "priority",        default: 0, null: false
   end
 
   add_index "cns_proposals", ["cns_category_id"], name: "index_cns_proposals_on_cns_category_id", using: :btree
