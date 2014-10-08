@@ -2,18 +2,23 @@ Rails.application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admin/sessions', passwords: 'admin/passwords' }
 
-  constraints subdomain: 'consulta' do
-    scope module: 'consulta', as: 'consulta' do
-      defaults subdomain: 'consulta' do
-        root to: 'dashboard#index'
-      end
-      resources :cns_articles, only: [:index, :show]
-      resources :cns_categories, only: [:index, :show] do
-        resources :cns_proposals, only: [:index, :show] do
-          resources :cns_comments
+  constraints(Subdomain) do
+  #constraints subdomain: 'consulta' do
+    #scope module: 'consulta', as: 'consulta' do
+      #defaults subdomain: 'consulta' do
+        #root to: 'dashboard#index'
+      #end
+      scope module: 'consulta', as: 'consulta' do
+        get '/' => 'dashboard#index'
+        resources :cns_articles, only: [:index, :show]
+        resources :cns_categories, only: [:index, :show] do
+          resources :cns_proposals, only: [:index, :show] do
+            resources :cns_comments
+          end
         end
       end
-    end
+    #end
+  #end
   end
 
 

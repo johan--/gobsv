@@ -21,6 +21,7 @@ module Gobsv
 
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
+    config.autoload_paths << Rails.root.join('lib')
 
     config.generators do |g|
       g.test_framework  :rspec,
