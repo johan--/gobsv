@@ -10,8 +10,8 @@
         %p
           = t('layouts.consulta.plan_date')
         .download-documents
-          =# link_to image_tag('consulta/pdf-icon.png') + t('layouts.consulta.download_pdf'), "#", class: "pdf-icon"
-          = link_to image_tag('consulta/ppt-icon.png') + t('layouts.consulta.download_ppt'), "#", class: "ppt-icon"
+          = link_to image_tag('consulta/pdf-icon.png') + t('layouts.consulta.download_pdf'), asset_url('BORRADOR PQD 2014-2019.pdf'), class: "pdf-icon", target: '_blank'
+          =# link_to image_tag('consulta/ppt-icon.png') + t('layouts.consulta.download_ppt'), "#", class: "ppt-icon"
     .clearfix
 - if @categories.size > 0
   .container-fluid.main-categories
