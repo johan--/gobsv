@@ -10,4 +10,7 @@ class CnsArticle < ActiveRecord::Base
 
   validates :article_date, presence: true
   validates :article_date, date: true
+
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :finders]
 end

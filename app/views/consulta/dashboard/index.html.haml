@@ -56,7 +56,7 @@
           - @articles.each_with_index do |article,i|
             .article-item{class: "#{i == @articles.size - 1 ? 'disable-border' : ''}"}
               = article.article_date
-              = article.name
+              = link_to article.name, consulta_cns_article_url(article)
               = article.description
               .clearfix
         =# link_to "Ver todas las noticias", cns_articles_url, class: "news-link"

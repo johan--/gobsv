@@ -1,0 +1,6 @@
+- if article.picture.present?
+  = image_tag(article.picture.url, class: 'img-responsive')
+%h2
+  = article.name
+%p
+  = simple_format article.description
