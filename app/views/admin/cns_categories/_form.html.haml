@@ -6,7 +6,7 @@
 
 #image-preview
   = link_to t("forms.picture_select"), "#", id: "image-url"
-  = image_tag("denounce/add-image.jpg", alt: t("forms.no_picture_selected"), id: "preview")
+  = image_tag("consulta/missing.png", alt: t("forms.no_picture_selected"), id: "preview")
 .form-group
   = f.label :name
   = f.text_field :name, class: 'form-control', required: true
