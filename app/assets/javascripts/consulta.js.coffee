@@ -25,7 +25,7 @@ goTo = (index)->
     totalWidth += this or 0
     return
   $litoral.css({left: "-" + totalWidth + "px"})
-  $('div.litoral').css("backgroundPosition", "-" + totalWidth + "px bottom");
+  $('div.litoral').css({'background-position': "-" + totalWidth + "px bottom"});
   current_index = index
 
 $(document).ready ->
