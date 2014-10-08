@@ -2,11 +2,12 @@
 
 .form-group
   = f.label :icon
-  = f.file_field :icon, required: true
+  = f.file_field :icon
 
 #image-preview
   = link_to t("forms.picture_select"), "#", id: "image-url"
-  = image_tag("consulta/missing.png", alt: t("forms.no_picture_selected"), id: "preview")
+  - url =  @item.icon.present? ? @item.icon.url(:icon) : "consulta/missing.png"
+  = image_tag(url, alt: t("forms.no_picture_selected"), id: "preview")
 .form-group
   = f.label :name
   = f.text_field :name, class: 'form-control', required: true

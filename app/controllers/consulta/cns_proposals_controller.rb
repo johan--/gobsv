@@ -18,9 +18,7 @@ class Consulta::CnsProposalsController < ApplicationController
       add_breadcrumb I18n.t('layouts.consulta.home'), root_path
       add_breadcrumb I18n.t('layouts.consulta.categories'), consulta_cns_categories_path
       add_breadcrumb @category.name, consulta_cns_category_path(category) unless category.nil?
-      add_breadcrumb I18n.t('layouts.consulta.proposals'), consulta_cns_category_cns_proposals_path(category) unless category.nil?
       add_breadcrumb @proposal.name, consulta_cns_category_cns_proposal_path(category, proposal) unless category.nil? or proposal.nil?
-
     end
 
 end

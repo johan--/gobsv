@@ -105,26 +105,46 @@ h2{
   padding-bottom: 30px;
 }
 
+.categories{
+  margin: 20px 0;
+}
+
 .container{
   padding-bottom: 30px;
-  ul.proposals{
+  ul.proposals, ul.category-lists{
     padding: 10px;
-    margin: 10px 20px;
     li{
       list-style: none;
-      background: url("consulta/list.png") repeat-y left top;
+      
       padding-left: 15px;
       margin: 10px 0;
+      a{
+        text-decoration: none;
+      }
     }
   }
-
+  ul.proposals{
+    li{
+      background: url("consulta/list.png") repeat-y left top;
+      margin: 10px 20px;
+    }
+  }
+  ul.category-lists{
+    li{
+      background: url("consulta/list2.png") repeat-y left top;
+      margin: 15px;
+      a{
+        font-size: 18px;
+      }
+    }
+  }
   span.divider{
     display: none;
   }
 }
 
 .category-description{
-  margin: 10px 0 20px;
+  margin: 30px 0 20px;
 }
 
 .download-plan{

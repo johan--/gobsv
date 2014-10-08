@@ -9,7 +9,7 @@
   %ul.proposals
     - @proposals.each_with_index do |proposal|
       %li
-        = link_to proposal.name, consulta_cns_category_cns_proposal_path(@category, proposal)
-        %br
-        = link_to proposal.description.truncate(150, omission: '...'), consulta_cns_category_cns_proposal_path(@category, proposal)
-
+        = link_to consulta_cns_category_cns_proposal_path(@category, proposal) do
+          = proposal.name
+          %br
+          = proposal.description.truncate(200, omission: '...')
