@@ -125,13 +125,19 @@ h2{
   }
   ul.proposals{
     li{
-      background: url("consulta/list.png") repeat-y left top;
+      background: image-url("consulta/list.png") repeat-y left top;
       margin: 10px 20px;
+      a{
+        margin-bottom: 5px;
+      }
+      p{
+        margin: 5px 0 10px;
+      }
     }
   }
   ul.category-lists{
     li{
-      background: url("consulta/list2.png") repeat-y left top;
+      background: image-url("consulta/list2.png") repeat-y left top;
       margin: 15px;
       a{
         font-size: 18px;
