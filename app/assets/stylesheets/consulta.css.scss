@@ -107,10 +107,24 @@ h2{
 
 .container{
   padding-bottom: 30px;
+  ul.proposals{
+    padding: 10px;
+    margin: 10px 20px;
+    li{
+      list-style: none;
+      background: url("consulta/list.png") repeat-y left top;
+      padding-left: 15px;
+      margin: 10px 0;
+    }
+  }
+
+  span.divider{
+    display: none;
+  }
 }
 
 .category-description{
-  margin: 10px 0;
+  margin: 10px 0 20px;
 }
 
 .download-plan{

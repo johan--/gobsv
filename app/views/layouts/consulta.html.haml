@@ -21,13 +21,16 @@
   %body
     - if controller_name == 'dashboard'
       = render partial: 'consulta/shared/index_header'
+      = yield
     - else
       = render partial: 'consulta/shared/pages_header'
       .container-fluid.main-content
         .row
           .col-md-2.col-md-offset-2.left-side-menu
             = render partial: 'consulta/shared/side_menu'
-    = yield
+          .col-md-6.container
+            = render_breadcrumbs
+            = yield
     .container-fluid#footer{class: controller_name == 'dashboard' ? 'footer-background' : ''}
       .row
         .col-md-2.col-md-offset-2

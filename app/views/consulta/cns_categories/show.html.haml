@@ -1,9 +1,15 @@
-.col-md-6
-	- if @proposals.size == 0
-		%h3
-			= t("layouts.consulta.no_proposals")
-	- else
-		%ul.proposals
-			- @proposals.each_with_index do |proposal|
-				%li
-					= link_to proposal.name, consulta_cns_category_cns_proposal_path(@category, proposal)
+%h2
+  = @category.name
+.category-description
+  = @category.description unless @category.description.nil?
+- if @proposals.size == 0
+  %h3
+    = t("layouts.consulta.no_proposals")
+- else
+  %ul.proposals
+    - @proposals.each_with_index do |proposal|
+      %li
+        = link_to proposal.name, consulta_cns_category_cns_proposal_path(@category, proposal)
+        %br
+        = link_to proposal.description.truncate(150, omission: '...'), consulta_cns_category_cns_proposal_path(@category, proposal)
+
