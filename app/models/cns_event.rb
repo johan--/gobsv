@@ -10,4 +10,6 @@ class CnsEvent < ActiveRecord::Base
 
   validates :event_date, presence: true
   validates :event_date, date: true
+
+  scope :active, -> { where('event_date >= ?', Date.current) }
 end

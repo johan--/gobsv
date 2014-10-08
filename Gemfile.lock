@@ -97,6 +97,8 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.5)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     fssm (0.2.10)
     haml (4.0.5)
       tilt
@@ -282,6 +284,7 @@ DEPENDENCIES
   draper (~> 1.4.0)
   factory_girl_rails (~> 4.4.1)
   faker (~> 1.4.3)
+  friendly_id (~> 5.0.4)
   haml-rails (~> 0.5.3)
   jbuilder (~> 2.0)
   jquery-rails

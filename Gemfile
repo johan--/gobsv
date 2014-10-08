@@ -84,3 +84,6 @@ gem 'twitter', '~> 5.11.0'
 
 # Easy file attachment management for ActiveRecord
 gem 'paperclip', '~> 4.2'
+
+# Create pretty URL’s and work with human-friendly strings
+gem 'friendly_id', '~> 5.0.4'

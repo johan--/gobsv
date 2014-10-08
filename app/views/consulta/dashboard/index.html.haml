@@ -45,7 +45,7 @@
                   - if event.picture.present?
                     .event-image.img-responsive
                       = image_tag(event.picture.url(:medium)) rescue image_tag("consulta/event-image-test.png")
-                  = event.description
+                  = event.name
               .clearfix
         = link_to "Ver Calendario Completo", "#", class: "news-link"
     .col-md-4
