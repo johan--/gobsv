@@ -29,7 +29,7 @@ h2{
 // General index
 #header {
   @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
-  padding-bottom: 20px;
+  margin-bottom: 20px;
   p.title-plan{
     color: #0E76BB;
   }
@@ -560,6 +560,13 @@ h2{
   }
 }
 
+.litoral-prev {
+  margin-left: 3px;
+}
+
+.litoral-next {
+  margin-right: 3px;
+}
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 560px) and (max-width: 990px) {
