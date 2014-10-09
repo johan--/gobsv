@@ -16,6 +16,6 @@
           %p.slogan-description
             = t('layouts.consulta.slogan_description').html_safe
           .proposal-buttons
-            = link_to t('layouts.consulta.read_proposals'), consulta_cns_categories_path
+            = link_to t('layouts.consulta.read_proposals'), consulta_url(anchor: 'main-categories')
             = link_to t('layouts.consulta.about'), "#"
   = render 'consulta/dashboard/slider'
