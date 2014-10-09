@@ -29,7 +29,6 @@ h2{
 // General index
 #header {
   @include background-image(linear-gradient(white, #f0faff 30%, #d7f1ff 70%, #95d2f2));
-  margin-bottom: 20px;
   p.title-plan{
     color: #0E76BB;
   }
@@ -100,7 +99,9 @@ h2{
     }
   }
 }
-
+.twitter-timeline{
+  width: 100% !important;
+}
 .left-side-menu{
   padding-bottom: 30px;
 }
@@ -247,11 +248,18 @@ h2{
   .article-section{
     .article-item{
       border-bottom: 1px solid #B1B3B5;
-      margin: 10px 0 15px;
+      margin: 0px 0 10px;
       padding: 15px 0 20px;
       text-align: justify;
+      .article-image{
+
+      }
       .article-name{
         color: #29ABE2;
+        font-size: 24px;
+        a{
+          text-decoration: none;
+        }
       }
     }
   }
@@ -307,7 +315,7 @@ h2{
 
 #footer{
   border-top: 2px solid #D9D9D9;
-  padding: 20px auto 40px;
+  padding-bottom: 20px;
   .goverment-slogan, .social-media-buttons, .goverment-info{
     margin-top: 20px;
   }

@@ -3,7 +3,7 @@ class Consulta::DashboardController < ConsultaController
 
   def index
     @events = CnsEvent.active.order(:event_date).limit(3).decorate rescue nil
-    @articles = CnsArticle.limit(3).decorate rescue nil
+    @articles = CnsArticle.order("created_at DESC").limit(3).decorate rescue nil
     @categories = CnsCategory.all
     begin
       tclient = TwitterBot.client

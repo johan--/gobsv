@@ -26,9 +26,7 @@
       = render partial: 'consulta/shared/pages_header'
       .container-fluid.main-content
         .row
-          .col-md-2.col-md-offset-2.left-side-menu
-            = render partial: 'consulta/shared/side_menu'
-          .col-md-6.container
+          .col-md-8.col-md-offset-2.container
             = render_breadcrumbs
             = yield
     .container-fluid#footer{class: controller_name == 'dashboard' ? 'footer-background' : ''}
@@ -43,4 +41,3 @@
         .col-md-3
           .goverment-info
             = t('layouts.consulta.goverment_info').html_safe
-    %br

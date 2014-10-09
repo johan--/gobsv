@@ -32,6 +32,20 @@
 .container-fluid.news-section
   .row
     .col-md-4.col-md-offset-2
+      .article-section
+        %h3.plan
+          = "Noticias"
+        - unless @articles.nil?
+          - @articles.each_with_index do |article,i|
+            .article-item{class: "#{i == @articles.size - 1 ? 'disable-border' : ''}"}
+              - if article.picture.present?
+                .article-image.img-responsive
+                  = image_tag(article.picture.url(:medium))
+              .article-name
+                = link_to article.name, consulta_cns_article_url(article)
+            .clearfix
+        = link_to "Ver todas las noticias", consulta_cns_articles_path, class: "news-link"
+    .col-md-4
       .event-section
         %h3
           = "Eventos"
@@ -48,18 +62,6 @@
                   = event.name
               .clearfix
         = link_to "Ver Calendario Completo", "#", class: "news-link"
-    .col-md-4
-      .article-section
-        %h3.plan
-          = "Noticias"
-        - unless @articles.nil?
-          - @articles.each_with_index do |article,i|
-            .article-item{class: "#{i == @articles.size - 1 ? 'disable-border' : ''}"}
-              = article.article_date
-              = link_to article.name, consulta_cns_article_url(article)
-              = article.description
-              .clearfix
-        =# link_to "Ver todas las noticias", cns_articles_url, class: "news-link"
 
 - unless @tweets.nil?
   .container-fluid.social-networks-comments.visible-lg
@@ -70,18 +72,9 @@
       = "#ConsultaPQD"
     .row
       .col-md-8.col-md-offset-2.text-center.comments-wrapper
-        - @tweets.collect do |tweet|
-          .social-media-item
-            .twitter-image
-              = image_tag(tweet.user.profile_image_url)
-            .twitter-profile
-              = tweet.user.screen_name
-              %span.tweet
-                = tweet.user.name
-            .twitter-text
-              = tweet.user.tweet.text
-            .clearfix
-
+        = link_to "Tweets sobre #ConsultaPQD", "https://twitter.com/hashtag/ConsultaPQD", class: "twitter-timeline", :'data-widget-id' => "520232741699203076"
+        :javascript
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 -#
   @tweets.collect do |tweet|
     puts "#{tweet.user.profile_image_url}"
