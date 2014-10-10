@@ -87,3 +87,12 @@ gem 'paperclip', '~> 4.2'
 
 # Create pretty URL’s and work with human-friendly strings
 gem 'friendly_id', '~> 5.0.4'
+
+
+gem 'omniauth',               '~> 1.2.2'
+gem 'omniauth-oauth2',        '~> 1.2.0'
+gem 'omniauth-facebook',      '~> 2.0.0'
+gem 'omniauth-github',        '~> 1.1.2'
+gem 'omniauth-google-oauth2', '~> 0.2.5'
+gem 'omniauth-linkedin',      '~> 0.2.0'
+gem 'omniauth-twitter',       '~> 1.0.1'
