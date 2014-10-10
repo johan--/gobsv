@@ -234,6 +234,16 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
+  config.sign_out_via = :get
+
+  _keys = SocialKeys[Rails.env.to_sym]
+
+  config.omniauth :facebook,      _keys[:facebook_key], _keys[:facebook_secret], { scope: 'email, publish_actions, user_birthday' }
+  config.omniauth :twitter,       _keys[:twitter_key],  _keys[:twitter_secret]
+  config.omniauth :google_oauth2, _keys[:google_key],   _keys[:google_secret]
+  config.omniauth :github,        _keys[:github_key],   _keys[:github_secret],   { scope: 'user' }
+  config.omniauth :linkedin,      _keys[:linkedin_key], _keys[:linkedin_secret]
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

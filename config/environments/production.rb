@@ -84,7 +84,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'admin.gob.sv' }
 
   config.action_mailer.delivery_method = Config[:action_mailer][:delivery_method].to_sym
-  
+
   config.action_mailer.smtp_settings = {
     :address => Config[:action_mailer][:smtp_settings][:address],
     :port => Config[:action_mailer][:smtp_settings][:port],

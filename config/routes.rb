@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admin/sessions', passwords: 'admin/passwords' }
-  devise_for :users,  controllers: { sessions: 'user/sessions',  passwords: 'user/passwords'  }
+  devise_for :users,  controllers: { sessions: 'user/sessions',  passwords: 'user/passwords', omniauth_callbacks: 'user/omniauth_callbacks' }
 
   constraints(Subdomain) do
   #constraints subdomain: 'consulta' do
