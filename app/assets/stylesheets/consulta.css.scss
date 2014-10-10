@@ -212,61 +212,55 @@ h2{
       margin-bottom: 20px;
     }
   }
-
-  .event-section{
-    .event-item{
-      border-bottom: 1px solid #B1B3B5;
-      margin: 10px 0 20px;
-      padding: 20px 0;
-      .event-date, .event-image, .event-description{
-        float: left;
-      }
-      .event-date{
-        margin-right: 15px;
-        text-align: center;
-        .event-day{
-          background-color: #94A5B5;
-          color: #FFFFFF;
-          font-size: 18px;
-          font-weight: bold;
-          height: 53px;
-          line-height: 1.3;
-          width: 50px;
-        }
-      }
-      .event-name{
-        a{
-          text-decoration: none;
-          color: #29ABE2;
-          font-size: 14px;
-        }
-      }
-      .event-image{
-        border: 10px solid #F2F2F2;
-        max-height: 150px;
-        overflow: hidden;
-      }
-      .event-description{
-        text-align: justify;
-      }
-    }
-  }
 }
 .article-section{
   .article-item{
     border-bottom: 1px solid #B1B3B5;
     margin: 0px 0 10px;
     padding: 10px 0 20px;
-    text-align: justify;
+    text-align: left;
     .article-image{
-
     }
-    .article-name{
+    a.article-name {
+      text-decoration: none;
       color: #29ABE2;
-      font-size: 20px;
-      a{
-        text-decoration: none;
+      font-size: 14px;
+    }
+  }
+}
+.event-section{
+  .event-item{
+    border-bottom: 1px solid #B1B3B5;
+    margin: 10px 0 20px;
+    padding: 20px 0;
+    .event-date, .event-image, .event-description{
+      float: left;
+    }
+    .event-date{
+      margin-right: 15px;
+      text-align: center;
+      .event-day{
+        background-color: #94A5B5;
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: bold;
+        height: 53px;
+        line-height: 1.3;
+        width: 50px;
       }
+    }
+    a.event-name{
+      text-decoration: none;
+      color: #29ABE2;
+      font-size: 14px;
+    }
+    .event-image{
+      border: 10px solid #F2F2F2;
+      max-height: 150px;
+      overflow: hidden;
+    }
+    .event-description{
+      text-align: justify;
     }
   }
 }

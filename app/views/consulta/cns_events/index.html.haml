@@ -1,0 +1,18 @@
+%h2
+  = t("layouts.consulta.events_title")
+%br
+%br
+.event-section
+  - unless @events.blank?
+    - @events.each_with_index do |event,i|
+      .container-fluid.event-item{class: "#{i == @events.size - 1 ? 'disable-border' : ''}"}
+        .row
+          .col-md-2
+            = event.event_date
+          .col-md-10
+            = link_to event.name, consulta_cns_event_url(event), class: 'event-name '
+  - else
+    %h3
+      = t("layouts.consulta.no_events")
+
+
