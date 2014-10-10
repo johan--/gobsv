@@ -68,10 +68,10 @@
                 .col-md-10
                   - if event.picture.present?
                     .event-image
-                      = image_tag(event.picture.url(:medium)) rescue image_tag("consulta/event-image-test.png", class: "img-responsive")
+                      = image_tag(event.picture.url(:medium), class: 'img-responsive') rescue image_tag("consulta/event-image-test.png", class: "img-responsive")
                   = event.name
               .clearfix
-        = link_to "Ver Calendario Completo", "#", class: "news-link"
+        = link_to "Ver Calendario Completo", consulta_cns_events_url, class: "news-link"
 
 - unless @tweets.nil?
   .container-fluid.social-networks-comments.visible-lg
@@ -85,10 +85,3 @@
         = link_to "Tweets sobre #ConsultaPQD", "https://twitter.com/hashtag/ConsultaPQD", class: "twitter-timeline", :'data-widget-id' => "520298274121474048"
         :javascript
           !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
--#
-  @tweets.collect do |tweet|
-    puts "#{tweet.user.profile_image_url}"
-    puts "#{tweet.user.screen_name}"
-    puts "#{tweet.user.name}"
-    puts "#{tweet.user.tweet.text}"
-  end

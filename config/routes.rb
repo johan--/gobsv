@@ -16,6 +16,7 @@ Rails.application.routes.draw do
             resources :cns_comments
           end
         end
+        resources :cns_events, only: [:index, :show]
       end
     #end
   #end
