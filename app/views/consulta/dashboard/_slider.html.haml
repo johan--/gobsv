@@ -7,15 +7,14 @@
         = image_tag('consulta/slider-next.png')
     .litoral
       %ul
-        - 10.times do 
-          - timelines.each do |timeline|
-            %li
-              %strong
-                - if timeline.url.present?
-                  = link_to timeline.name, timeline.url, target: '_blank'
-                - else
-                  = timeline.name
-              %p
-                = timeline.description
-              .sign
-                = l(timeline.timeline_date, format: :tiny)
+        - timelines.each do |timeline|
+          %li
+            %strong
+              - if timeline.url.present?
+                = link_to timeline.name, timeline.url, target: '_blank'
+              - else
+                = timeline.name
+            %p
+              = timeline.description
+            .sign
+              = l(timeline.timeline_date, format: :tiny)
