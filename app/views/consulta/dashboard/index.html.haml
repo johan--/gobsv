@@ -53,7 +53,6 @@
                     .col-md-10
                       .article-name
                         = link_to article.name, consulta_cns_article_url(article)
-            .clearfix
         = link_to "Ver todas las noticias", consulta_cns_articles_path, class: "news-link"
     .col-md-4
       .event-section
@@ -66,11 +65,8 @@
                 .col-md-2
                   = event.event_date
                 .col-md-10
-                  - if event.picture.present?
-                    .event-image
-                      = image_tag(event.picture.url(:medium), class: 'img-responsive') rescue image_tag("consulta/event-image-test.png", class: "img-responsive")
-                  = event.name
-              .clearfix
+                  .event-name
+                    = link_to event.name, consulta_cns_event_url(event)
         = link_to "Ver Calendario Completo", consulta_cns_events_url, class: "news-link"
 
 - unless @tweets.nil?

@@ -236,6 +236,13 @@ h2{
           width: 50px;
         }
       }
+      .event-name{
+        a{
+          text-decoration: none;
+          color: #29ABE2;
+          font-size: 14px;
+        }
+      }
       .event-image{
         border: 10px solid #F2F2F2;
         max-height: 150px;
@@ -251,13 +258,13 @@ h2{
       border-bottom: 1px solid #B1B3B5;
       margin: 0px 0 10px;
       padding: 10px 0 20px;
-      text-align: justify;
+      text-align: left;
       .article-image{
 
       }
       .article-name{
         color: #29ABE2;
-        font-size: 20px;
+        font-size: 14px;
         a{
           text-decoration: none;
         }
