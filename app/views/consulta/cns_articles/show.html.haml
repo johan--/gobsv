@@ -1,5 +1,7 @@
 %h2
   = article.name
+%br
+%br
 - if article.picture.present?
   = image_tag(article.picture.url, class: 'img-responsive')
 %p
