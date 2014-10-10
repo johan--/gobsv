@@ -1,6 +1,4 @@
-class Consulta::CnsArticlesController < ApplicationController
-  layout 'consulta'
-
+class Consulta::CnsArticlesController < ConsultaController
   def index 
     @articles = CnsArticle.order("created_at DESC")
     show_breadcrumbs

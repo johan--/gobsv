@@ -44,15 +44,12 @@
                     .col-md-4
                       .article-image
                         = link_to image_tag(article.picture.url(:medium), class: "img-responsive"), consulta_cns_article_url(article)
-                    .col-md-6
-                      .article-name
-                        = link_to article.name, consulta_cns_article_url(article)
+                    .col-md-8
+                      = link_to article.name, consulta_cns_article_url(article), class: 'article-name'
               - else
                 .container-fluid
                   .row
-                    .col-md-10
-                      .article-name
-                        = link_to article.name, consulta_cns_article_url(article)
+                    .col-md-12
         = link_to "Ver todas las noticias", consulta_cns_articles_path, class: "news-link"
     .col-md-4
       .event-section
@@ -65,8 +62,7 @@
                 .col-md-2
                   = event.event_date
                 .col-md-10
-                  .event-name
-                    = link_to event.name, consulta_cns_event_url(event)
+                  = link_to event.name, consulta_cns_event_url(event), class: 'event-name'
         = link_to "Ver Calendario Completo", consulta_cns_events_url, class: "news-link"
 
 - unless @tweets.nil?

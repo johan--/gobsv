@@ -22,3 +22,7 @@ es:
       proposals: Propuestas
       articles: Noticias
       articles_title: Noticias de Consulta Ciudadana
+      events_title: Eventos de Consulta Ciudadana
+      no_articles: No hay artículos que mostrar
+      no_events: No hay eventos que mostrar
+      events: Eventos
