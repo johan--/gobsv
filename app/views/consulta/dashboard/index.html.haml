@@ -39,10 +39,20 @@
           - @articles.each_with_index do |article,i|
             .article-item{class: "#{i == @articles.size - 1 ? 'disable-border' : ''}"}
               - if article.picture.present?
-                .article-image.img-responsive
-                  = image_tag(article.picture.url(:medium))
-              .article-name
-                = link_to article.name, consulta_cns_article_url(article)
+                .container-fluid
+                  .row
+                    .col-md-4
+                      .article-image
+                        = link_to image_tag(article.picture.url(:medium), class: "img-responsive"), consulta_cns_article_url(article)
+                    .col-md-6
+                      .article-name
+                        = link_to article.name, consulta_cns_article_url(article)
+              - else
+                .container-fluid
+                  .row
+                    .col-md-10
+                      .article-name
+                        = link_to article.name, consulta_cns_article_url(article)
             .clearfix
         = link_to "Ver todas las noticias", consulta_cns_articles_path, class: "news-link"
     .col-md-4
@@ -57,8 +67,8 @@
                   = event.event_date
                 .col-md-10
                   - if event.picture.present?
-                    .event-image.img-responsive
-                      = image_tag(event.picture.url(:medium)) rescue image_tag("consulta/event-image-test.png")
+                    .event-image
+                      = image_tag(event.picture.url(:medium)) rescue image_tag("consulta/event-image-test.png", class: "img-responsive")
                   = event.name
               .clearfix
         = link_to "Ver Calendario Completo", "#", class: "news-link"

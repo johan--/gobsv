@@ -203,6 +203,7 @@ h2{
 }
 
 .news-section{
+  padding-bottom: 20px;
   .event-section, .article-section{
     h3{
       font-size: 32px;
@@ -249,14 +250,14 @@ h2{
     .article-item{
       border-bottom: 1px solid #B1B3B5;
       margin: 0px 0 10px;
-      padding: 15px 0 20px;
+      padding: 10px 0 20px;
       text-align: justify;
       .article-image{
 
       }
       .article-name{
         color: #29ABE2;
-        font-size: 24px;
+        font-size: 20px;
         a{
           text-decoration: none;
         }
