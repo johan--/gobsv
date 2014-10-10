@@ -10,12 +10,6 @@ class CnsArticleDecorator < Draper::Decorator
     end
   end
 
-  def name
-    helpers.content_tag :div, class: 'article-name' do
-      object.name
-    end
-  end
-
   def description
     helpers.content_tag :div, class: 'article-description' do
       object.description.truncate(250, omission: '...')
