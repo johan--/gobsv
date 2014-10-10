@@ -2,7 +2,7 @@ class Consulta::CnsArticlesController < ApplicationController
   layout 'consulta'
 
   def index 
-    @articles = CnsArticle.all
+    @articles = CnsArticle.order("created_at DESC")
     show_breadcrumbs
   end
 

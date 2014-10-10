@@ -212,9 +212,7 @@ h2{
       margin-bottom: 20px;
     }
   }
-  .disable-border{
-    border: none !important;
-  }
+
   .event-section{
     .event-item{
       border-bottom: 1px solid #B1B3B5;
@@ -246,26 +244,29 @@ h2{
       }
     }
   }
-  .article-section{
-    .article-item{
-      border-bottom: 1px solid #B1B3B5;
-      margin: 0px 0 10px;
-      padding: 10px 0 20px;
-      text-align: justify;
-      .article-image{
+}
+.article-section{
+  .article-item{
+    border-bottom: 1px solid #B1B3B5;
+    margin: 0px 0 10px;
+    padding: 10px 0 20px;
+    text-align: justify;
+    .article-image{
 
-      }
-      .article-name{
-        color: #29ABE2;
-        font-size: 20px;
-        a{
-          text-decoration: none;
-        }
+    }
+    .article-name{
+      color: #29ABE2;
+      font-size: 20px;
+      a{
+        text-decoration: none;
       }
     }
   }
 }
 
+.disable-border{
+  border: none !important;
+}
 .social-networks-comments{
   background-color: #F2F2F2;
   margin: 20px 0 0;
