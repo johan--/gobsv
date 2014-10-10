@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007210727) do
+ActiveRecord::Schema.define(version: 20141008174548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,10 @@ ActiveRecord::Schema.define(version: 20141007210727) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string   "slug"
   end
+
+  add_index "cns_articles", ["slug"], name: "index_cns_articles_on_slug", using: :btree
 
   create_table "cns_categories", force: true do |t|
     t.string   "name",              null: false
@@ -55,7 +58,10 @@ ActiveRecord::Schema.define(version: 20141007210727) do
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
+    t.string   "slug"
   end
+
+  add_index "cns_categories", ["slug"], name: "index_cns_categories_on_slug", using: :btree
 
   create_table "cns_comments", force: true do |t|
     t.integer  "cns_proposals_id"
