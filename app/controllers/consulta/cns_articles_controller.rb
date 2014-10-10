@@ -3,6 +3,11 @@ class Consulta::CnsArticlesController < ApplicationController
 
   def index 
     @articles = CnsArticle.all
+    show_breadcrumbs
+  end
+
+  def show
+    show_breadcrumbs(article)
   end
 
   private
@@ -10,5 +15,11 @@ class Consulta::CnsArticlesController < ApplicationController
       @article ||= params[:id] ? CnsArticle.find(params[:id]) : CnsArticle.new
     end
     helper_method :article
+
+    def show_breadcrumbs(article=nil)
+      add_breadcrumb I18n.t('layouts.consulta.home'), root_path
+      add_breadcrumb I18n.t('layouts.consulta.articles'), consulta_cns_articles_path
+      add_breadcrumb article.name, consulta_cns_article_path(article) unless article.nil?
+    end
 
 end
