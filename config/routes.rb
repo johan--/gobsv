@@ -1,7 +1,21 @@
 Rails.application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admin/sessions', passwords: 'admin/passwords' }
-  devise_for :users,  controllers: { sessions: 'user/sessions',  passwords: 'user/passwords', omniauth_callbacks: 'user/omniauth_callbacks' }
+
+  devise_for :users,
+              controllers: { sessions: 'user/sessions',  passwords: 'user/passwords', omniauth_callbacks: 'user/omniauth_callbacks' },
+              path: 'auth',
+              path_names: { sign_in: 'login', sign_out: 'logout' },
+              constraints: { subdomain: 'user' },
+              defaults: { subdomain: 'user' }
+
+  constraints subdomain: 'user' do
+    scope module: 'user', as: 'user' do
+      defaults subdomain: 'user' do
+        root to: 'dashboard#index'
+      end
+    end
+  end
 
   constraints(Subdomain) do
   #constraints subdomain: 'consulta' do
@@ -43,14 +57,6 @@ Rails.application.routes.draw do
           resources resource
         end
 
-      end
-    end
-  end
-
-  constraints subdomain: 'user' do
-    scope module: 'user', as: 'user' do
-      defaults subdomain: 'user' do
-        root to: 'dashboard#index'
       end
     end
   end
