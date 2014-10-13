@@ -206,7 +206,7 @@ es:
       cns_category:
         name: Nombre
         description: Descripción
-        icon: Icono
+        icon: Ícono
       cns_proposal:
         cns_category_id: Categoría
         name: Nombre
