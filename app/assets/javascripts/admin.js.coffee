@@ -19,3 +19,4 @@
 
 #= require 'handlebars'
 #= require 'admin/tables'
+#= require 'admin/forms'

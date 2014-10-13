@@ -1,16 +1,12 @@
-= javascript_include_tag 'admin/cns_categories'
-
-.form-group
-  = f.label :icon
-  = f.file_field :icon
-
-#image-preview
-  = link_to t("forms.picture_select"), "#", id: "image-url"
-  - url =  @item.icon.present? ? @item.icon.url(:icon) : "consulta/missing.png"
-  = image_tag(url, alt: t("forms.no_picture_selected"), id: "preview")
 .form-group
   = f.label :name
   = f.text_field :name, class: 'form-control', required: true
+
 .form-group
   = f.label :description
   = f.text_area :description, class: 'form-control', rows: 5
+
+.form-group
+  = f.label :icon
+  = f.file_field :icon, 'data-preview' => true
+  = image_tag(@item.icon.present? ? @item.icon.url(:icon) : 'admin/missing.png')

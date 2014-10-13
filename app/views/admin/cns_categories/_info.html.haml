@@ -11,3 +11,7 @@
   = t 'activerecord.attributes.cns_category.description'
 %blockquote
   = @item.description
+%h4
+  = t 'activerecord.attributes.cns_category.icon'
+%blockquote
+  = image_tag(@item.icon.present? ? @item.icon.url(:icon) : 'admin/missing.png')
