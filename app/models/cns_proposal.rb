@@ -8,6 +8,11 @@ class CnsProposal < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: { case_sensitive: false }
 
+  has_many :cns_comments, dependent: :destroy
+
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :finders]
+
   def as_json(options = {})
     super.as_json(options).merge(cns_category: cns_category)
   end

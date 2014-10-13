@@ -1,4 +1,23 @@
+= javascript_include_tag 'consulta/cns_proposals'
+
 %h2
-  = @proposal.name
+  = proposal.name
 .category-description
-  = @proposal.description unless @proposal.description.nil?
+  = proposal.description
+
+- if comments.size > 0
+  .container-fluid
+    .row-fluid
+      .panel.panel-default.widget
+        .panel-heading
+          %span.fa.fa-comments
+          %h3.panel-title
+            = t('.recent_comments')
+          %span.label.label-info
+            = proposal.cns_comments.count
+        .panel-body
+          %ul.list-group.list-comments
+            = render comments
+          = link_to consulta_cns_category_cns_proposal_url(category, proposal), class: 'btn btn-primary btn-sm btn-block total-pages', data: { timestamp: comments.last.updated_at.to_i } do
+            %span.fa.fa-refresh
+            = t '.more'

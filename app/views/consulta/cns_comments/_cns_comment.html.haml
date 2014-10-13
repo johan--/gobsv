@@ -1,0 +1,18 @@
+%li.list-group-item
+  .row
+    .col-xs-2.col-md-1
+      = image_tag('consulta/missing-avatar.jpg', class: 'img-circle img-responsive')
+    .col-xs-10.col-md-11
+      %div
+        / <a>
+        .mic-info
+          = raw t('.by_user', href: '#', name: cns_comment.name, date: l(Time.current, format: :resume))
+      .comment-text
+        = simple_format cns_comment.content
+      .action
+        %button.btn.btn-primary.btn-xs{:title => "Edit", :type => "button"}
+          %span.fa.fa-pencil
+        %button.btn.btn-success.btn-xs{:title => "Approved", :type => "button"}
+          %span.fa.fa-check
+        %button.btn.btn-danger.btn-xs{:title => "Delete", :type => "button"}
+          %span.fa.fa-trash-o
