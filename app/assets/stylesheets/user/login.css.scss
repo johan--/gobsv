@@ -2,17 +2,56 @@
 @import 'theme/login';
 @import 'theme/animate';
 
-@import 'user/icons';
-
 body {
-  background: #333;
+  background: #ddd;
+  background: linear-gradient(to bottom, #ccc 0%, #fff 100%);
 }
 
-.logo {
-  display: block;
+header {
+  height: auto;
+  line-height: auto;
+  margin: 0;
+  padding: 1em 0 0 0;
 }
 
-.ga-icon-logo {
-  display: block;
-  font-size: 3em;
+h2 {
+  color: #999;
+  font-weight: bold;
+  margin: 0;
+  padding: 1em 0 0 0;
+  text-shadow: 1px 1px #fff;
+}
+
+#login,
+#register,
+#reset {
+  background: #fff;
+  border-bottom: 1px #ccc solid;
+}
+
+.tabs {
+  a.active {
+    background: #fff;
+  }
+}
+
+hr {
+  border-bottom: 1px #fff solid;
+  border-top: 2px #ccc solid;
+}
+
+ul#apps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  img {
+    margin-bottom: 0.5em;
+  }
+
+  li {
+    font-style: italic;
+    line-height: 1.5em;
+    padding: 1em 8em 1em 0;
+  }
 }

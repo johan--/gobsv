@@ -10,11 +10,27 @@
   %body.animated.fadeInDown
     .container
       .row
-        .col-md-push-4.col-md-4.col-sm-push-3.col-sm-6.col-sx-12.animated.flipInY
-          %header
+        .col-xs-12.col-sm-12.col-md-12.col-lg-12
+          %header.text-center.animated.flipInY
             = link_to user_root_url, class: 'logo' do
-              %i.ga-icon-logo
+              = image_tag 'user/logo-gobierno-abierto.png'
+            %h2
+              Una sola cuenta para todas nuestras apps
+      %hr
 
+      .row
+        .col-lg-7.col-md-7.hidden-sm.hidden-xs
+          %ul#apps
+            %li
+              = image_tag 'user/logo-infoutil.png'
+              %p
+                En el portal InfoÚtil la población puede consultar información de interés como los costos de las colegiaturas, directorio de ONG´s, el precio de los alimentos ...
+            %li
+              = image_tag 'user/logo-consulta.png'
+              %p
+                San Vicente, Usulután, La Libertad y Morazán son los departamentos dónde consultamos con líderes comunitarios el Plan Quinquenal de Desarrollo ...
+
+        .col-lg-5.col-md-5.col-sm-12.col-xs-12
           = yield
 
     %footer#footer

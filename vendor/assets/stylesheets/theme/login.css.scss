@@ -85,16 +85,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  position: fixed;
   width: 100%;
-}
-
-@media (max-width: 767px) {
-  body{
-    width: 300px;
-    margin: auto;
-    position: relative;
-  }
 }
 
 a {
@@ -193,12 +184,6 @@ h3.stylish{
         background: lighten($black, 5%);
       }
     }
-  }
-}
-
-@media (max-width: 767px) {
-  .login-container{
-    margin-top: 20px;
   }
 }
 
