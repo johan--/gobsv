@@ -1,0 +1,10 @@
+$('#new_cns_comment .form-group').removeClass('has-error');
+<% if @comment.valid?  %>
+  $('ul.list-comments').prepend('<%= j render(@comment) %>');
+<% else %>
+  <% if @comment.content.blank? %>
+    $('#new_cns_comment .form-group:eq(0)').addClass('has-error');
+  <% else %>
+    $('#new_cns_comment .form-group:eq(1)').addClass('has-error');
+  <% end %>
+<% end %>

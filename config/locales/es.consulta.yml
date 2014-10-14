@@ -32,5 +32,10 @@ es:
         by_user: "Por: <a href='%{href}'>%{name}</a> el %{date}"
     cns_proposals:
       show:
-        recent_comments: Comentarios recientes
+        comments: Comentarios
         more: Más
+        write_your_comment: Escribe tu comentario
+        choose_name: Elija un nombre
+        name: Nombre
+        email: Correo electrónico
+        comment: Comentar
