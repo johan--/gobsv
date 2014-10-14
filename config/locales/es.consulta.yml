@@ -26,3 +26,11 @@ es:
       no_articles: No hay artículos que mostrar
       no_events: No hay eventos que mostrar
       events: Eventos
+  consulta:
+    cns_comments:
+      cns_comment:
+        by_user: "Por: <a href='%{href}'>%{name}</a> el %{date}"
+    cns_proposals:
+      show:
+        recent_comments: Comentarios recientes
+        more: Más

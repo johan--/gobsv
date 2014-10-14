@@ -27,9 +27,10 @@ Rails.application.routes.draw do
         get '/' => 'dashboard#index'
         resources :cns_articles, only: [:index, :show]
         resources :cns_categories, only: [:index, :show] do
-          resources :cns_proposals, only: [:index, :show] do
-            resources :cns_comments
-          end
+          resources :cns_proposals, only: [:index, :show]
+        end
+        resources :cns_proposals, only: [] do
+          resources :cns_comments, only: [:create, :destroy]
         end
         resources :cns_events, only: [:index, :show]
       end

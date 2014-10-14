@@ -190,6 +190,7 @@ es:
       default: ! '%A, %d de %B de %Y %H:%M:%S %z'
       long: ! '%d de %B de %Y %H:%M'
       short: ! '%d de %b %H:%M'
+      resume: ! '%d %b %Y'
     pm: pm
   activerecord:
     models:
@@ -231,6 +232,11 @@ es:
         name: Nombre
         description: Descripción
         url: Enlace
+      cns_comment:
+        name: Nombre
+        email: Correo electrónico
+        content: Comentario
+        user_id: Usuario
   layouts:
     admin:
       title: Panel de control | Gobierno Abierto El Salvador

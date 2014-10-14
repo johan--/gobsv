@@ -96,3 +96,6 @@ gem 'omniauth-github',        '~> 1.1.2'
 gem 'omniauth-google-oauth2', '~> 0.2.5'
 gem 'omniauth-linkedin',      '~> 0.2.0'
 gem 'omniauth-twitter',       '~> 1.0.1'
+
+# Pagination library for Rails, Sinatra, Merb, DataMapper, and more
+gem 'will_paginate', '~> 3.0'
