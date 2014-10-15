@@ -20,3 +20,8 @@
 /config/config.yml
 /config/database.yml
 /config/social_keys.yml
+/config/deploy
+/config/deploy.rb
+/deploy.rb
+/Capfile
+/db/schema.rb
