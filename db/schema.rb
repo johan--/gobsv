@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010184247) do
+ActiveRecord::Schema.define(version: 20141013211257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,14 +64,19 @@ ActiveRecord::Schema.define(version: 20141010184247) do
   add_index "cns_categories", ["slug"], name: "index_cns_categories_on_slug", using: :btree
 
   create_table "cns_comments", force: true do |t|
-    t.integer  "cns_proposals_id"
     t.integer  "active"
     t.integer  "featured"
     t.string   "email"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cns_proposal_id", null: false
+    t.integer  "user_id"
+    t.string   "name"
   end
+
+  add_index "cns_comments", ["cns_proposal_id"], name: "index_cns_comments_on_cns_proposal_id", using: :btree
+  add_index "cns_comments", ["user_id"], name: "index_cns_comments_on_user_id", using: :btree
 
   create_table "cns_events", force: true do |t|
     t.string   "name",                 null: false
@@ -92,9 +97,11 @@ ActiveRecord::Schema.define(version: 20141010184247) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "priority",        default: 0, null: false
+    t.string   "slug"
   end
 
   add_index "cns_proposals", ["cns_category_id"], name: "index_cns_proposals_on_cns_category_id", using: :btree
+  add_index "cns_proposals", ["slug"], name: "index_cns_proposals_on_slug", using: :btree
 
   create_table "cns_timelines", force: true do |t|
     t.string   "name"

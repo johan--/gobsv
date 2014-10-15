@@ -41,3 +41,6 @@
         .col-md-3
           .goverment-info
             = t('layouts.consulta.goverment_info').html_safe
+
+    - if Rails.env.production?
+      = render partial: 'layouts/consulta/analytics'

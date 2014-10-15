@@ -81,6 +81,7 @@ Rails.application.configure do
 
   # Precompile additional assets
 
+  Rails.application.routes.default_url_options[:host] = 'admin.gob.sv'
   config.action_mailer.default_url_options = { host: 'admin.gob.sv' }
 
   config.action_mailer.delivery_method = Config[:action_mailer][:delivery_method].to_sym
