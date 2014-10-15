@@ -4,20 +4,32 @@
   = proposal.name
 .category-description
   = proposal.description
-
-- if comments.size > 0
-  .container-fluid
-    .row-fluid
-      .panel.panel-default.widget
-        .panel-heading
-          %span.fa.fa-comments
-          %h3.panel-title
-            = t('.recent_comments')
-          %span.label.label-info
-            = proposal.cns_comments.count
-        .panel-body
-          %ul.list-group.list-comments
-            = render comments
-          = link_to consulta_cns_category_cns_proposal_url(category, proposal), class: 'btn btn-primary btn-sm btn-block total-pages', data: { timestamp: comments.last.updated_at.to_i } do
-            %span.fa.fa-refresh
-            = t '.more'
+  
+.container-fluid
+  .row-fluid
+    .panel.panel-default.widget
+      .panel-heading
+        %span.fa.fa-comments
+        %h3.panel-title
+          = t('.comments')
+        %span.label.label-info
+          = proposal.cns_comments.count
+      .panel-body
+        = form_for [:consulta, CnsComment.new], url: consulta_cns_proposal_cns_comments_url(proposal), html: { class: 'form-horizontal', role: 'form', remote: true } do |f|
+          .form-group
+            .col-xs-2.col-md-1
+              = image_tag('consulta/missing-avatar.jpg', class: 'img-circle img-responsive')
+            .col-xs-10.col-md-11
+              = f.text_area :content, class: 'form-control', placeholder: t('.write_your_comment')
+          .form-group
+            .col-xs-7.col-xs-offset-2.col-md-9.col-md-offset-1
+              = t('.choose_name')
+              = f.text_field :name, class: 'form-control input-block-level', placeholder: t('.name')
+              = f.text_field :email, class: 'form-control input-block-level', placeholder: t('.email')
+            .col-xs-3.col-md-2
+              = f.submit t('.comment'), class: 'btn btn-default'
+        %ul.list-group.list-comments
+          = render comments
+        = link_to consulta_cns_category_cns_proposal_url(category, proposal), class: 'btn btn-primary btn-sm btn-block total-pages', data: { timestamp: comments.present? ? comments.last.updated_at.to_i : 0 } do
+          %span.fa.fa-refresh
+          = t '.more'

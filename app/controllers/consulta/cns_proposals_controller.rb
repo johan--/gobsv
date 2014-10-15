@@ -33,7 +33,7 @@ class Consulta::CnsProposalsController < ConsultaController
     helper_method :category
 
     def comments
-      @comments ||= CnsComment.where(cns_proposal_id: proposal.id).where('cns_comments.created_at < ?', params[:timestamp] ? Time.at(params[:timestamp].to_i) : Time.current).limit(1)
+      @comments ||= CnsComment.where(cns_proposal_id: proposal.id).where('cns_comments.created_at < ?', params[:timestamp] ? Time.at(params[:timestamp].to_i) : Time.current).limit(5)
     end
     helper_method :comments
 

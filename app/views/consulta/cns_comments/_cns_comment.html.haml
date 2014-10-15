@@ -9,10 +9,11 @@
           = raw t('.by_user', href: '#', name: cns_comment.name, date: l(Time.current, format: :resume))
       .comment-text
         = simple_format cns_comment.content
-      .action
-        %button.btn.btn-primary.btn-xs{:title => "Edit", :type => "button"}
-          %span.fa.fa-pencil
-        %button.btn.btn-success.btn-xs{:title => "Approved", :type => "button"}
-          %span.fa.fa-check
-        %button.btn.btn-danger.btn-xs{:title => "Delete", :type => "button"}
-          %span.fa.fa-trash-o
+      -#
+        .action
+          %button.btn.btn-primary.btn-xs{:title => "Edit", :type => "button"}
+            %span.fa.fa-pencil
+          %button.btn.btn-success.btn-xs{:title => "Approved", :type => "button"}
+            %span.fa.fa-check
+          %button.btn.btn-danger.btn-xs{:title => "Delete", :type => "button"}
+            %span.fa.fa-trash-o

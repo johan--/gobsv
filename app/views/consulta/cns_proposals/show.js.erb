@@ -1,4 +1,4 @@
 <% if comments.size > 0 %>
   $('ul.list-comments').append('<%= j render(comments) %>');
-  $('a.total-pages').data('timestamp', '<%= comments.last.updated_at.to_i %>')
+  $('a.total-pages').data('timestamp', '<%= comments.last.updated_at.to_i %>');
 <% end %>
