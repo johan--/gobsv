@@ -1,21 +1,17 @@
 .login-container
-  .flat-form
-    %ul.tabs
-      %li
-        = link_to '#reset', class: 'active' do
-          = t '.change_password'
-    #reset.form-action.show.animated.flipInX
-      %h1
+  %ul.nav.nav-tabs{ role: 'tablist' }
+    %li
+      = link_to '#password', class: 'active' do
         = t '.change_password'
-      %p
-        = t '.change_password_explanation'
-      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-        = devise_error_messages!
-        = f.hidden_field :reset_password_token
-        %ul
-          %li
-            = f.password_field :password, autofocus: true, autocomplete: 'off', placeholder: t('.new_password')
-          %li
-            = f.password_field :password_confirmation, autocomplete: 'off', placeholder: t('.new_password_confirm')
+  #password.form-action.show.animated.flipInX
+    %p
+      = t '.change_password_explanation'
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = devise_error_messages!
+      = f.hidden_field :reset_password_token
+      .form-group
+        = f.password_field :password, class: 'form-control', autofocus: true, autocomplete: 'off', placeholder: t('.new_password_placeholder')
+      .form-group
+        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: t('.new_password_confirmation_placeholder')
 
-        = f.submit t('.change_password'), class: 'button'
+      = f.submit t('.change_password'), class: 'btn btn-blue'

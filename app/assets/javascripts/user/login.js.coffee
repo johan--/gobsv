@@ -6,7 +6,7 @@ $(document).ready ->
   HIDE_CLASS = "hide"
   ACTIVE_CLASS = "active"
 
-  $(".tabs").on "click", "li a", (e) ->
+  $(".nav-tabs").on "click", "li a", (e) ->
     e.preventDefault()
     $tab = $(this)
     href = $tab.attr("href")

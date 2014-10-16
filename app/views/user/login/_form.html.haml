@@ -1,0 +1,53 @@
+.login-container
+  %ul.nav.nav-tabs{ role: 'tablist' }
+    %li
+      = link_to '#login', { class: controller.controller_name == 'sessions' ? 'active' : nil } do
+        = t '.login'
+    %li
+      = link_to '#register', { class: controller.controller_name == 'registrations' ? 'active' : nil } do
+        = t '.register'
+    %li
+      = link_to '#password', { class: controller.controller_name == 'passwords' ? 'active' : nil } do
+        = t '.forgot_password'
+
+  #login.animated.bounceInDown{ class: controller.controller_name == 'sessions' ? 'show' : 'hide' }
+
+    .row.providers
+      .col-xs-6.col-sm-6.col-md-6.col-lg-6
+        = link_to omniauth_authorize_path('user', :facebook), class: 'btn btn-dark-blue' do
+          %span.icon-facebook
+          = t('.signin_with', provider: t('.facebook'))
+
+      .col-xs-6.col-sm-6.col-md-6.col-lg-6
+        = link_to omniauth_authorize_path('user', :google_oauth2), class: 'btn btn-red' do
+          = t('.signin_with', provider: t('.google_oauth2'))
+
+    %hr
+
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-group
+        = f.email_field :email, class: 'form-control', placeholder: t('.email_placeholder'), autofocus: true
+      .form-group
+        = f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: t('.password_placeholder')
+
+      = f.submit t('.login'), class: 'btn btn-blue'
+
+  #register.animated.flipInY{ class: controller.controller_name == 'registrations' ? 'show' : 'hide' }
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      .form-group
+        = f.email_field :email, class: 'form-control', placeholder: t('.email_placeholder'), autofocus: true
+      .form-group
+        = f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: t('.password_placeholder')
+      .form-group
+        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: t('.password_confirmation_placeholder')
+
+      = f.submit t('.signup'), class: 'btn btn-blue'
+
+  #password.animated.flipInX{ class: controller.controller_name == 'passwords' ? 'show' : 'hide' }
+    %p
+      = t '.forgot_password_explanation'
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      .form-group
+        = f.email_field :email, class: 'form-control', autofocus: true, placeholder: t('.email_placeholder')
+
+      = f.submit t('.send_instructions'), class: 'btn btn-blue'
