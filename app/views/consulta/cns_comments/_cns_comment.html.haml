@@ -6,7 +6,7 @@
       %div
         / <a>
         .mic-info
-          = raw t('.by_user', href: '#', name: cns_comment.name, date: l(cns_comment.updated_at, format: :resume))
+          = raw t('.by_user', href: '#', name: cns_comment.name, date: l(cns_comment.created_at, format: :resume))
       .comment-text
         = simple_format cns_comment.content
       -#
