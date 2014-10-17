@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
 
-  has_many :user_authorizations
+  has_many :user_authorizations, dependent: :destroy
 
   def self.new_with_session(params,session)
     if session['devise.user_attributes']
@@ -23,7 +23,9 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth, current_user)
 
-    user_authorization = UserAuthorization.where(provider: auth.provider, uid: auth.uid.to_s, token: auth.credentials.token, secret: auth.credentials.secret).first_or_initialize
+    user_authorization = UserAuthorization.where(provider: auth.provider, uid: auth.uid.to_s).first_or_initialize
+    user_authorization.update_column(:token, auth.credentials.token)
+    user_authorization.update_column(:secret, auth.credentials.secret)
 
     if user_authorization.user.blank?
       user = current_user.nil? ? User.where('email = ?', auth['info']['email']).first : current_user

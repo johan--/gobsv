@@ -1,57 +1,133 @@
 @import 'theme/bootstrap';
-@import 'theme/login';
 @import 'theme/animate';
+@import 'colors';
 
 body {
-  background: #ddd;
-  background: linear-gradient(to bottom, #ccc 0%, #fff 100%);
+  background: $white;
+  font-family: ubuntu, arial;
 }
 
 header {
-  height: auto;
-  line-height: auto;
-  margin: 0;
   padding: 1em 0 0 0;
 }
 
-h2 {
-  color: #999;
-  font-weight: bold;
-  margin: 0;
-  padding: 1em 0 0 0;
-  text-shadow: 1px 1px #fff;
-}
+footer {
+  padding: 4em 0;
 
-#login,
-#register,
-#reset {
-  background: #fff;
-  border-bottom: 1px #ccc solid;
-}
+  a {
+    display: inline-block;
+    margin: 0 1em;
+  }
 
-.tabs {
-  a.active {
-    background: #fff;
+  img {
+    max-height: 3em;
   }
 }
 
 hr {
-  border-bottom: 1px #fff solid;
-  border-top: 2px #ccc solid;
+  background: transparent;
+  border-top: 1px $gray solid;
+  border-bottom: 2px $white solid;
+  margin: 1em 0 2em 0;
 }
 
-ul#apps {
-  list-style: none;
+p {
   margin: 0;
-  padding: 0;
+  padding: 0 0 2em 0;
+}
 
-  img {
-    margin-bottom: 0.5em;
+.alert {
+  margin: 3em 0 0 0;
+}
+
+.nav-tabs {
+  &> li {
+    &> a,
+    &> a:hover {
+      background: $dark-blue;
+      border-radius: 0;
+      border: 0;
+      border-top: 1px rgba(0, 0, 0, 0.1) solid;
+      color: $white;
+      font-size: 1em;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      &.active {
+        background: $light-gray;
+        color: $dark-gray;
+      }
+    }
+  }
+}
+
+.providers {
+  padding: 1em 0;
+}
+
+.btn,
+.btn:hover {
+  border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
+  border-radius: 0;
+  color: $white;
+  font-weight: bold;
+  line-height: 2em;
+  width: 100%;
+
+  &.btn-dark-blue {
+    background: $dark-blue;
   }
 
-  li {
-    font-style: italic;
-    line-height: 1.5em;
-    padding: 1em 8em 1em 0;
+  &.btn-red {
+    background: $red;
+  }
+
+  &.btn-blue {
+    background: $blue;
+  }
+}
+
+#login,
+#register,
+#password {
+  background: $light-gray;
+  border-bottom: 1px $gray solid;
+  padding: 2em;
+}
+
+input[type=email],
+input[type=password],
+input[type=text],
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=text]:focus,
+.has-error .form-control,
+.has-error .form-control:focus {
+  background: $white;
+  border: 0;
+  border-bottom: 1px $gray solid;
+  border-radius: 0;
+  box-shadow: none;
+  height: 3em;
+
+  &:focus {
+    border-bottom: 1px $blue solid;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-tabs {
+    &> li {
+      &> a,
+      &> a:hover {
+        font-size: 0.8em;
+      }
+    }
+  }
+
+  .providers {
+    .btn {
+      font-size: 0.8em;
+    }
   }
 }

@@ -10,29 +10,29 @@
   %body.animated.fadeInDown
     .container
       .row
-        .col-xs-12.col-sm-12.col-md-12.col-lg-12
+        .col-xs-12.col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
           %header.text-center.animated.flipInY
             = link_to user_root_url, class: 'logo' do
               = image_tag 'user/logo-gobierno-abierto.png'
-            %h2
-              Una sola cuenta para todas nuestras apps
-      %hr
+
+      - if flash[:notice]
+        .row
+          .col-xs-12.col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
+            .alert.alert-success
+              = flash[:notice]
 
       .row
-        .col-lg-7.col-md-7.hidden-sm.hidden-xs
-          %ul#apps
-            %li
-              = image_tag 'user/logo-infoutil.png'
-              %p
-                En el portal InfoÚtil la población puede consultar información de interés como los costos de las colegiaturas, directorio de ONG´s, el precio de los alimentos ...
-            %li
-              = image_tag 'user/logo-consulta.png'
-              %p
-                San Vicente, Usulután, La Libertad y Morazán son los departamentos dónde consultamos con líderes comunitarios el Plan Quinquenal de Desarrollo ...
-
-        .col-lg-5.col-md-5.col-sm-12.col-xs-12
+        .col-xs-12.col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
+          %br
+          %br
           = yield
 
-    %footer#footer
-      %p.copyright
-        = t '.footer'
+    %footer.text-center
+      = link_to nil do
+        = image_tag 'user/logo-gobierno-abierto.png'
+
+      = link_to nil do
+        = image_tag 'user/logo-infoutil.png'
+
+      = link_to nil do
+        = image_tag 'user/logo-consulta.png'

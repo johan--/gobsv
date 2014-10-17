@@ -1,0 +1,20 @@
+es:
+  user:
+    login:
+      email_placeholder: usuario@dominio.com
+      facebook: Facebook
+      forgot_password_explanation: Enviaremos un mensaje a tu dirección de correo electrónico con instrucciones para cambiar tu contraseña.
+      forgot_password: Recordar contraseña
+      google_oauth2: Google
+      login: Ingresar
+      password_confirmation_placeholder: Confirmar contraseña
+      password_placeholder: Contraseña
+      register: Registro
+      send_instructions: Enviar instrucciones
+      signin_with: Ingresar con %{provider}
+      signup: Registrarse
+    passwords:
+      change_password: Cambiar contraseña
+      change_password_explanation: Por favor escribe una nueva contraseña para tu cuenta (la que quieras) y luego confírmala.
+      new_password_confirmation_placeholder: Confirma tu nueva contraseña
+      new_password_placeholder: Nueva contraseña

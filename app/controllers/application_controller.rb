@@ -8,8 +8,13 @@ class ApplicationController < ActionController::Base
   def store_location
     # store last url - this is needed for post-login redirect to whatever the user last visited.
     return unless request.get?
-    return unless request.subdomain != 'user'
-
+    exclude = [
+      :omniauth_callbacks,
+      :passwords,
+      :registrations,
+      :sessions
+    ]
+    return if exclude.include?(controller_name.to_sym)
     session[:previous_url] = request.original_url
   end
 
