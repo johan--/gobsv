@@ -4,6 +4,7 @@ class Consulta::CnsCommentsController < ConsultaController
   def create
     @comment = CnsComment.new item_params
     @comment.cns_proposal_id = proposal.try(:id)
+    @comment.user_ip = request.remote_ip
     @comment.save
   end
 
