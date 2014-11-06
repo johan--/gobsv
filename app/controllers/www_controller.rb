@@ -1,0 +1,2 @@
+class WwwController < ApplicationController
+end

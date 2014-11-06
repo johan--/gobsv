@@ -1,0 +1,77 @@
+@import 'twitter-bootstrap-static/bootstrap';
+@import 'www/icons';
+@import 'colors';
+
+/*
+[class^="col-"], [class*=" col-"] {
+  border: 1px $red dashed;
+}
+*/
+
+.btn {
+  border: 1px rgba(0, 0, 0, 0.1) solid;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &.btn-primary {
+    background-color: $blue;
+  }
+
+  &.btn-default {
+    background-color: $light-gray;
+    border: 1px $dark-gray solid;
+  }
+}
+
+
+body {
+  font-family: ubuntu;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+#apps {
+  background: $white linear-gradient(to bottom, $blue -80%, $white 20%);
+  padding-bottom: 2em;
+
+  small {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1em;
+  }
+
+  .app {
+    color: $blue;
+    display: inline-block;
+    font-weight: bold;
+    padding: 1em 0;
+    text-transform: uppercase;
+    width: 130px;
+  }
+
+  i {
+    background: $white;
+    border: 1px $blue solid;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 5em;
+    height: 130px;
+    line-height: 130px;
+    margin-bottom: 8px;
+    width: 130px;
+  }
+}
+
+#whatis {
+  background: $blue;
+  color: $white;
+  padding-bottom: 2em;
+}

@@ -1,0 +1,129 @@
+!!! 5
+%html
+  %head
+    %title= t '.title'
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
+    = stylesheet_link_tag 'www'
+    = javascript_include_tag 'www'
+    = csrf_meta_tags
+  %body
+    #apps
+      .container
+        .row
+          .col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center
+            %h2
+              Aplicaciones socialmente útiles
+            %small
+              Utiliza las aplicaciones para generar más información, has click sobre el ícono que quieres consultar.
+        %br
+        .row
+          .col-xs-12.col-sm-3.col-md-3.col-lg-3.text-center
+            = link_to nil, class: 'app' do
+              %i.icon-arrow
+              %br
+              Solicitud de información pública
+          .col-xs-12.col-sm-3.col-md-3.col-lg-3.text-center
+            = link_to nil, class: 'app' do
+              %i.icon-doc
+              %br
+              Consulta de información pública
+          .col-xs-12.col-sm-3.col-md-3.col-lg-3.text-center
+            = link_to nil, class: 'app' do
+              %i.icon-comment
+              %br
+              Notifique quejas y avisos
+          .col-xs-12.col-sm-3.col-md-3.col-lg-3.text-center
+            = link_to nil, class: 'app' do
+              %i.icon-coords
+              %br
+              Ruta del ahorro
+        %br
+        .row
+          .col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center
+            = link_to nil, class: 'btn btn-primary' do
+              Ver todas la aplicaciones
+    #whatis
+      .container
+        .row
+          .col-xs-12.col-sm-12.col-md-12.col-lg-12
+            %h2
+              ¿Qué es Gobierno Abierto?
+        .row
+          .col-xs-12.col-sm-12.col-md-6.col-lg-6
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget gravida magna, vel suscipit ex. Nam eget gravida magna, vel suscipit ex.
+              Sed nec finibus nulla. Cras dictum magna aliquet mauris consectetur sodales.
+              Cras fermentum.
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget gravida magna, vel suscipit ex. Nam eget gravida magna, vel suscipit ex.
+              Sed nec finibus nulla. Cras dictum magna aliquet mauris consectetur sodales.
+
+            %br
+            = link_to nil, class: 'btn btn-default' do
+              Ver más información
+
+          .col-md-6.col-lg-6.hidden-xs.hidden-sm.text-center
+            = image_tag 'www/gobierno-abierto-color.png', class: 'img-responsive'
+    #whattodo
+      .container
+        .row
+          .col-xs-12.col-sm-12.col-md-12.col-lg-12
+            %h2.text-center
+              ¿Qué puedo hacer en Gobierno Abierto?
+            %h3.text-summary.text-center
+              Servicios que están disponibles gracias a la ley de accesso a la información pública
+        .row
+          .col-xs-12.col-sm-5.col-md-5.col-lg-5.text-right
+            = link_to nil do
+              Solicitar información pública
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget gravida magna, vel suscipit ex.
+          .col-sm-1.col-md-1.col-lg-1.hidden-xs
+            %i.icon
+              a
+
+          .col-sm-1.col-md-1.col-lg-1.text-right.hidden-xs
+            %i.icon
+              a
+          .col-xs-12.col-sm-5.col-md-5.col-lg-5
+            = link_to nil do
+              Solicitar información pública
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget gravida magna, vel suscipit ex.
+        .row
+          .col-xs-12.col-sm-5.col-md-5.col-lg-5.text-right
+            = link_to nil do
+              Solicitar información pública
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget gravida magna, vel suscipit ex.
+          .col-sm-1.col-md-1.col-lg-1.hidden-xs
+            %i.icon
+              a
+
+          .col-sm-1.col-md-1.col-lg-1.text-right.hidden-xs
+            %i.icon
+              a
+          .col-xs-12.col-sm-5.col-md-5.col-lg-5
+            = link_to nil do
+              Solicitar información pública
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget gravida magna, vel suscipit ex.
+        .row
+          .col-xs-12.col-sm-5.col-md-5.col-lg-5.text-right
+            = link_to nil do
+              Solicitar información pública
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget gravida magna, vel suscipit ex.
+          .col-sm-1.col-md-1.col-lg-1.hidden-xs
+            %i.icon
+              a
+
+          .col-sm-1.col-md-1.col-lg-1.text-right.hidden-xs
+            %i.icon
+              a
+          .col-xs-12.col-sm-5.col-md-5.col-lg-5
+            = link_to nil do
+              Solicitar información pública
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget gravida magna, vel suscipit ex.

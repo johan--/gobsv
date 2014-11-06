@@ -27,6 +27,14 @@ Rails.application.routes.draw do
     end
   end
 
+  constraints subdomain: 'www' do
+    scope module: 'www', as: 'www' do
+      defaults subdomain: 'www' do
+        root to: 'dashboard#index'
+      end
+    end
+  end
+
   constraints(Subdomain) do
   #constraints subdomain: 'consulta' do
     #scope module: 'consulta', as: 'consulta' do
