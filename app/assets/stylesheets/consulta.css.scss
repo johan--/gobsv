@@ -73,12 +73,13 @@ h2{
   span{
     color: #787878;
   }
-  .list{
+  .list{   
     margin: 30px 0;
     .list-category{
       color: #29ABE2;
-      width: 50%;
-      float: left;
+      width: 50%; 
+      height: 63px; 
+      float: left; 
       display: inline-block;
       padding: 15px 0;
       a.list-category-name, .list-category-image{
@@ -116,7 +117,7 @@ h2{
     padding: 10px;
     li{
       list-style: none;
-
+      
       padding-left: 15px;
       margin: 10px 0;
       a{
@@ -604,10 +605,10 @@ h2{
   margin-bottom: 16px;
   overflow: hidden;
 }
-
+ 
 .flex-video.widescreen { padding-bottom: 57.25%; }
 .flex-video.vimeo { padding-top: 0; }
-
+ 
 .flex-video iframe,
 .flex-video object,
 .flex-video embed {

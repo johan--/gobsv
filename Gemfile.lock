@@ -100,6 +100,7 @@ GEM
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
     fssm (0.2.10)
+    geocoder (1.2.5)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -320,6 +321,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.4.1)
   faker (~> 1.4.3)
   friendly_id (~> 5.0.4)
+  geocoder (~> 1.2.5)
   haml-rails (~> 0.5.3)
   jbuilder (~> 2.0)
   jquery-rails
