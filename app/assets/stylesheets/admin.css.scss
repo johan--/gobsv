@@ -1,64 +1,27 @@
-// Place all the styles related to the Admin controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// dataTable
+@import 'dataTables/bootstrap/3/jquery.dataTables.bootstrap';
 
-@import 'theme/bootstrap';
-@import 'theme/font-awesome';
-@import 'theme/font-awesome-ie7';
-@import 'theme/datepicker';
-@import 'theme/main';
-@import 'theme/animate';
-@import 'theme/daterange';
-@import 'theme/fullcalendar';
-@import 'theme/slidebars';
+// bootstrap
+@import 'bootstrap-sprockets';
+@import 'admin/bootstrap-vars';
+@import 'bootstrap';
+@import 'jquery.tagsinput';
+@import 'dropzone/basic';
 
-@import 'admin/icons';
+body {
+  margin-top: 50px;
+}
 
-.top-bar {
-  .logo {
-    color: gray;
-    font-size: 3.6em;
-    line-height: 1.6em;
-    &:hover {
-      color: white;
+.table {
+  tr {
+    td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &:last-child {
+        width: 1%;
+      }
     }
-  }
-}
-
-.alert {
-  margin-top: 1.5em;
-}
-
-.data-table {
-  div {
-    white-space: nowrap;
-  }
-  .btn {
-    margin: 0 0.1em;
-  }
-}
-
-.show {
-  blockquote {
-    font-size: 1.2em;
-  }
-}
-
-.dataTables_filter {
-  label {
-    font-size: 1.1em;
-    font-style: italic;
-    font-weight: normal;
-  }
-
-  input {
-    margin: 0 0 0 1em;
-    padding: 6px 12px;
-  }
-}
-
-form {
-  .img-preview {
-    height: 34px;
   }
 }

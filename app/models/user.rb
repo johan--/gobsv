@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
         user.password = Devise.friendly_token[0, 10]
         user.name = auth.info.name
         user.email = auth.info.email
-        auth.provider == 'twitter' ?  user.save(validate: false) :  user.save
+        auth.provider == 'twitter' ?  user.save(validate: false) : user.save
       end
 
       user_authorization.username = auth.info.nickname

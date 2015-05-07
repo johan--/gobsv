@@ -4,19 +4,18 @@
 
 #= require 'jquery'
 #= require 'jquery_ujs'
-
-#= require 'theme/bootstrap.min'
-#= require 'theme/jquery-ui-v1.10.3'
-#= require 'theme/sparkline'
-#= require 'theme/jquery.datatables'
-#= require 'theme/daterange/moment'
-#= require 'theme/daterange/daterangepicker'
-#= require 'theme/slidebars'
-#= require 'theme/jvectormap/jquery-jvectormap-1.2.2.min'
-#= require 'theme/jvectormap/jquery-jvectormap-usa'
-#= require 'theme/custom'
-#= require 'theme/custom-index'
-
+#= require 'bootstrap-sprockets'
 #= require 'handlebars'
+#= require 'dataTables/jquery.dataTables'
+#= require 'dataTables/bootstrap/3/jquery.dataTables.bootstrap'
 #= require 'admin/tables'
 #= require 'admin/forms'
+#= require 'ckeditor/init'
+#= require 'jquery.tagsinput'
+#= require 'dropzone'
+
+$ ->
+  $(".tags").tagsInput
+    width: '100%',
+    defaultText: '',
+    delimiter: [',']

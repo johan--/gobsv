@@ -1,2 +1,0 @@
-module Consulta::CnsCommentsHelper
-end

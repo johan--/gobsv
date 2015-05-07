@@ -1,8 +1,0 @@
-%h2
-  = event.name
-%br
-%br
-- if event.picture.present?
-  = image_tag(event.picture.url, class: 'img-responsive')
-%p
-  = simple_format event.description

@@ -39,6 +39,10 @@ $(document).ready ->
         info: "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros",
         infoEmpty: "Mostrando desde 0 hasta 0 de 0 registros",
         infoFiltered: "(filtrado de _MAX_ registros en total)",
-        search: "Filtro rápido:"
+        search: "Filtro rápido: ",
+        paginate: {
+          previous: "Anterior",
+          next: "Siguiente"
+        }
       }
     }

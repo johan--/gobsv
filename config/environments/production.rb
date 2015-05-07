@@ -84,17 +84,15 @@ Rails.application.configure do
   Rails.application.routes.default_url_options[:host] = 'admin.gob.sv'
   config.action_mailer.default_url_options = { host: 'admin.gob.sv' }
 
-  config.action_mailer.delivery_method = Config[:action_mailer][:delivery_method].to_sym
+  config.action_mailer.delivery_method = Settings[:action_mailer][:delivery_method].to_sym
 
   config.action_mailer.smtp_settings = {
-    :address => Config[:action_mailer][:smtp_settings][:address],
-    :port => Config[:action_mailer][:smtp_settings][:port],
-    :domain => Config[:action_mailer][:smtp_settings][:domain],
-    :authentication => Config[:action_mailer][:smtp_settings][:authentication],
-    :enable_starttls_auto => Config[:action_mailer][:smtp_settings][:enable_starttls_auto],
-    :user_name => Config[:action_mailer][:smtp_settings][:user_name],
-    :password => Config[:action_mailer][:smtp_settings][:password]
+    address: Settings[:action_mailer][:smtp_settings][:address],
+    port: Settings[:action_mailer][:smtp_settings][:port],
+    domain: Settings[:action_mailer][:smtp_settings][:domain],
+    authentication: Settings[:action_mailer][:smtp_settings][:authentication],
+    enable_starttls_auto: Settings[:action_mailer][:smtp_settings][:enable_starttls_auto],
+    user_name: Settings[:action_mailer][:smtp_settings][:user_name],
+    password: Settings[:action_mailer][:smtp_settings][:password]
   }
-
-
 end

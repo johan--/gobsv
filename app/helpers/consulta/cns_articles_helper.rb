@@ -1,2 +1,0 @@
-module Consulta::CnsArticlesHelper
-end

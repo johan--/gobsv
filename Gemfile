@@ -67,12 +67,6 @@ group :test do
   gem 'shoulda', '~> 3.5.0'
 end
 
-# Twitter Bootstrap for Rails 3.x - 4 Asset Pipeline
-gem 'twitter-bootstrap-rails', '~> 3.2.0'
-
-# # Compass rails integration
-gem 'compass-rails', '~> 2.0.0'
-
 # A simple, ORM agnostic, Ruby 1.9 compatible date validator for Rails 3, based on ActiveModel.
 gem 'date_validator', '~> 0.7.0'
 
@@ -88,7 +82,6 @@ gem 'paperclip', '~> 4.2'
 # Create pretty URL’s and work with human-friendly strings
 gem 'friendly_id', '~> 5.0.4'
 
-
 gem 'omniauth',               '~> 1.2.2'
 gem 'omniauth-oauth2',        '~> 1.2.0'
 gem 'omniauth-facebook',      '~> 2.0.0'
@@ -102,3 +95,27 @@ gem 'will_paginate', '~> 3.0'
 
 # Complete Ruby geocoding solution.
 gem 'geocoder', '~> 1.2.5'
+
+# jquery-datatables gem for rails
+gem 'jquery-datatables-rails', '~> 3.2.0'
+
+# Rails plugin to conveniently handle multiple models in a single form.
+gem 'nested_form', '~> 0.3.2'
+
+# Ckeditor integration gem for rails
+gem 'ckeditor', '~> 4.1.1'
+
+# A simple Ruby on Rails plugin for creating and managing a breadcrumb navigation.
+gem 'breadcrumbs_on_rails', '~> 2.3.0'
+
+# Official Sass port of Bootstrap
+gem 'bootstrap-sass', '~> 3.3.4'
+
+# Easiest way to add multi-environment yaml settings to Rails 3 or 4
+gem 'rails_config', '~> 0.4.2'
+
+# A tagging plugin for Rails applications that allows for custom tagging along dynamic contexts.
+gem 'acts-as-taggable-on', '~> 3.5.0'
+
+# Spice your Rails apps with some Dropzone sugar!
+gem 'dropzonejs-rails', '~> 0.7.1'

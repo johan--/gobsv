@@ -1,2 +1,0 @@
-module CnsArticlesHelper
-end

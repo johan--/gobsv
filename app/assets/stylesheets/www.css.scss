@@ -24,7 +24,6 @@
   }
 }
 
-
 body {
   font-family: ubuntu;
 }
@@ -74,4 +73,15 @@ a:hover {
   background: $blue;
   color: $white;
   padding-bottom: 2em;
+}
+
+#whattodo {
+  [class^="icon-"], [class*=" icon-"] {
+    color: $blue;
+    font-size: 26px;
+  }
+
+  [class^="col-"], [class*=" col-"] {
+    padding-top: 1em
+  }
 }

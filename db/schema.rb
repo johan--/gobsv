@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013211257) do
+ActiveRecord::Schema.define(version: 20150506175240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,83 +34,74 @@ ActiveRecord::Schema.define(version: 20141013211257) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "cns_articles", force: true do |t|
-    t.string   "name",                 null: false
-    t.text     "description"
-    t.date     "article_date",         null: false
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
-    t.string   "slug"
   end
 
-  add_index "cns_articles", ["slug"], name: "index_cns_articles_on_slug", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
-  create_table "cns_categories", force: true do |t|
-    t.string   "name",              null: false
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
-    t.string   "slug"
-  end
-
-  add_index "cns_categories", ["slug"], name: "index_cns_categories_on_slug", using: :btree
-
-  create_table "cns_comments", force: true do |t|
-    t.integer  "active"
-    t.integer  "featured"
-    t.string   "email"
+  create_table "ta_articles", force: true do |t|
+    t.string   "title"
+    t.text     "summary"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "cns_proposal_id", null: false
-    t.integer  "user_id"
+    t.integer  "category_id"
+  end
+
+  create_table "ta_categories", force: true do |t|
     t.string   "name"
-  end
-
-  add_index "cns_comments", ["cns_proposal_id"], name: "index_cns_comments_on_cns_proposal_id", using: :btree
-  add_index "cns_comments", ["user_id"], name: "index_cns_comments_on_user_id", using: :btree
-
-  create_table "cns_events", force: true do |t|
-    t.string   "name",                 null: false
-    t.text     "description"
-    t.date     "event_date",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
   end
 
-  create_table "cns_proposals", force: true do |t|
-    t.integer  "cns_category_id"
-    t.string   "name",                        null: false
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "priority",        default: 0, null: false
-    t.string   "slug"
-  end
-
-  add_index "cns_proposals", ["cns_category_id"], name: "index_cns_proposals_on_cns_category_id", using: :btree
-  add_index "cns_proposals", ["slug"], name: "index_cns_proposals_on_slug", using: :btree
-
-  create_table "cns_timelines", force: true do |t|
+  create_table "ta_galleries", force: true do |t|
     t.string   "name"
-    t.string   "url"
-    t.text     "description"
-    t.date     "timeline_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ta_gallery_images", force: true do |t|
+    t.integer  "gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "ta_gallery_images", ["gallery_id"], name: "index_ta_gallery_images_on_gallery_id", using: :btree
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "user_authorizations", force: true do |t|
     t.string   "provider"

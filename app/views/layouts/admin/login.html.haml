@@ -1,22 +1,20 @@
 !!! 5
-%html
+%html{ language: I18n.locale }
   %head
-    %title= t '.title'
+    %title
+      = t '.title'
     %meta{ charset: 'utf-8' }
-    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
-    = stylesheet_link_tag 'admin/login'
-    = javascript_include_tag 'admin/login'
-    = csrf_meta_tags
-  %body.animated.fadeInDown
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' }
+    %meta{ name: 'robots', content: 'noindex' }
+
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'shortcut icon' }
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'apple-touch-icon' }
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'apple-touch-icon-precomposed' }
+
+    = stylesheet_link_tag :admin
+
+  %body
     .container
       .row
-        .col-md-push-4.col-md-4.col-sm-push-3.col-sm-6.col-sx-12.animated.flipInY
-          %header
-            = link_to admin_root_url, class: 'logo' do
-              %i.ga-icon-logo
-
+        .col-xs-12.col-sm-6.col-md-4.col-lg-4
           = yield
-
-    %footer#footer
-      %p.copyright
-        = t '.footer'

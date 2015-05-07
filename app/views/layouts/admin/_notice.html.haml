@@ -1,4 +1,5 @@
 - if flash[:notice]
-  .alert.alert-success
+  .alert.alert-info.alert-dismissible{ role: 'alert' }
     = flash[:notice]
-    = button_tag 'x', class: 'close', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'
+    = button_tag class: 'close', data: { dismiss: 'alert' } do
+      &times;
