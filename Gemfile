@@ -52,11 +52,11 @@ gem 'devise', '~> 3.3.0'
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails', '~> 4.4.1'
-  gem 'capistrano', '~> 3.4.0'
-  gem 'capistrano-rvm'
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rvm', '~> 0.1.2'
   gem 'capistrano-bundler', '~> 1.1.3'
-  gem 'capistrano-rails', '~> 1.1'
-  gem 'capistrano-passenger'
+  gem 'capistrano-rails', '~> 1.1.2'
+  # gem 'capistrano-passenger'
 end
 
 group :test do
