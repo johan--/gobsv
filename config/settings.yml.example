@@ -1,0 +1,16 @@
+action_mailer:
+  delivery_method: 'method'
+  smtp_settings:
+    address: 'address'
+    port: 'port'
+    domain: 'domain'
+    authentication: 'auth'
+    enable_starttls_auto: true
+    user_name: 'username'
+    password: 'password'
+
+modules:
+  ta:
+  - articles
+  - categories
+  - authors

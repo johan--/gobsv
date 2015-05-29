@@ -13,22 +13,21 @@ $(document).ready ->
 
     self = this
     img = $(self).next("img")
-    img.addClass("img-preview")
+    a = $("<a />").
+          addClass("input-file").
+          addClass("btn").
+          addClass("btn-default").
+          text("Seleccione una imagen")
+
+    $(self).before(
+      a.on "click", (e) ->
+        e.preventDefault()
+        e.stopPropagation()
+        $(self).trigger "click"
+    )
 
     $(self).on "change", ->
       readURL(self, img)
-
-    $(self).before($("<br />"))
-    $(self).before(
-      $("<a />").
-        addClass("input-file").
-        addClass("btn").
-        addClass("btn-default").
-        text("Seleccione una imagen").
-        on "click", (e) ->
-          e.preventDefault()
-          e.stopPropagation()
-          $(self).trigger "click"
-    )
+      img.css("height", a.outerHeight())
 
     $(self).hide()

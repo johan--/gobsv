@@ -6,10 +6,15 @@
 @import 'admin/bootstrap-vars';
 @import 'bootstrap';
 @import 'jquery.tagsinput';
-@import 'dropzone/basic';
+@import 'bootstrap-checkbox';
 
 body {
   margin-top: 50px;
+}
+
+.datetime-select {
+  display: inline-block;
+  width: auto;
 }
 
 .table {
@@ -23,5 +28,42 @@ body {
         width: 1%;
       }
     }
+  }
+}
+
+.form-gallery {
+  padding-bottom: 20px;
+  padding-top: 20px;
+
+  .image {
+    position: relative;
+
+    input {
+      display: none;
+    }
+  }
+
+  a {
+    &.remove_nested_fields {
+      position: absolute;
+      right: 15px;
+      top: 5px;
+    }
+
+    &.add_nested_fields {
+      background: #f2f2f2;
+      color: #ccc;
+      font-size: 50px;
+      height: 100px;
+      line-height: 100px;
+      width: 100%;
+    }
+  }
+
+  img {
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
   }
 }

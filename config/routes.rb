@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   draw :admin
   #draw :user
   #draw :www
+  draw :ta
 end

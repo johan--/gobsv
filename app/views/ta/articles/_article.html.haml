@@ -1,0 +1,151 @@
+= render partial: 'layouts/ta/breadcrumb'
+
+%article#article.container
+  .row
+    .col-xs-12
+      %h1
+        = @article.title
+  .row
+    .col-xs-12
+      %small
+        Por
+        = link_to nil do
+          Teresa Alvarado
+        13 de Abril de 2015
+  .row
+    .col-xs-12
+      %p
+        = @article.summary
+
+    - if @article.image.present?
+      .col-xs-12
+        %figure
+          = image_tag @article.image.url, class: 'img-responsive'
+          %figcaption
+            El Procurador de Derechos Humanos, David Morales
+
+  .row
+    .content.col-xs-12.col-sm-9
+      = raw @article.content
+    .hidden-xs.col-sm-3
+      = render partial: 'layouts/ta/banners'
+
+.container#article-info
+  .row
+    .col-xs-12.col-sm-4
+      = link_to '#', class: 'btn btn-success' do
+        .count
+          78
+        Comentarios
+    .col-xs-12.col-sm-4
+      = link_to '#', class: 'btn btn-info' do
+        = render partial: 'layouts/ta/sharer'
+
+    /.col-xs-12.col-sm-4
+    /  = link_to '#', class: 'btn btn-warning' do
+    /    Escuchar la noticia
+
+%br
+%br
+
+.container
+  #comments.row
+    - 42.times do
+      .col-xs-12
+        .media
+          .media-left.media-top
+            .avatar{ style: "background: ##{random_rgb_color(80..230)}" }
+              = cycle(['A', 'B', 'C', 'D'])
+          .media-body
+            %h5.media-heading
+              Nombre usuario
+            %p
+              El Procurador de Derechos Humanos, David Morales, afirmó que la demanda penal que promueve la ANEP atenta la libertad de prensa y de Expresión y pidió que se reflexione antes de afectar derechos de medios o personas. Considero que la información publicada sobre la lista de deudores con Hacienda es de interés público y llamó a los empresarios a cumplir con sus obligaciones fiscales porque de lo contrario se afectan derechos ciudadanos.
+            %small
+              7 abril, 2015 a las 10:21am
+              |
+              = link_to nil do
+                Reportar
+              |
+              = link_to nil do
+                Responder
+
+            - if [true, false].sample
+              .media
+                .media-left.media-top
+                  .avatar{ style: "background: ##{random_rgb_color(80..230)}" }
+                    = cycle(['A', 'B', 'C', 'D'])
+                .media-body
+                  %h5.media-heading
+                    Nombre usuario
+                  %p
+                    El Procurador de Derechos Humanos, David Morales, afirmó que la demanda penal que promueve la ANEP atenta la libertad de prensa y de Expresión y pidió que se reflexione antes de afectar derechos de medios o personas. Considero que la información publicada sobre la lista de deudores con Hacienda es de interés público y llamó a los empresarios a cumplir con sus obligaciones fiscales porque de lo contrario se afectan derechos ciudadanos.
+                  %small
+                    7 abril, 2015 a las 10:21am
+                    |
+                    = link_to nil do
+                      Reportar
+                    |
+                    = link_to nil do
+                      Responder
+
+  .row
+    .col-xs-12
+      .jpages-holder
+        / Pagination will be append here by jpages plugin
+
+#new-comment.container
+  .row
+    .col-xs-12
+      .well
+        %h4
+          Escribir un comentario
+        = form_for @comment, url: ta_article_comments_url(@article, @comment), html: { class: 'form-horizontal' } do |f|
+
+          .form-group
+            .col-xs-6
+              = f.text_field :name, class: 'form-control', placeholder: 'Nombre'
+
+            .col-xs-6
+              = f.email_field :email, class: 'form-control', placeholder: 'Correo electrónico (No será publicado)'
+
+          .form-group
+            .col-xs-12
+              = f.text_area :comment, class: 'form-control', rows: 5, placeholder: 'Escribe tu comentario'
+
+          .form-inline
+            = button_tag type: :submit, class: 'btn btn-info btn-lg' do
+              Publicar
+
+            .checkbox
+              = label_tag nil, nil do
+                = check_box_tag nil, nil
+                Notificarme cuando alguien responda a mi comentario
+
+.container
+  .row
+    .col-xs-12
+      %h4
+        Otras noticias
+  .row
+    .col-xs-12.col-sm-4
+      %article
+        %small
+          Antetítulo
+        %h3
+          = link_to nil do
+            Ratificación de convenio 189 permitirá beneficios laborales a trabajadoras del hogar
+    .col-xs-12.col-sm-4
+      %article
+        %small
+          Antetítulo
+        %h3
+          = link_to nil do
+            Ratificación de convenio 189 permitirá beneficios laborales a trabajadoras del hogar
+    .col-xs-12.col-sm-4
+      %article
+        %small
+          Antetítulo
+        %h3
+          = link_to nil do
+            Ratificación de convenio 189 permitirá beneficios laborales a trabajadoras del hogar

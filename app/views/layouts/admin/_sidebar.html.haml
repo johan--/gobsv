@@ -1,0 +1,14 @@
+#menu.panel-group
+  - Settings.modules.each do |modul, controllers|
+
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          = link_to "##{modul}", data: { toggle: 'collapse', parent: '#menu' } do
+            = t("modules.#{modul}")
+
+      .panel-collapse.collapse{ id: modul, class: controller.class.parent.to_s.demodulize.downcase.to_sym == modul.to_sym ? 'in' : nil }
+        .list-group
+          - controllers.each do |control|
+            = link_to url_for(controller: "admin/#{modul}/#{control}", action: :index), class: ['list-group-item', control == controller_name ? 'active' : nil] do
+              = t("activerecord.models.#{modul}/#{control.singularize}", count: :many)

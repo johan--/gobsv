@@ -1,0 +1,66 @@
+es:
+  admin:
+    sessions:
+      new:
+        login: Ingresar
+        welcome: Bienvenid@ al panel de control del sistema de Gobierno Abierto de El Salvador. Por favor digite sus datos para ingresar.
+        enter_email: Digite su correo electrónico
+        enter_password: Digite su contraseña
+        reset_password: Reestablecer contraseña
+        reset_password_explanation: Enviaremos un mensaje a su dirección de correo electrónico con instrucciones para reestablecer su contraseña.
+        send_instructions: Enviar instrucciones
+    passwords:
+      new:
+        login: Ingresar
+        welcome: Bienvenid@ al panel de control del sistema de Gobierno Abierto de El Salvador. Por favor digite sus datos para ingresar.
+        enter_email: Digite su correo electrónico
+        enter_password: Digite su contraseña
+        reset_password: Reestablecer contraseña
+        reset_password_explanation: Enviaremos un mensaje a su dirección de correo electrónico con instrucciones para reestablecer su contraseña.
+        send_instructions: Enviar instrucciones
+      edit:
+        change_password: Reestablecer contraseña
+        change_password_explanation: Por favor escriba una nueva contraseña (la que usted quiera) y luego confirmela.
+        new_password: Nueva contraseña
+        new_password_confirm: Confirme su nueva contraseña
+        change_password: Cambiar contraseña
+    tabled:
+      index:
+        confirm_delete: ¿Realmente desea eliminar este registro?
+        confirm_restore: ¿Realmente desea restaurar este registro?
+        delete: Eliminar
+        edit: Editar
+        restore: Restaurar
+        show: Ver
+      new:
+        complete_info: Complete la información
+        save: Guardar
+      edit:
+        confirm_delete: ¿Realmente desea eliminar este registro?
+        edit_info: Editar información
+        save: Guardar
+      show:
+        confirm_delete: ¿Realmente desea eliminar este registro?
+        confirm_restore: ¿Realmente desea restaurar este registro?
+        info: Información
+        restore: Restaurar
+  layouts:
+    admin:
+      title: Panel de control | Gobierno Abierto El Salvador
+      notice:
+        created: Registro creado con éxito
+        updated: Registro actualizado con éxito
+        deleted: Registro eliminado con éxito
+        restored: Registro restaurado con éxito
+      breadcrumb:
+        edit: Editar registro
+        home: Inicio
+        new: Nuevo registro
+        show: Ver registro
+      left_bar:
+        dashboard: Inicio
+        ta: Transparencia Activa
+        elements: Elementos
+      login:
+        title: Panel de control | Gobierno Abierto El Salvador
+        footer: 2014 - Gobierno Abierto El Salvador

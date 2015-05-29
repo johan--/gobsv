@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506175240) do
+ActiveRecord::Schema.define(version: 20150528210603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150506175240) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -57,22 +58,53 @@ ActiveRecord::Schema.define(version: 20150506175240) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
+    t.integer  "author_id"
+    t.string   "slug"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "published_at"
+    t.integer  "status",             default: 0, null: false
   end
+
+  add_index "ta_articles", ["author_id"], name: "index_ta_articles_on_author_id", using: :btree
+
+  create_table "ta_authors", force: true do |t|
+    t.string   "name"
+    t.string   "twitter"
+    t.integer  "admin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ta_authors", ["admin_id"], name: "index_ta_authors_on_admin_id", using: :btree
 
   create_table "ta_categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
+    t.boolean  "inmenu",     default: false, null: false
   end
 
-  create_table "ta_galleries", force: true do |t|
+  create_table "ta_comments", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "comment_id"
     t.string   "name"
+    t.string   "email"
+    t.text     "comment"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "ta_gallery_images", force: true do |t|
-    t.integer  "gallery_id"
+  add_index "ta_comments", ["article_id"], name: "index_ta_comments_on_article_id", using: :btree
+  add_index "ta_comments", ["comment_id"], name: "index_ta_comments_on_comment_id", using: :btree
+
+  create_table "ta_images", force: true do |t|
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -80,8 +112,6 @@ ActiveRecord::Schema.define(version: 20150506175240) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
-
-  add_index "ta_gallery_images", ["gallery_id"], name: "index_ta_gallery_images_on_gallery_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

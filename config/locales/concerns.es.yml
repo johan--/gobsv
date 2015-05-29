@@ -1,0 +1,9 @@
+es:
+  concerns:
+    tabled:
+      confirm_delete: ¿Está seguro de eliminar este registro?
+      delete: Eliminar
+      edit: Editar
+      list: Volver a la lista
+      save: Guardar
+      show: Ver

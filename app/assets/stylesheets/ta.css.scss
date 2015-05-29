@@ -1,0 +1,346 @@
+// bootstrap
+@import 'bootstrap-sprockets';
+@import 'ta/bootstrap-vars';
+@import 'bootstrap';
+@import 'jquery.sharrre';
+
+.navbar {
+  border-bottom: 2px rgba(0, 0, 0, 0.1) solid;
+
+  a {
+    text-transform: uppercase;
+  }
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+h4 {
+  text-transform: uppercase;
+}
+
+small {
+  display: inline-block;
+  padding: 1em 0 0.5em 0;
+}
+
+hr {
+  border-width: 2px;
+}
+
+article {
+  padding: 0 0 25px 0;
+}
+
+.breadcrumb {
+  background: #fff;
+  font-size: 0.9em;
+  padding: 20px 0 0 0;
+
+  a {
+    color: $brand-info;
+  }
+}
+
+.btn-inverse,
+.btn-inverse:hover {
+  background: $gray-dark;
+  border-radius: 6px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.headline {
+  background: #fff;
+  margin-top: -8em;
+  padding: 2em;
+  position: relative;
+}
+
+.row-no-padding {
+  [class*="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+#media{
+  .img-responsive {
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+}
+
+.tabs {
+  border-bottom: 8px $brand-info solid;
+  margin-top: 20px;
+
+  a {
+    border-bottom: 0;
+    line-height: 40px;
+    margin: 0 2%;
+    text-transform: uppercase;
+    width: 96%;
+
+    img {
+      margin-right: 10px;
+    }
+  }
+}
+
+#slider {
+  a {
+    color: #fff;
+  }
+
+  small {
+    text-transform: uppercase;
+  }
+
+  .img-responsive {
+    height: 430px;
+    object-fit: fill;
+    object-position: center;
+    width: 100%;
+  }
+
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    left: 35%;
+    padding: 10px 3%;
+    right: 0;
+    text-align: left;
+  }
+
+  .media-link {
+    display: inline-block;
+    margin: 20px 20px 0 0;
+    text-transform: uppercase;
+
+    img {
+      height: 22px;
+      margin-right: 4px;
+    }
+  }
+}
+
+#yesterday {
+  img {
+    margin-top: 14px;
+    width: 240px;
+  }
+}
+
+#releases {
+  img {
+    margin-top: 14px;
+    width: 80px;
+  }
+}
+
+footer {
+  background: #0071bd;
+  padding: 30px 0 0 0;
+
+  h2,
+  p {
+    color: #fff;
+    margin: 0;
+  }
+
+  h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  .categories {
+    a {
+      font-size: 13px;
+      margin: 0 10px;
+    }
+  }
+
+  .social {
+    list-style: none;
+    margin: 20px 0 0 0;
+
+    li {
+      padding: 5px 0;
+    }
+
+    a {
+      background: #fff;
+      border-radius: 5px;
+      color: #0071bd;
+      display: inline-block;
+      font-weight: bold;
+      margin-left: 20px;
+      padding: 5px;
+      text-align: center;
+      text-transform: uppercase;
+      width: 140px;
+    }
+  }
+
+  .pre-footer {
+    padding: 0 0 30px 0;
+  }
+
+  .footer {
+    background: $brand-primary;
+    color: #fff;
+    padding: 1em 0;
+
+    a {
+      display: inline-block;
+      font-size: 12px;
+      margin: 0 10px;
+    }
+  }
+}
+
+#article {
+
+  h1 {
+    color: $brand-primary;
+  }
+
+  small {
+    a {
+      color: $brand-info;
+    }
+  }
+
+  figure {
+    margin: 20px 0;
+  }
+
+  figcaption {
+    color: #777;
+    font-size: 13px;
+    line-height: 30px;
+  }
+
+  .content {
+    text-align: justify;
+  }
+}
+
+#article-info {
+  .btn {
+    width: 100%;
+  }
+
+  .count {
+    font-size: 50px;
+    line-height: 40px;
+    padding: 6px 0 0 0;
+  }
+}
+
+#comments {
+  .avatar {
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    width: 60px;
+  }
+
+  h5,
+  a {
+    color: $brand-primary;
+  }
+
+  small {
+    color: #999;
+    padding: 0 0 30px 0;
+  }
+}
+
+.jpages-holder {
+  border-bottom: 1px $brand-primary solid;
+  border-top: 1px $brand-primary solid;
+  margin: 20px 0;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    padding: 5px;
+
+    &.jp-current {
+      color: #000;
+    }
+  }
+}
+
+#banners {
+  a {
+    display: inline-block;
+    margin: 0 0 10px 0;
+  }
+}
+
+#gallery {
+  background: #1a1a1a;
+  color: #fff;
+  padding-bottom: 30px;
+
+  .breadcrumb {
+    background: transparent;
+  }
+}
+
+@media (max-width: 768px) {
+  .headline {
+    margin-top: 0;
+  }
+
+  #comments {
+    .avatar {
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      width: 30px;
+    }
+
+    .media-body {
+      font-size: 0.9em;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-brand {
+    padding-top: 42px;
+
+    img {
+      width: 210px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-nav {
+    a {
+      font-size: 10px;
+    }
+  }
+
+  .headline {
+    margin-top: -4em;
+  }
+}

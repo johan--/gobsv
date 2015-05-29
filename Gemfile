@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
+# To use mysql to some migration or reading process
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -117,5 +119,8 @@ gem 'rails_config', '~> 0.4.2'
 # A tagging plugin for Rails applications that allows for custom tagging along dynamic contexts.
 gem 'acts-as-taggable-on', '~> 3.5.0'
 
-# Spice your Rails apps with some Dropzone sugar!
-gem 'dropzonejs-rails', '~> 0.7.1'
+# A gem that provides text processing routines for Twitter Tweets.
+gem 'twitter-text', '~> 1.12.0'
+
+# Whitelist-based Ruby HTML and CSS sanitizer.
+gem 'sanitize', '~> 4.0.0'

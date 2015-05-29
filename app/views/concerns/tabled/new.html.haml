@@ -1,0 +1,16 @@
+.row
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    .panel.panel-default
+      .panel-heading
+        = model.model_name.human
+      .panel-body
+        = nested_form_for [namespace, @item], html: { id: 'item-form', class: 'form-horizontal dropzone', multipart: true } do |f|
+          = render partial: 'form', locals: { f: f }
+
+          .text-center
+            = f.submit t('.save'), class: 'btn btn-primary btn-lg'
+
+      .panel-footer
+        = link_to index_url, class: 'btn btn-default btn-sm' do
+          %span.glyphicon.glyphicon-arrow-left
+          = t '.list'

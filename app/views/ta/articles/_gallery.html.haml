@@ -1,0 +1,43 @@
+#gallery
+
+  = render partial: 'layouts/ta/breadcrumb'
+
+  .container
+    .row
+      .col-xs-12
+        %h1
+          = @article.title
+        %br
+    .row
+      .col-xs-12
+        #gcarousel.carousel.slide{ 'data-ride' => 'carousel' }
+
+          %ol.carousel-indicators
+            - (@article.images.length).times do |i|
+              %li{ 'data-target' => '#gcarousel', 'data-slide-to' => i, class: i == 0 ? 'active' : nil }
+
+          / Wrapper for slides
+          .carousel-inner{ role: 'listbox' }
+            - @article.images.each do |image|
+              .item{ class: @article.images.first == image ? 'active' : nil }
+                %center
+                  = image_tag image.image.url(:large), class: 'img-responsive'
+
+          / Controls
+          = link_to '#gcarousel', 'data-slide' => 'prev', :href => '#gcarousel', role: 'button', class: 'left carousel-control' do
+            %span.glyphicon.glyphicon-chevron-left{ 'aria-hidden' => 'true' }
+            %span.sr-only Previous
+          = link_to '#gcarousel', 'data-slide' => 'next', :href => '#gcarousel', role: 'button', class: 'right carousel-control' do
+            %span.glyphicon.glyphicon-chevron-right{ 'aria-hidden' => 'true' }
+            %span.sr-only Next
+
+    .row
+      .col-xs-12
+        %br
+        %br
+        %p
+          %b
+            = @article.summary
+    .row
+      .col-xs-12
+        = raw @article.content

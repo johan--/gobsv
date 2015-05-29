@@ -1,0 +1,70 @@
+.form-group
+  = f.label :title, class: 'control-label col-xs-1'
+  .col-xs-11
+    = f.text_field :title, class: 'form-control', required: true
+
+.form-group
+  = f.label :image, class: 'control-label col-xs-1'
+  .col-xs-11
+    = f.file_field :image, data: { preview: true }
+    = image_tag f.object.image.present? ? f.object.image.url(:small) : nil
+
+.form-group
+  = f.label :summary, class: 'control-label col-xs-1'
+  .col-xs-11
+    = f.text_area :summary, rows: 4, class: 'form-control', required: true
+
+.form-group
+  = f.label :content, class: 'control-label col-xs-1'
+  .col-xs-11
+    = f.cktext_area :content, class: 'form-control', required: true, ckeditor: { height: 500 }
+
+.form-group
+  = f.label :tag_list, class: 'control-label col-xs-1'
+  .col-xs-11
+    = f.text_field :tag_list, class: 'form-control tags', required: true
+
+
+= field_set_tag 'Galería' do
+
+  .form-gallery.row
+    = f.fields_for :images do |ff|
+
+      .image.col-xs-2
+        = ff.label :image do
+          = image_tag ff.object.image.url(:medium), class: 'img-responsive img-thumbnail'
+
+        = ff.file_field :image, accept: 'image/*'
+
+        = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+          %span.glyphicon.glyphicon-trash
+
+    .fields
+      .col-xs-2
+        = f.link_to_add :images, class: 'btn btn-sm btn-default pull-right' do
+          %span.glyphicon.glyphicon-plus
+
+= field_set_tag 'Publicación' do
+
+  .form-group
+    = f.label :category_id, class: 'control-label col-xs-3'
+    .col-xs-6
+      = f.select :category_id, @categories.map{ |category| [category.name, category.id] }, {}, class: 'form-control', required: true
+
+  .form-group
+    = f.label :author_id, class: 'control-label col-xs-3'
+    .col-xs-6
+      = f.select :author_id, @authors.map{ |author| [author.name, author.id] }, {}, class: 'form-control', required: true
+
+  .form-group
+    = f.label :published_at, class: 'control-label col-xs-3'
+    .col-xs-8
+      = f.datetime_select :published_at, {}, { class: 'form-control datetime-select', required: true }
+
+  .form-group
+    = f.label :status, class: 'control-label col-xs-3'
+    .col-xs-8
+      - Ta::Article.statuses.each do |status, index|
+        .radio{ class: status == 'publish' ? 'radio-success' : 'radio-danger' }
+          = f.radio_button :status, status
+          = f.label "status_#{status}", t("activerecord.enum.ta/article.status.#{status}")

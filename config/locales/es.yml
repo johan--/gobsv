@@ -201,9 +201,9 @@ es:
       ta/category:
         one: Categoría
         other: Categorías
-      ta/gallery:
-        one: Galería
-        other: Galerías
+      ta/author:
+        one: Autor
+        other: Autores
     attributes:
       id: ID
       created_at: Creado el
@@ -218,9 +218,20 @@ es:
         summary: Sumario
         content: Contenido
         tag_list: Etiquetas
+        published_at: Fecha de publicación
+        status: Estado
+        author_id: Autor
+        image: Imagen
       ta/category:
         name: Nombre
-      ta/gallery:
+      ta/author:
         name: Nombre
+        twitter: Twitter
+        admin_id: Administrador asociado
+    enum:
+      ta/article:
+        status:
+          draft: Borrador
+          publish: Publicado
   modules:
     ta: Transparencia Activa
