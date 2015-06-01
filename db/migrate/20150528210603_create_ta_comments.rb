@@ -5,8 +5,8 @@ class CreateTaComments < ActiveRecord::Migration
       t.references :comment, index: true
       t.string :name
       t.string :email
-      t.text :comment
-      t.integer :status
+      t.text :message
+      t.integer :status, null: false, default: 0
 
       t.timestamps
     end

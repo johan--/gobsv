@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 20150528210603) do
     t.integer  "comment_id"
     t.string   "name"
     t.string   "email"
-    t.text     "comment"
-    t.integer  "status"
+    t.text     "message"
+    t.integer  "status",     default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

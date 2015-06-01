@@ -8,6 +8,7 @@ class Ta::ArticlesController < TaController
   def show
     @article = Ta::Article.find params[:id]
     @comment = Ta::Comment.new
+    @comments = @article.comments.where(status: Ta::Comment.statuses[:publish]).order(:created_at)
 
     add_breadcrumb 'Inicio', ta_root_url
     add_breadcrumb 'Noticia número uno', nil

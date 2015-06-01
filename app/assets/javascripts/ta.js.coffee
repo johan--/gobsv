@@ -37,9 +37,20 @@ $ ->
     containerID: "comments",
     previous: "",
     next: "",
-    perPage: 4,
+    perPage: 5,
     fallback: 500,
     minHeight: false,
     callback: (pages, items) ->
       $(window).scrollTo($("#article-info").position().top - 30)
   }
+
+  $("#new_ta_comment").on "ajax:success", (e, data, status, xhr) ->
+    $("#new-comment .well").replaceWith("<div class='alert alert-success text-center'>¡Tu comentario ha sido enviado correctamente!</div>")
+
+  $("#new_ta_comment").on "ajax:error", (e, xhr, status, error) ->
+    $(this).find(".help-block").remove()
+    $(this).find(".has-error input").unwrap()
+    for key, val of xhr.responseJSON
+      input = $(this).find("[name='ta_comment[#{key}]']")
+      input.wrap("<div class='has-error'></div>")
+      input.after("<div class='help-block'>#{val[0]}</div>")
