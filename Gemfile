@@ -6,7 +6,7 @@ gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # To use mysql to some migration or reading process
-gem 'mysql2'
+#gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -56,6 +56,9 @@ group :development, :test do
   gem 'capistrano-rvm', '~> 0.1.2'
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'capistrano-rails', '~> 1.1.2'
+  #gem 'net-ssh', '~> 2.7.0'
+  #gem 'net-ssh-gateway', '~> 1.2.0'
+  #gem 'sshkit', '~> 1.3.0 '
   # gem 'capistrano-passenger'
 end
 
