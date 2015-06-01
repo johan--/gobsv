@@ -1,4 +1,5 @@
-class Admin::TrashController < Admin::TabledController
+class Admin::TrashController < AdminController
+  include Tabled
 
   def model
     DeletedElement
