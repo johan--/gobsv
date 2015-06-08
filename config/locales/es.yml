@@ -192,6 +192,10 @@ es:
       short: ! '%d de %b %H:%M'
       resume: ! '%d %b %Y a las %I:%M %p'
     pm: pm
+  will_paginate:
+    previous_label: '«'
+    next_label: '»'
+    page_gap: '...'
   activerecord:
     models:
       deleted_element: Elemento eliminado

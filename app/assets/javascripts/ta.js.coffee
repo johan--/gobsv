@@ -54,3 +54,10 @@ $ ->
       input = $(this).find("[name='ta_comment[#{key}]']")
       input.wrap("<div class='has-error'></div>")
       input.after("<div class='help-block'>#{val[0]}</div>")
+
+
+  $(".toggable-container .tabs a").on "click", (e) ->
+    $(this).closest(".toggable-container").find(".toggable").fadeOut()
+    $($(this).attr("href")).fadeIn()
+    e.preventDefault()
+  $(".toggable-container .tabs a:first").trigger("click")

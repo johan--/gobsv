@@ -14,6 +14,11 @@ development:
   google_key: ""
   google_secret: ""
 
+  soundcloud_key: ""
+  soundcloud_secret: ""
+  soundcloud_username: ""
+  soundcloud_password: ""
+
 production:
   facebook_key: ""
   facebook_secret: ""
@@ -29,3 +34,8 @@ production:
 
   google_key: ""
   google_secret: ""
+
+  soundcloud_key: ""
+  soundcloud_secret: ""
+  soundcloud_username: ""
+  soundcloud_password: ""

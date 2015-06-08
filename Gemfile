@@ -98,6 +98,7 @@ gem 'omniauth-twitter',       '~> 1.0.1'
 
 # Pagination library for Rails, Sinatra, Merb, DataMapper, and more
 gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap', '~> 1.0.1'
 
 # Complete Ruby geocoding solution.
 gem 'geocoder', '~> 1.2.5'
@@ -128,3 +129,6 @@ gem 'twitter-text', '~> 1.12.0'
 
 # Whitelist-based Ruby HTML and CSS sanitizer.
 gem 'sanitize', '~> 4.0.0'
+
+# Search Engine Optimization (SEO) plugin for Ruby on Rails applications.
+gem 'meta-tags', '~> 2.0.0'
