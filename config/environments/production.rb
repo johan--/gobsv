@@ -76,6 +76,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Set tld length *.gob.sv by exaple
+  config.action_dispatch.tld_length = 2
+
   # Add the fonts path
   #config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
