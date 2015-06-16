@@ -4,9 +4,10 @@ class Ta::Article < ActiveRecord::Base
 
   acts_as_taggable
 
-  has_attached_file :image,
-                    styles: { small: '200x150>', medium: '552x414>', large: '1140x760>' },
-                    default_url: 'ta/missing.jpg'
+  has_attached_file :image, styles: Proc.new { |o| o.instance.resize }
+
+                    # styles: { small: '200x113>', medium: '552x311>', large: '1140x641>' },
+                    # default_url: 'ta/missing.jpg'
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
@@ -29,5 +30,34 @@ class Ta::Article < ActiveRecord::Base
 
   def gallery?
     images.count > 0
+  end
+
+  def resize
+    begin
+      styles = {}
+      [
+        :small,
+        :medium,
+        :large,
+        :original
+      ].each do |style|
+
+        geo    = Paperclip::Geometry.from_file(Rails.root.join("public/system/ta/articles/images/#{("%09d" % id).scan(/\d{3}/).join("/")}/#{style}/#{image_file_name}").to_s)
+        width  = geo.width
+        height = geo.height
+
+        if width / height > 1.78
+          width  = height * 16 / 9
+          styles[style] = "#{width.to_i}#x#{height.to_i}"
+        else
+          height = width * 9 / 16
+          styles[style] = "#{width.to_i}x#{height.to_i}#"
+        end
+      end
+      return styles
+
+    rescue
+      return { small: '200x113#', medium: '552x311#', large: '1140x641#', original: '1140x641#' }
+    end
   end
 end

@@ -1,5 +1,5 @@
 class TaWp < ActiveRecord::Base
-=begin
+
   # Return the list of columns registered for the model. Used internally by
   # ActiveRecord
   def self.columns
@@ -165,6 +165,65 @@ class TaWp::Article < TaWp
   end
 end
 
+class TaWp::Tag < TaWp
+
+  self.table_name = 'posts_tags'
+
+  add_columns :integer, :wp_post_id
+  add_columns :string, :tag
+
+  ##
+  # execute just if posts_categories tables is already loaded
+  def self.migrate
+    pluck(:wp_post_id).uniq.each do |wp_post_id|
+      article_id = TaWp::PostsCategory.where(wp_post_id: wp_post_id).first.try(:post_id)
+      article = Ta::Article.find article_id
+      article.tag_list = self.where(wp_post_id: wp_post_id).map(&:tag).join(',')
+      article.save
+    end
+  end
+end
+
+class TaWp::PostsTag < TaWp
+  self.table_name = 'posts_tags'
+
+  add_columns :integer, :wp_post_id
+  add_columns :string, :tag
+
+  def self.prepare_table
+    if connection.table_exists? self.table_name
+      connection.execute("TRUNCATE TABLE #{self.table_name}")
+    else
+      connection.create_table self.table_name do |t|
+        t.integer :wp_post_id
+        t.string :tag
+      end
+    end
+  end
+
+  def self.populate_table
+    connection.execute("INSERT INTO #{self.table_name}
+      SELECT
+      	null,
+      	t4.id,
+      	t1.name
+      FROM tasitiowp_terms t1
+      LEFT JOIN tasitiowp_term_taxonomy t2 ON (t2.term_id = t1.term_id)
+      LEFT JOIN tasitiowp_term_relationships t3 ON (t3.term_taxonomy_id = t2.term_taxonomy_id)
+      LEFT JOIN tasitiowp_posts t4 ON (t4.id = t3.object_id)
+      WHERE
+      	t4.post_status = 'publish'
+      	AND t4.post_type = 'post'
+      	AND t2.taxonomy = 'post_tag'
+      ORDER BY
+      	t4.post_date ASC")
+  end
+
+  def self.drop_table
+    connection.execute("DROP TABLE #{self.table_name}")
+  end
+end
+
 class TaWp::PostsCategory < TaWp
   self.table_name = 'posts_categories'
 
@@ -214,23 +273,28 @@ namespace :ta do
   desc 'Migrate TA information from wordpress TA site'
   task migrate: :environment do |tsk, args|
 
-    TaWp::PostImageGallery.migrate
-
 =begin
-    Ta::Category.connection.execute("TRUNCATE TABLE ta_categories RESTART IDENTITY")
-    Ta::Article.connection.execute("TRUNCATE TABLE ta_articles RESTART IDENTITY")
 
+    # TaWp::PostsCategory.drop_table
     TaWp::PostsCategory.prepare_table
     TaWp::PostsCategory.populate_table
 
     TaWp::Category.migrate
     TaWp::Article.migrate
     TaWp::PostImage.migrate
+
+    TaWp::PostsTag.drop_table
+    TaWp::PostsTag.prepare_table
+    TaWp::PostsTag.populate_table
+
+    TaWp::Tag.migrate
 =end
-    #TaWp::PostsCategory.drop_table
+    TaWp::PostImageGallery.migrate
+=begin
 
-    #TaWp::PostsCategory.prepare_table
-    #TaWp::PostsCategory.populate_table
-  #end
+    Ta::Category.connection.execute("TRUNCATE TABLE ta_categories RESTART IDENTITY")
+    Ta::Article.connection.execute("TRUNCATE TABLE ta_articles RESTART IDENTITY")
+=end
 
+  end
 end

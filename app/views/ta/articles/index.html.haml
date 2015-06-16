@@ -46,32 +46,34 @@
         = link_to '#vdo', class: 'btn btn-info' do
           = image_tag 'ta/icon-videos.png', class: 'hidden-xs'
           Videos
-  #pct.row.toggable
-    .col-xs-12.col-sm-5.col-sm-offset-1
-      %article
-        = link_to ta_article_url(@gallery) do
-          = image_tag @gallery.image.url(:medium), class: 'img-responsive'
-        %small
-          libertad de expresión
-        %h3
+
+  - unless @gallery.nil?
+    #pct.row.toggable
+      .col-xs-12.col-sm-5.col-sm-offset-1
+        %article
           = link_to ta_article_url(@gallery) do
-            = @gallery.title
-    .col-xs-12.col-sm-5
-      - @galleries.each_slice(2) do |slice|
-        .row
-          - slice.each do |gallery|
-            .col-xs-6
-              %article
-                = link_to ta_article_url(gallery) do
-                  = image_tag gallery.image.url(:medium), class: 'img-responsive'
-                %h3
+            = image_tag @gallery.image.url(:medium), class: 'img-responsive'
+          %small
+            libertad de expresión
+          %h3
+            = link_to ta_article_url(@gallery) do
+              = @gallery.title
+      .col-xs-12.col-sm-5
+        - @galleries.each_slice(2) do |slice|
+          .row
+            - slice.each do |gallery|
+              .col-xs-6
+                %article
                   = link_to ta_article_url(gallery) do
-                    = gallery.title
-    .row
-      .col-xs-12
-        .text-center
-          = link_to nil, class: 'btn btn-inverse' do
-            Listado completo de galerías
+                    = image_tag gallery.image.url(:medium), class: 'img-responsive'
+                  %h3
+                    = link_to ta_article_url(gallery) do
+                      = gallery.title
+      .row
+        .col-xs-12
+          .text-center
+            = link_to nil, class: 'btn btn-inverse' do
+              Listado completo de galerías
 
   #aud.row.toggable
     .col-xs-12.col-sm-12.col-md-10.col-md-offset-1
