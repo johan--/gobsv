@@ -1,5 +1,5 @@
 class TaWp < ActiveRecord::Base
-
+=begin
   # Return the list of columns registered for the model. Used internally by
   # ActiveRecord
   def self.columns
@@ -273,8 +273,6 @@ namespace :ta do
   desc 'Migrate TA information from wordpress TA site'
   task migrate: :environment do |tsk, args|
 
-=begin
-
     # TaWp::PostsCategory.drop_table
     TaWp::PostsCategory.prepare_table
     TaWp::PostsCategory.populate_table
@@ -288,13 +286,11 @@ namespace :ta do
     TaWp::PostsTag.populate_table
 
     TaWp::Tag.migrate
-=end
     TaWp::PostImageGallery.migrate
-=begin
 
     Ta::Category.connection.execute("TRUNCATE TABLE ta_categories RESTART IDENTITY")
     Ta::Article.connection.execute("TRUNCATE TABLE ta_articles RESTART IDENTITY")
-=end
 
   end
+=end
 end
