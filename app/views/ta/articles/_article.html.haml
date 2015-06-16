@@ -20,7 +20,7 @@
     - if @article.image.present?
       .col-xs-12
         %figure
-          = image_tag @article.image.url, class: 'img-responsive'
+          = image_tag @article.image.url(:large), class: 'img-responsive'
           %figcaption
             El Procurador de Derechos Humanos, David Morales
 
