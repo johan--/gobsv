@@ -1,18 +1,9 @@
 = render partial: 'layouts/ta/breadcrumb'
 
-%section#category
-  .container
-    - @articles.each do |article|
-      %article.row
-        .col-xs-12.col-sm-6
-          %h2
-            = link_to ta_article_url(article) do
-              = article.title
-          %p
-            = article.summary
-        .col-xs-12.col-sm-6
-          = link_to ta_article_url(article) do
-            = image_tag article.image.url(:medium), class: 'img-responsive'
+.container
+  .row
+    .col-xs-12
+      %h1
+        = @category.name
 
-    %center
-      = will_paginate @articles, renderer: BootstrapPagination::Rails
+= render partial: 'ta/articles/list'

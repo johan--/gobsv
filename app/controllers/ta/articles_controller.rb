@@ -1,15 +1,15 @@
 class Ta::ArticlesController < TaController
 
   def index
-    @article  = Ta::Article.publish.newer.first
-    @articles = Ta::Article.publish.newer.limit(3).offset(1)
+    @articles = Ta::Article.publish.newer.paginate(page: params[:page])
 
-    @gallery   = Ta::Article.publish.gallery.newer.first
-    @galleries  = Ta::Article.publish.gallery.newer.limit(4).offset(1)
+    add_breadcrumb 'Inicio', ta_root_url
+    add_breadcrumb 'Todas las noticias', nil
+  end
 
-    @yesterday_articles = Ta::Article.yesterday.publish.newer.limit(3)
-
-    @featured = Ta::Article.featured.newer.limit(5)
+  def galleries
+    @articles = Ta::Article.gallery.publish.newer.paginate(page: params[:page])
+    add_breadcrumb 'Galerías', nil
   end
 
   def show
@@ -35,6 +35,6 @@ class Ta::ArticlesController < TaController
 
 
     add_breadcrumb 'Inicio', ta_root_url
-    add_breadcrumb 'Noticia número uno', nil
+    add_breadcrumb @article.title, nil
   end
 end
