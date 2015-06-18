@@ -20,7 +20,7 @@ class Ta::CategoriesController < TaController
       author: 'Transparencia Activa',
       og: {
         title: 'Noticias sobre transparencia, acceso a la Información y anticorrupción en El Salvador',
-        image: URI.join(request.url, 'assets/ta/missing.jpg'),
+        image: URI.join(request.url, view_context.image_path('ta/missing.jpg')),
         description: 'Transparencia Activa es un periódico digital que divulga las acciones de transparencia desarrolladas, rendición de cuentas, acceso a la información y lucha',
         url: ta_root_url
       }
