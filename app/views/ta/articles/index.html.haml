@@ -3,13 +3,15 @@
     .container-fluid
       .row.row-no-padding
         .col-lg-12
-          = image_tag @article.image.url, class: 'img-responsive'
+          %figure.cover
+            = image_tag @article.image.url(:large), class: 'img-responsive'
 
   .container{ class: @article.image.present? ? 'headline' : nil }
     .row
       .col-xs-12
-        %small
-          libertad de expresión
+        - unless @article.pretitle.blank?
+          %small
+            = @article.pretitle
         %h2
           = link_to ta_article_url(@article) do
             = @article.title
@@ -25,8 +27,11 @@
             - if article.image.present?
               = link_to ta_article_url(article) do
                 = image_tag article.image.url(:medium), class: 'img-responsive'
-            %small
-              Pretitulo
+            - unless @article.pretitle.blank?
+              %small
+                = @article.pretitle
+            - else
+              %br
             %h3
               = link_to ta_article_url(article) do
                 = article.title
@@ -53,8 +58,9 @@
         %article
           = link_to ta_article_url(@gallery) do
             = image_tag @gallery.image.url(:medium), class: 'img-responsive'
-          %small
-            libertad de expresión
+          - unless @article.pretitle.blank?
+            %small
+              = @article.pretitle
           %h3
             = link_to ta_article_url(@gallery) do
               = @gallery.title
@@ -109,16 +115,18 @@
               = link_to ta_article_url(article) do
                 = image_tag article.image.url(:small), class: 'media-object'
             .media-body
-              %small
-                Antetítulo
+              - unless @article.pretitle.blank?
+                %small
+                  = @article.pretitle
               %h3
                 = link_to ta_article_url(article) do
                   = article.title
       - else
         .col-xs-12.col-sm-6.col-md-3
           %article
-            %small
-              Antetítulo
+            - unless @article.pretitle.blank?
+              %small
+                = @article.pretitle
             %h3
               = link_to ta_article_url(article) do
                 = article.title

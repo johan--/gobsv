@@ -1,58 +1,31 @@
-#slider.carousel.slide{ 'data-ride' => 'carousel' }
-  / Wrapper for slides
-  .carousel-inner{ role: 'listbox' }
-    .item.active
-      = image_tag 'ta/dummy/06.jpg', class: 'img-responsive'
-      .carousel-caption
-        %small
-          Especiales
-        %h2
-          = link_to nil do
-            Asociación de Periodistas de El Salvador condena amenazas de la ANEP en contra de Transparencia Activa
+- unless @featured.length < 3
+  #slider.carousel.slide{ 'data-ride' => 'carousel' }
+    .carousel-inner{ role: 'listbox' }
 
-        = link_to nil, class: 'media-link' do
-          = image_tag 'ta/icon-videos.png'
-          Ver video
+      - @featured.each do |article|
 
-        = link_to nil, class: 'media-link' do
-          = image_tag 'ta/icon-pictures.png'
-          Ver fotografías
-    .item
-      = image_tag 'ta/dummy/07.jpg', class: 'img-responsive'
-      .carousel-caption
-        %small
-          Especiales
-        %h2
-          = link_to nil do
-            País inició discusión sobre transparencia en otros sectores de la sociedad: Marcos Rodríguez
+        .item{ class: article == @featured.first ? 'active' : nil }
+          = image_tag article.image.url(:large), class: 'img-responsive'
+          .carousel-caption
+            %small
+              Especiales
+            %h2
+              = link_to ta_article_url(article) do
+                = article.title
 
-        = link_to nil, class: 'media-link' do
-          = image_tag 'ta/icon-videos.png'
-          Ver video
+            -#
+              = link_to nil, class: 'media-link' do
+                = image_tag 'ta/icon-videos.png'
+                Ver video
 
-        = link_to nil, class: 'media-link' do
-          = image_tag 'ta/icon-pictures.png'
-          Ver fotografías
-    .item
-      = image_tag 'ta/dummy/08.jpg', class: 'img-responsive'
-      .carousel-caption
-        %small
-          Especiales
-        %h2
-          = link_to nil do
-            Juicio contra implicados en caso Diego de Holguín durará toda la semana
+              = link_to nil, class: 'media-link' do
+                = image_tag 'ta/icon-pictures.png'
+                Ver fotografías
 
-        = link_to nil, class: 'media-link' do
-          = image_tag 'ta/icon-videos.png'
-          Ver video
-
-        = link_to nil, class: 'media-link' do
-          = image_tag 'ta/icon-pictures.png'
-          Ver fotografías
-  / Controls
-  = link_to '#slider', 'data-slide' => 'prev', :href => '#slider', role: 'button', class: 'left carousel-control' do
-    %span.glyphicon.glyphicon-chevron-left{ 'aria-hidden' => 'true' }
-    %span.sr-only Previous
-  = link_to '#slider', 'data-slide' => 'next', :href => '#slider', role: 'button', class: 'right carousel-control' do
-    %span.glyphicon.glyphicon-chevron-right{ 'aria-hidden' => 'true' }
-    %span.sr-only Next
+    / Controls
+    = link_to '#slider', 'data-slide' => 'prev', :href => '#slider', role: 'button', class: 'left carousel-control' do
+      %span.glyphicon.glyphicon-chevron-left{ 'aria-hidden' => 'true' }
+      %span.sr-only Anterior
+    = link_to '#slider', 'data-slide' => 'next', :href => '#slider', role: 'button', class: 'right carousel-control' do
+      %span.glyphicon.glyphicon-chevron-right{ 'aria-hidden' => 'true' }
+      %span.sr-only Siguiente

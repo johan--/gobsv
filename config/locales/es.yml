@@ -226,6 +226,8 @@ es:
         status: Estado
         author_id: Autor
         image: Imagen
+        pretitle: Antetítulo
+        featured: ¿Especial?
       ta/category:
         name: Nombre
       ta/author:

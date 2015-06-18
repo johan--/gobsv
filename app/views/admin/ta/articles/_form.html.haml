@@ -1,7 +1,19 @@
 .form-group
+  = f.label :pretitle, class: 'control-label col-xs-1'
+  .col-xs-11
+    = f.text_field :pretitle, class: 'form-control', required: true
+
+.form-group
   = f.label :title, class: 'control-label col-xs-1'
   .col-xs-11
     = f.text_field :title, class: 'form-control', required: true
+
+.form-group
+  = f.label :featured, class: 'control-label col-xs-1'
+  .col-xs-11
+    .checkbox.checkbox-primary
+      = f.check_box :featured
+      %label
 
 .form-group
   = f.label :image, class: 'control-label col-xs-1'

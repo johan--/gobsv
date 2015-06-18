@@ -361,3 +361,13 @@ footer {
     margin-top: -4em;
   }
 }
+
+@media (min-width: 991px) {
+  .cover {
+    height: 560px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+}

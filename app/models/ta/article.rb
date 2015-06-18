@@ -4,10 +4,11 @@ class Ta::Article < ActiveRecord::Base
 
   acts_as_taggable
 
-  has_attached_file :image, styles: Proc.new { |o| o.instance.resize }
+  has_attached_file :image,
+                    styles: { small: '200x113>', medium: '552x311>', large: '1140x641>' },
+                    default_url: 'ta/missing.jpg'
 
-                    # styles: { small: '200x113>', medium: '552x311>', large: '1140x641>' },
-                    # default_url: 'ta/missing.jpg'
+                    # styles: Proc.new { |o| o.instance.resize }
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
@@ -23,9 +24,10 @@ class Ta::Article < ActiveRecord::Base
 
   self.per_page = 10
 
-  scope :gallery, lambda { includes(:images).where.not('ta_images.id' => nil) }
-  scope :publish, -> { where(status: statuses[:publish]) }
-  scope :newer, -> { order(published_at: :desc) }
+  scope :gallery,   lambda { includes(:images).where.not('ta_images.id' => nil) }
+  scope :publish,   -> { where(status: statuses[:publish]) }
+  scope :featured,  -> { where(featured: true) }
+  scope :newer,     -> { order(published_at: :desc) }
   scope :yesterday, -> { where('published_at BETWEEN ? AND ?', Date.yesterday.beginning_of_day, Date.yesterday.end_of_day) }
 
   def gallery?

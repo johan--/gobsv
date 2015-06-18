@@ -4,9 +4,9 @@ devise_for :admins,
     passwords: 'admin/passwords'
   }
 
-constraints subdomain: 'admin' do
+constraints subdomain: 'panel' do
   scope module: 'admin', as: 'admin' do
-    defaults subdomain: 'admin' do
+    defaults subdomain: 'panel' do
       root to: 'dashboard#index'
 
       namespaces = {
