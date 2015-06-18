@@ -5,7 +5,7 @@ class Ta::Article < ActiveRecord::Base
   acts_as_taggable
 
   has_attached_file :image,
-                    styles: { small: '200x113>', medium: '552x311>', large: '1140x641>' },
+                    styles: { small: '200x113#', medium: '552x311#', large: '1140x641#' },
                     default_url: 'ta/missing.jpg'
 
                     # styles: Proc.new { |o| o.instance.resize }

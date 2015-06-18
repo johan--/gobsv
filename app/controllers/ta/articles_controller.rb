@@ -13,9 +13,10 @@ class Ta::ArticlesController < TaController
   end
 
   def show
-    @article = Ta::Article.find params[:id]
-    @comment = Ta::Comment.new
+    @article  = Ta::Article.find params[:id]
+    @comment  = Ta::Comment.new
     @comments = @article.comments.where(status: Ta::Comment.statuses[:publish]).order(:created_at)
+    @related  = Ta::Article.newer.tagged_with(@article.tag_list, any: true).where.not(id: @article.id).limit(3)
 
     set_meta_tags ({
       title: @article.title,

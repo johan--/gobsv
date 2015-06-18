@@ -33,5 +33,21 @@ class Ta::CategoriesController < TaController
 
     add_breadcrumb 'Inicio', ta_root_url
     add_breadcrumb @category.name, nil
+
+    set_meta_tags ({
+      title: @category.name,
+      site: 'Transparencia Activa',
+      reverse: true,
+      description: 'Transparencia Activa es un periódico digital que divulga las acciones de transparencia desarrolladas, rendición de cuentas, acceso a la información y lucha',
+      keywords: 'noticias el salvador, trasparencia el salvador, transparencia activa, gobierno de el salvador, informacion el salvador, presidente funes,  informacion publica el salvador, noticias de verdad, gobierno del cambio',
+      canonical: ta_category_url(@category),
+      author: 'Transparencia Activa',
+      og: {
+        title: @category.name,
+        image: URI.join(request.url, view_context.image_path('ta/missing.jpg')),
+        description: 'Transparencia Activa es un periódico digital que divulga las acciones de transparencia desarrolladas, rendición de cuentas, acceso a la información y lucha',
+        url: ta_category_url(@category)
+      }
+    })
   end
 end
