@@ -304,6 +304,21 @@ footer {
   }
 }
 
+#gcarousel {
+  img {
+    max-height: 500px;
+    max-width: 1140px;
+  }
+
+  .carousel-control {
+    &.left,
+    &.right {
+      background: none;
+      background-image: none;
+    }
+  }
+}
+
 #articles-list {
   img {
     height: 300px;

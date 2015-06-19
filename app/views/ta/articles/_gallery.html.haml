@@ -12,9 +12,10 @@
       .col-xs-12
         #gcarousel.carousel.slide{ 'data-ride' => 'carousel' }
 
-          %ol.carousel-indicators
-            - (@article.images.length).times do |i|
-              %li{ 'data-target' => '#gcarousel', 'data-slide-to' => i, class: i == 0 ? 'active' : nil }
+          -#
+            %ol.carousel-indicators
+              - (@article.images.length).times do |i|
+                %li{ 'data-target' => '#gcarousel', 'data-slide-to' => i, class: i == 0 ? 'active' : nil }
 
           / Wrapper for slides
           .carousel-inner{ role: 'listbox' }

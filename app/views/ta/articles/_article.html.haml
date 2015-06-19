@@ -8,15 +8,14 @@
           %h1
             = @article.title
 
-
       .row
         .col-xs-12
           %small
             - unless @article.author.nil?
               Por
               = @article.author.name
+              |
               - unless @article.author.twitter.blank?
-                |
                 = link_to "http://www.twitter.com/#{@article.author.twitter}" do
                   = "@#{@article.author.twitter}"
 
