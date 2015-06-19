@@ -7,13 +7,16 @@
         .col-xs-12
           %h1
             = @article.title
+
+
       .row
         .col-xs-12
           %small
-            Por
-            = link_to nil do
-              Teresa Alvarado
-            13 de Abril de 2015
+            - unless @article.author.nil?
+              Por
+              = link_to nil do
+                = @article.author.name
+            = l @article.published_at
       .row
         .col-xs-12
           %p
@@ -31,12 +34,12 @@
           = raw @article.content
 
       .row#article-info
-        .col-xs-12.col-sm-6
+        .col-xs-6
           = link_to '#', class: 'btn btn-success' do
             .count
-              78
+              = @article.comments.publish.count
             Comentarios
-        .col-xs-12.col-sm-6
+        .col-xs-6
           = link_to '#', class: 'btn btn-info' do
             = render partial: 'layouts/ta/sharer'
 

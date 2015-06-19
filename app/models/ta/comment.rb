@@ -8,6 +8,8 @@ class Ta::Comment < ActiveRecord::Base
 
   enum status: [:revision, :publish]
 
+  scope :publish, -> { where(status: statuses[:publish]) }
+
   def avatar_letter
     if ('a'..'z').to_a.any?{ |letter| name.downcase.start_with?(letter) }
       name[0].upcase
