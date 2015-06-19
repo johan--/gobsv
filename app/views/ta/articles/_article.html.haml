@@ -14,8 +14,12 @@
           %small
             - unless @article.author.nil?
               Por
-              = link_to nil do
-                = @article.author.name
+              = @article.author.name
+              - unless @article.author.twitter.blank?
+                |
+                = link_to "http://www.twitter.com/#{@article.author.twitter}" do
+                  = "@#{@article.author.twitter}"
+
             = l @article.published_at
       .row
         .col-xs-12
