@@ -1,0 +1,35 @@
+.row
+  .col-xs-12
+    %h4
+      Últimas noticias
+
+- @lastest.each do |article|
+  .row
+    .col-xs-12
+      %article
+        - unless article.pretitle.blank?
+          %small
+            = article.pretitle
+        %h3
+          = link_to ta_article_url(article) do
+            = article.title
+
+.row
+  .hidden-xs.col-sm-12
+    = render partial: 'layouts/ta/banners'
+
+.row
+  .col-xs-12
+    %h4
+      Otras noticias
+
+- @related.each do |article|
+  .row
+    .col-xs-12
+      %article
+        - unless article.pretitle.blank?
+          %small
+            = article.pretitle
+        %h3
+          = link_to ta_article_url(article) do
+            = article.title

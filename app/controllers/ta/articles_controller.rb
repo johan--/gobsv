@@ -16,7 +16,9 @@ class Ta::ArticlesController < TaController
     @article  = Ta::Article.find params[:id]
     @comment  = Ta::Comment.new
     @comments = @article.comments.where(status: Ta::Comment.statuses[:publish]).order(:created_at)
-    @related  = Ta::Article.newer.tagged_with(@article.tag_list, any: true).where.not(id: @article.id).limit(3)
+
+    @lastest  = Ta::Article.publish.newer.where.not(id: @article.id).limit(2)
+    @related  = Ta::Article.newer.tagged_with(@article.tag_list, any: true).where.not(id: @lastest.map(&:id) + [@article.id]).limit(2)
 
     set_meta_tags ({
       title: @article.title,
@@ -36,6 +38,7 @@ class Ta::ArticlesController < TaController
 
 
     add_breadcrumb 'Inicio', ta_root_url
+    add_breadcrumb @article.category.name, ta_category_url(@article.category)
     add_breadcrumb @article.title, nil
   end
 end

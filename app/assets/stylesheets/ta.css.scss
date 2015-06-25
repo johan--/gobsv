@@ -33,6 +33,10 @@ hr {
 
 article {
   padding: 0 0 25px 0;
+
+  h3 {
+    font-size: 23px;
+  }
 }
 
 .breadcrumb {
@@ -229,8 +233,35 @@ footer {
     line-height: 30px;
   }
 
+  .embededContent {
+    margin: 20px 0;
+  }
+
+  .content blockquote,
+  .summary {
+    p {
+      color: #747474;
+      font-family: "Montserrat", sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 24px;
+      margin: 0;
+    }
+  }
+
+  blockquote {
+    margin-top: 18px;
+  }
+
   .content {
-    text-align: justify;
+    padding-bottom: 40px;
+
+    p {
+      font-family: helvetica;
+      font-size: 1.2em;
+      line-height: 1.4em;
+      margin: 18px 0 0 0;
+    }
   }
 }
 
@@ -305,6 +336,9 @@ footer {
 }
 
 #gcarousel {
+  margin-bottom: 40px;
+  margin-top: 10px;
+
   img {
     max-height: 500px;
     max-width: 1140px;

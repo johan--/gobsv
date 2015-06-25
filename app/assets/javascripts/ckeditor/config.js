@@ -4,6 +4,11 @@ CKEDITOR.editorConfig = function(config)
   // config.language = 'fr';
   // config.uiColor = '#AADC6E';
 
+  config.extraPlugins = 'oembed,widget';
+  config.oembed_maxWidth = '560';
+  config.oembed_maxHeight = '315';
+  config.oembed_WrapperClass = 'embededContent';
+
   /* Filebrowser routes */
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
@@ -37,7 +42,7 @@ CKEDITOR.editorConfig = function(config)
     { name: 'links', items: ['Link', 'Unlink', 'Anchor'] }, '/',
     { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
     { name: 'colors', items: ['TextColor', 'BGColor'] },
-    { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'] }
+    { name: 'insert', items: ['Image', 'oembed', 'Table', 'HorizontalRule', 'SpecialChar'] }
   ];
 
   // Rails CSRF token
@@ -107,5 +112,5 @@ CKEDITOR.config.toolbar = [
   { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat', '-', 'TextColor', 'BGColor'] },
   { name: 'links', items: ['Link', 'Unlink'] }, '/',
   { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'] },
-  { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'] }
+  { name: 'insert', items: ['Image', 'oembed', 'Table', 'HorizontalRule', 'SpecialChar'] }
 ]

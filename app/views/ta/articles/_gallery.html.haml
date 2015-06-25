@@ -7,11 +7,22 @@
       .col-xs-12
         %h1
           = @article.title
-        %br
+    .row
+      .col-xs-12
+        %small
+          - unless @article.author.nil?
+            Por
+            = @article.author.name
+            |
+          = l @article.published_at.to_date, format: :long
+    .row
+      .summary.col-xs-12
+        %p
+          = @article.summary
+
     .row
       .col-xs-12
         #gcarousel.carousel.slide{ 'data-ride' => 'carousel' }
-
           -#
             %ol.carousel-indicators
               - (@article.images.length).times do |i|
@@ -32,13 +43,6 @@
             %span.glyphicon.glyphicon-chevron-right{ 'aria-hidden' => 'true' }
             %span.sr-only Next
 
-    .row
-      .col-xs-12
-        %br
-        %br
-        %p
-          %b
-            = @article.summary
     .row
       .col-xs-12
         = raw @article.content

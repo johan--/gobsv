@@ -15,13 +15,9 @@
               Por
               = @article.author.name
               |
-              - unless @article.author.twitter.blank?
-                = link_to "http://www.twitter.com/#{@article.author.twitter}" do
-                  = "@#{@article.author.twitter}"
-
-            = l @article.published_at
+            = l @article.published_at.to_date, format: :long
       .row
-        .col-xs-12
+        .summary.col-xs-12
           %p
             = @article.summary
 
@@ -29,11 +25,12 @@
           .col-xs-12
             %figure
               = image_tag @article.image.url(:large), class: 'img-responsive'
-              %figcaption
-                El Procurador de Derechos Humanos, David Morales
+              -#
+                %figcaption
+                  El Procurador de Derechos Humanos, David Morales
 
       .row
-        .col-xs-12
+        .content.col-xs-12
           = raw @article.content
 
       .row#article-info
@@ -75,10 +72,10 @@
                       = link_to nil do
                         Responder
             %br
-      .row
-        .col-xs-12
-          .jpages-holder
-            / Pagination will be append here by jpages plugin
+        .row
+          .col-xs-12
+            .jpages-holder
+              / Pagination will be append here by jpages plugin
 
       #new-comment.row
         .col-xs-12
@@ -109,21 +106,4 @@
 
 
     .col-xs-12.col-sm-4.col-md-3
-      .row
-        .col-xs-12
-          %h4
-            Otras noticias
-
-      - @related.each do |article|
-        .row
-          .col-xs-12
-            %article
-              - unless article.pretitle.blank?
-                %small
-                  = article.pretitle
-              %h3
-                = link_to ta_article_url(article) do
-                  = article.title
-      .row
-        .hidden-xs.col-sm-12
-          = render partial: 'layouts/ta/banners'
+      = render 'layouts/ta/sidebar'

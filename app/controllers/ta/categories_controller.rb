@@ -4,7 +4,7 @@ class Ta::CategoriesController < TaController
     @article  = Ta::Article.publish.newer.first
     @articles = Ta::Article.publish.newer.limit(3).offset(1)
 
-    @gallery   = Ta::Article.publish.gallery.newer.first
+    @gallery    = Ta::Article.publish.gallery.newer.first
     @galleries  = Ta::Article.publish.gallery.newer.limit(2).offset(1)
 
     @yesterday_articles = Ta::Article.yesterday.publish.newer.limit(3)
