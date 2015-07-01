@@ -110,7 +110,7 @@ module Tabled
       init_form
       add_breadcrumb model.model_name.human(count: :many), index_url
       add_breadcrumb t('layouts.admin.breadcrumb.edit')
-      render action: :edit
+      render template: 'concerns/tabled/edit'
     end
   end
 

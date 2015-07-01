@@ -33,7 +33,11 @@
             - @article.images.each do |image|
               .item{ class: @article.images.first == image ? 'active' : nil }
                 %center
-                  = image_tag image.image.url(:large), class: 'img-responsive'
+                  %figure
+                    = link_to image.image.url(:large), class: 'fullsizable' do
+                      = image_tag image.image.url(:large), class: 'img-responsive'
+                    %figcaption
+                      = image.description
 
           / Controls
           = link_to '#gcarousel', 'data-slide' => 'prev', :href => '#gcarousel', role: 'button', class: 'left carousel-control' do

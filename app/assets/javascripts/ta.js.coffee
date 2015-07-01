@@ -8,8 +8,11 @@
 #= require 'jquery.sharrre'
 #= require 'jquery.jpages'
 #= require 'jquery.scrollto'
+#= require 'fullsizable'
 
 $ ->
+  $(".fullsizable").fullsizable()
+
   $("#shareme").sharrre {
     share: {
       googlePlus: true,

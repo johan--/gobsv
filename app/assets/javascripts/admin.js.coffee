@@ -25,7 +25,7 @@ $ ->
 window.NestedFormEvents.prototype.insertFields = (content, assoc, link) ->
   last = $(link).closest(".form-gallery").find(".fields:last")
   content = $(content)
-  input = content.find("input")
+  input = content.find("input[type=file]")
   input.on "change", ->
     content.insertBefore(last)
     if this.files and this.files[0]

@@ -3,6 +3,8 @@
 @import 'ta/bootstrap-vars';
 @import 'bootstrap';
 @import 'jquery.sharrre';
+@import 'fullsizable';
+@import 'fullsizable/theme';
 
 .navbar {
   border-bottom: 2px rgba(0, 0, 0, 0.1) solid;
@@ -344,6 +346,10 @@ footer {
     max-width: 1140px;
   }
 
+  figcaption {
+    padding: 5px 0;
+  }
+
   .carousel-control {
     &.left,
     &.right {
@@ -366,6 +372,20 @@ footer {
   }
 }
 
+#aud {
+  .well {
+    margin-bottom: 30px;
+  }
+
+  .media {
+    height: 136px;
+    overflow: hidden;
+
+    img {
+      border: 1px #474747 solid;
+    }
+  }
+}
 
 @media (max-width: 768px) {
   .headline {

@@ -11,6 +11,20 @@ class Ta::CategoriesController < TaController
 
     @featured = Ta::Article.featured.newer.limit(5)
 
+    @channel = Yt::Channel.new id: SocialKeys[Rails.env][:youtube_channel_id]
+
+    begin
+      client = Soundcloud.new({
+        client_id:     SocialKeys[Rails.env][:soundcloud_key],
+        client_secret: SocialKeys[Rails.env][:soundcloud_secret],
+        username:      SocialKeys[Rails.env][:soundcloud_username],
+        password:      SocialKeys[Rails.env][:soundcloud_password]
+      })
+      @tracks = client.get('/me/tracks', limit: 4, order: 'hotness').select{ |track| track.downloadable? }
+    rescue
+      @tracks = []
+    end
+
     set_meta_tags ({
       title: 'Noticias sobre transparencia, acceso a la Información y anticorrupción en El Salvador',
       site: 'TRANSPARENCIA ACTIVA',

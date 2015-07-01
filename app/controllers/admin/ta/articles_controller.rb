@@ -30,7 +30,7 @@ class Admin::Ta::ArticlesController < Admin::TaController
       :published_at,
       :author_id,
       :image,
-      images_attributes: [:id, :image, :_destroy]
+      images_attributes: [:id, :image, :priority, :description, :_destroy]
     )
   end
 end

@@ -15,7 +15,7 @@ class Ta::Article < ActiveRecord::Base
   belongs_to :category, class_name: '::Ta::Category'
   belongs_to :author, class_name: '::Ta::Author'
 
-  has_many :images, class_name: '::Ta::Image', as: :imageable
+  has_many :images, -> { order(:priority) }, class_name: '::Ta::Image', as: :imageable
   accepts_nested_attributes_for :images, allow_destroy: true
 
   has_many :comments, class_name: '::Ta::Comment'

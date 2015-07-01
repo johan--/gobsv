@@ -46,11 +46,11 @@
       = link_to '#aud', class: 'btn btn-warning' do
         = image_tag 'ta/icon-audios.png', class: 'hidden-xs'
         Audios
-    -#
-      .col-xs-4.col-sm-3
-        = link_to '#vdo', class: 'btn btn-info' do
-          = image_tag 'ta/icon-videos.png', class: 'hidden-xs'
-          Videos
+
+    .col-xs-4.col-sm-3
+      = link_to '#vdo', class: 'btn btn-info' do
+        = image_tag 'ta/icon-videos.png', class: 'hidden-xs'
+        Videos
 
   - unless @gallery.nil?
     #pct.row.toggable
@@ -87,10 +87,10 @@
       %br
       = render partial: 'layouts/ta/soundcloud'
 
-  -#
-    #vdo.row.toggable
-      .col-xs-12.col-sm-5.col-sm-offset-1
-        VDO
+  #vdo.row.toggable
+    .col-xs-12
+      %br
+      = render partial: 'layouts/ta/youtube'
 
 .hidden-xs
   %br

@@ -132,3 +132,9 @@ gem 'sanitize', '~> 4.0.0'
 
 # Search Engine Optimization (SEO) plugin for Ruby on Rails applications.
 gem 'meta-tags', '~> 2.0.0'
+
+# The official SoundCloud API wrapper.
+gem 'soundcloud', '~> 0.3.1'
+
+# Yt helps you write apps that need to interact with YouTube.
+gem 'yt', '~> 0.25.0'

@@ -19,6 +19,11 @@ development:
   soundcloud_username: ""
   soundcloud_password: ""
 
+  youtube_key: ""
+  youtube_secret: ""
+  youtube_client_id: ""
+  youtube_channel_id: ""
+
 production:
   facebook_key: ""
   facebook_secret: ""
@@ -39,3 +44,8 @@ production:
   soundcloud_secret: ""
   soundcloud_username: ""
   soundcloud_password: ""
+
+  youtube_key: ""
+  youtube_secret: ""
+  youtube_client_id: ""
+  youtube_channel_id: ""

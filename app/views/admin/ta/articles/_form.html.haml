@@ -42,14 +42,21 @@
   .form-gallery.row
     = f.fields_for :images do |ff|
 
-      .image.col-xs-2
-        = ff.label :image do
-          = image_tag ff.object.image.url(:medium), class: 'img-responsive img-thumbnail'
+      .col-xs-6
+        .well.well-sm
+          .row
+            .image.col-xs-6
+              = ff.label :image do
+                = image_tag ff.object.image.url(:medium), class: 'img-responsive img-thumbnail'
 
-        = ff.file_field :image, accept: 'image/*'
+              = ff.file_field :image, accept: 'image/*'
+              = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                %span.glyphicon.glyphicon-trash
 
-        = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
-          %span.glyphicon.glyphicon-trash
+            .col-xs-6
+              = ff.text_field :priority, class: 'form-control', placeholder: 'Descripción', required: true
+              %br
+              = ff.text_area :description, rows: 6, class: 'form-control', placeholder: 'Descripción', required: true
 
     .fields
       .col-xs-2
