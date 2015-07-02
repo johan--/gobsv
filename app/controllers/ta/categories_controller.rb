@@ -25,6 +25,12 @@ class Ta::CategoriesController < TaController
       @tracks = []
     end
 
+    begin
+      @tweets = Ta::TwitterBot.client.user_timeline("TransparenciaSV").take(3)
+    rescue
+      @tweets = []
+    end
+
     set_meta_tags ({
       title: 'Noticias sobre transparencia, acceso a la Información y anticorrupción en El Salvador',
       site: 'TRANSPARENCIA ACTIVA',

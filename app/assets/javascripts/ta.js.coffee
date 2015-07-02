@@ -62,5 +62,24 @@ $ ->
   $(".toggable-container .tabs a").on "click", (e) ->
     $(this).closest(".toggable-container").find(".toggable").fadeOut()
     $($(this).attr("href")).fadeIn()
+    $(this).closest(".tabs").
+      removeClass("pct").
+      removeClass("aud").
+      removeClass("vdo").
+      addClass($($(this).attr("href")).attr("id"))
+    $(this).trigger("blur")
+
     e.preventDefault()
   $(".toggable-container .tabs a:first").trigger("click")
+
+  $("#article .content img").each ->
+    if $(this).attr("alt") && $(this).attr("alt") != ""
+      figure = $("<figure />")
+      figure.addClass("img-responsive")
+      $(this).addClass("img-responsive")
+      figure.width($(this).width())
+      figcaption = $("<figcaption />")
+      figcaption.text($(this).attr("alt"))
+      #figcaption.text($(this).attr("alt"))
+      $(this).wrap(figure)
+      figcaption.insertAfter($(this))

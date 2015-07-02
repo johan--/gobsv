@@ -81,8 +81,19 @@ article {
 }
 
 .tabs {
-  border-bottom: 8px $brand-info solid;
   margin-top: 20px;
+
+  &.pct {
+    border-bottom: 8px $brand-success solid;
+  }
+
+  &.aud {
+    border-bottom: 8px $brand-warning solid;
+  }
+
+  &.vdo {
+    border-bottom: 8px $brand-info solid;
+  }
 
   a {
     border-bottom: 0;
@@ -264,6 +275,14 @@ footer {
       line-height: 1.4em;
       margin: 18px 0 0 0;
     }
+
+    figcaption {
+      background: #000;
+      color: #fff;
+      font-family: "Montserrat", sans-serif;
+      line-height: 1.2em;
+      padding: 8px 16px;
+    }
   }
 }
 
@@ -385,6 +404,10 @@ footer {
       border: 1px #474747 solid;
     }
   }
+}
+
+audio {
+  width: 100%;
 }
 
 @media (max-width: 768px) {

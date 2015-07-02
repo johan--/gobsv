@@ -205,34 +205,21 @@
           .col-xs-4
             / Link to TA app will be here
     .col-xs-12.col-sm-6
-      .media
-        .media-left
-          = image_tag 'ta/icon-twitter-blue.png', class: 'media-object'
-        .media-body
-          %h3
-            = link_to 'http://twitter.com/TransparenciaSV', target: '_blank' do
-              @TransparenciaSV
-      .media
-        .media-left
-          = image_tag 'ta/dummy/10.jpg', class: 'media-object'
-        .media-body
-          %p.text-muted
-            Nombre @usuario
-          %p
-            = raw auto_link('Mañana en #DiálogoJoven Viceministra de Salvadoreños en el Exterior Liduvina Magarín, llená el formulario  http://bit.ly/1F9GQ0c')
-      .media
-        .media-left
-          = image_tag 'ta/dummy/11.jpg', class: 'media-object'
-        .media-body
-          %p.text-muted
-            Nombre @usuario
-          %p
-            = raw auto_link('Mañana en #DiálogoJoven Viceministra de Salvadoreños en el Exterior Liduvina Magarín, llená el formulario  http://bit.ly/1F9GQ0c')
-      .media
-        .media-left
-          = image_tag 'ta/dummy/12.jpg', class: 'media-object'
-        .media-body
-          %p.text-muted
-            Nombre @usuario
-          %p
-            = raw auto_link('Mañana en #DiálogoJoven Viceministra de Salvadoreños en el Exterior Liduvina Magarín, llená el formulario  http://bit.ly/1F9GQ0c')
+      - unless @tweets.empty?
+        .media
+          .media-left
+            = image_tag 'ta/icon-twitter-blue.png', class: 'media-object'
+          .media-body
+            %h3
+              = link_to 'http://twitter.com/TransparenciaSV', target: '_blank' do
+                @TransparenciaSV
+        - @tweets.each do |tweet|
+          .media
+            .media-left
+              = image_tag tweet.user.profile_image_url, class: 'media-object'
+            .media-body
+              %p.text-muted
+                = tweet.user.name
+                = "@#{tweet.user.screen_name}"
+              %p
+                = raw auto_link(tweet.text)

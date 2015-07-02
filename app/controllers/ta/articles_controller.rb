@@ -18,7 +18,25 @@ class Ta::ArticlesController < TaController
     @comments = @article.comments.where(status: Ta::Comment.statuses[:publish]).order(:created_at)
 
     @lastest  = Ta::Article.publish.newer.where.not(id: @article.id).limit(2)
-    @related  = Ta::Article.newer.tagged_with(@article.tag_list, any: true).where.not(id: @lastest.map(&:id) + [@article.id]).limit(2)
+    @related  = @article.find_related_tags.limit(2)
+
+    begin
+      client = Soundcloud.new({
+        client_id:     SocialKeys[Rails.env][:soundcloud_key],
+        client_secret: SocialKeys[Rails.env][:soundcloud_secret],
+        username:      SocialKeys[Rails.env][:soundcloud_username],
+        password:      SocialKeys[Rails.env][:soundcloud_password]
+      })
+      @track = client.get('/me/tracks', limit: 1, order: 'hotness').first
+    rescue
+      @track = nil
+    end
+
+    begin
+      @tweet = Ta::TwitterBot.client.user_timeline("TransparenciaSV").first
+    rescue
+      @tweet = nil
+    end
 
     set_meta_tags ({
       title: @article.title,

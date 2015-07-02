@@ -1,35 +1,73 @@
-.row
-  .col-xs-12
-    %h4
-      Últimas noticias
-
-- @lastest.each do |article|
+#sidebar
   .row
     .col-xs-12
-      %article
-        - unless article.pretitle.blank?
-          %small
-            = article.pretitle
-        %h3
-          = link_to ta_article_url(article) do
-            = article.title
+      %h4
+        Últimas noticias
 
-.row
-  .hidden-xs.col-sm-12
-    = render partial: 'layouts/ta/banners'
+  - @lastest.each do |article|
+    .row
+      .col-xs-12
+        %article
+          - unless article.pretitle.blank?
+            %small
+              = article.pretitle
+          %h3
+            = link_to ta_article_url(article) do
+              = article.title
 
-.row
-  .col-xs-12
-    %h4
-      Otras noticias
+  - unless @track.nil?
+    %hr
+    .row
+      .col-xs-12
+        .well.well-sm
+          %h3
+            = @track.title
 
-- @related.each do |article|
+          %audio{ controls: true }
+            %source{ src: @track.download_url + "?client_id=#{SocialKeys[Rails.env][:soundcloud_key]}", type: 'audio/mpeg' }
+
+          %p
+            = @track.description.truncate(180, separator: ' ')
+
+  %hr
+  .row
+    .hidden-xs.col-sm-12
+      = render partial: 'layouts/ta/banners'
+
+  - unless @tweet.nil?
+    %hr
+    .row
+      .col-xs-12
+        .media
+          .media-left
+            = image_tag 'ta/icon-twitter-blue.png', class: 'media-object'
+          .media-body
+            %h3
+              = link_to 'http://twitter.com/TransparenciaSV', target: '_blank' do
+                @TransparenciaSV
+        .media
+          .media-left
+            = image_tag @tweet.user.profile_image_url, class: 'media-object'
+          .media-body
+            %p.text-muted
+              = @tweet.user.name
+              = "@#{@tweet.user.screen_name}"
+            %p
+              = raw auto_link(@tweet.text)
+
+  %hr
   .row
     .col-xs-12
-      %article
-        - unless article.pretitle.blank?
-          %small
-            = article.pretitle
-        %h3
-          = link_to ta_article_url(article) do
-            = article.title
+      %h4
+        Otras noticias
+
+  - @related.each do |article|
+    .row
+      .col-xs-12
+        %article
+          - unless article.pretitle.blank?
+            %small
+              = article.pretitle
+          %h3
+            = link_to ta_article_url(article) do
+              = article.title
