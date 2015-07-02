@@ -1,8 +1,10 @@
 class Ta::CategoriesController < TaController
 
   def index
-    @article  = Ta::Article.publish.newer.first
-    @articles = Ta::Article.publish.newer.limit(3).offset(1)
+    @article  = Ta::Article.publish.front.newer.first
+    @article  = Ta::Article.publish.newer.first if @article.nil?
+
+    @articles = Ta::Article.publish.newer.where.not(id: @article.id).limit(3)
 
     @gallery    = Ta::Article.publish.gallery.newer.first
     @galleries  = Ta::Article.publish.gallery.newer.limit(2).offset(1)

@@ -55,19 +55,20 @@
             %p
               = raw auto_link(@tweet.text)
 
-  %hr
-  .row
-    .col-xs-12
-      %h4
-        Otras noticias
-
-  - @related.each do |article|
+  - unless @related.length == 0
+    %hr
     .row
       .col-xs-12
-        %article
-          - unless article.pretitle.blank?
-            %small
-              = article.pretitle
-          %h3
-            = link_to ta_article_url(article) do
-              = article.title
+        %h4
+          Otras noticias
+
+    - @related.each do |article|
+      .row
+        .col-xs-12
+          %article
+            - unless article.pretitle.blank?
+              %small
+                = article.pretitle
+            %h3
+              = link_to ta_article_url(article) do
+                = article.title

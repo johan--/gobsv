@@ -16,6 +16,13 @@
       %label
 
 .form-group
+  = f.label :front, class: 'control-label col-xs-1'
+  .col-xs-11
+    .checkbox.checkbox-primary
+      = f.check_box :front
+      %label
+
+.form-group
   = f.label :image, class: 'control-label col-xs-1'
   .col-xs-11
     = f.file_field :image, data: { preview: true }

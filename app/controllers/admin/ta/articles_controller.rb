@@ -20,6 +20,7 @@ class Admin::Ta::ArticlesController < Admin::TaController
   def item_params
     params.require(:ta_article).permit(
       :category_id,
+      :front,
       :featured,
       :pretitle,
       :title,

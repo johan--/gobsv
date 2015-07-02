@@ -27,6 +27,7 @@ class Ta::Article < ActiveRecord::Base
   scope :gallery,   lambda { includes(:images).where.not('ta_images.id' => nil) }
   scope :publish,   -> { where(status: statuses[:publish]).where('published_at < ?', Time.zone.now) }
   scope :featured,  -> { where(featured: true) }
+  scope :front,     -> { where(front: true) }
   scope :newer,     -> { order(published_at: :desc) }
   scope :yesterday, -> { where('published_at BETWEEN ? AND ?', Date.yesterday.beginning_of_day, Date.yesterday.end_of_day) }
 
