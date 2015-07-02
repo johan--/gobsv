@@ -29,19 +29,11 @@
                 %figcaption
                   El Procurador de Derechos Humanos, David Morales
 
+      = render partial: 'layouts/ta/sharer'
+
       .row
         .content.col-xs-12
           = raw @article.content
-
-      .row#article-info
-        .col-xs-6
-          = link_to '#', class: 'btn btn-success' do
-            .count
-              = @article.comments.publish.count
-            Comentarios
-        .col-xs-6
-          = link_to '#', class: 'btn btn-info' do
-            = render partial: 'layouts/ta/sharer'
 
         /.col-xs-12.col-sm-4
         /  = link_to '#', class: 'btn btn-warning' do

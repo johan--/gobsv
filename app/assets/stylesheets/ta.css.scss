@@ -2,9 +2,12 @@
 @import 'bootstrap-sprockets';
 @import 'ta/bootstrap-vars';
 @import 'bootstrap';
-@import 'jquery.sharrre';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 @import 'fullsizable';
 @import 'fullsizable/theme';
+@import 'jssocials';
+@import 'jssocials-theme-classic';
 
 .navbar {
   border-bottom: 2px rgba(0, 0, 0, 0.1) solid;
@@ -283,18 +286,6 @@ footer {
       line-height: 1.2em;
       padding: 8px 16px;
     }
-  }
-}
-
-#article-info {
-  .btn {
-    width: 100%;
-  }
-
-  .count {
-    font-size: 50px;
-    line-height: 40px;
-    padding: 6px 0 0 0;
   }
 }
 

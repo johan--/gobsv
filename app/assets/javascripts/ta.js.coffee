@@ -5,36 +5,14 @@
 #= require 'jquery'
 #= require 'jquery_ujs'
 #= require 'bootstrap-sprockets'
-#= require 'jquery.sharrre'
 #= require 'jquery.jpages'
 #= require 'jquery.scrollto'
 #= require 'fullsizable'
+#= require 'jssocials'
+#= require 'jssocials.shares'
 
 $ ->
   $(".fullsizable").fullsizable()
-
-  $("#shareme").sharrre {
-    share: {
-      googlePlus: true,
-      facebook: true,
-      twitter: true,
-      digg: true,
-      delicious: true
-    },
-    enableTracking: true,
-    buttons: {
-      googlePlus: { size: "tall", annotation:"bubble" },
-      facebook: { layout: "box_count" },
-      twitter: { count: "vertical" },
-      digg: { type: "DiggMedium" },
-      delicious: { size: "tall" }
-    },
-    hover: (api, options) ->
-      $(api.element).find(".buttons").show()
-    ,
-    hide: (api, options) ->
-      $(api.element).find(".buttons").hide()
-  }
 
   $(".jpages-holder").jPages {
     containerID: "comments",
@@ -46,6 +24,13 @@ $ ->
     callback: (pages, items) ->
       $(window).scrollTo($("#article-info").position().top - 30)
   }
+
+  $(".sharer").jsSocials(
+    showCount: true,
+    showLabel: true,
+    openInPopup: false,
+    shares: ["twitter", "facebook", "googleplus", "pinterest"]
+  )
 
   $("#new_ta_comment").on "ajax:success", (e, data, status, xhr) ->
     $("#new-comment .well").replaceWith("<div class='alert alert-success text-center'>¡Tu comentario ha sido enviado correctamente!</div>")

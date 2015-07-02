@@ -138,3 +138,6 @@ gem 'soundcloud', '~> 0.3.1'
 
 # Yt helps you write apps that need to interact with YouTube.
 gem 'yt', '~> 0.25.0'
+
+# Use the Official Font Awesome SASS Ruby Gem to easily get Font Awesome SASS into a Rails or Compass project.
+gem 'font-awesome-sass', '~> 4.3.2'
