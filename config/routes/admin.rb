@@ -13,6 +13,7 @@ constraints subdomain: 'panel' do
         ta: [
           :articles,
           :categories,
+          :pages,
           :authors
         ]
       }

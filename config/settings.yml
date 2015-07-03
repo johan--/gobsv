@@ -13,4 +13,5 @@ modules:
   ta:
   - articles
   - categories
+  - pages
   - authors

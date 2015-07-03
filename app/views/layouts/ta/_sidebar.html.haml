@@ -55,7 +55,7 @@
             %p
               = raw auto_link(@tweet.text)
 
-  - unless @related.length == 0
+  - unless @related.nil? || @related.length == 0
     %hr
     .row
       .col-xs-12

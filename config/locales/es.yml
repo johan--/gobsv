@@ -208,6 +208,9 @@ es:
       ta/author:
         one: Autor
         other: Autores
+      ta/page:
+        one: Página
+        other: Páginas
     attributes:
       id: ID
       created_at: Creado el
@@ -235,10 +238,20 @@ es:
         name: Nombre
         twitter: Twitter
         admin_id: Administrador asociado
+      ta/page:
+        priority: Prioridad
+        name: Nombre
+        content: Contenido
+        position: Posición
     enum:
       ta/article:
         status:
           draft: Borrador
           publish: Publicado
+      ta/page:
+        position:
+          top_header: Cabecera
+          top_footer: Parte superior del footer
+          bottom_footer: Parte inferior del footer
   modules:
     ta: Transparencia Activa

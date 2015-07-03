@@ -9,14 +9,9 @@
       = image_tag 'ta/gobierno-de-el-salvador.jpg'
     .col-xs-12.col-sm-6
       .categories
-        = link_to nil do
-          Noticias desde la comunidad
-        = link_to nil do
-          Participación ciudadana
-        = link_to nil do
-          Multimedia
-        = link_to nil do
-          Al aire
+        - @pages.select{ |page| page.top_footer? }.each do |page|
+          = link_to ta_page_url(page) do
+            = page.name
 
       %ul.social.text-center
         %li
@@ -33,14 +28,8 @@
             Subscríbete
   .row.footer
     .col-xs-12.text-center
-      = link_to nil do
-        Aviso legal
       |
-      = link_to nil do
-        Aviso legal
-      |
-      = link_to nil do
-        Aviso legal
-      |
-      = link_to nil do
-        Aviso legal
+      - @pages.select{ |page| page.bottom_footer? }.each do |page|
+        = link_to ta_page_url(page) do
+          = page.name
+        |

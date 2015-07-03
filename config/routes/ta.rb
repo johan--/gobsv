@@ -13,5 +13,6 @@ constraints DomainConstraint.new(domain) do
     end
     get '/:id', to: 'articles#show', as: :article
     resources :categories, only: [:show]
+    resources :pages, only: [:show]
   end
 end
