@@ -243,6 +243,12 @@ es:
         name: Nombre
         content: Contenido
         position: Posición
+      ta/video:
+        priority: Prioridad
+        title: Nombre
+        description: Descripción
+        url: URL
+        image: Imagen
     enum:
       ta/article:
         status:

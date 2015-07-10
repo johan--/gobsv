@@ -1,7 +1,8 @@
 class Ta::ArticlesController < TaController
 
   def index
-    @articles = Ta::Article.publish.newer.paginate(page: params[:page])
+    @q        = Ta::Article.ransack(params[:q])
+    @articles = @q.result.publish.newer.paginate(page: params[:page])
 
     add_breadcrumb 'Inicio', ta_root_url
     add_breadcrumb 'Todas las noticias', nil

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703165034) do
+ActiveRecord::Schema.define(version: 20150710223152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,22 @@ ActiveRecord::Schema.define(version: 20150703165034) do
   end
 
   add_index "ta_pages", ["slug"], name: "index_ta_pages_on_slug", unique: true, using: :btree
+
+  create_table "ta_videos", force: true do |t|
+    t.integer  "priority"
+    t.integer  "article_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ta_videos", ["article_id"], name: "index_ta_videos_on_article_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

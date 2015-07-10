@@ -402,6 +402,11 @@ audio {
 }
 
 @media (max-width: 768px) {
+  .navbar-form {
+    border: 0;
+    margin: 0;
+  }
+
   .headline {
     margin-top: 0;
   }

@@ -141,3 +141,6 @@ gem 'yt', '~> 0.25.0'
 
 # Use the Official Font Awesome SASS Ruby Gem to easily get Font Awesome SASS into a Rails or Compass project.
 gem 'font-awesome-sass', '~> 4.3.2'
+
+# Object-based searching.
+gem 'ransack', '~> 1.6.6'

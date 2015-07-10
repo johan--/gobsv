@@ -16,6 +16,9 @@ class Ta::Article < ActiveRecord::Base
   has_many :images, -> { order(:priority) }, class_name: '::Ta::Image', as: :imageable
   accepts_nested_attributes_for :images, allow_destroy: true
 
+  has_many :videos, -> { order(:priority) }, class_name: '::Ta::Video'
+  accepts_nested_attributes_for :videos, allow_destroy: true
+
   has_many :comments, class_name: '::Ta::Comment'
 
   enum status: [:draft, :publish]

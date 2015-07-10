@@ -61,7 +61,7 @@
                 %span.glyphicon.glyphicon-trash
 
             .col-xs-6
-              = ff.text_field :priority, class: 'form-control', placeholder: 'Descripción', required: true
+              = ff.text_field :priority, class: 'form-control', placeholder: 'Prioridad', required: true
               %br
               = ff.text_area :description, rows: 6, class: 'form-control', placeholder: 'Descripción', required: true
 
@@ -69,6 +69,30 @@
       .col-xs-2
         = f.link_to_add :images, class: 'btn btn-sm btn-default pull-right' do
           %span.glyphicon.glyphicon-plus
+
+= field_set_tag 'Videos' do
+  .row
+    = f.fields_for :videos do |ff|
+      .col-xs-6
+        .well.well-sm
+          .row
+            .col-xs-6
+              = ff.label :image do
+                = image_tag ff.object.image.url(:medium), class: 'img-responsive img-thumbnail'
+
+              = ff.file_field :image, accept: 'image/*'
+              = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                %span.glyphicon.glyphicon-trash
+
+            .col-xs-6
+              = ff.text_field :priority, class: 'form-control', placeholder: 'Prioridad', required: true
+              %br
+              = ff.text_field :url, class: 'form-control', placeholder: 'http://', required: true
+              %br
+              = ff.text_area :description, rows: 3, class: 'form-control', placeholder: 'Descripción', required: true
+
+    = f.link_to_add :videos, class: 'btn btn-sm btn-default pull-right' do
+      %span.glyphicon.glyphicon-plus
 
 = field_set_tag 'Publicación' do
 

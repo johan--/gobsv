@@ -12,8 +12,16 @@
 
       = link_to ta_root_url, class: 'navbar-brand' do
         = image_tag 'ta/transparencia-activa.jpg', alt: 'Transparencia Activa'
+
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav.navbar-right
+        %li
+          = search_form_for @q, url: ta_articles_url, html: { class: 'navbar-form' } do |f|
+            .input-group
+              = f.search_field :title_cont, class: 'form-control', placeholder: 'Buscar'
+              .input-group-addon
+                = icon('search')
+
         - @pages.select{ |page| page.top_header? }.each do |page|
           %li
             = link_to page.name, ta_page_url(page)

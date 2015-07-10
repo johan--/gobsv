@@ -21,6 +21,8 @@
           %p
             = @article.summary
 
+        = render partial: 'layouts/ta/sharer'
+
         - if @article.image.present?
           .col-xs-12
             %figure
@@ -29,11 +31,13 @@
                 %figcaption
                   El Procurador de Derechos Humanos, David Morales
 
-      = render partial: 'layouts/ta/sharer'
-
       .row
         .content.col-xs-12
           = raw @article.content
+
+      .row
+        .col-xs-12
+          = render partial: 'layouts/ta/sharer'
 
         /.col-xs-12.col-sm-4
         /  = link_to '#', class: 'btn btn-warning' do
