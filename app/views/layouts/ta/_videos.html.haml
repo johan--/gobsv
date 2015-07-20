@@ -1,0 +1,23 @@
+#vdo.row.toggable
+  .col-xs-12.col-sm-6
+    %article
+      = link_to ta_article_url(@video) do
+        = image_tag @video.image.url(:medium), class: 'img-responsive'
+      - unless @video.pretitle.blank?
+        %small
+          = @video.pretitle
+      %h3
+        = link_to ta_article_url(@video) do
+          = @video.title
+  .col-xs-12.col-sm-6
+    .row
+      - @videos.each do |video|
+        .col-xs-6
+          %article
+            = link_to ta_article_url(video) do
+              = image_tag video.image.url(:medium), class: 'img-responsive'
+            %h3
+              = link_to ta_article_url(video) do
+                = video.title
+            %p
+              = truncate video.summary, length: 150

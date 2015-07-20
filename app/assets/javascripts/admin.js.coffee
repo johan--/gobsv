@@ -35,3 +35,9 @@ window.NestedFormEvents.prototype.insertFields = (content, assoc, link) ->
           content.find("img").attr "src", e.target.result
         reader.readAsDataURL this.files[0]
     input.trigger("click")
+  else
+    target = $(link).data('target')
+    if target
+      $(content).appendTo($(target))
+    else
+      $(content).insertBefore(link)

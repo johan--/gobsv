@@ -1,27 +1,18 @@
 class Ta::CategoriesController < TaController
 
   def index
-    @article    = Ta::Article.publish.front.newer.first
-    @article    = Ta::Article.publish.newer.first if @article.nil?
-    @articles   = Ta::Article.publish.newer.where.not(id: @article.id).limit(3)
-    @gallery    = Ta::Article.publish.gallery.newer.first
-    @galleries  = Ta::Article.publish.gallery.newer.limit(2).offset(1)
-    @featured   = Ta::Article.featured.newer.limit(5)
-
+    @article            = Ta::Article.publish.front.newer.first
+    @article            = Ta::Article.publish.newer.first if @article.nil?
+    @articles           = Ta::Article.publish.newer.where.not(id: @article.id).limit(3)
+    @featured           = Ta::Article.featured.newer.limit(5)
     @yesterday_articles = Ta::Article.yesterday.publish.newer.limit(3)
-    @channel = Yt::Channel.new id: SocialKeys[Rails.env][:youtube_channel_id]
 
-    begin
-      client = Soundcloud.new({
-        client_id:     SocialKeys[Rails.env][:soundcloud_key],
-        client_secret: SocialKeys[Rails.env][:soundcloud_secret],
-        username:      SocialKeys[Rails.env][:soundcloud_username],
-        password:      SocialKeys[Rails.env][:soundcloud_password]
-      })
-      @tracks = client.get('/me/tracks', limit: 4, order: 'hotness').select{ |track| track.downloadable? }
-    rescue
-      @tracks = []
-    end
+    @gallery            = Ta::Article.publish.gallery_layout.newer.first
+    @galleries          = Ta::Article.publish.gallery_layout.newer.limit(2).offset(1)
+    @audio              = Ta::Article.publish.audio_layout.newer.first
+    @audios             = Ta::Article.publish.newer.audio_layout.limit(2).offset(1)
+    @video              = Ta::Article.publish.newer.video_layout.first
+    @videos             = Ta::Article.publish.newer.video_layout.limit(2).offset(1)
 
     begin
       @tweets = Ta::TwitterBot.client.user_timeline("TransparenciaSV").take(3)

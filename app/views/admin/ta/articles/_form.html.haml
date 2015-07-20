@@ -23,10 +23,20 @@
       %label
 
 .form-group
+  = f.label :video_url, class: 'control-label col-xs-1'
+  .col-xs-11
+    = f.text_field :video_url, class: 'form-control'
+
+.form-group
+  = f.label :audio_url, class: 'control-label col-xs-1'
+  .col-xs-11
+    = f.text_field :audio_url, class: 'form-control'
+
+.form-group
   = f.label :image, class: 'control-label col-xs-1'
   .col-xs-11
     = f.file_field :image, data: { preview: true }
-    = image_tag f.object.image.present? ? f.object.image.url(:small) : nil
+    = image_tag((f.object.image.present? ? f.object.image.url(:small) : nil), height: 31)
 
 .form-group
   = f.label :summary, class: 'control-label col-xs-1'
@@ -42,7 +52,6 @@
   = f.label :tag_list, class: 'control-label col-xs-1'
   .col-xs-11
     = f.text_field :tag_list, class: 'form-control tags', required: true
-
 
 = field_set_tag 'Galería' do
 
@@ -70,29 +79,87 @@
         = f.link_to_add :images, class: 'btn btn-sm btn-default pull-right' do
           %span.glyphicon.glyphicon-plus
 
-= field_set_tag 'Videos' do
-  .row
-    = f.fields_for :videos do |ff|
-      .col-xs-6
-        .well.well-sm
-          .row
-            .col-xs-6
-              = ff.label :image do
-                = image_tag ff.object.image.url(:medium), class: 'img-responsive img-thumbnail'
+-#
+  = field_set_tag 'Videos' do
+    .row
+      = f.fields_for :videos do |ff|
+        .col-xs-6
+          .well.well-sm
+            .row
+              .col-xs-12
 
-              = ff.file_field :image, accept: 'image/*'
-              = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
-                %span.glyphicon.glyphicon-trash
+                .form-group
+                  = ff.label :priority, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.text_field :priority, class: 'form-control'
 
-            .col-xs-6
-              = ff.text_field :priority, class: 'form-control', placeholder: 'Prioridad', required: true
-              %br
-              = ff.text_field :url, class: 'form-control', placeholder: 'http://', required: true
-              %br
-              = ff.text_area :description, rows: 3, class: 'form-control', placeholder: 'Descripción', required: true
+                .form-group
+                  = ff.label :title, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.text_field :title, class: 'form-control'
 
-    = f.link_to_add :videos, class: 'btn btn-sm btn-default pull-right' do
-      %span.glyphicon.glyphicon-plus
+                .form-group
+                  = ff.label :image, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.file_field :image, data: { preview: true }
+                    = image_tag((ff.object.image.present? ? ff.object.image.url(:small) : nil), height: 31)
+
+                .form-group
+                  = ff.label :url, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.text_field :url, class: 'form-control'
+
+                .form-group
+                  = ff.label :description, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.text_area :description, rows: 3, class: 'form-control'
+
+                = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                  %span.glyphicon.glyphicon-trash
+
+      = f.link_to_add :videos, class: 'btn btn-sm btn-default pull-right' do
+        %span.glyphicon.glyphicon-plus
+
+-#
+  = field_set_tag 'Audios' do
+    .row
+      = f.fields_for :audios do |ff|
+        .col-xs-6
+          .well.well-sm
+            .row
+              .col-xs-12
+
+                .form-group
+                  = ff.label :priority, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.text_field :priority, class: 'form-control'
+
+                .form-group
+                  = ff.label :title, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.text_field :title, class: 'form-control'
+
+                .form-group
+                  = ff.label :image, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.file_field :image, data: { preview: true }
+                    = image_tag((ff.object.image.present? ? ff.object.image.url(:small) : nil), height: 31)
+
+                .form-group
+                  = ff.label :url, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.text_field :url, class: 'form-control'
+
+                .form-group
+                  = ff.label :description, class: 'control-label col-xs-3'
+                  .col-xs-8
+                    = ff.text_area :description, rows: 3, class: 'form-control'
+
+                = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                  %span.glyphicon.glyphicon-trash
+
+      = f.link_to_add :audios, class: 'btn btn-sm btn-default pull-right' do
+        %span.glyphicon.glyphicon-plus
 
 = field_set_tag 'Publicación' do
 
@@ -110,6 +177,14 @@
     = f.label :published_at, class: 'control-label col-xs-3'
     .col-xs-8
       = f.datetime_select :published_at, {}, { class: 'form-control datetime-select', required: true }
+
+  .form-group
+    = f.label :layout, class: 'control-label col-xs-3'
+    .col-xs-8
+      - Ta::Article.layouts.each do |layout, index|
+        .radio.radio-primary
+          = f.radio_button :layout, layout
+          = f.label "layout_#{layout}", t("activerecord.enum.ta/article.layout.#{layout}")
 
   .form-group
     = f.label :status, class: 'control-label col-xs-3'

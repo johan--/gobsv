@@ -5,7 +5,7 @@
         Encuentranos REDES SOCIALES
 
     .col-xs-12
-    
+
       = link_to 'http://www.facebook.com/TransparenciaActiva', target: '_blank', class: 'btn btn-primary btn-lg' do
         = icon('facebook')
 
@@ -32,19 +32,21 @@
             = link_to ta_article_url(article) do
               = article.title
 
-  - unless @track.nil?
+  - unless @audio.nil?
     %hr
     .row
       .col-xs-12
-        .well.well-sm
+        %h4
+          Último audio
+    .row
+      .col-xs-12
+        %article
+          - unless @audio.pretitle.blank?
+            %small
+              = @audio.pretitle
           %h3
-            = @track.title
-
-          %audio{ controls: true }
-            %source{ src: @track.download_url + "?client_id=#{SocialKeys[Rails.env][:soundcloud_key]}", type: 'audio/mpeg' }
-
-          %p
-            = @track.description.truncate(180, separator: ' ')
+            = link_to ta_article_url(@audio) do
+              = @audio.title
 
   %hr
   .row

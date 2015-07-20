@@ -1,4 +1,4 @@
-- if @article.gallery?
-  = render partial: 'ta/articles/gallery'
+- if @article.normal?
+  = render partial: 'ta/articles/normal'
 - else
-  = render partial: 'ta/articles/article'
+  = render partial: 'ta/articles/media'

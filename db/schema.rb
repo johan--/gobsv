@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710223152) do
+ActiveRecord::Schema.define(version: 20150720205738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,9 +69,28 @@ ActiveRecord::Schema.define(version: 20150710223152) do
     t.string   "pretitle",           default: "",    null: false
     t.boolean  "featured",           default: false, null: false
     t.boolean  "front"
+    t.integer  "layout",             default: 0,     null: false
+    t.string   "video_url",          default: "",    null: false
+    t.string   "audio_url",          default: "",    null: false
   end
 
   add_index "ta_articles", ["author_id"], name: "index_ta_articles_on_author_id", using: :btree
+
+  create_table "ta_audios", force: true do |t|
+    t.integer  "priority"
+    t.integer  "article_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "url"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ta_audios", ["article_id"], name: "index_ta_audios_on_article_id", using: :btree
 
   create_table "ta_authors", force: true do |t|
     t.string   "name"

@@ -232,6 +232,9 @@ es:
         pretitle: Antetítulo
         featured: ¿Especial?
         front: ¿Portada?
+        layout: Layout
+        audio_url: URL Audio
+        video_url: URL Vídeo
       ta/category:
         name: Nombre
       ta/author:
@@ -249,11 +252,22 @@ es:
         description: Descripción
         url: URL
         image: Imagen
+      ta/audio:
+        priority: Prioridad
+        title: Nombre
+        description: Descripción
+        url: URL
+        image: Imagen
     enum:
       ta/article:
         status:
           draft: Borrador
           publish: Publicado
+        layout:
+          normal: Artículo
+          gallery: Galería de imágenes
+          audio: Audio
+          video: Vídeo
       ta/page:
         position:
           top_header: Cabecera

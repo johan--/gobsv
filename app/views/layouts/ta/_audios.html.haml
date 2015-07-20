@@ -1,0 +1,23 @@
+#aud.row.toggable
+  .col-xs-12.col-sm-6
+    %article
+      = link_to ta_article_url(@audio) do
+        = image_tag @audio.image.url(:medium), class: 'img-responsive'
+      - unless @audio.pretitle.blank?
+        %small
+          = @audio.pretitle
+      %h3
+        = link_to ta_article_url(@audio) do
+          = @audio.title
+  .col-xs-12.col-sm-6
+    .row
+      - @audios.each do |audio|
+        .col-xs-6
+          %article
+            = link_to ta_article_url(audio) do
+              = image_tag audio.image.url(:medium), class: 'img-responsive'
+            %h3
+              = link_to ta_article_url(audio) do
+                = audio.title
+            %p
+              = truncate audio.summary, length: 150

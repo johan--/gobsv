@@ -21,16 +21,16 @@ class Ta::ArticlesController < TaController
     @lastest  = Ta::Article.publish.newer.where.not(id: @article.id).limit(2)
     @related  = @article.find_related_tags.limit(2)
 
-    begin
+    @audio    = Ta::Article.publish.audio_layout.newer.first
+
+    if @article.audio?
       client = Soundcloud.new({
         client_id:     SocialKeys[Rails.env][:soundcloud_key],
         client_secret: SocialKeys[Rails.env][:soundcloud_secret],
         username:      SocialKeys[Rails.env][:soundcloud_username],
         password:      SocialKeys[Rails.env][:soundcloud_password]
       })
-      @track = client.get('/me/tracks', limit: 1, order: 'hotness').first
-    rescue
-      @track = nil
+      @audioinf = client.get('/oembed', url: @article.audio_url)
     end
 
     begin

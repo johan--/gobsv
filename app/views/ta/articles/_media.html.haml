@@ -1,0 +1,60 @@
+#gallery
+
+  = render partial: 'layouts/ta/breadcrumb'
+
+  .container
+    .row
+      .col-xs-12
+        %h1
+          = @article.title
+    .row
+      .col-xs-12
+        %small
+          - unless @article.author.nil?
+            Por
+            = @article.author.name
+            |
+          = l @article.published_at.to_date, format: :long
+    .row
+      .summary.col-xs-12
+        %p
+          = @article.summary
+
+    - if @article.gallery?
+      .row
+        .col-xs-12
+          #gcarousel.carousel.slide{ 'data-ride' => 'carousel' }
+            .carousel-inner{ role: 'listbox' }
+              - @article.images.each do |image|
+                .item{ class: @article.images.first == image ? 'active' : nil }
+                  %center
+                    %figure
+                      = link_to image.image.url(:large), class: 'fullsizable' do
+                        = image_tag image.image.url(:large), class: 'img-responsive'
+                      %figcaption
+                        = image.description
+            = link_to '#gcarousel', 'data-slide' => 'prev', :href => '#gcarousel', role: 'button', class: 'left carousel-control' do
+              %span.glyphicon.glyphicon-chevron-left{ 'aria-hidden' => 'true' }
+              %span.sr-only Anterior
+            = link_to '#gcarousel', 'data-slide' => 'next', :href => '#gcarousel', role: 'button', class: 'right carousel-control' do
+              %span.glyphicon.glyphicon-chevron-right{ 'aria-hidden' => 'true' }
+              %span.sr-only Siguiente
+
+    - if @article.video?
+      %br
+      .row
+        .col-xs-12
+          .embed-responsive.embed-responsive-16by9
+            %iframe.embed-responsive-item{ src: "https://www.youtube.com/embed/#{@article.video_url_id}" }
+      %br
+
+    - if @article.audio? && !@audioinf.nil?
+      %br
+      .row
+        .col-xs-12
+          = raw @audioinf['html']
+      %br
+
+    .row
+      .col-xs-12
+        = raw @article.content
