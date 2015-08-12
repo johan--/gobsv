@@ -7,6 +7,10 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += %w( admin.css ta.css www.css admin.js ta.js www.js )
+Rails.application.config.assets.precompile += %w( admin.css admin.js )
+Rails.application.config.assets.precompile += %w( www.css www.js )
+Rails.application.config.assets.precompile += %w( ta.css ta.js )
+Rails.application.config.assets.precompile += %w( employments.css employments.js )
+
 Rails.application.config.assets.precompile += %w( *.eot *.woff *.ttf *.svg )
 Rails.application.config.assets.precompile += %w( *.png *.jpeg *.jpg *.gif )
