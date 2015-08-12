@@ -1,1 +1,38 @@
-Navbar
+.navbar.navbar-default.navbar-inverse
+  .container
+    .navbar-header
+      %button.navbar-toggle{ type: 'button', data: { target: '.navbar-responsive-collapse', toggle: 'collapse' }}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      = link_to employments_root_url, class: 'navbar-brand' do
+        = image_tag 'employments/gobierno-abierto.png', alt: 'Gobierno Abierto'
+
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to nil do
+            Gobierno Abierto
+        %li
+          = link_to nil do
+            Acceso a la información
+        %li
+          = link_to nil do
+            Aplicaciones
+
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to nil do
+            = icon('envelope')
+        %li
+          = link_to nil do
+            = icon('user')
+        %li
+          = link_to nil do
+            = icon('bars')
+
+      = form_tag request.url, class: 'navbar-form navbar-right', role: :search do |f|
+        .form-group.has-feedback
+          = text_field '', '', class: 'form-control', placeholder: 'Búsqueda'
+          = icon('search', class: 'form-control-feedback text-muted')

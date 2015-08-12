@@ -1,6 +1,109 @@
 // bootstrap
 @import 'bootstrap-sprockets';
 @import 'employments/bootstrap-vars';
+@import 'employments/mixins';
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+// FIXES
+a {
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    color: auto;
+    text-decoration: none;
+  }
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+.form-control-feedback {
+  line-height: 34px;
+}
+
+.btn {
+  font-size: 13px;
+  text-transform: uppercase;
+
+  &.btn-primary {
+    @include btn-gradient($brand-primary);
+  }
+}
+
+/* BEGIN NAVBAR */
+.navbar-nav > li > a {
+  font-size: 13px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+
+  .fa {
+    font-size: 20px;
+  }
+}
+
+.navbar-brand {
+  padding: 26px 15px;
+}
+
+/* END NAVBAR */
+/* BEGIN HOME MAIN */
+
+#main {
+  background: image-url('employments/bg-main.jpg') center center no-repeat;
+  background-size: cover;
+  padding: 0 0 56px 0;
+  text-align: center;
+
+  h1 {
+    color: $navbar-inverse-bg;
+    margin: 0;
+  }
+
+  p {
+    padding: 10px 0;
+  }
+
+  .counter {
+    padding: 68px 0 40px 0;
+
+    .label {
+      border-radius: 4px;
+      display: inline-block;
+      font-size: 70px;
+      font-weight: normal;
+      margin: 0 3px;
+      padding: 4px 0;
+      width: 70px;
+    }
+  }
+
+  .icon {
+    color: $navbar-inverse-bg;
+    display: inline-block;
+    margin: 40px 0 0 0;
+
+    img,
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    img {
+      margin: 0 10px 0 0;
+    }
+
+    span {
+      font-size: 24px;
+      line-height: 26px;
+      text-align: left;
+    }
+  }
+}
+
+/* END HOME MAIN */

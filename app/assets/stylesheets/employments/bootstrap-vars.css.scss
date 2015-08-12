@@ -1,0 +1,21 @@
+// Typography
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+$font-family-sans-serif: 'Montserrat', sans-serif;
+$headings-font-weight: 700px;
+
+// Buttons
+
+// Colors
+$brand-primary: #01b1fa;
+
+// Navbar
+$navbar-height: 166px;
+$navbar-border-radius: 0;
+$navbar-margin-bottom: 0;
+
+// Inverted navbar
+$navbar-inverse-link-color: #fff;
+$navbar-inverse-bg: #2c3447;
+
+// Labels
+$label-default-bg: $navbar-inverse-bg;

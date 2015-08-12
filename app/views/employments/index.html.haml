@@ -1,1 +1,48 @@
-ffsdaf
+#main
+  .container
+    .row
+      .col-xs-12
+        .counter
+          %span.label.label-default 1
+          %span.label.label-default 2
+          %span.label.label-default 0
+          %span.label.label-default 0
+    .row
+      .col-xs-12
+        %h1
+          Plazas disponibles en el Gobierno Salvadoreño
+        %p
+          Aplica a plazas, empleos, pasantías en las instituciones del gobierno, sin cuello ni favores, procesos transparentes.
+    .row
+      .col-xs-12
+        = link_to nil, class: 'btn btn-primary btn-lg' do
+          Consultar listado de plazas
+    .row
+      .col-xs-12.col-sm-6.col-md-3
+        = link_to nil, class: 'icon' do
+          = image_tag 'employments/icon-sales.png'
+          %span
+            %strong 300
+            %br
+            Ventas
+      .col-xs-12.col-sm-6.col-md-3
+        = link_to nil, class: 'icon' do
+          = image_tag 'employments/icon-travel.png'
+          %span
+            %strong 567
+            %br
+            Aduanales
+      .col-xs-12.col-sm-6.col-md-3
+        = link_to nil, class: 'icon' do
+          = image_tag 'employments/icon-money.png'
+          %span
+            %strong 402
+            %br
+            Contaduría
+      .col-xs-12.col-sm-6.col-md-3
+        = link_to nil, class: 'icon' do
+          = image_tag 'employments/icon-statistics.png'
+          %span
+            %strong 128
+            %br
+            Administradores
