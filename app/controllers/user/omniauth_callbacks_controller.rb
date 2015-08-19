@@ -14,18 +14,7 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def failure
-    ##
-    # TODO logic on failure
-
-    super
-  end
-
-
-  alias_method :facebook,      :all
-  alias_method :twitter,       :all
-  alias_method :linkedin,      :all
-  alias_method :github,        :all
-  alias_method :passthru,      :all
-  alias_method :google_oauth2, :all
+  alias_method :facebook,  :all
+  alias_method :twitter,   :all
+  alias_method :instagram, :all
 end

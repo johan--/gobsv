@@ -38,6 +38,7 @@ GEM
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bootstrap_form (2.3.0)
     breadcrumbs_on_rails (2.3.0)
     buftok (0.2.0)
     builder (3.2.2)
@@ -357,6 +358,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 3.5.0)
   bootstrap-sass (~> 3.3.4)
+  bootstrap_form (~> 2.3.0)
   breadcrumbs_on_rails (~> 2.3.0)
   capistrano (~> 3.2.1)
   capistrano-bundler (~> 1.1.3)

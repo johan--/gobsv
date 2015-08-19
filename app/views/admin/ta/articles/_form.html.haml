@@ -1,57 +1,29 @@
-.form-group
-  = f.label :pretitle, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.text_field :pretitle, class: 'form-control', required: true
+= f.text_field :pretitle, class: 'form-control', required: true
 
-.form-group
-  = f.label :title, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.text_field :title, class: 'form-control', required: true
+= f.text_field :title, class: 'form-control', required: true
 
-.form-group
-  = f.label :featured, class: 'control-label col-xs-1'
-  .col-xs-11
-    .checkbox.checkbox-primary
-      = f.check_box :featured
-      %label
+= f.form_group :featured do
+  = f.check_box :featured
 
-.form-group
-  = f.label :front, class: 'control-label col-xs-1'
-  .col-xs-11
-    .checkbox.checkbox-primary
-      = f.check_box :front
-      %label
+= f.form_group :front do
+  = f.check_box :front
 
-.form-group
-  = f.label :video_url, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.text_field :video_url, class: 'form-control'
+= f.text_field :video_url
 
-.form-group
-  = f.label :audio_url, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.text_field :audio_url, class: 'form-control'
+= f.text_field :audio_url
 
-.form-group
-  = f.label :image, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.file_field :image, data: { preview: true }
-    = image_tag((f.object.image.present? ? f.object.image.url(:small) : nil), height: 31)
+= f.file_field :image, data: { preview: true }
+= image_tag((f.object.image.present? ? f.object.image.url(:small) : nil), height: 31)
 
-.form-group
-  = f.label :summary, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.text_area :summary, rows: 4, class: 'form-control', required: true
+= f.text_area :summary, rows: 4, class: 'form-control', required: true
 
-.form-group
-  = f.label :content, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.cktext_area :content, class: 'form-control', required: true, ckeditor: { height: 500 }
+= f.label :content
+= f.cktext_area :content, required: true, ckeditor: { height: 500 }
 
-.form-group
-  = f.label :tag_list, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.text_field :tag_list, class: 'form-control tags', required: true
+%br
+%br
+
+= f.text_field :tag_list, class: 'tags', required: true
 
 = field_set_tag 'Galería' do
 
@@ -65,14 +37,14 @@
               = ff.label :image do
                 = image_tag ff.object.image.url(:medium), class: 'img-responsive img-thumbnail'
 
-              = ff.file_field :image, accept: 'image/*'
+              = ff.file_field :image, hide_label: true, accept: 'image/*'
               = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
                 %span.glyphicon.glyphicon-trash
 
             .col-xs-6
-              = ff.text_field :priority, class: 'form-control', placeholder: 'Prioridad', required: true
+              = ff.text_field :priority, hide_label: true, class: 'form-control', placeholder: 'Prioridad', required: true
               %br
-              = ff.text_area :description, rows: 6, class: 'form-control', placeholder: 'Descripción', required: true
+              = ff.text_area :description, hide_label: true, rows: 6, class: 'form-control', placeholder: 'Descripción', required: true
 
     .fields
       .col-xs-2
@@ -163,33 +135,16 @@
 
 = field_set_tag 'Publicación' do
 
-  .form-group
-    = f.label :category_id, class: 'control-label col-xs-3'
-    .col-xs-6
-      = f.select :category_id, @categories.map{ |category| [category.name, category.id] }, {}, class: 'form-control', required: true
+  = f.select :category_id, @categories.map{ |category| [category.name, category.id] }, {}, class: 'form-control', required: true
 
-  .form-group
-    = f.label :author_id, class: 'control-label col-xs-3'
-    .col-xs-6
-      = f.select :author_id, @authors.map{ |author| [author.name, author.id] }, {}, class: 'form-control', required: true
+  = f.select :author_id, @authors.map{ |author| [author.name, author.id] }, {}, class: 'form-control', required: true
 
-  .form-group
-    = f.label :published_at, class: 'control-label col-xs-3'
-    .col-xs-8
-      = f.datetime_select :published_at, {}, { class: 'form-control datetime-select', required: true }
+  = f.datetime_select :published_at, {}, { class: 'form-control datetime-select', required: true }
 
-  .form-group
-    = f.label :layout, class: 'control-label col-xs-3'
-    .col-xs-8
-      - Ta::Article.layouts.each do |layout, index|
-        .radio.radio-primary
-          = f.radio_button :layout, layout
-          = f.label "layout_#{layout}", t("activerecord.enum.ta/article.layout.#{layout}")
+  = f.form_group :layout, label: { text: t('activerecord.attributes.ta/article.layout') } do
+    - Ta::Article.layouts.each do |layout, index|
+      = f.radio_button :layout, layout, label: t("activerecord.enum.ta/article.layout.#{layout}")
 
-  .form-group
-    = f.label :status, class: 'control-label col-xs-3'
-    .col-xs-8
-      - Ta::Article.statuses.each do |status, index|
-        .radio{ class: status == 'publish' ? 'radio-success' : 'radio-danger' }
-          = f.radio_button :status, status
-          = f.label "status_#{status}", t("activerecord.enum.ta/article.status.#{status}")
+  = f.form_group :status, label: { text: t('activerecord.attributes.ta/article.status') } do
+    - Ta::Article.statuses.each do |status, index|
+      = f.radio_button :status, status, label: t("activerecord.enum.ta/article.status.#{status}")

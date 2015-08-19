@@ -144,3 +144,6 @@ gem 'font-awesome-sass', '~> 4.3.2'
 
 # Object-based searching.
 gem 'ransack', '~> 1.6.6'
+
+# Rails Bootstrap Forms is a rails form builder that makes it super easy to integrate twitter bootstrap-style forms into your rails application.
+gem 'bootstrap_form', '~> 2.3.0'

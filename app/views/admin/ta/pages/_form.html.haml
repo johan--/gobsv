@@ -1,22 +1,13 @@
-.form-group
-  = f.label :priority, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.text_field :priority, class: 'form-control', required: true
+= f.text_field :priority, required: true
 
-.form-group
-  = f.label :position, class: 'control-label col-xs-1'
-  .col-xs-11
-    - Ta::Page.positions.each do |position, index|
-      .radio.radio-info
-        = f.radio_button :position, position
-        = f.label "position_#{position}", t("activerecord.enum.ta/page.position.#{position}")
+= f.form_group :position, label: { text: t('activerecord.attributes.ta/page.position') } do
+  - Ta::Page.positions.each do |position, index|
+    = f.radio_button :position, position, label: t("activerecord.enum.ta/page.position.#{position}")
 
-.form-group
-  = f.label :name, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.text_field :name, class: 'form-control', required: true
+= f.text_field :name, required: true
 
-.form-group
-  = f.label :content, class: 'control-label col-xs-1'
-  .col-xs-11
-    = f.cktext_area :content, class: 'form-control', required: true, ckeditor: { height: 500 }
+= f.label :content
+= f.cktext_area :content, required: true, ckeditor: { height: 500 }
+
+%br
+%br
