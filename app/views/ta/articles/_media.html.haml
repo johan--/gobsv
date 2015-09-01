@@ -45,7 +45,7 @@
       .row
         .col-xs-12
           .embed-responsive.embed-responsive-16by9
-            %iframe.embed-responsive-item{ src: "https://www.youtube.com/embed/#{@article.video_url_id}" }
+            %iframe.embed-responsive-item{ src: "https://www.youtube.com/embed/#{@article.youtubeid}" }
       %br
 
     - if @article.audio? && !@audioinf.nil?

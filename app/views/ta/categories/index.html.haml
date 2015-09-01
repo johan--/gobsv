@@ -1,22 +1,28 @@
 - unless @article.nil?
-  - if @article.image.present?
-    .container-fluid
-      .row.row-no-padding
-        .col-lg-12
-          %figure.cover
-            = image_tag @article.image.url(:large), class: 'img-responsive'
-
-  .container{ class: @article.image.present? ? 'headline' : nil }
+  #front.container
     .row
       .col-xs-12
-        - unless @article.pretitle.blank?
-          %small
-            = @article.pretitle
+        %small
+          = @article.pretitle
         %h2
           = link_to ta_article_url(@article) do
             = @article.title
+    .row
+      .col-xs-12.col-sm-6
         %p
           = @article.summary
+        .more
+          = link_to ta_article_url(@article) do
+            Leer nota
+
+      .col-xs-12.col-sm-6
+        - if @article.image.present?
+          = link_to ta_article_url(@article) do
+            = image_tag @article.image.url(:large), class: 'img-responsive'
+
+    .row
+      .col-xs-12
+        .separator
 
 - unless @articles.empty?
   .container
@@ -36,30 +42,35 @@
               = link_to ta_article_url(article) do
                 = article.title
 
-#media.container.toggable-container
-  .row.row-no-padding.tabs
-    .col-xs-4.col-sm-3
-      = link_to '#pct', class: 'btn btn-success' do
-        = image_tag 'ta/icon-pictures.png', class: 'hidden-xs'
-        Fotografías
-    .col-xs-4.col-sm-3
-      = link_to '#aud', class: 'btn btn-warning' do
-        = image_tag 'ta/icon-audios.png', class: 'hidden-xs'
-        Audios
+- unless gallery_articles.empty? && audio_articles.empty? && video_articles.empty?
+  #media.container.toggable-container
+    .row.tabs
+      - unless gallery_articles.empty?
+        .col-xs-4.col-sm-3
+          = link_to '#pct', class: 'btn btn-success' do
+            = image_tag 'ta/icon-pictures.png', class: 'hidden-xs'
+            Fotografías
 
-    .col-xs-4.col-sm-3
-      = link_to '#vdo', class: 'btn btn-info' do
-        = image_tag 'ta/icon-videos.png', class: 'hidden-xs'
-        Videos
+      - unless audio_articles.empty?
+        .col-xs-4.col-sm-3
+          = link_to '#aud', class: 'btn btn-warning' do
+            = image_tag 'ta/icon-audios.png', class: 'hidden-xs'
+            Audios
 
-  - unless @gallery.nil?
-    = render partial: 'layouts/ta/images'
+      - unless video_articles.empty?
+        .col-xs-4.col-sm-3
+          = link_to '#vdo', class: 'btn btn-info' do
+            = image_tag 'ta/icon-videos.png', class: 'hidden-xs'
+            Videos
 
-  - unless @audio.nil?
-    = render partial: 'layouts/ta/audios'
+    - unless gallery_articles.empty?
+      = render partial: 'layouts/ta/gallery'
 
-  - unless @video.nil?
-    = render partial: 'layouts/ta/videos'
+    - unless audio_articles.empty?
+      = render partial: 'layouts/ta/audios'
+
+    - unless video_articles.empty?
+      = render partial: 'layouts/ta/videos'
 
 .hidden-xs
   %br
@@ -77,7 +88,7 @@
       %h4
         Noticias de ayer
   .row
-    - @yesterday_articles.each do |article|
+    - yesterday_articles.each do |article|
       - if @yesterday_articles.first == article
         .col-xs-12.col-sm-12.col-md-6
           %article.media
@@ -174,7 +185,7 @@
           .col-xs-4
             / Link to TA app will be here
     .col-xs-12.col-sm-6
-      - unless @tweets.empty?
+      - unless newer_tweets.empty?
         .media
           .media-left
             = image_tag 'ta/icon-twitter-blue.png', class: 'media-object'
@@ -182,7 +193,7 @@
             %h3
               = link_to 'http://twitter.com/TransparenciaSV', target: '_blank' do
                 @TransparenciaSV
-        - @tweets.each do |tweet|
+        - newer_tweets.each do |tweet|
           .media
             .media-left
               = image_tag tweet.user.profile_image_url, class: 'media-object'

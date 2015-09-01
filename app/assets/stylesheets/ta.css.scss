@@ -62,18 +62,27 @@ article {
   text-transform: uppercase;
 }
 
-.headline {
-  background: #fff;
-  margin-top: -8em;
-  padding: 2em;
-  position: relative;
-}
-
 .row-no-padding {
   [class*="col-"] {
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+#front {
+  .more {
+    border-top: 2px $gray solid;
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px 0 20px 0;
+    width: 50%;
+  }
+}
+
+.separator {
+  border-bottom: 1px $brand-info solid;
+  margin: 0 0 20px 0;
+  padding: 20px 0 0 0;
 }
 
 #media{
@@ -407,10 +416,6 @@ audio {
     margin: 0;
   }
 
-  .headline {
-    margin-top: 0;
-  }
-
   #comments {
     .avatar {
       color: #fff;
@@ -443,10 +448,6 @@ audio {
     a {
       font-size: 10px;
     }
-  }
-
-  .headline {
-    margin-top: -4em;
   }
 }
 

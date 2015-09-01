@@ -1,5 +1,5 @@
+
 class TaWp < ActiveRecord::Base
-=begin
   # Return the list of columns registered for the model. Used internally by
   # ActiveRecord
   def self.columns
@@ -50,13 +50,16 @@ class TaWp::PostImageGallery < TaWp
   }
 
   def self.migrate
+    counter = 0
     all.each do |wp_image|
       article_id = TaWp::PostsCategory.where(wp_post_id: wp_image.post_parent).first.try(:post_id)
       article = Ta::Article.find article_id
       unless article.images.any?{ |image| wp_image.guid.end_with?(image.image_file_name) }
         begin
           article.images << Ta::Image.new(image: URI.parse(URI.encode(wp_image.guid)))
-          article.save
+          article.save(validate: false)
+          puts "#{counter} artículos con imágenes migradas"
+          counter += 1
         rescue
           puts "Problemas con imagen:\t#{wp_image.guid}"
         end
@@ -220,7 +223,7 @@ class TaWp::PostsTag < TaWp
   end
 
   def self.drop_table
-    connection.execute("DROP TABLE #{self.table_name}")
+    connection.execute("DROP TABLE #{self.table_name}") if connection.table_exists?(self.table_name)
   end
 end
 
@@ -245,7 +248,7 @@ class TaWp::PostsCategory < TaWp
   def self.populate_table
     connection.execute("INSERT INTO #{self.table_name}
       SELECT
-      	t1.id,
+        t1.id,
       	t4.term_id,
       	t1.id,
         0,
@@ -265,32 +268,23 @@ class TaWp::PostsCategory < TaWp
   end
 
   def self.drop_table
-    connection.execute("DROP TABLE #{self.table_name}")
+    connection.execute("DROP TABLE #{self.table_name}") if connection.table_exists? self.table_name
   end
 end
 
 namespace :ta do
   desc 'Migrate TA information from wordpress TA site'
-  task migrate: :environment do |tsk, args|
-
+  task migrate: :environment do |_tsk, _args|
     # TaWp::PostsCategory.drop_table
-    TaWp::PostsCategory.prepare_table
-    TaWp::PostsCategory.populate_table
-
-    TaWp::Category.migrate
-    TaWp::Article.migrate
-    TaWp::PostImage.migrate
-
-    TaWp::PostsTag.drop_table
-    TaWp::PostsTag.prepare_table
-    TaWp::PostsTag.populate_table
-
-    TaWp::Tag.migrate
+    #TaWp::PostsCategory.prepare_table
+    #TaWp::PostsCategory.populate_table
+    #TaWp::Category.migrate
+    #TaWp::Article.migrate
+    #TaWp::PostImage.migrate
+    #TaWp::PostsTag.prepare_table
+    #TaWp::PostsTag.populate_table
+    #TaWp::Tag.migrate
+    # TaWp::PostsTag.drop_table
     TaWp::PostImageGallery.migrate
-
-    Ta::Category.connection.execute("TRUNCATE TABLE ta_categories RESTART IDENTITY")
-    Ta::Article.connection.execute("TRUNCATE TABLE ta_articles RESTART IDENTITY")
-
   end
-=end
 end

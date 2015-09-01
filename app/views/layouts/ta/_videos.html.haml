@@ -1,23 +1,23 @@
 #vdo.row.toggable
   .col-xs-12.col-sm-6
     %article
-      = link_to ta_article_url(@video) do
-        = image_tag @video.image.url(:medium), class: 'img-responsive'
-      - unless @video.pretitle.blank?
+      = link_to ta_article_url(video_articles[0]) do
+        = image_tag video_articles[0].image.url(:medium), class: 'img-responsive'
+      - unless video_articles[0].pretitle.blank?
         %small
-          = @video.pretitle
+          = video_articles[0].pretitle
       %h3
-        = link_to ta_article_url(@video) do
-          = @video.title
+        = link_to ta_article_url(video_articles[0]) do
+          = video_articles[0].title
   .col-xs-12.col-sm-6
     .row
-      - @videos.each do |video|
+      - [1, 2].each do |i|
         .col-xs-6
           %article
-            = link_to ta_article_url(video) do
-              = image_tag video.image.url(:medium), class: 'img-responsive'
+            = link_to ta_article_url(video_articles[i]) do
+              = image_tag video_articles[i].image.url(:medium), class: 'img-responsive'
             %h3
-              = link_to ta_article_url(video) do
-                = video.title
+              = link_to ta_article_url(video_articles[i]) do
+                = video_articles[i].title
             %p
-              = truncate video.summary, length: 150
+              = truncate video_articles[i].summary, length: 150

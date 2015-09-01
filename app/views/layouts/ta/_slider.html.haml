@@ -1,10 +1,10 @@
-- unless @featured.length < 3
+- unless featured_articles.length < 3
   #slider.carousel.slide{ 'data-ride' => 'carousel' }
     .carousel-inner{ role: 'listbox' }
 
-      - @featured.each do |article|
+      - featured_articles.each do |article|
 
-        .item{ class: article == @featured.first ? 'active' : nil }
+        .item{ class: article == featured_articles.first ? 'active' : nil }
           = image_tag article.image.url(:large), class: 'img-responsive'
           .carousel-caption
             %small
