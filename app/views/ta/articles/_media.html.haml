@@ -21,24 +21,14 @@
           = @article.summary
 
     - if @article.gallery?
-      .row
-        .col-xs-12
-          #gcarousel.carousel.slide{ 'data-ride' => 'carousel' }
-            .carousel-inner{ role: 'listbox' }
-              - @article.images.each do |image|
-                .item{ class: @article.images.first == image ? 'active' : nil }
-                  %center
-                    %figure
-                      = link_to image.image.url(:large), class: 'fullsizable' do
-                        = image_tag image.image.url(:large), class: 'img-responsive'
-                      %figcaption
-                        = image.description
-            = link_to '#gcarousel', 'data-slide' => 'prev', :href => '#gcarousel', role: 'button', class: 'left carousel-control' do
-              %span.glyphicon.glyphicon-chevron-left{ 'aria-hidden' => 'true' }
-              %span.sr-only Anterior
-            = link_to '#gcarousel', 'data-slide' => 'next', :href => '#gcarousel', role: 'button', class: 'right carousel-control' do
-              %span.glyphicon.glyphicon-chevron-right{ 'aria-hidden' => 'true' }
-              %span.sr-only Siguiente
+      .gallery.row{ itemscope: true, itemtype: 'http://schema.org/ImageGallery' }
+        - @article.images.each do |image|
+          %figure.col-xs-6.col-sm-3{ itemprop: 'associatedMedia', itemscope: true, itemtype: 'http://schema.org/ImageObject' }
+            = link_to image.image.url, itemprop: 'contentUrl', data: { size: "#{image.image_width}x#{image.image_height}" } do
+              = image_tag image.image.url(:medium), class: 'img-responsive', alt: @article.title, itemprop: 'thumbnail'
+
+      = render partial: 'layouts/ta/photoswipe'
+      = javascript_include_tag 'ta/init-photoswipe'
 
     - if @article.video?
       %br

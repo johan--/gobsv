@@ -10,7 +10,16 @@ module Ta
 
     validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
 
-    validates :description, presence: true
-    validates :priority, presence: true, numericality: { only_integer: true }
+    # validates :description, presence: true
+    # validates :priority, presence: true, numericality: { only_integer: true }
+
+    ##
+    after_post_process :save_image_dimensions
+    #
+    def save_image_dimensions
+      geo = Paperclip::Geometry.from_file(image.queued_for_write[:original])
+      self.image_width  = geo.width
+      self.image_height = geo.height
+    end
   end
 end

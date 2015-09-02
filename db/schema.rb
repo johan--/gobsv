@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720205738) do
+ActiveRecord::Schema.define(version: 20150901205611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,8 @@ ActiveRecord::Schema.define(version: 20150720205738) do
     t.datetime "image_updated_at"
     t.integer  "priority",           default: 0, null: false
     t.text     "description"
+    t.integer  "image_width",        default: 0, null: false
+    t.integer  "image_height",       default: 0, null: false
   end
 
   create_table "ta_pages", force: true do |t|

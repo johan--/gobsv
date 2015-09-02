@@ -1,6 +1,11 @@
+/*
+*= require photoswipe
+*/
+
 // bootstrap
 @import 'bootstrap-sprockets';
 @import 'ta/bootstrap-vars';
+@import 'ta/mixins';
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -172,66 +177,42 @@ article {
 }
 
 footer {
-  background: #0071bd;
-  padding: 30px 0 0 0;
+  padding-top: 25px;
+  background: #022B3F;
+  color: white;
 
-  h2,
-  p {
-    color: #fff;
-    margin: 0;
-  }
-
-  h2 {
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  a {
-    color: #fff;
+  p.contact-info {
+    color: inherit;
+    font-size: 0.85em;
+    margin: 10px 0;
   }
 
   .categories {
-    a {
-      font-size: 13px;
-      margin: 0 10px;
+    text-transform: uppercase;
+
+    ul {
+      list-style: none;
+
+      li {
+        margin: 20px 0;
+
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
     }
   }
 
-  .social {
-    list-style: none;
-    margin: 20px 0 0 0;
-
-    li {
-      padding: 5px 0;
-    }
-
-    a {
-      background: #fff;
-      border-radius: 5px;
-      color: #0071bd;
-      display: inline-block;
-      font-weight: bold;
-      margin-left: 20px;
-      padding: 5px;
-      text-align: center;
-      text-transform: uppercase;
-      width: 140px;
-    }
+  .footer-cc-logo, .footer-social-media, p.contact-info {
+    padding: 5px 15px 5px 10px;
   }
 
-  .pre-footer {
-    padding: 0 0 30px 0;
-  }
-
-  .footer {
-    background: $brand-primary;
-    color: #fff;
-    padding: 1em 0;
+  .footer-social-media {
+    margin: 20px 0;
 
     a {
-      display: inline-block;
-      font-size: 12px;
-      margin: 0 10px;
+      margin-right: 20px;
     }
   }
 }
@@ -353,6 +334,22 @@ footer {
 
   .breadcrumb {
     background: transparent;
+  }
+
+  .gallery {
+    padding: 20px 0;
+
+    a {
+      @include aspect-ratio(16 9);
+      display: block;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+  }
+
+  p {
+    margin: 0;
+    padding: 10px 0;
   }
 }
 

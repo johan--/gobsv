@@ -147,3 +147,6 @@ gem 'ransack', '~> 1.6.6'
 
 # Rails Bootstrap Forms is a rails form builder that makes it super easy to integrate twitter bootstrap-style forms into your rails application.
 gem 'bootstrap_form', '~> 2.3.0'
+
+# A gem to add PhotoSwipe to Rails asset pipeline
+gem 'photoswipe-rails', '~> 4.1.0'

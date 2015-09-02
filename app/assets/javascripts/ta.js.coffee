@@ -10,6 +10,7 @@
 #= require 'fullsizable'
 #= require 'jssocials'
 #= require 'jssocials.shares'
+#= require 'photoswipe'
 
 $ ->
   $(".fullsizable").fullsizable()

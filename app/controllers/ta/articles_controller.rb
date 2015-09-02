@@ -19,6 +19,7 @@ module Ta
                   .newer
                   .paginate(page: params[:page])
 
+      add_breadcrumb 'Inicio', ta_root_url
       add_breadcrumb 'Galerías', nil
     end
 

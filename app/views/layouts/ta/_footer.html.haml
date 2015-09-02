@@ -1,35 +1,49 @@
-%footer.container-fluid
-  .row.pre-footer
-    .col-xs-12.col-sm-6.text-center
-      %h2
-        Transparencia Activa
-      %p
-        Es un espacio de información y participación ciudadana
-      %br
-      = image_tag 'ta/gobierno-de-el-salvador.jpg'
-    .col-xs-12.col-sm-6
-      .categories
-        - @pages.select{ |page| page.top_footer? }.each do |page|
-          = link_to ta_page_url(page) do
-            = page.name
-
-      %ul.social.text-center
-        %li
-          = image_tag 'ta/icon-facebook.png'
-          = link_to 'http://www.facebook.com/TransparenciaActiva', target: '_blank' do
-            Dale me gusta
-        %li
-          = image_tag 'ta/icon-twitter-white.png'
-          = link_to 'http://twitter.com/TransparenciaSV', target: '_blank' do
-            Síguenos
-        %li
-          = image_tag 'ta/icon-youtube.png'
-          = link_to 'http://www.youtube.com/c/TransparenciaActiva', target: '_blank' do
-            Subscríbete
-  .row.footer
-    .col-xs-12.text-center
-      |
-      - @pages.select{ |page| page.bottom_footer? }.each do |page|
-        = link_to ta_page_url(page) do
-          = page.name
-        |
+%footer
+  .container
+    .row
+      .col-xs-4
+        = image_tag 'shared/gobierno-abierto.png'
+        %p.contact-info
+          Presidencia de la República de El Salvador
+          %br
+          Alameda Dr. Enrique Araujo, No. 5500.
+          %br
+          San Salvador, El Salvador, CA.
+          %br
+          Tel. +(503)2133-7500 | Email. info@gobiernoabierto.gob.sv
+      .col-xs-4
+        .categories
+          %ul
+            %li
+              = link_to nil do
+                Inicio
+            %li
+              = link_to nil do
+                SPCTA
+            %li
+              = link_to nil do
+                Herramientas
+            %li
+              = link_to nil do
+                Participacion
+            %li
+              = link_to nil do
+                Transparencia
+            %li
+              = link_to nil do
+                Fomilenio ii
+      .col-xs-4
+        .footer-cc-logo
+          = image_tag 'shared/icon-cc.png'
+        %p.contact-info
+          Gobierno Abierto by Secretaría de Participación Ciudadana,
+          Transparencia y Anticorrupción is licensed under a Creative Commons
+          %br
+          Reconocimiento-CompartirIgual 4.0 Internacional License.
+        .footer-social-media
+          = link_to nil do
+            = image_tag 'shared/icon-facebook.png'
+          = link_to nil do
+            = image_tag 'shared/icon-twitter.png'
+          = link_to nil do
+            = image_tag 'shared/icon-mail.png'
