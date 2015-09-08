@@ -1,4 +1,5 @@
 class TaWp < ActiveRecord::Base
+=begin
   # Return the list of columns registered for the model. Used internally by
   # ActiveRecord
   def self.columns
@@ -286,4 +287,5 @@ namespace :ta do
     # TaWp::PostsTag.drop_table
     TaWp::PostImageGallery.migrate
   end
+=end
 end
