@@ -21,7 +21,7 @@ class TaWp < ActiveRecord::Base
     adapter:  'mysql2',
     database: 'transparenciaactiva',
     username: 'root',
-    password: ''
+    password: '%6oB1erN0Ab$'
   )
 end
 
