@@ -385,7 +385,7 @@ DEPENDENCIES
   json_spec (~> 1.1.2)
   launchy (~> 2.4.2)
   meta-tags (~> 2.0.0)
-  mysql2 (= 0.4.0)
+  mysql2
   nested_form (~> 0.3.2)
   omniauth (~> 1.2.2)
   omniauth-facebook (~> 2.0.0)

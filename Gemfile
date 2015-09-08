@@ -6,7 +6,7 @@ gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # To use mysql to some migration or reading process
-gem 'mysql2', '0.4.0'
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
