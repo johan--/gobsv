@@ -1,5 +1,5 @@
-=begin
 class TaWp < ActiveRecord::Base
+=begin
   # Return the list of columns registered for the model. Used internally by
   # ActiveRecord
   def self.columns
@@ -22,7 +22,7 @@ class TaWp < ActiveRecord::Base
     adapter:  'mysql2',
     database: 'transparenciaactiva',
     username: 'root',
-    password: ''
+    password: '%6oB1erN0Ab$'
   )
 end
 
@@ -275,17 +275,17 @@ end
 namespace :ta do
   desc 'Migrate TA information from wordpress TA site'
   task migrate: :environment do |_tsk, _args|
-    # TaWp::PostsCategory.drop_table
-    #TaWp::PostsCategory.prepare_table
-    #TaWp::PostsCategory.populate_table
-    #TaWp::Category.migrate
-    #TaWp::Article.migrate
-    #TaWp::PostImage.migrate
-    #TaWp::PostsTag.prepare_table
-    #TaWp::PostsTag.populate_table
-    #TaWp::Tag.migrate
+    #TaWp::PostsCategory.drop_table
+    TaWp::PostsCategory.prepare_table
+    TaWp::PostsCategory.populate_table
+    TaWp::Category.migrate
+    TaWp::Article.migrate
+    TaWp::PostImage.migrate
+    TaWp::PostsTag.prepare_table
+    TaWp::PostsTag.populate_table
+    TaWp::Tag.migrate
     # TaWp::PostsTag.drop_table
     TaWp::PostImageGallery.migrate
   end
-end
 =end
+end
