@@ -1,3 +1,4 @@
+require 'ta'
 module Ta
   class Author < ActiveRecord::Base
     belongs_to :admin

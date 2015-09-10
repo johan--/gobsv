@@ -1,3 +1,4 @@
+require 'ta'
 module Ta
   class Article < ActiveRecord::Base
     extend FriendlyId

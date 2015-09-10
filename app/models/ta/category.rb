@@ -1,3 +1,4 @@
+require 'ta'
 module Ta
   class Category < ActiveRecord::Base
     extend FriendlyId

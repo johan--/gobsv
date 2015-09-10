@@ -1,3 +1,4 @@
+require 'ta'
 module Ta
   class TwitterBot
     def self.client

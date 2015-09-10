@@ -1,3 +1,4 @@
+require 'ta'
 module Ta
   class Video < ActiveRecord::Base
     belongs_to :article, class_name: '::Ta::Article'
