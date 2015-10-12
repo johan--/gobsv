@@ -55,7 +55,7 @@ module Tabled
   end
 
   def index
-    @items = model.select(table_columns).where(conditions).decorate
+    @items = model.select(table_columns + [:id]).where(conditions).decorate
     add_breadcrumb model.model_name.human(count: :many), index_url
 
     respond_to do |format|
