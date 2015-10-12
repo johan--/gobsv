@@ -33,9 +33,9 @@
             - if article.image.present?
               = link_to ta_article_url(article) do
                 = image_tag article.image.url(:medium), class: 'img-responsive'
-            - unless @article.pretitle.blank?
+            - unless article.pretitle.blank?
               %small
-                = @article.pretitle
+                = article.pretitle
             - else
               %br
             %h3
