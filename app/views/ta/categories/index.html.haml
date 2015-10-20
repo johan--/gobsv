@@ -97,18 +97,18 @@
                 = link_to ta_article_url(article) do
                   = image_tag article.image.url(:small), class: 'media-object'
               .media-body
-                - unless @article.pretitle.blank?
+                - unless article.pretitle.blank?
                   %small
-                    = @article.pretitle
+                    = article.pretitle
                 %h3
                   = link_to ta_article_url(article) do
                     = article.title
         - else
           .col-xs-12.col-sm-6.col-md-3
             %article
-              - unless @article.pretitle.blank?
+              - unless article.pretitle.blank?
                 %small
-                  = @article.pretitle
+                  = article.pretitle
               %h3
                 = link_to ta_article_url(article) do
                   = article.title
