@@ -90,7 +90,7 @@
           Noticias de ayer
     .row
       - yesterday_articles.each do |article|
-        - if @yesterday_articles.first == article
+        - if yesterday_articles.first == article
           .col-xs-12.col-sm-12.col-md-6
             %article.media
               .media-left
