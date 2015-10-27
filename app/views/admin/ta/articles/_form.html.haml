@@ -12,8 +12,9 @@
 
 = f.text_field :audio_url
 
-= f.file_field :image, data: { preview: true }
-= image_tag((f.object.image.present? ? f.object.image.url(:small) : nil), height: 31)
+= f.form_group :image do
+  = f.file_field_without_bootstrap :image, data: { preview: true }
+  = image_tag((f.object.image.present? ? f.object.image.url(:small) : nil), height: 31)
 
 = f.text_area :summary, rows: 4, class: 'form-control', required: true
 
