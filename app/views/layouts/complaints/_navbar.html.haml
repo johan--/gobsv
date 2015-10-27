@@ -1,0 +1,28 @@
+.container-fluid
+  .row
+    .row-height
+      .col-sm-2.col-xs-2.bg-red.col-height
+        .inside
+          = link_to complaints_root_url do
+            = image_tag("complaints/logo.png")
+      .col-sm-6.hidden-xs.search.col-height
+        .inside-form
+          = form_tag '/search' do
+            = text_field_tag :q, params[:q], placeholder: 'Buscar'
+      .col-sm-2.col-xs-6.new_case.col-height
+        .inside
+          = link_to new_complaints_expedient_url, class: 'white' do
+            %i.glyphicon.glyphicon-plus-sign
+            Agregar caso
+      .col-sm-1.col-xs-2.notification.col-height
+        .inside
+          = link_to complaints_notifications_url do
+            = image_tag("complaints/notification.png")
+      .col-sm-1.col-xs-2.profile.col-height
+        .inside
+          = link_to destroy_admin_session_url do
+            = image_tag("complaints/profile.png")
+  .row
+    .col-xs-12.hidden-sm.hidden-md.hidden-lg.search.search_b
+      = form_tag '/search' do
+        = text_field_tag :q, params[:q], placeholder: 'Buscar'

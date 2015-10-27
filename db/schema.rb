@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901205611) do
+ActiveRecord::Schema.define(version: 20151027054607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,57 @@ ActiveRecord::Schema.define(version: 20150901205611) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "complaints_expedients", force: true do |t|
+    t.string   "kind"
+    t.string   "contact"
+    t.string   "phone"
+    t.string   "email"
+    t.text     "comment"
+    t.integer  "institution_id"
+    t.string   "status",         default: "new"
+    t.string   "correlative"
+    t.datetime "received_at"
+    t.datetime "confirmed_at"
+    t.datetime "admitted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "complaints_expedients", ["contact"], name: "index_complaints_expedients_on_contact", using: :btree
+  add_index "complaints_expedients", ["correlative"], name: "index_complaints_expedients_on_correlative", using: :btree
+  add_index "complaints_expedients", ["institution_id"], name: "index_complaints_expedients_on_institution_id", using: :btree
+  add_index "complaints_expedients", ["kind"], name: "index_complaints_expedients_on_kind", using: :btree
+  add_index "complaints_expedients", ["status"], name: "index_complaints_expedients_on_status", using: :btree
+
+  create_table "institutions", force: true do |t|
+    t.string   "name"
+    t.integer  "institution_type_id"
+    t.string   "acronym"
+    t.boolean  "ranked"
+    t.boolean  "at_complaints"
+    t.string   "slug"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "header_file_name"
+    t.string   "header_content_type"
+    t.integer  "header_file_size"
+    t.datetime "header_updated_at"
+    t.boolean  "at_information_requests"
+    t.boolean  "accepts_online_information_requests"
+    t.integer  "information_standard_category_id"
+    t.integer  "information_request_correlative"
+    t.string   "transparency_external_portal_url"
+    t.boolean  "highlight_events"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "institutions", ["information_standard_category_id"], name: "index_institutions_on_information_standard_category_id", using: :btree
+  add_index "institutions", ["institution_type_id"], name: "index_institutions_on_institution_type_id", using: :btree
+  add_index "institutions", ["slug"], name: "index_institutions_on_slug", using: :btree
 
   create_table "ta_articles", force: true do |t|
     t.string   "title"

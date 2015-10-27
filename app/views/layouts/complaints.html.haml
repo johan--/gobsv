@@ -1,0 +1,28 @@
+!!! 5
+%html{ language: I18n.locale }
+  %head
+    %title
+      = t '.title'
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' }
+    %meta{ name: 'robots', content: 'noindex' }
+
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'shortcut icon' }
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'apple-touch-icon' }
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'apple-touch-icon-precomposed' }
+
+    = stylesheet_link_tag :complaints
+    = javascript_include_tag :admin
+
+    = csrf_meta_tags
+  %body
+    = render partial: 'layouts/complaints/navbar'
+    .container-fluid
+      .row
+        .col-sm-2.sidebar.hidden-xs
+          = render partial: 'layouts/complaints/sidebar'
+        .col-sm-10.col-xs-12
+          #main.row
+            = yield
+        .col-sm-2.sidebar_b.hidden-sm.hidden-md.hidden-lg
+          = render partial: 'layouts/complaints/sidebar_b'

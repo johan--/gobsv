@@ -1,0 +1,37 @@
+%h1
+  Agregar caso
+.content
+  = form_for expedient, html: { class: 'form-horizontal' } do |f|
+    .form-group
+      = f.label :received_at, 'Fecha de ingreso', class: 'col-sm-2 control-label'
+      .col-sm-10
+        .form-inline
+          = f.datetime_select :received_at, {}, { class: 'form-control' }
+    .form-group
+      = f.label :kind, 'Vía de ingreso', class: 'col-sm-2 control-label'
+      .col-sm-10
+        = f.select :kind, options_for_select(Complaints::Expedient::KIND.invert), { prompt: true }, { class: 'form-control' }
+    .form-group
+      = f.label :contact, 'Contacto (Nombre del ciudadano)', class: 'col-sm-2 control-label'
+      .col-sm-10
+        = f.text_field :contact, class: 'form-control'
+    .form-group
+      = f.label :phone, 'Teléfono', class: 'col-sm-2 control-label'
+      .col-sm-10
+        = f.text_field :phone, class: 'form-control'
+    .form-group
+      = f.label :email, 'Correo electrónico', class: 'col-sm-2 control-label'
+      .col-sm-10
+        = f.text_field :email, class: 'form-control'
+    .form-group
+      = f.label :comment, 'Comentario', class: 'col-sm-2 control-label'
+      .col-sm-10
+        = f.text_area :comment, class: 'form-control'
+    .form-group
+      = f.label :institution_id, 'Responsable de este caso', class: 'col-sm-2 control-label'
+      .col-sm-10
+        = f.collection_select :institution_id, Institution.order(:name), :id, :name, {prompt: "Seleccione una institución"}, {class: "form-control"}
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = f.submit 'Terminar', class: 'btn-active'
+        = link_to 'Cancelar', complaints_expedients_url(state: 'new'), class: 'btn-inactive'

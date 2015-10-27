@@ -1,0 +1,332 @@
+// bootstrap
+@import 'bootstrap-sprockets';
+@import 'complaints/bootstrap-vars';
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'jquery.tagsinput';
+@import 'bootstrap-checkbox';
+@import 'rails_bootstrap_forms';
+
+body {
+  background: $gray !important;
+}
+
+.bg-red {
+  background: $red;
+  text-align: center;
+}
+
+.new_case {
+  background: $blue_new_case;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+  text-transform:uppercase;
+}
+
+.notification {
+  background: $blue_notification;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+}
+
+.profile {
+  background: $blue_profile;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+}
+
+.form-group {
+  input[type="text"], select, textarea {
+    color: $menu !important;
+  }
+}
+
+
+.search {
+  input {
+    width: 100%;
+    background: image-url('complaints/find.png') no-repeat 10px center rgba(0,0,0,0) !important;
+    border:none !important;
+    box-shadow:none !important;
+    outline:0px !important;
+    -webkit-appearance:none;
+    font-size: 26px;
+    padding-left: 45px;
+    color: $placeholder;
+  }
+}
+
+.search_b {
+  background: image-url('complaints/find_blue.png') no-repeat 10px center transparent;
+  color: $menu;
+  padding: 20px 0;
+  input {
+    background: image-url('complaints/find_blue.png') no-repeat 10px center rgba(0,0,0,0) !important;
+    color: $menu;
+  }
+}
+
+a.white {
+  color: white !important;
+}
+a.white:hover {
+  color: white !important;
+}
+
+.sidebar {
+  background: $menu;
+  padding-left: 0;
+  padding-right: 0;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  li {
+    border-bottom: 2px solid $menu_border;
+    color: white;
+    display: block;
+    padding: 25px 0;
+    text-align: center;
+    img {
+      display: block;
+      margin: 0 auto 10px;
+    }
+    a {
+      color: white;
+    }
+    a:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
+  li.active {
+    background: $menu_active;
+    border-bottom: 2px solid $menu_active_border;
+  }
+}
+
+.sidebar_b .col-height {
+  color: white;
+  padding: 25px 0;
+  text-align: center;
+  background: $menu;
+  border-right: 2px solid $menu_border;
+  img {
+    display: block;
+    margin: 0 auto 10px;
+  }
+  a {
+    color: white;
+  }
+  a:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.sidebar_b .col-height.active {
+  background: $menu_active;
+  border-right: 2px solid $menu_active_border;
+}
+
+#main {
+  background: white;
+}
+
+h1 {
+  background: white;
+  color: $placeholder;
+}
+
+.content {
+  padding: 15px;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    background: $gray;
+    padding: 0 0 15px 0;
+    margin: 0;
+  }
+  #main {
+    margin: 20px 30px 0 30px;
+    background: white;
+  }
+}
+
+.control-label {
+  color: $menu;
+}
+
+.btn-active {
+  background: #00b9bd;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-color: #009da2;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bolder;
+  padding: 10px 25px;
+  color: white !important;
+}
+
+.btn-inactive {
+  background: #84c1c6;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-color: #63a3a9;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bolder;
+  padding: 12px 25px;
+  color: white !important;
+}
+
+.btn-inactive:hover {
+  color: white !important;
+  text-decoration: none;
+}
+
+/* SAME HEIGHT COLUMN */
+
+.inside {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.inside-form {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.inside-full-height {
+  /*
+  // if you want to give content full height give him height: 100%;
+  // with content full height you can't apply margins to the content
+  // content full height does not work in ie http://stackoverflow.com/questions/27384433/ie-display-table-cell-child-ignores-height-100
+  */
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* columns of same height styles */
+
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+.col-height {
+  display: table-cell;
+  float: none;
+  height: 100%;
+}
+.col-top {
+  vertical-align: top;
+}
+.col-middle {
+  vertical-align: middle;
+}
+.col-bottom {
+  vertical-align: bottom;
+}
+
+@media (min-width: 480px) {
+  .row-xs-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .col-xs-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-xs-top {
+    vertical-align: top;
+  }
+  .col-xs-middle {
+    vertical-align: middle;
+  }
+  .col-xs-bottom {
+    vertical-align: bottom;
+  }
+}
+
+@media (min-width: 768px) {
+  .row-sm-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .col-sm-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-sm-top {
+    vertical-align: top;
+  }
+  .col-sm-middle {
+    vertical-align: middle;
+  }
+  .col-sm-bottom {
+    vertical-align: bottom;
+  }
+}
+
+@media (min-width: 992px) {
+  .row-md-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .col-md-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-md-top {
+    vertical-align: top;
+  }
+  .col-md-middle {
+    vertical-align: middle;
+  }
+  .col-md-bottom {
+    vertical-align: bottom;
+  }
+}
+
+@media (min-width: 1200px) {
+  .row-lg-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .col-lg-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-lg-top {
+    vertical-align: top;
+  }
+  .col-lg-middle {
+    vertical-align: middle;
+  }
+  .col-lg-bottom {
+    vertical-align: bottom;
+  }
+}
