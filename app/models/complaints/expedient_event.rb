@@ -12,7 +12,7 @@ class Complaints::ExpedientEvent < ActiveRecord::Base
   belongs_to :expedient, class_name: '::Complaints::Expedient'
 
   validates :status, presence: true
-  validates :justification, presence: true, managements: true
+  validates :justification, presence: true
 
   before_create :update_status_expedient
 
