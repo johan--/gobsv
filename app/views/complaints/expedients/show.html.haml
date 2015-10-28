@@ -1,0 +1,40 @@
+%h1
+  - if expedient.status == 'new'
+    = link_to "Casos nuevos", complaints_expedients_url(state: 'new')
+  - elsif expedient.status == 'process'
+    = link_to "Casos en Proceso", complaints_expedients_url(state: 'process')
+  - elsif expedient.status == 'closed'
+    = link_to "Casos Cerrados", complaints_expedients_url(state: 'closed')
+  - if expedient.correlative.present?
+    = "/ Caso #{expedient.correlative}"
+.content
+  .row
+    .col-sm-2
+      %p.blue
+        Fecha de ingreso
+      = expedient.received_at.try(:strftime, '%d/%m/%Y')
+    .col-sm-3
+      %p.blue
+        Contacto
+      = expedient.contact.present? ? expedient.contact : 'Anónimo'
+    .col-sm-2
+      %p.blue
+        Vía de ingreso
+      = expedient.kind_s
+    .col-sm-5
+      - if expedient.new?
+        = render 'process_modal'
+  %br
+  .row
+    .col-sm-12
+      %p.blue
+        Comentario
+      = expedient.comment
+  %br
+  .row
+    .col-sm-12
+      %p.blue
+        Datos de contacto
+      = "Teléfono: #{expedient.phone.present? ? expedient.phone : 'Ninguno'}"
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = "Correo electrónico: #{expedient.email.present? ? expedient.email : 'Ninguno'}"

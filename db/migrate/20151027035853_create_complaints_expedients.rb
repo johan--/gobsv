@@ -9,6 +9,7 @@ class CreateComplaintsExpedients < ActiveRecord::Migration
       t.belongs_to :institution
       t.string :status, default: 'new'
       t.string :correlative
+      t.belongs_to :admin
       t.datetime :received_at
       t.datetime :confirmed_at
       t.datetime :admitted_at

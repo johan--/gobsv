@@ -1,0 +1,7 @@
+<% if @success %>
+  window.location.replace("<%= complaints_expedient_url(expedient) %>");
+<% else %>
+  form = $("form#new_complaints_expedient_event");
+  errors = $.parseJSON("<%= j @errors %>");
+  new ErrorDisplayer(form, errors);
+<% end %>

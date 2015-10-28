@@ -5,16 +5,17 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import 'jquery.tagsinput';
-@import 'bootstrap-checkbox';
 @import 'rails_bootstrap_forms';
 
 body {
   background: $gray !important;
+  color: $placeholder !important;
 }
 
 .bg-red {
   background: $red;
   text-align: center;
+  border-bottom: 2px solid $header_red_border;
 }
 
 .new_case {
@@ -23,6 +24,7 @@ body {
   color: white;
   font-weight: bolder;
   text-transform:uppercase;
+  border-bottom: 2px solid $header_border;
 }
 
 .notification {
@@ -30,6 +32,7 @@ body {
   text-align: center;
   color: white;
   font-weight: bolder;
+  border-bottom: 2px solid $header_border;
 }
 
 .profile {
@@ -37,6 +40,7 @@ body {
   text-align: center;
   color: white;
   font-weight: bolder;
+  border-bottom: 2px solid $header_border;
 }
 
 .form-group {
@@ -47,6 +51,8 @@ body {
 
 
 .search {
+  background: white;
+  border-bottom: 2px solid $header_border;
   input {
     width: 100%;
     background: image-url('complaints/find.png') no-repeat 10px center rgba(0,0,0,0) !important;
@@ -142,10 +148,18 @@ a.white:hover {
 h1 {
   background: white;
   color: $placeholder;
+  font-size: 24px;
+  a {
+    color: $gray_url;
+  }
+  a:hover {
+    color: $gray_url;
+    text-decoration: none;
+  }
 }
 
 .content {
-  padding: 15px;
+  padding: 25px;
 }
 
 @media (min-width: 768px) {
@@ -153,6 +167,7 @@ h1 {
     background: $gray;
     padding: 0 0 15px 0;
     margin: 0;
+    font-size: 30px;
   }
   #main {
     margin: 20px 30px 0 30px;
@@ -166,31 +181,59 @@ h1 {
 
 .btn-active {
   background: #00b9bd;
-  border-width: 0 0 2px 0;
-  border-style: solid;
   border-color: #009da2;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bolder;
   padding: 10px 25px;
-  color: white !important;
 }
 
 .btn-inactive {
   background: #84c1c6;
+  border-color: #63a3a9;
+  padding: 12px 25px;
+}
+
+.btn-primary-green {
+  background: #00bd47;
+  border-color: #00a04a;
+  padding: 10px 25px;
+}
+
+.btn-primary-green:hover, .btn-inactive:hover {
+  color: white !important;
+  text-decoration: none;
+}
+
+.btn-active, .btn-inactive, .btn-primary-green {
   border-width: 0 0 2px 0;
   border-style: solid;
-  border-color: #63a3a9;
   text-align: center;
   text-transform: uppercase;
   font-weight: bolder;
-  padding: 12px 25px;
   color: white !important;
 }
 
-.btn-inactive:hover {
-  color: white !important;
-  text-decoration: none;
+.show-item {
+  display: block;
+  background: image-url("complaints/arrow_normal.png") no-repeat center center;
+  height: 12px;
+}
+.show-item:hover {
+  background: image-url("complaints/arrow_hover.png") no-repeat center center;
+}
+
+.table {
+  thead th {
+    text-align: center;
+    border-bottom: 2px solid $blue_profile !important;
+    color: $blue_profile;
+  }
+  tbody td {
+    padding: 15px 8px !important;
+  }
+}
+
+p.blue {
+  color: $menu;
+  font-weight: bolder;
 }
 
 /* SAME HEIGHT COLUMN */

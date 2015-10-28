@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027054607) do
+ActiveRecord::Schema.define(version: 20151027205158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(version: 20151027054607) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "complaints_expedient_events", force: true do |t|
+    t.string   "status",        default: "process"
+    t.integer  "expedient_id"
+    t.integer  "admin_id"
+    t.datetime "start_at"
+    t.text     "justification"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "complaints_expedient_events", ["admin_id"], name: "index_complaints_expedient_events_on_admin_id", using: :btree
+  add_index "complaints_expedient_events", ["expedient_id"], name: "index_complaints_expedient_events_on_expedient_id", using: :btree
+
   create_table "complaints_expedients", force: true do |t|
     t.string   "kind"
     t.string   "contact"
@@ -60,6 +73,7 @@ ActiveRecord::Schema.define(version: 20151027054607) do
     t.integer  "institution_id"
     t.string   "status",         default: "new"
     t.string   "correlative"
+    t.integer  "admin_id"
     t.datetime "received_at"
     t.datetime "confirmed_at"
     t.datetime "admitted_at"

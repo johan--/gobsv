@@ -1,5 +1,23 @@
 class Complaints::ExpedientsController < ComplaintsController
 
+  def index
+    @expedients = Complaints::Expedient.newer.status(params[:state]).paginate(page: params[:page])
+  end
+
+  def create
+    expedient.assign_attributes item_params
+    expedient.admin_id = current_admin.id
+    expedient.confirmed_at = Time.current
+    expedient.admitted_at = Time.current
+    if expedient.valid?
+      expedient.set_correlative
+      expedient.save
+      redirect_to complaints_expedients_url(state: 'new') and return
+    else
+      render :new
+    end
+  end
+
   def expedient
     @expedient ||= params[:id] ? Complaints::Expedient.find(params[:id]) : Complaints::Expedient.new
   end
@@ -7,24 +25,13 @@ class Complaints::ExpedientsController < ComplaintsController
 
   def item_params
     params.require(:complaints_expedient).permit(
-      :category_id,
-      :front,
-      :featured,
-      :pretitle,
-      :title,
-      :summary,
-      :content,
-      :tag_list,
-      :status,
-      :published_at,
-      :author_id,
-      :image,
-      :layout,
-      :video_url,
-      :audio_url,
-      images_attributes: [:id, :image, :priority, :title, :description, :_destroy],
-      videos_attributes: [:id, :image, :priority, :title, :description, :url, :_destroy],
-      audios_attributes: [:id, :image, :priority, :title, :description, :url, :_destroy]
+      :received_at,
+      :kind,
+      :contact,
+      :phone,
+      :email,
+      :comment,
+      :institution_id
     )
   end
 end
