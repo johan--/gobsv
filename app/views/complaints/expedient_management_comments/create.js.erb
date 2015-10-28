@@ -1,0 +1,11 @@
+<% if @success %>
+  $('.modal.in').on('hidden.bs.modal', function (e) {
+    $("#management-<%= @management.id %>").replaceWith("<%= j render @management %>");
+    $("#management-<%= @management.id %>").effect("highlight", {}, 3500);
+  });
+  $('.modal.in').modal('hide');
+<% else %>
+  form = $("form#new_complaints_expedient_management_comment");
+  errors = $.parseJSON("<%= j @errors %>");
+  new ErrorDisplayer(form, errors);
+<% end %>

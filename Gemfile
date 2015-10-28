@@ -150,3 +150,9 @@ gem 'bootstrap_form', '~> 2.3.0'
 
 # A gem to add PhotoSwipe to Rails asset pipeline
 gem 'photoswipe-rails', '~> 4.1.0'
+
+# Integrate Select2 javascript library with Rails asset pipeline
+gem 'select2-rails'
+
+# Easily and efficiently make your ActiveRecord models support hierarchies http://mceachen.github.io/closure_tree/
+gem 'closure_tree'

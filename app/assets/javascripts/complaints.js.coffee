@@ -9,3 +9,11 @@
 #= require 'jquery_nested_form'
 #= require 'ckeditor/init'
 #= require 'jquery.tagsinput'
+#= require 'complaints/error-displayer'
+#= require 'select2'
+#= require 'select2_locale_es'
+
+$ ->
+
+  $('.select2').select2
+    theme: 'bootstrap'

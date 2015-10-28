@@ -22,5 +22,5 @@
             .col-sm-10
               = f.text_area :justification, class: 'form-control'
         .modal-footer
-          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
-          %button.btn.btn-primary{:type => "submit"} Procesar
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
+          %button.btn.btn-primary{:type => "submit", data: {disable_with: "Procesando..."}} Procesar

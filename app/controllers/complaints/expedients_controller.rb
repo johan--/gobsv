@@ -23,6 +23,11 @@ class Complaints::ExpedientsController < ComplaintsController
   end
   helper_method :expedient
 
+  def managements
+    @managements ||= expedient.managements.newer
+  end
+  helper_method :managements
+
   def item_params
     params.require(:complaints_expedient).permit(
       :received_at,

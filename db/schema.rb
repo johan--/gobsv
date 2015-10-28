@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027205158) do
+ActiveRecord::Schema.define(version: 20151028085248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_hierarchies", id: false, force: true do |t|
+    t.integer "ancestor_id",   null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations",   null: false
+  end
+
+  add_index "admin_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "admin_anc_desc_idx", unique: true, using: :btree
+  add_index "admin_hierarchies", ["descendant_id"], name: "admin_desc_idx", using: :btree
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +39,7 @@ ActiveRecord::Schema.define(version: 20151027205158) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "parent_id"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -63,6 +73,46 @@ ActiveRecord::Schema.define(version: 20151027205158) do
 
   add_index "complaints_expedient_events", ["admin_id"], name: "index_complaints_expedient_events_on_admin_id", using: :btree
   add_index "complaints_expedient_events", ["expedient_id"], name: "index_complaints_expedient_events_on_expedient_id", using: :btree
+
+  create_table "complaints_expedient_management_comments", force: true do |t|
+    t.integer  "expedient_management_id"
+    t.integer  "admin_id"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "complaints_expedient_management_comments", ["admin_id"], name: "index_complaints_expedient_management_comments_on_admin_id", using: :btree
+  add_index "complaints_expedient_management_comments", ["expedient_management_id"], name: "comment_expedient_management_id_index", using: :btree
+
+  create_table "complaints_expedient_management_events", force: true do |t|
+    t.string   "status",                  default: "process"
+    t.integer  "expedient_management_id"
+    t.integer  "admin_id"
+    t.datetime "start_at"
+    t.text     "justification"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "complaints_expedient_management_events", ["admin_id"], name: "index_complaints_expedient_management_events_on_admin_id", using: :btree
+  add_index "complaints_expedient_management_events", ["expedient_management_id"], name: "expedient_management_id_index", using: :btree
+
+  create_table "complaints_expedient_managements", force: true do |t|
+    t.integer  "expedient_id"
+    t.integer  "admin_id"
+    t.string   "kind"
+    t.string   "status",       default: "new"
+    t.text     "comment"
+    t.integer  "assigned_ids", default: [],    array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "weight",       default: 1
+    t.string   "closed_as"
+  end
+
+  add_index "complaints_expedient_managements", ["admin_id"], name: "index_complaints_expedient_managements_on_admin_id", using: :btree
+  add_index "complaints_expedient_managements", ["expedient_id"], name: "index_complaints_expedient_managements_on_expedient_id", using: :btree
 
   create_table "complaints_expedients", force: true do |t|
     t.string   "kind"

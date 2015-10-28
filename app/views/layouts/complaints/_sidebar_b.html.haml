@@ -12,8 +12,8 @@
       = link_to complaints_expedients_url(state: 'closed') do
         = image_tag "complaints/closed_cases.png"
         Casos Cerrados
-    .col-xs-2.col-height
-      = link_to '/' do
+    .col-xs-2.col-height{ class: controller_name == 'users' ? 'active' : nil }
+      = link_to complaints_users_url do
         = image_tag "complaints/links.png"
         Enlaces
     .col-xs-3.col-height

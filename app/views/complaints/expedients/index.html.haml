@@ -37,4 +37,5 @@
               %td
                 = exp.comment.try(:truncate, 100)
               %td
-                = link_to "", complaints_expedient_url(exp), class: 'show-item'
+                = link_to complaints_expedient_url(exp), class: 'show-item' do
+                  &nbsp

@@ -1,2 +1,2 @@
-class Complaints::NotificationsController < ApplicationController
+class Complaints::NotificationsController < ComplaintsController
 end

@@ -24,6 +24,8 @@
     .col-sm-5
       - if expedient.new?
         = render 'process_modal'
+      - elsif expedient.process?
+        = render 'close_modal'
   %br
   .row
     .col-sm-12
@@ -38,3 +40,5 @@
       = "Teléfono: #{expedient.phone.present? ? expedient.phone : 'Ninguno'}"
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = "Correo electrónico: #{expedient.email.present? ? expedient.email : 'Ninguno'}"
+  - unless expedient.new?
+    = render "process"

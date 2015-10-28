@@ -11,8 +11,8 @@
     = link_to complaints_expedients_url(state: 'closed') do
       = image_tag "complaints/closed_cases.png"
       Casos Cerrados
-  %li
-    = link_to '/' do
+  %li{ class: controller_name == 'users' ? 'active' : nil }
+    = link_to complaints_users_url do
       = image_tag "complaints/links.png"
       Enlaces
   %li

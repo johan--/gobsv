@@ -41,3 +41,6 @@ class @ErrorDisplayer
 
   field_has_already_error: (field) ->
     field.parent().find("label[class=message]").length > 0
+
+  clear_errors: ->
+    $("label.message", @form).remove()

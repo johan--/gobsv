@@ -1,0 +1,109 @@
+.management{id: "management-#{expedient_management.id}"}
+  .row
+    .col-xs-2
+      .management_date
+        %strong
+          = l(expedient_management.created_at, format: :small)
+        %small
+          = l(expedient_management.created_at, format: :hour)
+    .col-xs-10
+      .management_info
+        %p
+          - if expedient_management.assigned_names.present?
+            %span.blue
+              = expedient_management.admin.name
+              asignó a
+            = expedient_management.assigned_names
+            %span.blue
+              una
+            %strong.orange
+              = expedient_management.kind_s.upcase
+          - else
+            %span.blue
+              = expedient_management.admin.name
+              se asigno a si mismo una
+            %strong.orange
+              = expedient_management.kind_s.upcase
+        %div
+          = sanitize expedient_management.comment
+        = render expedient_management.comments
+        %div.actions
+          - if expedient_management.new?
+            = link_to "Comunicarme con el usuario", '#', class: 'lnk-success', data: {toggle: 'modal', target: "#newModal#{expedient_management.id}"}
+          - elsif expedient_management.process?
+            = link_to "Responder", '#', class: 'lnk-primary', data: {toggle: 'modal', target: "#newComment#{expedient_management.id}"}
+            &nbsp&nbsp&nbsp&nbsp&nbsp
+            = link_to "Terminar gestión", '#', class: 'lnk-danger', data: {toggle: 'modal', target: "#closeModal#{expedient_management.id}"}
+
+  / Modal comunicación
+  .modal.fade{"aria-labelledby" => "modalLabel", :role => "dialog", :tabindex => "-1", :id => "newModal#{expedient_management.id}"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        = form_for expedient_management.events.new, url: complaints_expedient_management_expedient_management_events_path(expedient_management), html: { class: 'form-horizontal', remote: true} do |f|
+          .modal-header
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h4#modalLabel.modal-title Comunicación con el usuario
+          .modal-body
+            .form-group
+              = f.label :received_at, 'Fecha de la comunicación', class: 'col-sm-2 control-label'
+              .col-sm-10
+                .form-inline
+                  = f.datetime_select :start_at, {}, { class: 'form-control' }
+            .form-group
+              = f.label :justification, 'Comentario', class: 'col-sm-2 control-label'
+              .col-sm-10
+                = f.text_area :justification, class: 'form-control'
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
+            %button.btn.btn-primary{:type => "submit", data: {disable_with: "Procesando..."}} Procesar
+
+  / Modal nuevo comentario
+  .modal.fade{"aria-labelledby" => "modalLabel", :role => "dialog", :tabindex => "-1", :id => "newComment#{expedient_management.id}"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        = form_for expedient_management.comments.new, url: complaints_expedient_management_expedient_management_comments_url(expedient_management), html: { class: 'form-horizontal', remote: true, method: :post} do |f|
+          .modal-header
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h4#modalLabel.modal-title Nuevo comentario
+          .modal-body
+            .form-group
+              = f.label :comment, 'Comentario', class: 'col-sm-2 control-label'
+              .col-sm-10
+                = f.text_area :comment, class: 'form-control'
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
+            %button.btn.btn-primary{:type => "submit", data: {disable_with: "Comentando..."}} Comentar
+
+
+  / Modal cierre
+  .modal.fade{"aria-labelledby" => "modalLabel", :role => "dialog", :tabindex => "-1", :id => "closeModal#{expedient_management.id}"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        = form_for expedient_management.events.new, url: complaints_expedient_management_expedient_management_events_path(expedient_management), html: { class: 'form-horizontal', remote: true} do |f|
+          .modal-header
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h4#modalLabel.modal-title Cierre de gestión
+          .modal-body
+            .form-group
+              = f.label :received_at, 'Fecha de cierre', class: 'col-sm-2 control-label'
+              .col-sm-10
+                .form-inline
+                  = f.datetime_select :start_at, {}, { class: 'form-control' }
+            .form-group
+              = f.label :weight, "Número de #{expedient_management.kind_s.upcase} procesadas", class: 'col-sm-2 control-label'
+              .col-sm-10
+                = f.text_field :weight, value: 1, class: 'form-control'
+            .form-group
+              = f.label :closed_as, "Tipo de cierre", class: 'col-sm-2 control-label'
+              .col-sm-10
+                = f.select :closed_as, options_for_select(Complaints::ExpedientManagement::CLOSED_AS.invert), { prompt: true }, { class: 'form-control' }
+            .form-group
+              = f.label :justification, "Justificación", class: 'col-sm-2 control-label'
+              .col-sm-10
+                = f.text_area :justification, class: 'form-control'
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
+            %button.btn.btn-primary{:type => "submit", data: {disable_with: "Procesando..."}} Procesar

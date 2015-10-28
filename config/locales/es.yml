@@ -191,6 +191,8 @@ es:
       long: ! '%d de %B de %Y %H:%M'
       short: ! '%d de %b %H:%M'
       resume: ! '%d %b %Y a las %I:%M %p'
+      small: ! '%d %b'
+      hour: ! '%I:%M %P'
     pm: pm
   will_paginate:
     previous_label: '«'

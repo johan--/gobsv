@@ -6,6 +6,9 @@
 @import 'font-awesome';
 @import 'jquery.tagsinput';
 @import 'rails_bootstrap_forms';
+@import 'select2';
+@import 'select2-bootstrap';
+
 
 body {
   background: $gray !important;
@@ -44,11 +47,10 @@ body {
 }
 
 .form-group {
-  input[type="text"], select, textarea {
+  input[type="text"], input[type="password"], select, textarea {
     color: $menu !important;
   }
 }
-
 
 .search {
   background: white;
@@ -196,13 +198,18 @@ h1 {
   border-color: #00a04a;
   padding: 10px 25px;
 }
+.btn-primary-red {
+  background: #f63700;
+  border-color: #b73b15;
+  padding: 10px 25px;
+}
 
-.btn-primary-green:hover, .btn-inactive:hover {
+.btn-inactive:hover {
   color: white !important;
   text-decoration: none;
 }
 
-.btn-active, .btn-inactive, .btn-primary-green {
+.btn-active, .btn-inactive, .btn-primary-green, .btn-primary-red {
   border-width: 0 0 2px 0;
   border-style: solid;
   text-align: center;
@@ -218,6 +225,7 @@ h1 {
 }
 .show-item:hover {
   background: image-url("complaints/arrow_hover.png") no-repeat center center;
+  text-decoration: none;
 }
 
 .table {
@@ -231,9 +239,94 @@ h1 {
   }
 }
 
-p.blue {
+span.blue, p.blue {
   color: $menu;
   font-weight: bolder;
+}
+
+.field-with-errors {
+  .message {
+    color: $red;
+  }
+}
+
+.management_section {
+  padding: 0 40px;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.managements_area {
+  background: #d8e8e8;
+  padding: 20px 15px;
+}
+
+.management_date {
+  background: #00b9bc;
+  border-bottom: 2px solid #029da2;
+  text-align: center;
+  padding: 10px;
+  strong {
+    font-size: 20px;
+    display: block;
+    color: #333333;
+  }
+  small{
+    color: white;
+    font-weight: bolder;
+  }
+}
+
+.management_info {
+  background: white;
+  padding: 10px;
+  border-bottom: 2px solid #bfd1d3;
+}
+
+.management {
+  margin-bottom: 20px;
+  a.lnk-success {
+    color: #00bd47;
+    font-weight: bolder;
+  }
+  a.lnk-success:hover {
+    color: #00bd47;
+    text-decoration: none;
+  }
+  a.lnk-primary {
+    color: $menu;
+    font-weight: bolder;
+  }
+  a.lnk-primary:hover {
+    color: $menu;
+    text-decoration: none;
+  }
+  a.lnk-danger {
+    color: $orange;
+    font-weight: bolder;
+  }
+  a.lnk-danger:hover {
+    color: $orange;
+    text-decoration: none;
+  }
+  .actions {
+    padding-top: 10px;
+  }
+}
+
+.orange {
+  color: $orange;
+}
+
+.gray_widget {
+  background: $gray_widget;
+  padding: 15px;
+
+  .borderless td {
+    border: none;
+  }
 }
 
 /* SAME HEIGHT COLUMN */
