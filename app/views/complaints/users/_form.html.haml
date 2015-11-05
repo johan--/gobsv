@@ -1,0 +1,16 @@
+.form-group
+  = f.label :name, 'Nombre', class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :name, class: 'form-control'
+.form-group
+  = f.label :email, 'Correo electrónico', class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :email, class: 'form-control'
+.form-group
+  = f.label :password, 'Contraseña', class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.password_field :password, class: 'form-control'
+.form-group
+  = f.label :password_confirmation, 'Confirmar contraseña', class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.password_field :password_confirmation, class: 'form-control'

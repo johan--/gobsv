@@ -1,0 +1,9 @@
+%div
+  %hr
+  %span.blue
+    = expedient_management_comment.admin.name
+    comento
+  %span
+    = l(expedient_management_comment.created_at, format: :resume)
+  %div
+    = sanitize expedient_management_comment.comment

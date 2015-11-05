@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   #draw :user
   #draw :www
   draw :employments
+  draw :complaints
   draw :ta
 end

@@ -1,0 +1,41 @@
+%h1
+  - if params[:state] == 'new'
+    Casos Nuevos
+  - elsif params[:state] == 'process'
+    Casos en Proceso
+  - elsif params[:state] == 'closed'
+    Casos Cerrados
+  - else
+    Listado de casos
+.content
+  - if @expedients.size == 0
+    .alert.alert-info{role: 'alert'}
+      No hay resultados para mostrar
+  - else
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th
+              Fecha
+            %th
+              N°
+            %th
+              Contacto
+            %th
+              Comentario
+            %th
+        %tbody
+          - @expedients.each do |exp|
+            %tr
+              %td
+                = exp.received_at.try(:strftime, '%d/%m/%Y')
+              %td
+                = exp.correlative
+              %td
+                = exp.contact
+              %td
+                = exp.comment.try(:truncate, 100)
+              %td
+                = link_to complaints_expedient_url(exp), class: 'show-item' do
+                  &nbsp

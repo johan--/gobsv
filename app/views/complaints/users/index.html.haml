@@ -1,0 +1,32 @@
+%h1.clearfix
+  Mis enlaces
+  = link_to "Agregar enlace", new_complaints_user_url, class: 'btn btn-success pull-right'
+.content
+  - if @users.size == 0
+    .alert.alert-info{role: 'alert'}
+      No hay enlaces para mostrar
+  - else
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th
+              Fecha
+            %th
+              Correo electrónico
+            %th
+              Nombre
+            %th{colspan: 2}
+        %tbody
+          - @users.each do |u|
+            %tr
+              %td
+                = u.created_at.try(:strftime, '%d/%m/%Y')
+              %td
+                = u.email
+              %td
+                = u.name
+              %td
+                = link_to "Editar", edit_complaints_user_url(u), class: 'btn btn-primary'
+              %td
+                = link_to "Eliminar", complaints_user_url(u), class: 'btn btn-danger', data: { method: :delete, confirm: '¿Realmente desea eliminar este enlace?' }

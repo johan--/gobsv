@@ -1,0 +1,9 @@
+%h1
+  Editar Enlace
+.content
+  = form_for admin, url: complaints_user_url(admin), html: { class: 'form-horizontal' } do |f|
+    = render partial: "form", locals: { f: f }
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = f.submit 'Actualizar', class: 'btn-active'
+        = link_to 'Cancelar', complaints_users_url, class: 'btn-inactive'

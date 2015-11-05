@@ -1,0 +1,122 @@
+%h1
+  Tablero
+.content
+  .row
+    .col-xs-12
+      %table.table
+        %thead
+          %tr
+            %th{colspan: 5}
+              Alerta de comunicación
+        %tbody
+          %tr
+            %td
+              2 horas
+            %td
+              TEST-2015-1
+            %td
+              Queja
+            %td
+              Juan Miguel
+            %td
+              = image_tag("complaints/arrow_hover.png")
+          %tr
+            %td
+              5 horas
+            %td
+              TEST-2015-2
+            %td
+              Aviso
+            %td
+              Juan Perez
+            %td
+              = image_tag("complaints/arrow_normal.png")
+          %tr
+            %td
+              5 horas
+            %td
+              TEST-2015-2
+            %td
+              Aviso
+            %td
+              Juan Perez
+            %td
+              = image_tag("complaints/arrow_normal.png")
+          %tr
+            %td
+              8 horas
+            %td
+              TEST-2015-2
+            %td
+              Aviso
+            %td
+              Juan Perez
+            %td
+              = image_tag("complaints/arrow_normal.png")
+  .row
+    .col-sm-12.col-xs-12.col-md-6.col-lg-6
+      .gray_widget
+        %p.blue
+          Últimos casos resueltos
+        %table.table.borderless
+          %tbody
+            %tr
+              %td
+                TEST-2015-1
+              %td
+                Queja
+              %td
+                Juan Miguel
+              %td
+                = image_tag("complaints/arrow_normal.png")
+            %tr
+              %td
+                TEST-2015-2
+              %td
+                Aviso
+              %td
+                Juan Perez
+              %td
+                = image_tag("complaints/arrow_normal.png")
+            %tr
+              %td
+                TEST-2015-3
+              %td
+                Aviso
+              %td
+                Juan Perez
+              %td
+                = image_tag("complaints/arrow_normal.png")
+            %tr
+              %td
+                TEST-2015-3
+              %td
+                Aviso
+              %td
+                Juan Perez
+              %td
+                = image_tag("complaints/arrow_normal.png")
+    .col-sm-12.col-xs-12.col-md-6.col-lg-6
+      .gray_widget
+        %p.blue
+          Total de casos
+        .row
+          .col-xs-4.col-sm-4.col-md-2.col-lg-2
+            = image_tag('complaints/dummy-nuevos.png', class: 'img-responsive')
+          .col-xs-8.col-sm-8.col-md-10.col-lg-10
+            %h3
+              Casos nuevos
+        %br
+        .row
+          .col-xs-4.col-sm-4.col-md-2.col-lg-2
+            = image_tag('complaints/dummy-procesos.png', class: 'img-responsive')
+          .col-xs-8.col-sm-8.col-md-10.col-lg-10
+            %h3
+              Casos en proceso
+        %br
+        .row
+          .col-xs-4.col-sm-4.col-md-2.col-lg-2
+            = image_tag('complaints/dummy-cerrados.png', class: 'img-responsive')
+          .col-xs-8.col-sm-8.col-md-10.col-lg-10
+            %h3
+              Casos cerrados

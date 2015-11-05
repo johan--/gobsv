@@ -1,0 +1,21 @@
+%ul.sidebar
+  %li{ class: params[:state] == 'new' ? 'active' : nil }
+    = link_to complaints_expedients_url(state: 'new') do
+      = image_tag "complaints/new_cases.png"
+      Casos Nuevos
+  %li{ class: params[:state] == 'process' ? 'active' : nil }
+    = link_to complaints_expedients_url(state: 'process') do
+      = image_tag "complaints/proccess_cases.png"
+      Casos en Proceso
+  %li{ class: params[:state] == 'closed' ? 'active' : nil }
+    = link_to complaints_expedients_url(state: 'closed') do
+      = image_tag "complaints/closed_cases.png"
+      Casos Cerrados
+  %li{ class: controller_name == 'users' ? 'active' : nil }
+    = link_to complaints_users_url do
+      = image_tag "complaints/links.png"
+      Enlaces
+  %li
+    = link_to '/' do
+      = image_tag "complaints/statistics.png"
+      Estadísticas

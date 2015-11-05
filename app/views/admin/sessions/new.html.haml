@@ -3,27 +3,41 @@
     = flash[:notice]
 .login-container
   .flat-form
-    %ul.tabs
-      %li
-        = link_to '#login', class: 'active' do
-          = t '.login'
-      %li
-        = link_to '#reset' do
-          = t '.reset_password'
+    -#
+      %ul.tabs
+        %li
+          = link_to '#login', class: 'active' do
+            = t '.login'
+        %li
+          = link_to '#reset' do
+            = t '.reset_password'
 
     #login.form-action.show.animated.bounceInDown
       %h1
         = t '.login'
       %p
         = t '.welcome'
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        %ul
-          %li
-            = f.email_field :email, placeholder: t('.enter_email'), autofocus: true
-          %li
-            = f.password_field :password, autocomplete: 'off', placeholder: t('.enter_password')
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' } ) do |f|
+        -#
+          %ul
+            %li
+              = f.email_field :email, placeholder: t('.enter_email'), autofocus: true
+            %li
+              = f.password_field :password, autocomplete: 'off', placeholder: t('.enter_password')
 
-        = f.submit t('.login'), class: 'button'
+          = f.submit t('.login'), class: 'button'
+
+        .form-group
+          = f.label :email, 'Correo electrónico', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.email_field :email, placeholder: t('.enter_email'), autofocus: true, class: 'form-control'
+        .form-group
+          = f.label :email, 'Contraseña', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.password_field :password, autocomplete: 'off', placeholder: t('.enter_password'), class: 'form-control'
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            = f.submit 'Ingresar', class: 'btn btn-default'
 
     #reset.form-action.hide.animated.flipInX
       %h1

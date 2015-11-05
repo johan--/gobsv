@@ -64,3 +64,5 @@ es:
       login:
         title: Panel de control | Gobierno Abierto El Salvador
         footer: 2014 - Gobierno Abierto El Salvador
+      sidebar:
+        qa: Sistema de quejas y avisos

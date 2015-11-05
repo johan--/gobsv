@@ -12,3 +12,14 @@
           - controllers.each do |control|
             = link_to url_for(controller: "admin/#{modul}/#{control}", action: :index), class: ['list-group-item', control == controller_name ? 'active' : nil] do
               = t("activerecord.models.#{modul}/#{control.singularize}", count: :many)
+
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        = link_to "#qa", data: { toggle: 'collapse', parent: '#menu' } do
+          = t("modules.qa")
+
+    .panel-collapse.collapse{ id: 'qa', class: nil }
+      .list-group
+        = link_to complaints_root_url, class: 'list-group-item' do
+          = t('.qa')
