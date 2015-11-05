@@ -1,14 +1,12 @@
 - unless @article.nil?
   #front.container
     .row
-      .col-xs-12
+      .col-xs-12.col-sm-6
         %small
           = @article.pretitle
         %h2
           = link_to ta_article_url(@article) do
             = @article.title
-    .row
-      .col-xs-12.col-sm-6
         %p
           = @article.summary
         .more
@@ -175,12 +173,13 @@
             %p
               Recibe en tu correo electrónico las noticias de Transparencia Activa todos los días
 
-            = form_tag '' do
+            = form_tag '//gob.us4.list-manage.com/subscribe/post?u=842a2979e525425004e0dc51b&amp;id=50d05e5605' do
               .form-group
                 .input-group
                   .input-group-addon
                     %span.glyphicon.glyphicon-envelope
-                  = text_field_tag '', '', class: 'form-control', placeholder: 'usuario@dominio.com'
+                  = text_field_tag 'EMAIL', '', class: 'form-control', placeholder: 'usuario@dominio.com'
+                  = hidden_field_tag 'b_842a2979e525425004e0dc51b_50d05e5605', ''
 
               = submit_tag 'Subscribirme', class: 'btn btn-inverse'
           .col-xs-4
