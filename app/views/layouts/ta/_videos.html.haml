@@ -12,12 +12,13 @@
   .col-xs-12.col-sm-6
     .row
       - [1, 2].each do |i|
-        .col-xs-6
-          %article
-            = link_to ta_article_url(video_articles[i]) do
-              = image_tag video_articles[i].image.url(:medium), class: 'img-responsive'
-            %h3
+        - unless video_articles[i].nil?
+          .col-xs-6
+            %article
               = link_to ta_article_url(video_articles[i]) do
-                = video_articles[i].title
-            %p
-              = truncate video_articles[i].summary, length: 150
+                = image_tag video_articles[i].image.url(:medium), class: 'img-responsive'
+              %h3
+                = link_to ta_article_url(video_articles[i]) do
+                  = video_articles[i].title
+              %p
+                = truncate video_articles[i].summary, length: 150
