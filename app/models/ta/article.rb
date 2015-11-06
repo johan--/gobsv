@@ -74,5 +74,6 @@ module Ta
     scope :gallery_layout, -> { where(layout: layouts[:gallery])  }
     scope :audio_layout,   -> { where(layout: layouts[:audio])    }
     scope :video_layout,   -> { where(layout: layouts[:video])    }
+    scope :normal_layout,  -> { where(layout: layouts[:normal])   }
   end
 end

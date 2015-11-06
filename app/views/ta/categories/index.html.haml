@@ -80,15 +80,15 @@
 
 %br
 
-- unless yesterday_articles.empty?
+- unless @other_articles.empty?
   #yesterday.container
     .row
       .col-xs-12
         %h4
-          Noticias de ayer
-    .row
-      - yesterday_articles.each do |article|
-        - if yesterday_articles.first == article
+          Otras noticias
+    - @other_articles.each_slice(2) do |slice|
+      .row
+        - slice.each do |article|
           .col-xs-12.col-sm-12.col-md-6
             %article.media
               .media-left
@@ -101,16 +101,6 @@
                 %h3
                   = link_to ta_article_url(article) do
                     = article.title
-        - else
-          .col-xs-12.col-sm-6.col-md-3
-            %article
-              - unless article.pretitle.blank?
-                %small
-                  = article.pretitle
-              %h3
-                = link_to ta_article_url(article) do
-                  = article.title
-
     .row
       .col-xs-12
         .text-center

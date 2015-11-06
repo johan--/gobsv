@@ -49,6 +49,14 @@ article {
   }
 }
 
+.navbar-default {
+  .navbar-toggle {
+    .icon-bar {
+      background-color: white;
+    }
+  }
+}
+
 .breadcrumb {
   background: #fff;
   font-size: 0.9em;
@@ -75,6 +83,7 @@ article {
 }
 
 #front {
+  padding-top: 20px;
   .more {
     border-top: 2px $gray solid;
     display: inline-block;
@@ -328,8 +337,7 @@ footer {
 }
 
 #gallery {
-  background: #1a1a1a;
-  color: #fff;
+  background: #f0f0f0;
   padding-bottom: 30px;
 
   .breadcrumb {

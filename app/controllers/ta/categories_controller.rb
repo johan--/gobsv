@@ -4,9 +4,12 @@ module Ta
       @article  = Ta::Article.publish.front.newer.first
       @articles = Ta::Article
                   .publish
+                  .normal_layout
                   .newer
                   .where.not(id: @article.try(:id))
                   .limit(3)
+
+      @other_articles = Ta::Article.publish.newer.where.not(id: (@articles.map(&:id) + [@article.try(:id)])).limit(4)
 
       set_meta_tags(
         title: 'Noticias sobre transparencia, acceso a la Información y

@@ -4,16 +4,23 @@ $font-family-sans-serif: 'Montserrat', sans-serif;
 $border-radius-base: 0px;
 $border-radius-large: 0px;
 $border-radius-small: 0px;
-$navbar-default-bg: #fff;
+$navbar-default-bg: #0171bb;
 $navbar-height: 98px;
-$navbar-margin-bottom: 16px;
+$navbar-margin-bottom: 0;
 $navbar-default-toggle-border-color: #fff;
+$navbar-default-toggle-hover-bg: lighten($navbar-default-bg, 10%);
 
-$brand-primary: #1146ae;
+$brand-primary: #0171bb;
 $brand-info: #29aae3;
 $brand-success: #8cc63e;
 $brand-warning: #f15a25;
 
+$link-color: $brand-primary;
+$link-hover-decoration: none;
+$link-hover-color: lighten($link-color, 5%);
+
+
+$font-size-h2: 39px;
 $font-size-h3: 17px;
 $hr-border: #ccc;
 $well-bg: #e6e6e6;
