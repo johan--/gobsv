@@ -213,6 +213,18 @@ es:
       ta/page:
         one: Página
         other: Páginas
+      inv/product:
+        one: Producto
+        other: Productos
+      inv/unit:
+        one: Unidad de medida
+        other: Unidades de medida
+      inv/warehouse:
+        one: Bodega
+        other: Bodegas
+      inv/product_movement:
+        one: Movimiento
+        other: Movimientos
     attributes:
       id: ID
       created_at: Creado el
@@ -260,6 +272,26 @@ es:
         description: Descripción
         url: URL
         image: Imagen
+      inv/product:
+        code: Código
+        name: Nombre
+        unit_id: Unidad de medida
+        unit_name: Unidad de medida
+      inv/unit:
+        name: Nombre
+      inv/warehouse:
+        name: Nombre
+      inv/product_movement:
+        cause: 'Motivo'
+        comments: Comentarios
+        kind: 'Entrada / Salida'
+        product_code: Código del producto
+        product_id: Nombre del producto
+        product_name: Nombre del producto
+        quantity: Cantidad
+        warehouse_id: Bodega
+        warehouse_name: Bodega
+        warehouse_from: Se transfiere desde la bodega
     enum:
       ta/article:
         status:
@@ -275,6 +307,16 @@ es:
           top_header: Cabecera
           top_footer: Parte superior del footer
           bottom_footer: Parte inferior del footer
+      inv/product_movement:
+        kind:
+          in: Entrada
+          out: Salida
+        cause:
+          purchase: Compra / Adquisición
+          adjustment: Ajuste
+          transfer: Transferencia desde bodega
+          request: Solicitud
   modules:
     ta: Transparencia Activa
+    inv: Inventario
     qa: Quejas y Avisos

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028085248) do
+ActiveRecord::Schema.define(version: 20151107200344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20151028085248) do
     t.integer  "institution_id"
     t.string   "status",         default: "new"
     t.string   "correlative"
-    t.integer  "admin_id"
     t.datetime "received_at"
     t.datetime "confirmed_at"
     t.datetime "admitted_at"
@@ -165,6 +164,38 @@ ActiveRecord::Schema.define(version: 20151028085248) do
   add_index "institutions", ["information_standard_category_id"], name: "index_institutions_on_information_standard_category_id", using: :btree
   add_index "institutions", ["institution_type_id"], name: "index_institutions_on_institution_type_id", using: :btree
   add_index "institutions", ["slug"], name: "index_institutions_on_slug", using: :btree
+
+  create_table "inv_product_movements", force: true do |t|
+    t.integer  "kind",         default: 0, null: false
+    t.integer  "cause",        default: 0, null: false
+    t.text     "comments"
+    t.integer  "product_id",               null: false
+    t.integer  "warehouse_id",             null: false
+    t.integer  "quantity",     default: 0, null: false
+    t.integer  "admin_id",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "inv_products", force: true do |t|
+    t.integer  "unit_id",                 null: false
+    t.string   "code",       default: "", null: false
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "inv_units", force: true do |t|
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "inv_warehouses", force: true do |t|
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ta_articles", force: true do |t|
     t.string   "title"

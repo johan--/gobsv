@@ -11,16 +11,39 @@
 #= require 'dataTables/bootstrap/3/jquery.dataTables.bootstrap'
 #= require 'admin/tables'
 #= require 'admin/forms'
+#= require 'admin/inv/product_movements'
 #= require 'ckeditor/init'
 #= require 'jquery.tagsinput'
+#= require 'select2'
+#= require 'select2_locale_es'
 
 $ ->
+  $('.select2').select2
+    theme: 'bootstrap'
+
   ##
   # Tags
   $(".tags").tagsInput
     width: "100%",
     defaultText: "",
     delimiter: [","]
+
+  $(".simple-data-table").DataTable(
+    lengthChange: false,
+    language: {
+      loadingRecords: "Cargando ...",
+      emptyTable: "No se encontraron resultados",
+      zeroRecords: "No se encontraron resultados",
+      info: "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros",
+      infoEmpty: "Mostrando desde 0 hasta 0 de 0 registros",
+      infoFiltered: "(filtrado de _MAX_ registros en total)",
+      search: "Filtro rápido: ",
+      paginate: {
+        previous: "Anterior",
+        next: "Siguiente"
+      }
+    }
+  )
 
 window.NestedFormEvents.prototype.insertFields = (content, assoc, link) ->
   if $(link).closest(".form-gallery").length > 0

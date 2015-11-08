@@ -1,0 +1,19 @@
+= f.text_field :code, readonly: true
+= f.text_field :name, required: true
+= f.select :unit_id, @units.map{ |unit| [unit.name, unit.id] }, { include_blank: true }, { required: true }
+
+- unless @warehouses.empty?
+  %br
+  %br
+  %table.table
+    %thead
+      %tr
+        %th{ width: '70%' } Bodega
+        %th{ width: '30%' } Existencias
+    %tbody
+      - @warehouses.each do |warehouse|
+        %tr
+          %td
+            = warehouse.name
+          %td
+            = @item.stock warehouse

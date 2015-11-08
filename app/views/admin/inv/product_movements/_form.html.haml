@@ -1,0 +1,18 @@
+= f.form_group :kind, class: 'product-movement-kind', label: { text: t('activerecord.attributes.inv/product_movement.kind') } do
+  - Inv::ProductMovement.kinds.each do |kind, index|
+    = f.radio_button :kind, kind, label: t("activerecord.enum.inv/product_movement.kind.#{kind}")
+
+= f.form_group :cause, class: 'product-movement-cause', label: { text: t('activerecord.attributes.inv/product_movement.cause') } do
+  - Inv::ProductMovement.causes.each do |cause, index|
+    - unless cause.to_sym == :request
+      = f.radio_button :cause, cause, label: t("activerecord.enum.inv/product_movement.cause.#{cause}")
+
+= f.select :warehouse_from, @warehouses.map{ |warehouse| [warehouse.name, warehouse.id] }, { include_blank: true }, { class: 'select2' }
+
+= f.select :warehouse_id, @warehouses.map{ |warehouse| [warehouse.name, warehouse.id] }, { include_blank: true }, { class: 'select2', required: true }
+
+= f.select :product_id, @products.map{ |product| [product.name, product.id] }, { include_blank: true }, { class: 'select2', required: true }
+
+= f.text_field :quantity
+
+= f.text_area :comments, rows: 3

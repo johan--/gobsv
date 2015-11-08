@@ -15,6 +15,12 @@ constraints subdomain: 'panel' do
           :categories,
           :pages,
           :authors
+        ],
+        inv: [
+          :products,
+          :warehouses,
+          :product_movements,
+          :units
         ]
       }
 

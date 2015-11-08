@@ -15,3 +15,8 @@ modules:
   - categories
   - pages
   - authors
+  inv:
+  - products
+  - warehouses
+  - product_movements
+  - units
