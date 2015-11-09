@@ -2,7 +2,7 @@ class Inv::ProductMovementDecorator < Draper::Decorator
   delegate_all
 
   def created_at
-    h.l object.created_at, format: :default
+    h.l object.created_at, format: :sortable
   end
 
   def cause

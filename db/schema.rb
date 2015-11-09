@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107200344) do
+ActiveRecord::Schema.define(version: 20151109214105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20151107200344) do
     t.integer  "institution_id"
     t.string   "status",         default: "new"
     t.string   "correlative"
+    t.integer  "admin_id"
     t.datetime "received_at"
     t.datetime "confirmed_at"
     t.datetime "admitted_at"
@@ -166,15 +167,16 @@ ActiveRecord::Schema.define(version: 20151107200344) do
   add_index "institutions", ["slug"], name: "index_institutions_on_slug", using: :btree
 
   create_table "inv_product_movements", force: true do |t|
-    t.integer  "kind",         default: 0, null: false
-    t.integer  "cause",        default: 0, null: false
+    t.integer  "kind",           default: 0, null: false
+    t.integer  "cause",          default: 0, null: false
     t.text     "comments"
-    t.integer  "product_id",               null: false
-    t.integer  "warehouse_id",             null: false
-    t.integer  "quantity",     default: 0, null: false
-    t.integer  "admin_id",                 null: false
+    t.integer  "product_id",                 null: false
+    t.integer  "warehouse_id",               null: false
+    t.integer  "quantity",       default: 0, null: false
+    t.integer  "admin_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "warehouse_from"
   end
 
   create_table "inv_products", force: true do |t|

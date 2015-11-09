@@ -293,6 +293,7 @@ es:
         warehouse_id: Bodega
         warehouse_name: Bodega
         warehouse_from: Se transfiere desde la bodega
+        admin_name: Usuario
     enum:
       ta/article:
         status:

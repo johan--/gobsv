@@ -4,8 +4,11 @@ $(document).ready ->
   $tables.each ->
 
     columns = []
-    buttons = $("#buttonstpl").html()
-    template = Handlebars.compile(buttons)
+
+    if $("#buttonstpl").length > 0
+      buttons = $("#buttonstpl").html()
+      template = Handlebars.compile(buttons)
+      $(this).find("thead tr:first").append($("<th />"))
 
     $(this).find("[data-attribute]").each ->
       columns.push { data: $(this).attr("data-attribute") }
@@ -13,7 +16,6 @@ $(document).ready ->
     $(this).find("[data-invisible]").each ->
       columns.push { data: $(this).attr("data-invisible"), visible: false }
 
-    $(this).find("thead tr:first").append($("<th />"))
 
     $(this).dataTable {
       lengthChange: false,
@@ -26,11 +28,12 @@ $(document).ready ->
       }],
       columns: columns,
       createdRow: (row, data, dataIndex) ->
-        $(row).append(
-          $("<td />").append(
-            $(template({ id: data.id }))
+        if template?
+          $(row).append(
+            $("<td />").append(
+              $(template({ id: data.id }))
+            )
           )
-        )
       ,
       language: {
         loadingRecords: "Cargando ...",

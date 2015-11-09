@@ -1,0 +1,15 @@
+.row
+  .col-sx-12.col-sm-12.col-md-12.col-lg-12
+    .panel.panel-default
+      .panel-heading
+        .panel-title.clearfix
+          %h4.pull-left
+            = model.model_name.human(count: :many)
+          = link_to new_item_url, class: 'btn btn-default pull-right' do
+            %span.glyphicon.glyphicon-plus
+            Nuevo
+      .panel-body
+        %table.table.table-hover.table-striped.table-small.data-table
+          %thead
+            %tr
+              = render partial: 'concerns/tabled/table_header'

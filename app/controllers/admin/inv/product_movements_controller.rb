@@ -24,22 +24,26 @@ class Admin::Inv::ProductMovementsController < Admin::TaController
       inv_product_movements.*,
       inv_products.code AS product_code,
       inv_products.name AS product_name,
-      inv_warehouses.name AS warehouse_name
+      inv_warehouses.name AS warehouse_name,
+      admins.name AS admin_name
     ")
     .joins(:product)
     .joins(:warehouse)
-    .where(conditions).decorate
+    .joins(:admin)
+    .where(conditions)
+    .order(created_at: :desc)
+    .decorate
 
     add_breadcrumb model.model_name.human(count: :many), index_url
 
     respond_to do |format|
-      format.html { render template: 'concerns/tabled/index' }
+      format.html { render template: 'admin/inv/product_movements/index' }
       format.json { render json: @items }
     end
   end
 
   def table_columns
-    %w(product_code product_name warehouse_name kind cause quantity comments)
+    %w(admin_name created_at product_code product_name warehouse_name kind cause quantity comments)
   end
 
   def init_form
