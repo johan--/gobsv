@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20151109214105) do
     t.integer  "institution_id"
     t.string   "status",         default: "new"
     t.string   "correlative"
-    t.integer  "admin_id"
     t.datetime "received_at"
     t.datetime "confirmed_at"
     t.datetime "admitted_at"

@@ -12,15 +12,16 @@
   .col-xs-12.col-sm-6
     .row
       - [1, 2].each do |i|
-        .col-xs-6
-          %article
-            = link_to ta_article_url(gallery_articles[i]) do
-              = image_tag gallery_articles[i].image.url(:medium), class: 'img-responsive'
-            %h3
+        - unless gallery_articles[i].nil?
+          .col-xs-6
+            %article
               = link_to ta_article_url(gallery_articles[i]) do
-                = gallery_articles[i].title
-            %p
-              = truncate gallery_articles[i].summary, length: 150
+                = image_tag gallery_articles[i].image.url(:medium), class: 'img-responsive'
+              %h3
+                = link_to ta_article_url(gallery_articles[i]) do
+                  = gallery_articles[i].title
+              %p
+                = truncate gallery_articles[i].summary, length: 150
 -#
   .row
     .col-xs-12

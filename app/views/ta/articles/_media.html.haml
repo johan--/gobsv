@@ -26,6 +26,8 @@
           %figure.col-xs-6.col-sm-3{ itemprop: 'associatedMedia', itemscope: true, itemtype: 'http://schema.org/ImageObject' }
             = link_to image.image.url, itemprop: 'contentUrl', data: { size: "#{image.image_width}x#{image.image_height}" } do
               = image_tag image.image.url(:medium), class: 'img-responsive', alt: @article.title, itemprop: 'thumbnail'
+            %figcaption
+              = image.description
 
       = render partial: 'layouts/ta/photoswipe'
       = javascript_include_tag 'ta/init-photoswipe'
