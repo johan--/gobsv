@@ -14,6 +14,11 @@
 @import 'jssocials';
 @import 'jssocials-theme-classic';
 
+.pswp__caption__center {
+  text-align: center;
+  max-width: 1170px;
+}
+
 .navbar {
   border-bottom: 2px rgba(0, 0, 0, 0.1) solid;
 
