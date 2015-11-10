@@ -1,4 +1,4 @@
-class Admin::Inv::WarehousesController < Admin::TaController
+class Admin::Inv::WarehousesController < Admin::InvController
 
   def model
     ::Inv::Warehouse

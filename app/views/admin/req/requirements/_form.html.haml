@@ -1,0 +1,24 @@
+.row
+  .col-sm-10.col-sm-offset-1
+    = attribute_error @item, :product_requirements
+  .col-sm-5.col-sm-offset-1
+    %b
+      Producto
+  .col-xs-5.col-sm-offset-1
+    %b
+      Cantidad
+%br
+
+= f.fields_for :product_requirements do |ff|
+  .row
+    .col-sm-6
+      = ff.select :product_id, @products.map{ |product| [product.name, product.id] }, { include_blank: true, hide_label: true }, { class: 'select2' }
+    .col-sm-2
+      = ff.text_field :quantity, hide_label: true, class: 'form-control'
+    .col-sm-3
+      = ff.link_to_remove class: 'btn btn-sm btn-danger' do
+        %span.glyphicon.glyphicon-trash
+
+= f.link_to_add :product_requirements, class: 'btn btn-sm btn-default pull-right' do
+  %span.glyphicon.glyphicon-plus
+.clearfix

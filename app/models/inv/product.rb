@@ -31,7 +31,7 @@ class Inv::Product < ActiveRecord::Base
   end
 
   def code_seed
-    name[0...2].upcase
+    I18n.transliterate(name[0...2]).upcase
   end
 
   def current_correlative_from_code

@@ -20,3 +20,5 @@ modules:
   - warehouses
   - product_movements
   - units
+  req:
+  - requirements

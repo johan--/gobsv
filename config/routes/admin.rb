@@ -21,6 +21,9 @@ constraints subdomain: 'panel' do
           :warehouses,
           :product_movements,
           :units
+        ],
+        req: [
+          :requirements
         ]
       }
 

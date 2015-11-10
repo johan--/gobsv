@@ -15,6 +15,12 @@ module Tabled
     helper_method :table_columns
   end
 
+  def before_controller_create
+  end
+
+  def before_controller_update
+  end
+
   def init_breadcrumb
     add_breadcrumb I18n.t('layouts.admin.breadcrumb.home'), admin_root_url
   end
@@ -81,6 +87,7 @@ module Tabled
 
   def create
     @item = model.new item_params
+    before_controller_create
 
     if @item.save
       redirect_to url_for(action: :edit, id: @item.id), notice: t('layouts.admin.notice.created')
@@ -104,6 +111,7 @@ module Tabled
 
   def update
     @item = model.find params[:id]
+    before_controller_update
     if @item.update_attributes item_params
       redirect_to url_for(action: :edit, id: @item.id), notice: t('layouts.admin.notice.updated')
     else

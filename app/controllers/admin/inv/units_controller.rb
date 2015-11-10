@@ -1,4 +1,4 @@
-class Admin::Inv::UnitsController < Admin::TaController
+class Admin::Inv::UnitsController < Admin::InvController
 
   def model
     ::Inv::Unit

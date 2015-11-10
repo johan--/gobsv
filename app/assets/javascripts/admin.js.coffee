@@ -64,3 +64,8 @@ window.NestedFormEvents.prototype.insertFields = (content, assoc, link) ->
       $(content).appendTo($(target))
     else
       $(content).insertBefore(link)
+
+
+$(document).on "nested:fieldAdded", (event) ->
+  field = event.field
+  field.find(".select2").select2 theme: "bootstrap"

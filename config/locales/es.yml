@@ -226,6 +226,12 @@ es:
       inv/product_movement:
         one: Movimiento
         other: Movimientos
+      req/product_requirement:
+        one: Producto
+        other: Productos
+      req/requirement:
+        one: Requerimiento a bodega
+        other: Requerimientos a bodega
     attributes:
       id: ID
       created_at: Creado el
@@ -293,7 +299,16 @@ es:
         warehouse_id: Bodega
         warehouse_name: Bodega
         warehouse_from: Se transfiere desde la bodega
+        warehouse_from_name: Transferido desde
         admin_name: Usuario
+      req/requirement:
+        code: Código
+        status: Estado
+        admin_name: Usuario
+        product_requirements: La lista de productos
+      req/product_requirement:
+        product_id: Producto
+        quantity: Cantidad
     enum:
       ta/article:
         status:
@@ -318,7 +333,14 @@ es:
           adjustment: Ajuste
           transfer: Transferencia desde bodega
           request: Solicitud
+      req/requirement:
+        status:
+          pending: Pendiente
+          declined: Anulado
+          delivered: Entregado
+
   modules:
     ta: Transparencia Activa
     inv: Inventario
     qa: Quejas y Avisos
+    req: Requerimientos
