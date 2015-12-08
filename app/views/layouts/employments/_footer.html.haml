@@ -1,1 +1,49 @@
-footer
+%footer
+  .container
+    .row
+      .col-xs-4
+        = image_tag 'shared/gobierno-abierto.png'
+        %p.contact-info
+          Presidencia de la República de El Salvador
+          %br
+          Alameda Dr. Enrique Araujo, No. 5500.
+          %br
+          San Salvador, El Salvador, CA.
+          %br
+          Tel. +(503)2133-7500 | Email. info@gobiernoabierto.gob.sv
+      .col-xs-4
+        .categories
+          %ul
+            %li
+              = link_to nil do
+                Inicio
+            %li
+              = link_to nil do
+                SPCTA
+            %li
+              = link_to nil do
+                Herramientas
+            %li
+              = link_to nil do
+                Participacion
+            %li
+              = link_to nil do
+                Transparencia
+            %li
+              = link_to nil do
+                Fomilenio ii
+      .col-xs-4
+        .footer-cc-logo
+          = image_tag 'shared/icon-cc.png'
+        %p.contact-info
+          Gobierno Abierto by Secretaría de Participación Ciudadana,
+          Transparencia y Anticorrupción is licensed under a Creative Commons
+          %br
+          Reconocimiento-CompartirIgual 4.0 Internacional License.
+        .footer-social-media
+          = link_to nil do
+            = image_tag 'shared/icon-facebook.png'
+          = link_to nil do
+            = image_tag 'shared/icon-twitter.png'
+          = link_to nil do
+            = image_tag 'shared/icon-mail.png'

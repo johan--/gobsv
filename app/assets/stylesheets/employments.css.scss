@@ -106,4 +106,75 @@ strong {
   }
 }
 
+
+footer {
+  padding-top: 25px;
+  background: #022B3F;
+  color: white;
+
+  p.contact-info {
+    color: inherit;
+    font-size: 0.85em;
+    margin: 10px 0;
+  }
+
+  .categories {
+    text-transform: uppercase;
+
+    ul {
+      list-style: none;
+
+      li {
+        margin: 20px 0;
+
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .footer-cc-logo, .footer-social-media, p.contact-info {
+    padding: 5px 15px 5px 10px;
+  }
+
+  .footer-social-media {
+    margin: 20px 0;
+
+    a {
+      margin-right: 20px;
+    }
+  }
+}
+
+#lastjobs{
+  padding: 20px 0;
+}
+
+.dashed-border{
+  border-left: 1px dashed;
+}
+
+.job-list{
+  .job{
+    padding: 10px;
+    margin: 10px 0;
+    background: #ffffff;
+    background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 100%);
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 100%);
+    background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f1f1f1',GradientType=0 );
+    .job-title{
+      color: #3FB3E4;
+      font-size: 1.2em;
+      padding-bottom: 10px;
+    }
+  }
+}
+
 /* END HOME MAIN */
+
+h2.header-title{
+  font-size: 1.5em;
+}

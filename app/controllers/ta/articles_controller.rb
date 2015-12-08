@@ -1,5 +1,7 @@
 module Ta
   class ArticlesController < TaController
+    protect_from_forgery :except => :feed
+    
     ##
     # GET ta/articles
     def index
@@ -73,6 +75,13 @@ module Ta
       add_breadcrumb 'Inicio', ta_root_url
       add_breadcrumb @article.category.name, ta_category_url(@article.category)
       add_breadcrumb @article.title, nil
+    end
+
+    def feed
+      @articles = Ta::Article.publish.newer.limit(10)
+      respond_to do |format|
+        format.rss { render :layout => false }
+      end
     end
   end
 end

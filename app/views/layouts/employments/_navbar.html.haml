@@ -13,10 +13,10 @@
       %ul.nav.navbar-nav
         %li
           = link_to nil do
-            Gobierno Abierto
+            SPTA
         %li
           = link_to nil do
-            Acceso a la información
+            = "Acceso a la información"
         %li
           = link_to nil do
             Aplicaciones
@@ -31,7 +31,6 @@
         %li
           = link_to nil do
             = icon('bars')
-
       = form_tag request.url, class: 'navbar-form navbar-right', role: :search do |f|
         .form-group.has-feedback
           = text_field '', '', class: 'form-control', placeholder: 'Búsqueda'
