@@ -156,3 +156,6 @@ gem 'select2-rails'
 
 # Easily and efficiently make your ActiveRecord models support hierarchies http://mceachen.github.io/closure_tree/
 gem 'closure_tree'
+
+# Cron jobs in Ruby
+gem 'whenever', :require => false

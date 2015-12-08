@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207215556) do
+ActiveRecord::Schema.define(version: 20151208220237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,29 @@ ActiveRecord::Schema.define(version: 20151207215556) do
     t.datetime "updated_at"
   end
 
+  create_table "employments_degrees", force: true do |t|
+    t.integer  "plaza_id"
+    t.string   "gra_code"
+    t.string   "gra_name"
+    t.string   "req_code"
+    t.string   "req_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_degrees", ["plaza_id"], name: "index_employments_degrees_on_plaza_id", using: :btree
+
+  create_table "employments_experiences", force: true do |t|
+    t.integer  "plaza_id"
+    t.string   "exp_code"
+    t.string   "exp_name"
+    t.string   "exp_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_experiences", ["plaza_id"], name: "index_employments_experiences_on_plaza_id", using: :btree
+
   create_table "employments_factors", force: true do |t|
     t.string   "name"
     t.integer  "factor_score_id"
@@ -155,6 +178,7 @@ ActiveRecord::Schema.define(version: 20151207215556) do
     t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "factor_id"
   end
 
   add_index "employments_factors", ["plaza_id"], name: "index_employments_factors_on_plaza_id", using: :btree
@@ -170,6 +194,43 @@ ActiveRecord::Schema.define(version: 20151207215556) do
   end
 
   add_index "employments_languages", ["plaza_id"], name: "index_employments_languages_on_plaza_id", using: :btree
+
+  create_table "employments_public_competitions", force: true do |t|
+    t.string   "identifier"
+    t.string   "post_name"
+    t.string   "convocation_id"
+    t.string   "convocation_name"
+    t.string   "institution_id"
+    t.string   "institution_name"
+    t.string   "institution_code"
+    t.boolean  "autonomous",                                       default: false
+    t.integer  "plaza_id"
+    t.integer  "plaza_state_id"
+    t.string   "plaza_state"
+    t.integer  "vacancies",                                        default: 1
+    t.decimal  "salary",                  precision: 18, scale: 2
+    t.datetime "opening_registration"
+    t.datetime "closing_registration"
+    t.string   "inspto_code"
+    t.string   "organization_department"
+    t.text     "mission"
+    t.text     "function"
+    t.text     "result"
+    t.text     "frame"
+    t.text     "description"
+    t.string   "email"
+    t.text     "address"
+    t.string   "phone"
+    t.text     "comment"
+    t.datetime "created_date"
+    t.datetime "updated_date"
+    t.string   "created_user"
+    t.string   "updated_user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_public_competitions", ["plaza_id"], name: "index_employments_public_competitions_on_plaza_id", using: :btree
 
   create_table "employments_specialties", force: true do |t|
     t.integer  "plaza_id"
