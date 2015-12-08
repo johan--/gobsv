@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110190819) do
+ActiveRecord::Schema.define(version: 20151207215556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20151110190819) do
     t.integer  "institution_id"
     t.string   "status",         default: "new"
     t.string   "correlative"
+    t.integer  "admin_id"
     t.datetime "received_at"
     t.datetime "confirmed_at"
     t.datetime "admitted_at"
@@ -135,6 +136,63 @@ ActiveRecord::Schema.define(version: 20151110190819) do
   add_index "complaints_expedients", ["institution_id"], name: "index_complaints_expedients_on_institution_id", using: :btree
   add_index "complaints_expedients", ["kind"], name: "index_complaints_expedients_on_kind", using: :btree
   add_index "complaints_expedients", ["status"], name: "index_complaints_expedients_on_status", using: :btree
+
+  create_table "employments_areas", force: true do |t|
+    t.integer  "factor_score_id"
+    t.string   "name"
+    t.integer  "order"
+    t.decimal  "score",           precision: 18, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employments_factors", force: true do |t|
+    t.string   "name"
+    t.integer  "factor_score_id"
+    t.integer  "plaza_id"
+    t.decimal  "minimum_score",   precision: 18, scale: 2
+    t.decimal  "maximum_score",   precision: 18, scale: 2
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_factors", ["plaza_id"], name: "index_employments_factors_on_plaza_id", using: :btree
+
+  create_table "employments_languages", force: true do |t|
+    t.integer  "plaza_id"
+    t.string   "idi_code"
+    t.string   "idi_name"
+    t.string   "req_code"
+    t.string   "req_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_languages", ["plaza_id"], name: "index_employments_languages_on_plaza_id", using: :btree
+
+  create_table "employments_specialties", force: true do |t|
+    t.integer  "plaza_id"
+    t.string   "esp_code"
+    t.string   "esp_name"
+    t.string   "req_code"
+    t.string   "req_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_specialties", ["plaza_id"], name: "index_employments_specialties_on_plaza_id", using: :btree
+
+  create_table "employments_technical_competences", force: true do |t|
+    t.integer  "plaza_id"
+    t.string   "name"
+    t.string   "req_code"
+    t.string   "req_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_technical_competences", ["plaza_id"], name: "index_employments_technical_competences_on_plaza_id", using: :btree
 
   create_table "institutions", force: true do |t|
     t.string   "name"
