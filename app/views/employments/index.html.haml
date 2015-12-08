@@ -3,8 +3,8 @@
     .row
       .col-xs-12
         .counter
-          %span.label.label-default 1
-          %span.label.label-default 2
+          %span.label.label-default 0
+          %span.label.label-default 0
           %span.label.label-default 0
           %span.label.label-default 0
     .row
@@ -17,32 +17,90 @@
       .col-xs-12
         = link_to nil, class: 'btn btn-primary btn-lg' do
           Consultar listado de plazas
+    -#
+      .row
+        .col-xs-12.col-sm-6.col-md-3
+          = link_to nil, class: 'icon' do
+            = image_tag 'employments/icon-sales.png'
+            %span
+              %strong 300
+              %br
+              Ventas
+        .col-xs-12.col-sm-6.col-md-3
+          = link_to nil, class: 'icon' do
+            = image_tag 'employments/icon-travel.png'
+            %span
+              %strong 567
+              %br
+              Aduanales
+        .col-xs-12.col-sm-6.col-md-3
+          = link_to nil, class: 'icon' do
+            = image_tag 'employments/icon-money.png'
+            %span
+              %strong 402
+              %br
+              Contaduría
+        .col-xs-12.col-sm-6.col-md-3
+          = link_to nil, class: 'icon' do
+            = image_tag 'employments/icon-statistics.png'
+            %span
+              %strong 128
+              %br
+              Administradores
+#lastjobs
+  .container
     .row
-      .col-xs-12.col-sm-6.col-md-3
-        = link_to nil, class: 'icon' do
-          = image_tag 'employments/icon-sales.png'
-          %span
-            %strong 300
-            %br
-            Ventas
-      .col-xs-12.col-sm-6.col-md-3
-        = link_to nil, class: 'icon' do
-          = image_tag 'employments/icon-travel.png'
-          %span
-            %strong 567
-            %br
-            Aduanales
-      .col-xs-12.col-sm-6.col-md-3
-        = link_to nil, class: 'icon' do
-          = image_tag 'employments/icon-money.png'
-          %span
-            %strong 402
-            %br
-            Contaduría
-      .col-xs-12.col-sm-6.col-md-3
-        = link_to nil, class: 'icon' do
-          = image_tag 'employments/icon-statistics.png'
-          %span
-            %strong 128
-            %br
-            Administradores
+      .col-sm-4
+        %strong
+          = "Ministerios"
+        .institutions-list
+          %ul.nav.nav-pills{role: "tablist"}
+            %li{role: "presentation"}
+              = link_to "Ministerio de Hacienda", "#", class: "badge"
+      .col-sm-8.dashed-border
+        %h4
+          %strong
+            = "Últimas plazas disponibles"
+        .job-list
+          .job
+            .job-title
+              = "Pasantía en minería de datos"
+            .row
+              .col-xs-5
+                %p
+                  = "Institución: "
+                  = "Ministerio de Gobernación"
+                %p
+                  = "Departamento: "
+                  = "San Salvador"
+                %p
+                  = "Género: "
+                  = "No indispensable"
+                %p
+                  .btn-toolbar{role: "toolbar"}
+                    .btn-group{role: "group"}
+                      = link_to "Aplicar", "#", class: "btn btn-primary"
+                    .btn-group{role: "group"}
+                      = link_to "Ver detalle"
+              .col-xs-7
+                %p
+                  = "Descripción: "
+                  %br
+                  = "My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too."
+
+        .show-list
+          = link_to "Ver listado completo", employments_jobs_url
+#create-cv
+  .container
+    .row
+      .col-sm-6.hidden-xs
+        = image_tag("employments/cv-girl.jpg", class: "img-responsive")
+      .col-sm-6
+        %br
+        = image_tag("employments/create-cv.png", class: "img-responsive")
+        %br
+        %br
+        .text-center
+          = link_to "Crear mi currículum", "#", class: "btn btn-primary"
+        %br
+    .clearfix
