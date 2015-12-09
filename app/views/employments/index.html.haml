@@ -83,7 +83,7 @@
                       .row
                         .col-xs-6.col-md-4
                           .btn-group{role: "group"}
-                            = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
+                            = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary", target: '_blank'
                         .col-xs-6.col-md-8
                           .btn-group{role: "group"}
                             = link_to "Ver detalle", employments_job_url(plaza), remote: true
@@ -91,7 +91,7 @@
                   %p
                     = "Descripción: "
                     %br
-                    = plaza.description
+                    = simple_format plaza.description
                     %br
                     #shareButtonLabelCount{class: "plaza-#{i}"}
                     :javascript
@@ -115,6 +115,6 @@
         %br
         %br
         .text-center
-          = link_to "Crear mi currículum", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
+          = link_to "Crear mi currículum", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary", target: '_blank'
         %br
     .clearfix

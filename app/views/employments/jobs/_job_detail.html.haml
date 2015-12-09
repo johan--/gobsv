@@ -23,19 +23,46 @@
                 = @job.post_name
         .row
           .col-xs-7
-            %p
+            %div
+              %strong= "Tipo de convocatoria: "
+              %br
+              = simple_format @job.convocation_name
+            %br
+            %div
               %strong= "Descripción: "
               %br
               = @job.description
-            %p
+            %br
+            %div
               %strong= "Mision: "
               %br
               = @job.mission
-
-            %p
+            %br
+            %div
               %strong= "Funciones: "
               %br
               = @job.function
+            - if @job.degrees.count > 0
+              - @job.degrees.each do |degree|
+                %br
+                %div
+                  %strong= "Formación académica (#{degree.req_name}): "
+                  %br
+                  = simple_format degree.gra_name
+            - if @job.experiences.count > 0
+              - @job.experiences.each do |experience|
+                %br
+                %div
+                  %strong= "Experiencia requerida (#{experience.exp_name}): "
+                  %br
+                  = simple_format experience.exp_description
+            - if @job.technical_competences.count > 0
+              - @job.technical_competences.each do |competence|
+                %br
+                %div
+                  %strong= "Competencias técnicas (#{competence.req_name}): "
+                  %br
+                  = simple_format competence.name
 
           .col-xs-5
             .well
@@ -62,7 +89,7 @@
             .btn-toolbar{role: "toolbar"}
               .line.visible-lg-inline-block
               .btn-group{role: "group"}
-                = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
+                = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary", target: '_blank'
               .line.visible-lg-inline-block
     -#
       .modal-footer
