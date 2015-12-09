@@ -93,6 +93,7 @@ namespace :employments do
         obj.save
       end
       # Get public competitions
+      Employments::PublicContest.update_all(active: false)
       jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/VistaConcursosPublicos', access_token
       jsons.each do |json|
         obj = Employments::PublicCompetition.where(identifier: json[:Identificador]).first_or_initialize
@@ -125,6 +126,7 @@ namespace :employments do
         obj.updated_date = json[:fechaModificacion]
         obj.created_user = json[:usuarioCreacion]
         obj.updated_user = json[:usuarioModificacion]
+        obj.active = true
         obj.save
       end
     rescue Exception => e
