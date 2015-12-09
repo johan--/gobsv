@@ -1,0 +1,61 @@
+
+$("#wrap-modal").html("<%= escape_javascript render partial: 'thanks' %>")
+
+-#
+  #lastjobs
+    .container
+      .row
+        .col-sm-12
+          %h2.header-title
+            = "Todas las plazas disponibles"
+          .job-list
+            .job
+              .job-title
+                = "Pasantía en minería de datos"
+              .row
+                .col-xs-5
+                  %p
+                    = "Institución: "
+                    = "Ministerio de Gobernación"
+                  %p
+                    = "Departamento: "
+                    = "San Salvador"
+                  %p
+                    = "Género: "
+                    = "No indispensable"
+                  %p
+                    .btn-toolbar{role: "toolbar"}
+                      .btn-group{role: "group"}
+                        = link_to "Aplicar", "#", class: "btn btn-primary"
+                      .btn-group{role: "group"}
+                        = link_to "Ver detalle"
+                .col-xs-7
+                  %p
+                    = "Descripción: "
+                    %br
+                    = "My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too."
+            .job
+              .job-title
+                = "Pasantía en minería de datos"
+              .row
+                .col-xs-5
+                  %p
+                    = "Institución: "
+                    = "Ministerio de Gobernación"
+                  %p
+                    = "Departamento: "
+                    = "San Salvador"
+                  %p
+                    = "Género: "
+                    = "No indispensable"
+                  %p
+                    .btn-toolbar{role: "toolbar"}
+                      .btn-group{role: "group"}
+                        = link_to "Aplicar", "#", class: "btn btn-primary"
+                      .btn-group{role: "group"}
+                        = link_to "Ver detalle"
+                .col-xs-7
+                  %p
+                    = "Descripción: "
+                    %br
+                    = "My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too."

@@ -63,7 +63,7 @@
           %strong
             = "Últimas plazas disponibles"
         .job-list
-          - @last_plazas.each do |plaza|
+          - @last_plazas.each_with_index do |plaza, i|
             .job
               .job-title
                 = plaza.post_name
@@ -83,13 +83,22 @@
                       .btn-group{role: "group"}
                         = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
                       .btn-group{role: "group"}
-                        = link_to "Ver detalle", employments_job_url(plaza)
+                        = link_to "Ver detalle", employments_job_url(plaza), remote: true
                 .col-xs-7
                   %p
                     = "Descripción: "
                     %br
                     = plaza.description
-
+                    %br
+                    #shareButtonLabelCount{class: "plaza-#{i}"}
+                    :javascript
+                      $('.plaza-#{i}').jsSocials({
+                        url: "#{employments_job_url(plaza)}",
+                        text: "#{plaza.post_name}",
+                        showCount: true,
+                        showLabel: true,
+                        shares: ["twitter", "facebook", "googleplus", "linkedin"]
+                      })
         .show-list
           = link_to "Ver listado completo", employments_jobs_url
 #create-cv
