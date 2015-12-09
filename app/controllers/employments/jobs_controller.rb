@@ -2,7 +2,7 @@ class Employments::JobsController < EmploymentsController
   respond_to :html, :js
 
   def index
-    @jobs = Employments::PublicCompetition.active.valid.ransack(params[:q]).result(distinct: true).paginate(page: params[:page], per_page: 5)
+    @jobs = Employments::PublicCompetition.active.valid.order(created_date: :desc).ransack(params[:q]).result(distinct: true).paginate(page: params[:page], per_page: 5)
     add_breadcrumb 'Inicio', employments_root_url
     add_breadcrumb "Empleos disponibles", nil
   end
