@@ -3,10 +3,9 @@
     .row
       .col-xs-12
         .counter
-          %span.label.label-default 0
-          %span.label.label-default 0
-          %span.label.label-default 0
-          %span.label.label-default 0
+          - @total_plazas.each_char do |num|
+            %span.label.label-default
+              = num
     .row
       .col-xs-12
         %h1
@@ -15,7 +14,7 @@
           Aplica a plazas, empleos, pasantías en las instituciones del gobierno, sin cuello ni favores, procesos transparentes.
     .row
       .col-xs-12
-        = link_to nil, class: 'btn btn-primary btn-lg' do
+        = link_to employments_jobs_url, class: 'btn btn-primary btn-lg' do
           Consultar listado de plazas
     -#
       .row
@@ -51,42 +50,45 @@
   .container
     .row
       .col-sm-4
-        %strong
-          = "Ministerios"
-        .institutions-list
-          %ul.nav.nav-pills{role: "tablist"}
-            %li{role: "presentation"}
-              = link_to "Ministerio de Hacienda", "#", class: "badge"
+        - if @institutions.size > 0
+          %strong
+            = "Instituciones"
+          .institutions-list
+            %ul.nav.nav-pills{role: "tablist"}
+              - @institutions.each do |institution|
+                %li{role: "presentation"}
+                  = link_to institution.institution_code, employments_jobs_url(:'q[institution_id_eq]' => institution.institution_id), title: institution.institution_name, class: "badge", data: { toggle: 'tooltip', placement: 'top' }
       .col-sm-8.dashed-border
         %h4
           %strong
             = "Últimas plazas disponibles"
         .job-list
-          .job
-            .job-title
-              = "Pasantía en minería de datos"
-            .row
-              .col-xs-5
-                %p
-                  = "Institución: "
-                  = "Ministerio de Gobernación"
-                %p
-                  = "Departamento: "
-                  = "San Salvador"
-                %p
-                  = "Género: "
-                  = "No indispensable"
-                %p
-                  .btn-toolbar{role: "toolbar"}
-                    .btn-group{role: "group"}
-                      = link_to "Aplicar", "#", class: "btn btn-primary"
-                    .btn-group{role: "group"}
-                      = link_to "Ver detalle"
-              .col-xs-7
-                %p
-                  = "Descripción: "
-                  %br
-                  = "My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too."
+          - @last_plazas.each do |plaza|
+            .job
+              .job-title
+                = plaza.post_name
+              .row
+                .col-xs-5
+                  %p
+                    = "Institución: "
+                    = plaza.institution_name
+                  %p
+                    = "Salario: "
+                    = number_to_currency(plaza.salary)
+                  %p
+                    = "Vacantes: "
+                    = plaza.vacancies
+                  %p
+                    .btn-toolbar{role: "toolbar"}
+                      .btn-group{role: "group"}
+                        = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
+                      .btn-group{role: "group"}
+                        = link_to "Ver detalle", employments_job_url(plaza)
+                .col-xs-7
+                  %p
+                    = "Descripción: "
+                    %br
+                    = plaza.description
 
         .show-list
           = link_to "Ver listado completo", employments_jobs_url
@@ -101,6 +103,6 @@
         %br
         %br
         .text-center
-          = link_to "Crear mi currículum", "#", class: "btn btn-primary"
+          = link_to "Crear mi currículum", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
         %br
     .clearfix

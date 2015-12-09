@@ -7,4 +7,4 @@
 #= require 'bootstrap-sprockets'
 
 $ ->
-  console.log "HI!"
+  $('[data-toggle="tooltip"]').tooltip()
