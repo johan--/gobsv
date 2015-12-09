@@ -1,61 +1,66 @@
-
-$("#wrap-modal").html("<%= escape_javascript render partial: 'thanks' %>")
-
--#
-  #lastjobs
-    .container
+= render partial: 'layouts/employments/breadcrumb'
+.container
+  .job-detail
+    .job-detail-header
       .row
-        .col-sm-12
-          %h2.header-title
-            = "Todas las plazas disponibles"
-          .job-list
-            .job
-              .job-title
-                = "Pasantía en minería de datos"
-              .row
-                .col-xs-5
-                  %p
-                    = "Institución: "
-                    = "Ministerio de Gobernación"
-                  %p
-                    = "Departamento: "
-                    = "San Salvador"
-                  %p
-                    = "Género: "
-                    = "No indispensable"
-                  %p
-                    .btn-toolbar{role: "toolbar"}
-                      .btn-group{role: "group"}
-                        = link_to "Aplicar", "#", class: "btn btn-primary"
-                      .btn-group{role: "group"}
-                        = link_to "Ver detalle"
-                .col-xs-7
-                  %p
-                    = "Descripción: "
-                    %br
-                    = "My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too."
-            .job
-              .job-title
-                = "Pasantía en minería de datos"
-              .row
-                .col-xs-5
-                  %p
-                    = "Institución: "
-                    = "Ministerio de Gobernación"
-                  %p
-                    = "Departamento: "
-                    = "San Salvador"
-                  %p
-                    = "Género: "
-                    = "No indispensable"
-                  %p
-                    .btn-toolbar{role: "toolbar"}
-                      .btn-group{role: "group"}
-                        = link_to "Aplicar", "#", class: "btn btn-primary"
-                      .btn-group{role: "group"}
-                        = link_to "Ver detalle"
-                .col-xs-7
-                  %p
-                    = "Descripción: "
-                    %br
-                    = "My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too."
+        .col-xs-5
+          .clip
+            = image_tag("employments/icon-clip.png")
+          .yellow
+            = @job.institution_code
+        .col-xs-7
+          %div{id: "shareButtonLabelCount#{@job.id}"}
+          :javascript
+            $("#shareButtonLabelCount#{@job.id}").jsSocials({
+              url: "#{employments_job_url(@job)}",
+              text: "#{@job.post_name}",
+              showCount: true,
+              showLabel: true,
+              shares: ["twitter", "facebook", "googleplus", "linkedin"]
+            })
+          %h2
+            = @job.post_name
+
+    .row
+      .col-xs-7
+        %p
+          %strong= "Descripción: "
+          %br
+          = @job.description
+        %p
+          %strong= "Mision: "
+          %br
+          = @job.mission
+
+        %p
+          %strong= "Funciones: "
+          %br
+          = @job.function
+
+      .col-xs-5
+        .well
+          %h4
+            Datos Generales
+          %p
+            = "Institución: "
+            = @job.institution_name
+          %p
+            = "Salario: "
+            = number_to_currency(@job.salary)
+          %p
+            = "Vacantes: "
+            = @job.vacancies
+          %p
+            = "Correo: "
+            = @job.email
+          %p
+            = "Direccion: "
+            = @job.address
+          %hr
+    .row
+      .col-sm-12.center-block
+        .btn-toolbar{role: "toolbar"}
+          .line.visible-lg-inline-block
+          .btn-group{role: "group"}
+            = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
+          .line.visible-lg-inline-block

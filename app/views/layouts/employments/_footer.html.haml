@@ -2,7 +2,7 @@
   .container
     .row
       .col-xs-4
-        = image_tag 'shared/gobierno-abierto.png'
+        = image_tag 'shared/gobierno-abierto.png', class: 'img-responsive'
         %p.contact-info
           Presidencia de la República de El Salvador
           %br
@@ -34,16 +34,16 @@
                 Fomilenio ii
       .col-xs-4
         .footer-cc-logo
-          = image_tag 'shared/icon-cc.png'
+          = image_tag 'shared/icon-cc.png', class: 'img-responsive'
         %p.contact-info
           Gobierno Abierto by Secretaría de Participación Ciudadana,
           Transparencia y Anticorrupción is licensed under a Creative Commons
           %br
           Reconocimiento-CompartirIgual 4.0 Internacional License.
         .footer-social-media
-          = link_to nil do
+          = link_to 'https://www.facebook.com/GobiernoAbiertoSV' do
             = image_tag 'shared/icon-facebook.png'
-          = link_to nil do
+          = link_to 'https://twitter.com/GobAbiertoSV' do
             = image_tag 'shared/icon-twitter.png'
-          = link_to nil do
+          = mail_to "info@gobiernoabierto.gob.sv" do
             = image_tag 'shared/icon-mail.png'

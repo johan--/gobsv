@@ -80,10 +80,13 @@
                     = plaza.vacancies
                   %p
                     .btn-toolbar{role: "toolbar"}
-                      .btn-group{role: "group"}
-                        = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
-                      .btn-group{role: "group"}
-                        = link_to "Ver detalle", employments_job_url(plaza), remote: true
+                      .row
+                        .col-xs-6.col-md-4
+                          .btn-group{role: "group"}
+                            = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary"
+                        .col-xs-6.col-md-8
+                          .btn-group{role: "group"}
+                            = link_to "Ver detalle", employments_job_url(plaza), remote: true
                 .col-xs-7
                   %p
                     = "Descripción: "
