@@ -93,7 +93,7 @@ namespace :employments do
         obj.save
       end
       # Get public competitions
-      Employments::PublicContest.update_all(active: false)
+      Employments::PublicCompetition.update_all(active: false)
       jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/VistaConcursosPublicos', access_token
       jsons.each do |json|
         obj = Employments::PublicCompetition.where(identifier: json[:Identificador]).first_or_initialize
