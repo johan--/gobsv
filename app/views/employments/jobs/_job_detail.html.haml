@@ -43,26 +43,32 @@
               %br
               = @job.function
             - if @job.degrees.count > 0
-              - @job.degrees.each do |degree|
-                %br
-                %div
-                  %strong= "Formación académica (#{degree.req_name}): "
-                  %br
-                  = simple_format degree.gra_name
+              %br
+              %div
+                %strong= "Formación académica: "
+                - @job.degrees.each do |degree|
+                  %div
+                    = sanitize degree.gra_name
+                    %span.label{ class: degree.req_code.to_i == 1 ? 'label-info' : ( degree.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                      = degree.req_name
             - if @job.experiences.count > 0
-              - @job.experiences.each do |experience|
-                %br
-                %div
-                  %strong= "Experiencia requerida (#{experience.exp_name}): "
-                  %br
-                  = simple_format experience.exp_description
+              %br
+              %div
+                %strong= "Experiencia requerida: "
+                - @job.experiences.each do |experience|
+                  %div
+                    = sanitize experience.exp_description
+                    %span.label.label-default
+                      = experience.exp_name
             - if @job.technical_competences.count > 0
-              - @job.technical_competences.each do |competence|
-                %br
-                %div
-                  %strong= "Competencias técnicas (#{competence.req_name}): "
-                  %br
-                  = simple_format competence.name
+              %br
+              %div
+                %strong= "Competencias técnicas: "
+                - @job.technical_competences.each do |competence|
+                  %div
+                    = sanitize competence.name
+                    %span.label{ class: competence.req_code.to_i == 1 ? 'label-info' : ( competence.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                      = competence.req_name
 
           .col-xs-5
             .well
@@ -84,11 +90,12 @@
                 = "Direccion: "
                 = @job.address
               %hr
-              %h4
-                Criterios de evaluación
-              %p
-                = "Institución: "
-                = @job.institution_name
+              -#
+                %h4
+                  Criterios de evaluación
+                %p
+                  = "Institución: "
+                  = @job.institution_name
         .row
           .col-sm-12.center-block
             .btn-toolbar{role: "toolbar"}
