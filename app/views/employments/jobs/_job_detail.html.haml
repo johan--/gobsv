@@ -31,17 +31,17 @@
             %div
               %strong= "Descripción: "
               %br
-              = @job.description
+              = simple_format @job.description
             %br
             %div
               %strong= "Mision: "
               %br
-              = @job.mission
+              = simple_format @job.mission
             %br
             %div
               %strong= "Funciones: "
               %br
-              = @job.function
+              = simple_format @job.function
             - if @job.degrees.count > 0
               %br
               %div
