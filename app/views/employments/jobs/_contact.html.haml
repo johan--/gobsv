@@ -8,7 +8,7 @@
           .row
             .col-xs-5
               .yellow
-                = @job.institution_code
+                = truncate @job.institution_code, length: 7
             .col-xs-7
               %div{id: "shareButtonLabelCount#{@job.id}"}
               :javascript
@@ -37,4 +37,8 @@
             %p
               = "Direccion: "
               = @job.address
+            - if @job.comment.present?
+              %p
+                = "Comentario: "
+                = @job.comment
             %hr
