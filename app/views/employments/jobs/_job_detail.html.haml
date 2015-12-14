@@ -84,12 +84,17 @@
                 = "Direccion: "
                 = @job.address
               %hr
+              %h4
+                Criterios de evaluación
+              %p
+                = "Institución: "
+                = @job.institution_name
         .row
           .col-sm-12.center-block
             .btn-toolbar{role: "toolbar"}
               .line.visible-lg-inline-block
               .btn-group{role: "group"}
-                = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary", target: '_blank'
+                = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
               .line.visible-lg-inline-block
     -#
       .modal-footer
