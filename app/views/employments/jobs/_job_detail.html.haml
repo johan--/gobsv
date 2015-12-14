@@ -22,7 +22,7 @@
               %h2
                 = @job.post_name
         .row
-          .col-xs-7
+          .col-xs-6
             %div
               %strong= "Tipo de convocatoria: "
               %br
@@ -73,7 +73,7 @@
                     &nbsp
                     = sanitize competence.name
 
-          .col-xs-5
+          .col-xs-6
             .well
               %h4
                 Datos Generales
@@ -93,19 +93,39 @@
                 = "Direccion: "
                 = @job.address
               %hr
-              -#
-                %h4
-                  Criterios de evaluación
-                %p
-                  = "Institución: "
-                  = @job.institution_name
+              %h4
+                Criterios de evaluación
+              .table-responsive
+                %table.table.table-hover
+                  %tbody
+                    - @job.factors.order(:order).each_with_index do |factor, i|
+                      %tr
+                        %td
+                          = i + 1
+                        %td
+                          = factor.name
+                          - if factor.areas.count > 0
+                            %ol
+                              - factor.areas.each do |area|
+                                %li
+                                  = "#{area.score.to_i} puntos."
+                                  %nbsp
+                                  = area.name
+                        %td
+                          = "#{factor.maximum_score.to_i}max"
+                          %br
+                          %small
+                            = "#{factor.minimum_score.to_i}min"
         .row
-          .col-sm-12.center-block
-            .btn-toolbar{role: "toolbar"}
-              .line.visible-lg-inline-block
-              .btn-group{role: "group"}
-                = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
-              .line.visible-lg-inline-block
+          .col-sm-12
+            .center-block.hidden-sm.hidden-xs
+              .btn-toolbar{role: "toolbar"}
+                .line.visible-lg-inline-block.visible-md-inline-block
+                .btn-group{role: "group"}
+                  = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
+                .line.visible-lg-inline-block.visible-md-inline-block
+            .hidden-lg.hidden-md.text-centered
+              = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
     -#
       .modal-footer
         .text-center
