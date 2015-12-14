@@ -1,5 +1,5 @@
 class Employments::PublicCompetition < ActiveRecord::Base
-  scope :valid, -> { where.not(plaza_state_id: nil) }
+  scope :valid, -> { where(plaza_state_id: 2) }
   scope :active, -> { where(active: true) }
 
   has_many :technical_competences, foreign_key: :plaza_id, primary_key: :plaza_id
