@@ -48,27 +48,27 @@
             %strong= "Formación académica: "
             - @job.degrees.each do |degree|
               %div
-                = sanitize degree.gra_name
                 %span.label{ class: degree.req_code.to_i == 1 ? 'label-info' : ( degree.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
                   = degree.req_name
+                = sanitize degree.gra_name
         - if @job.experiences.count > 0
           %br
           %div
             %strong= "Experiencia requerida: "
             - @job.experiences.each do |experience|
               %div
-                = sanitize experience.exp_description
                 %span.label.label-default
                   = experience.exp_name
+                = sanitize experience.exp_description
         - if @job.technical_competences.count > 0
           %br
           %div
             %strong= "Competencias técnicas: "
             - @job.technical_competences.each do |competence|
               %div
-                = sanitize competence.name
                 %span.label{ class: competence.req_code.to_i == 1 ? 'label-info' : ( competence.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
                   = competence.req_name
+                = sanitize competence.name
       .col-xs-5
         .well
           %h4
@@ -97,5 +97,5 @@
         .btn-toolbar{role: "toolbar"}
           .line.visible-lg-inline-block
           .btn-group{role: "group"}
-            = link_to "Aplicar", "http://sapt.presidencia.gob.sv/dotacion/Default.aspx", class: "btn btn-primary", target: '_blank'
+            = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
           .line.visible-lg-inline-block
