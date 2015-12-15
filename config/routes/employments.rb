@@ -1,11 +1,13 @@
-constraints subdomain: 'empleos' do
+domain = 'empleospublicos.gob.sv' if Rails.env.production?
+domain = 'localhost.com'          if Rails.env.development?
+
+constraints DomainConstraint.new(domain) do
   scope module: 'employments', as: 'employments' do
-    defaults subdomain: 'empleos' do
-      root to: 'dashboard#index'
-      resources :jobs, only: [:index, :show] do
-        member do
-          get :contact
-        end
+
+    root to: 'dashboard#index'
+    resources :jobs, only: [:index, :show] do
+      member do
+        get :contact
       end
     end
   end
