@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209143908) do
+ActiveRecord::Schema.define(version: 20151215133134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20151209143908) do
 
   create_table "employments_areas", force: true do |t|
     t.integer  "factor_score_id"
-    t.string   "name"
+    t.text     "name"
     t.integer  "order"
     t.decimal  "score",           precision: 18, scale: 2
     t.datetime "created_at"
