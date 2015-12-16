@@ -1,7 +1,7 @@
 module Ta
   class ArticlesController < TaController
     protect_from_forgery :except => :feed
-    
+
     ##
     # GET ta/articles
     def index
@@ -39,6 +39,8 @@ module Ta
       @related  = @article.find_related_tags.limit(2)
 
       @audio    = Ta::Article.publish.audio_layout.newer.first
+
+      @jobs = Employments::PublicCompetition.active.valid.order(created_date: :desc).limit(3)
 
       if @article.audio?
         client = Soundcloud.new(

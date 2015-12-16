@@ -13,6 +13,8 @@
 @import 'fullsizable/theme';
 @import 'jssocials';
 @import 'jssocials-theme-classic';
+@import 'slick';
+@import 'slick-theme';
 
 .pswp__caption__center {
   text-align: center;
@@ -471,6 +473,23 @@ audio {
     overflow: hidden;
     img {
       width: 100%;
+    }
+  }
+}
+
+.job-list{
+  .job{
+    padding: 10px;
+    margin: 10px 0;
+    background: #ffffff;
+    background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 100%);
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 100%);
+    background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f1f1f1',GradientType=0 );
+    .job-title{
+      color: #3FB3E4;
+      font-size: 1.2em;
+      padding-bottom: 10px;
     }
   }
 }

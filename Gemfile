@@ -159,3 +159,6 @@ gem 'closure_tree'
 
 # Cron jobs in Ruby
 gem 'whenever', :require => false
+
+# Integrates Slick carousel, a jQuery plugin, into your Rails app.
+gem 'jquery-slick-rails'

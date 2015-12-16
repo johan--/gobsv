@@ -11,6 +11,7 @@
 #= require 'jssocials'
 #= require 'jssocials.shares'
 #= require 'photoswipe'
+#= require 'jquery.slick'
 
 $ ->
   $(".fullsizable").fullsizable()
@@ -69,3 +70,12 @@ $ ->
       #figcaption.text($(this).attr("alt"))
       $(this).wrap(figure)
       figcaption.insertAfter($(this))
+
+  $('.slick').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true
+  })
