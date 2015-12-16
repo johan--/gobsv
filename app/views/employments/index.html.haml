@@ -9,13 +9,13 @@
     .row
       .col-xs-12
         %h1
-          Plazas disponibles en el Gobierno Salvadoreño
+          Empleos públicos disponibles en el Gobierno Salvadoreño
         %p
           Aplica a plazas, empleos, pasantías en las instituciones del gobierno, sin cuello ni favores, procesos transparentes.
     .row
       .col-xs-12
         = link_to employments_jobs_url, class: 'btn btn-primary btn-lg' do
-          Consultar listado de plazas
+          Consultar listado de empleos
     -#
       .row
         .col-xs-12.col-sm-6.col-md-3
@@ -61,7 +61,7 @@
       .col-sm-8.dashed-border
         %h4
           %strong
-            = "Últimas plazas disponibles"
+            = "Últimos empleos disponibles"
         .job-list
           - @last_plazas.each_with_index do |plaza, i|
             .job
