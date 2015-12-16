@@ -10,10 +10,12 @@ class Employments::JobsController < EmploymentsController
   def show
     @job = Employments::PublicCompetition.active.find(params[:id])
     redirect_to employments_jobs_url and return unless @job
-    set_meta_tags title: @job.post_name,
-                  description: @job.institution_name,
-                  url: employments_job_url(@job),
-                  image: 'http://www.empleospublicos.gob.sv' + view_context.image_path('employments/cv-girl.png')
+    set_meta_tags og: {
+                      title: @job.post_name,
+                      description: @job.institution_name,
+                      url: employments_job_url(@job),
+                      image: 'http://www.empleospublicos.gob.sv' + view_context.image_path('employments/cv-girl.png')
+                    }
     add_breadcrumb 'Inicio', employments_root_url
     add_breadcrumb "Empleos disponibles", employments_jobs_url
     add_breadcrumb @job.post_name
