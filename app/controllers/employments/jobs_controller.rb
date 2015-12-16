@@ -13,7 +13,7 @@ class Employments::JobsController < EmploymentsController
     set_meta_tags title: @job.post_name,
                   description: @job.institution_name,
                   url: employments_job_url(@job),
-                  image: view_context.image_path('employments/cv-girl.png')
+                  image: 'http://www.empleospublicos.gob.sv' + view_context.image_path('employments/cv-girl.png')
     add_breadcrumb 'Inicio', employments_root_url
     add_breadcrumb "Empleos disponibles", employments_jobs_url
     add_breadcrumb @job.post_name
