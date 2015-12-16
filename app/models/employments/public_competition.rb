@@ -6,4 +6,6 @@ class Employments::PublicCompetition < ActiveRecord::Base
   has_many :experiences, foreign_key: :plaza_id, primary_key: :plaza_id
   has_many :degrees, foreign_key: :plaza_id, primary_key: :plaza_id
   has_many :factors, foreign_key: :plaza_id, primary_key: :plaza_id
+  has_many :specialties, foreign_key: :plaza_id, primary_key: :plaza_id
+  has_many :languages, foreign_key: :plaza_id, primary_key: :plaza_id
 end

@@ -194,6 +194,7 @@ es:
       resume: ! '%d %b %Y a las %I:%M %p'
       small: ! '%d %b'
       hour: ! '%I:%M %P'
+      date: ! '%d de %B de %Y'
     pm: pm
   will_paginate:
     previous_label: '«'

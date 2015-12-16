@@ -235,3 +235,54 @@ h2.header-title{
 .text-centered {
   text-align: center;
 }
+
+
+/* Overwrite navtab */
+
+/*** PANEL DEFAULT ***/
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    color: black;
+}
+.nav-tabs > .open > a,
+.nav-tabs > .open > a:hover,
+.nav-tabs > .open > a:focus,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    color: white;
+  	background-color: #01b1fa;
+  	border-color: transparent;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: white;
+  background-color: #01b1fa;
+  border-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #01b1fa;
+}
+
+.tab-content {
+  padding: 20px 0;
+}
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+.p15 {
+  padding: 2px 15px;
+}
+
+.text-blue {
+  color: #28abe1;
+}
+
+.text-green {
+  color: #3ab54d;
+}

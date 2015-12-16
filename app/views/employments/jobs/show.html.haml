@@ -22,102 +22,166 @@
             = @job.post_name
 
     .row
-      .col-xs-6
-        %div
-          %strong= "Tipo de convocatoria: "
-          %br
-          = simple_format @job.convocation_name
-        %br
-        %div
-          %strong= "Descripción: "
-          %br
-          = simple_format @job.description
-        %br
-        %div
-          %strong= "Mision: "
-          %br
-          = simple_format @job.mission
-        %br
-        %div
-          %strong= "Funciones: "
-          %br
-          = simple_format @job.function
-        - if @job.degrees.count > 0
-          %br
-          %div
-            %strong= "Formación académica: "
-            - @job.degrees.each do |degree|
+      .col-xs-12
+        %ul.nav.nav-tabs{role: 'tablist'}
+          %li.presentation.active
+            = link_to 'Información del puesto', '#general', role: 'tab', data: {toggle: 'tab'}
+          %li.presentation
+            = link_to 'Perfil de contratación', '#perfil', role: 'tab', data: {toggle: 'tab'}
+          %li.presentation
+            = link_to 'Criterios de evaluación', '#criteria', role: 'tab', data: {toggle: 'tab'}
+
+        .tab-content
+          .tab-pane.active#general{role: 'tabpanel'}
+            %table{cellspacing: 10}
+              %tr
+                %td
+                  Institución:
+                %td.p15
+                  = @job.institution_name
+              %tr
+                %td
+                  Salario:
+                %td.p15
+                  = number_to_currency @job.salary
+              %tr
+                %td
+                  Vacantes:
+                %td.p15
+                  = @job.vacancies
+              %tr
+                %td
+                  Correo:
+                %td.p15
+                  = mail_to @job.email
+              %tr
+                %td
+                  Dirección:
+                %td.p15
+                  = @job.address
+              %tr
+                %td
+                  Teléfono:
+                %td.p15
+                  = @job.phone
+              %tr
+                %td
+                  Fecha limite de inscripción:
+                %td.p15
+                  = l(@job.closing_registration, format: :date)
+            - if @job.mission.present?
+              %br
               %div
-                %span.label{ class: degree.req_code.to_i == 1 ? 'label-info' : ( degree.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
-                  = degree.req_name
-                &nbsp
-                = sanitize degree.gra_name
-        - if @job.experiences.count > 0
-          %br
-          %div
-            %strong= "Experiencia requerida: "
-            - @job.experiences.each do |experience|
+                %strong= "Misión: "
+                %br
+                = simple_format @job.mission
+            - if @job.function.present?
+              %br
               %div
-                %span.label.label-default
-                  = experience.exp_name
-                &nbsp
-                = sanitize experience.exp_description
-        - if @job.technical_competences.count > 0
-          %br
-          %div
-            %strong= "Competencias técnicas: "
-            - @job.technical_competences.each do |competence|
+                %strong= "Funciones básicas: "
+                %br
+                = simple_format @job.function
+            - if @job.result.present?
+              %br
               %div
-                %span.label{ class: competence.req_code.to_i == 1 ? 'label-info' : ( competence.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
-                  = competence.req_name
+                %strong= "Resultados principales: "
+                %br
+                = simple_format @job.result
+            - if @job.frame.present?
+              %br
+              %div
+                %strong= "Marco de referencia: "
+                %br
+                = simple_format @job.frame
+            - if @job.description.present?
+              %br
+              %div
+                %strong= "Otros aspectos: "
+                %br
+                = simple_format @job.description
+          .tab-pane#perfil{role: 'tabpanel'}
+            - if @job.degrees.count > 0
+              %div
+                %strong= "Grado académico: "
+                %table
+                  - @job.degrees.each do |degree|
+                    %tr
+                      %td.p15
+                        %span.label{ class: degree.req_code.to_i == 1 ? 'label-info' : ( degree.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                          = degree.req_name
+                      %td.p15
+                        = sanitize degree.gra_name
+            - if @job.specialties.count > 0
+              %br
+              %div
+                %strong= "Especialidades: "
+                %table
+                  - @job.specialties.each do |specialty|
+                    %tr
+                      %td.p15
+                        %span.label{ class: specialty.req_code.to_i == 1 ? 'label-info' : ( specialty.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                          = specialty.req_name
+                      %td.p15
+                        = sanitize specialty.esp_name
+            - if @job.technical_competences.count > 0
+              %br
+              %div
+                %strong= "Competencias técnicas: "
+                %table
+                  - @job.technical_competences.each do |competence|
+                    %tr
+                      %td.p15
+                        %span.label{ class: competence.req_code.to_i == 1 ? 'label-info' : ( competence.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                          = competence.req_name
+                      %td.p15
+                        = sanitize competence.name
+            - if @job.languages.count > 0
+              %br
+              %div
+                %strong= "Idiomas: "
+                %table
+                  - @job.languages.each do |language|
+                    %tr
+                      %td.p15
+                        %span.label{ class: language.req_code.to_i == 1 ? 'label-info' : ( language.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                          = language.req_name
+                      %td.p15
+                        = sanitize language.idi_name
+            - if @job.experiences.count > 0
+              %br
+              %div
+                %strong= "Experiencia previa: "
+                %table
+                  - @job.experiences.each do |experience|
+                    %tr
+                      %td.p15
+                        %span.label.label-default
+                          = experience.exp_name
+                      %td.p15
+                        = sanitize experience.exp_description
+          .tab-pane#criteria{role: 'tabpanel'}
+            %h4
+              Criterios de evaluación
+            - @job.factors.order(:order).each_with_index do |factor, i|
+              - unless i == 0
+                %br
+              %strong
+                = factor.name
                 &nbsp
-                = sanitize competence.name
-      .col-xs-6
-        .well
-          %h4
-            Datos Generales
-          %p
-            = "Institución: "
-            = @job.institution_name
-          %p
-            = "Salario: "
-            = number_to_currency(@job.salary)
-          %p
-            = "Vacantes: "
-            = @job.vacancies
-          %p
-            = "Correo: "
-            = @job.email
-          %p
-            = "Direccion: "
-            = @job.address
-          %p
-            = "Teléfono: "
-            = @job.phone
-          %hr
-          %h4
-            Criterios de evaluación
-          .table-responsive
-            %table.table.table-hover
-              %tbody
-                - @job.factors.order(:order).each_with_index do |factor, i|
-                  %tr
-                    %td
-                      = i + 1
-                    %td
-                      = factor.name
-                      - if factor.areas.count > 0
-                        %ol
-                          - factor.areas.each do |area|
-                            %li
-                              = "#{area.score.to_i} puntos."
-                              %nbsp
-                              = area.name
-                    %td
-                      = "#{factor.maximum_score.to_i}max"
-                      %br
-                      %small
-                        = "#{factor.minimum_score.to_i}min"
+                %span.text-green
+                  = "#{factor.maximum_score.to_i} Máx"
+                &nbsp
+                %span.text-blue
+                  = "#{factor.minimum_score.to_i} Mín"
+              - if factor.areas.count > 0
+                %table.table.borderless.table-striped.table-hover
+                  - factor.areas.each do |area|
+                    %tr
+                      %td
+                        = area.name
+                      %td.text-right.text-blue
+                        = "#{area.score.to_i} puntos"
+
     .row
       .col-sm-12
         .center-block.hidden-sm.hidden-xs
@@ -128,3 +192,4 @@
             .line.visible-lg-inline-block.visible-md-inline-block
         .hidden-lg.hidden-md.text-centered
           = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
+        %br
