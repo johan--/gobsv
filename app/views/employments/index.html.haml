@@ -79,6 +79,9 @@
                     = "Vacantes: "
                     = plaza.vacancies
                   %p
+                    = "Fecha limite de inscripción: "
+                    = l(plaza.closing_registration, format: :date)
+                  %p
                     .btn-toolbar{role: "toolbar"}
                       .row
                         .col-xs-6.col-md-4
@@ -88,20 +91,20 @@
                           .btn-group{role: "group"}
                             = link_to "Ver detalle", employments_job_url(plaza), remote: true
                 .col-xs-7
-                  %p
+                  %div
                     = "Descripción: "
                     %br
-                    = simple_format plaza.description
-                    %br
-                    #shareButtonLabelCount{class: "plaza-#{i}"}
-                    :javascript
-                      $('.plaza-#{i}').jsSocials({
-                        url: "#{employments_job_url(plaza)}",
-                        text: "#{plaza.post_name}",
-                        showCount: true,
-                        showLabel: true,
-                        shares: ["twitter", "facebook", "googleplus", "linkedin"]
-                      })
+                    = plaza.description.present? ? simple_format(plaza.description) : 'Ninguno'
+                  %br
+                  #shareButtonLabelCount{class: "plaza-#{i}"}
+                  :javascript
+                    $('.plaza-#{i}').jsSocials({
+                      url: "#{employments_job_url(plaza)}",
+                      text: "#{plaza.post_name}",
+                      showCount: true,
+                      showLabel: true,
+                      shares: ["twitter", "facebook", "googleplus", "linkedin"]
+                    })
         .show-list
           = link_to "Ver listado completo", employments_jobs_url
 #create-cv
