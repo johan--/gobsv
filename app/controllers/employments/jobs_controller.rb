@@ -17,10 +17,6 @@ class Employments::JobsController < EmploymentsController
     add_breadcrumb 'Inicio', employments_root_url
     add_breadcrumb "Empleos disponibles", employments_jobs_url
     add_breadcrumb @job.post_name
-    respond_to do |format|
-      format.js
-      format.html
-    end
   end
 
 
@@ -30,10 +26,6 @@ class Employments::JobsController < EmploymentsController
     add_breadcrumb 'Inicio', employments_root_url
     add_breadcrumb "Empleos disponibles", employments_jobs_url
     add_breadcrumb @job.post_name
-    respond_to do |format|
-      format.js
-      format.html
-    end
   end
 
 end
