@@ -192,45 +192,39 @@ article {
   }
 }
 
-footer {
+
+footer{
   padding-top: 25px;
   background: #022B3F;
-  color: white;
-
-  p.contact-info {
+  color: #fff;
+  p.contact-info{
     color: inherit;
     font-size: 0.85em;
     margin: 10px 0;
   }
-
-  .categories {
+  .categories{
     text-transform: uppercase;
-
-    ul {
+    ul{
       list-style: none;
-
-      li {
+      li{
         margin: 20px 0;
-
-        a {
-          color: white;
+        a{
+          color: #fff;
           text-decoration: none;
         }
       }
     }
   }
-
-  .footer-cc-logo, .footer-social-media, p.contact-info {
+  .footer-cc-logo, .footer-social-media, p.contact-info{
     padding: 5px 15px 5px 10px;
   }
-
-  .footer-social-media {
-    margin: 20px 0;
-
-    a {
-      margin-right: 20px;
+  .footer-social-media{
+    a{
+      margin-bottom: 20px;
+      display: flex;
     }
   }
+
 }
 
 #article {
