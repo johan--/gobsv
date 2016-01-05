@@ -10,7 +10,7 @@
         Gobierno Abierto
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
+        - if admin_signed_in?
           %li.dropdown
             = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
               %span.glyphicon.glyphicon-user
