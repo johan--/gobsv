@@ -155,4 +155,7 @@ gem 'photoswipe-rails', '~> 4.1.0'
 gem 'select2-rails'
 
 # Easily and efficiently make your ActiveRecord models support hierarchies http://mceachen.github.io/closure_tree/
-gem 'closure_tree'
+gem 'closure_tree', '~> 5.2.0'
+
+# Minimal authorization through OO design and pure Ruby classes
+gem 'pundit', '~> 1.0.1'

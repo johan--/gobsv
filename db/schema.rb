@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110190819) do
+ActiveRecord::Schema.define(version: 20151117153749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "admin_hierarchies", id: false, force: true do |t|
     t.integer "ancestor_id",   null: false
@@ -123,6 +124,7 @@ ActiveRecord::Schema.define(version: 20151110190819) do
     t.integer  "institution_id"
     t.string   "status",         default: "new"
     t.string   "correlative"
+    t.integer  "admin_id"
     t.datetime "received_at"
     t.datetime "confirmed_at"
     t.datetime "admitted_at"
@@ -210,6 +212,13 @@ ActiveRecord::Schema.define(version: 20151110190819) do
     t.string   "code",       default: "", null: false
     t.integer  "status",     default: 0,  null: false
     t.integer  "admin_id",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", force: true do |t|
+    t.string   "name",       null: false
+    t.json     "activities"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -11,7 +11,7 @@
 
 = f.select :warehouse_id, @warehouses.map{ |warehouse| [warehouse.name, warehouse.id] }, { include_blank: true }, { class: 'select2', required: true }
 
-= f.select :product_id, @products.map{ |product| [product.name, product.id] }, { include_blank: true }, { class: 'select2', required: true }
+= f.select :product_id, @products.map{ |product| ["#{product.name} | #{product.unit.try(:name)}", product.id] }, { include_blank: true }, { class: 'select2', required: true }
 
 = f.text_field :quantity
 

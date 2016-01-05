@@ -30,6 +30,7 @@ $ ->
     showCount: true,
     showLabel: true,
     openInPopup: false,
+    text: $("#title").text(),
     shares: ["twitter", "facebook", "googleplus", "pinterest"]
   )
 
