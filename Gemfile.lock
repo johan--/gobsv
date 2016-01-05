@@ -436,6 +436,3 @@ DEPENDENCIES
   will_paginate (~> 3.0)
   will_paginate-bootstrap (~> 1.0.1)
   yt (~> 0.25.0)
-
-BUNDLED WITH
-   1.10.6
