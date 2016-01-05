@@ -22,3 +22,8 @@ modules:
   - units
   req:
   - requirements
+
+sapt:
+  username: 'test'
+  password: 'test'
+  grant_type: 'test'

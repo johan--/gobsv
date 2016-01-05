@@ -1,1 +1,21 @@
-footer
+%footer
+  .container
+    .row
+      .col-sm-4
+        = image_tag 'shared/gobierno-abierto.png'
+      .col-sm-3
+        %p.contact-info
+          ="Presidencia de la República<br>Alameda Dr. Enrique Araujo, No. 5500.<br>San Salvador, El Salvador, CA.<br>Tel. +(503)2133-7500 <br>Email: info@gobiernoabierto.gob.sv".html_safe
+      .col-sm-4
+        .footer-cc-logo
+          = image_tag('shared/icon-cc.png')
+        %p.contact-info
+          ="Gobierno Abierto po Secretaría de Participación, Transparencia y Anticorrupción está bajo una licencia de Creative Commons<br>Reconocimiento-CompartirIgual 4.0 Internacional License.".html_safe
+      .col-sm-1
+        .footer-social-media
+          = link_to "https://www.facebook.com/GobiernoAbiertoSV" do
+            = image_tag('shared/icon-facebook.png')
+          = link_to "https://twitter.com/GobAbiertoSV" do
+            = image_tag('shared/icon-twitter.png')
+          = link_to nil do
+            = image_tag('shared/icon-mail.png')

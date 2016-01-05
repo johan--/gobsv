@@ -5,6 +5,8 @@
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import 'jssocials';
+@import 'jssocials-theme-flat';
 
 // FIXES
 a {
@@ -106,4 +108,186 @@ strong {
   }
 }
 
+
+
+footer{
+  padding-top: 25px;
+  background: #022B3F;
+  color: #fff;
+  p.contact-info{
+    color: inherit;
+    font-size: 0.85em;
+    margin: 10px 0;
+  }
+  .categories{
+    text-transform: uppercase;
+    ul{
+      list-style: none;
+      li{
+        margin: 20px 0;
+        a{
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .footer-cc-logo, .footer-social-media, p.contact-info{
+    padding: 5px 15px 5px 10px;
+  }
+  .footer-social-media{
+    a{
+      margin-bottom: 20px;
+      display: flex;
+    }
+  }
+
+}
+
+#lastjobs{
+  padding: 20px 0;
+}
+
+.dashed-border{
+  border-left: 1px dashed;
+}
+
+.job-list{
+  .job{
+    padding: 10px;
+    margin: 10px 0;
+    background: #ffffff;
+    background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 100%);
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 100%);
+    background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f1f1f1',GradientType=0 );
+    .job-title{
+      color: #3FB3E4;
+      font-size: 1.2em;
+      padding-bottom: 10px;
+    }
+  }
+}
+
 /* END HOME MAIN */
+
+h2.header-title{
+  font-size: 1.5em;
+}
+
+
+.nav > li > a:hover {
+  background-color: #777777;
+}
+
+
+h2.header-title{
+  font-size: 1.5em;
+}
+
+.line{
+  border-bottom: 1px solid;
+  display: inline-block;
+  float: left;
+  height: 18px;
+  margin: 0 10px;
+  overflow: hidden;
+  width: 42.3%;
+}
+
+.clip{
+  position: absolute;
+  left: 10px;
+  top: -15px;
+  width: 30px;
+  z-index: 9999;
+}
+
+.job-detail{
+  padding: 10px;
+  .job-detail-header{
+    margin-bottom: 20px;
+  }
+}
+
+/* Customize jsSocials */
+#shareButtonLabelCount{
+  font-size: 12px;
+}
+
+.yellow {
+  background: #edc620;
+  text-align: center;
+  font-weight: bolder;
+  color: black;
+  width: 317px;
+  height: 170px;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 60px;
+  padding: 0 10px;
+}
+
+.job-detail p {
+  margin: 0;
+}
+
+.text-centered {
+  text-align: center;
+}
+
+
+/* Overwrite navtab */
+
+/*** PANEL DEFAULT ***/
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    color: black;
+}
+.nav-tabs > .open > a,
+.nav-tabs > .open > a:hover,
+.nav-tabs > .open > a:focus,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    color: white;
+  	background-color: #01b1fa;
+  	border-color: transparent;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: white;
+  background-color: #01b1fa;
+  border-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #01b1fa;
+}
+
+.tab-content {
+  padding: 20px 0;
+}
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+.p15 {
+  padding: 2px 15px;
+}
+
+.text-blue {
+  color: #28abe1;
+}
+
+.text-green {
+  color: #3ab54d;
+}
+
+.nav-pills>li {
+  float: left;
+  margin-bottom: 5px;
+}

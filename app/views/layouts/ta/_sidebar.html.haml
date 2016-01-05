@@ -91,3 +91,30 @@
             %h3
               = link_to ta_article_url(article) do
                 = article.title
+  - if @jobs.count > 0
+    %hr
+    .row
+      .col-xs-12
+        %h4
+          Empleos públicos disponibles
+    .row
+      .job-list.slick
+        - @jobs.each do |plaza|
+          .job
+            .job-title.text-center
+              = plaza.post_name
+            %p
+              = "Institución: "
+              = plaza.institution_name
+            %p
+              = "Salario: "
+              = number_to_currency(plaza.salary)
+            %p
+              = "Vacantes: "
+              = plaza.vacancies
+            %p
+              .text-center
+                = link_to "Ver detalle", "http://www.empleospublicos.gob.sv/jobs/#{plaza.id}", target: '_blank', class: 'btn btn-info'
+      %br
+      .text-center
+        = link_to 'Ver todos los empleos públicos', 'http://www.empleospublicos.gob.sv', target: '_blank', class: 'btn btn-primary'

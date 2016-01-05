@@ -1,0 +1,44 @@
+.modal-dialog.modal-lg{role: "document"}
+  .modal-content
+    .clip
+      = image_tag("employments/icon-clip.png")
+    .modal-body
+      .job-detail
+        .job-detail-header
+          .row
+            .col-xs-5
+              .yellow
+                = truncate @job.institution_code, length: 7
+            .col-xs-7
+              %div{id: "shareButtonLabelCount#{@job.id}"}
+              :javascript
+                $("#shareButtonLabelCount#{@job.id}").jsSocials({
+                  url: "#{employments_job_url(@job)}",
+                  text: "#{@job.post_name}",
+                  showCount: true,
+                  showLabel: true,
+                  shares: ["twitter", "facebook", "googleplus", "linkedin"]
+                })
+              %h2
+                = @job.post_name
+        .row
+          .col-xs-12
+            %p
+              Para aplicar o consultar información sobre este empleo, puede comunicarse haciendo uso de la siguiente información de contacto:
+            %h4
+              Datos de contacto
+            %p
+              = "Institución: "
+              = @job.institution_name
+            - if @job.email.present?
+              %p
+                = "Correo: "
+                = mail_to @job.email
+            %p
+              = "Direccion: "
+              = @job.address
+            - if @job.comment.present?
+              %p
+                = "Comentario: "
+                = @job.comment
+            %hr
