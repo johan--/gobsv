@@ -155,17 +155,13 @@ gem 'photoswipe-rails', '~> 4.1.0'
 gem 'select2-rails'
 
 # Easily and efficiently make your ActiveRecord models support hierarchies http://mceachen.github.io/closure_tree/
-<<<<<<< HEAD
 gem 'closure_tree', '~> 5.2.0'
 
 # Minimal authorization through OO design and pure Ruby classes
 gem 'pundit', '~> 1.0.1'
-=======
-gem 'closure_tree'
 
 # Cron jobs in Ruby
 gem 'whenever', :require => false
 
 # Integrates Slick carousel, a jQuery plugin, into your Rails app.
 gem 'jquery-slick-rails'
->>>>>>> 1d21d25abf889e60fb0590e992b96bc1545ff55b
