@@ -12,6 +12,7 @@ class Admin::Ta::CommentsController < Admin::TaController
     @items = model
       .joins(:article)
       .select(:id, :name, :email, :status, :created_at)
+      .select('SUBSTRING("ta_comments"."name",  0, 45) AS name')
       .select('(SUBSTRING("ta_articles"."title", 0, 45) || \'...\') AS article_title')
       .where(conditions).decorate
 
