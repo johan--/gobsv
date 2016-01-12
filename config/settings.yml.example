@@ -15,3 +15,16 @@ modules:
   - categories
   - pages
   - authors
+  - comments
+  inv:
+  - products
+  - warehouses
+  - product_movements
+  - units
+  req:
+  - requirements
+
+sapt:
+  username: 'test'
+  password: 'test'
+  grant_type: 'test'
