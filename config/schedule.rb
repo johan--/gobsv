@@ -20,6 +20,6 @@ set :output, "#{path}/log/cron.log"
 # Learn more: http://github.com/javan/whenever
 
 
-every :day, :at => '9:00am' do
+every :day, :at => '5:00am' do
   rake "employments:import"
 end
