@@ -1,0 +1,8 @@
+= f.text_field :article_title, value: f.object.article.title, class: 'form-control', readonly: true
+= f.text_field :name, class: 'form-control', readonly: true
+= f.text_field :email, class: 'form-control', readonly: true
+= f.text_area :message, rows: 5, class: 'form-control', required: true
+
+= f.form_group :status, label: { text: t('activerecord.attributes.ta/comment.status') } do
+  - Ta::Comment.statuses.each do |status, index|
+    = f.radio_button :status, status, label: t("activerecord.enum.ta/comment.status.#{status}")

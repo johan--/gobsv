@@ -209,6 +209,9 @@ es:
       ta/category:
         one: Categoría
         other: Categorías
+      ta/comment:
+        one: Comentario
+        other: Comentarios
       ta/author:
         one: Autor
         other: Autores
@@ -259,6 +262,11 @@ es:
         video_url: URL Vídeo
       ta/category:
         name: Nombre
+      ta/comment:
+        article_title: Título de la nota
+        name: Nombre usuario
+        email: Correo electrónico
+        status: Estado
       ta/author:
         name: Nombre
         twitter: Twitter
@@ -320,6 +328,10 @@ es:
           gallery: Galería de imágenes
           audio: Audio
           video: Vídeo
+      ta/comment:
+        status:
+          revision: En revisión
+          publish: Publicado
       ta/page:
         position:
           top_header: Cabecera

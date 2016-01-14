@@ -15,6 +15,7 @@ modules:
   - categories
   - pages
   - authors
+  - comments
   inv:
   - products
   - warehouses

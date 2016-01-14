@@ -42,7 +42,7 @@ CKEDITOR.editorConfig = function(config)
     { name: 'links', items: ['Link', 'Unlink', 'Anchor'] }, '/',
     { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
     { name: 'colors', items: ['TextColor', 'BGColor'] },
-    { name: 'insert', items: ['Image', 'oembed', 'Table', 'HorizontalRule', 'SpecialChar'] }
+    { name: 'insert', items: ['Image', 'oembed', 'Table', 'HorizontalRule', 'SpecialChar', 'Source'] }
   ];
 
   // Rails CSRF token
@@ -116,5 +116,5 @@ CKEDITOR.config.toolbar = [
   { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat', '-', 'TextColor', 'BGColor'] },
   { name: 'links', items: ['Link', 'Unlink'] }, '/',
   { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'] },
-  { name: 'insert', items: ['Image', 'oembed', 'Table', 'HorizontalRule', 'SpecialChar'] }
+  { name: 'insert', items: ['Image', 'oembed', 'Table', 'HorizontalRule', 'SpecialChar', 'Source'] }
 ]

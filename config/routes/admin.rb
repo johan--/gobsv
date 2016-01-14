@@ -14,7 +14,8 @@ constraints subdomain: 'panel' do
           :articles,
           :categories,
           :pages,
-          :authors
+          :authors,
+          :comments
         ],
         inv: [
           :products,
