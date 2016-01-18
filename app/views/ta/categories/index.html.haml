@@ -40,6 +40,36 @@
               = link_to ta_article_url(article) do
                 = article.title
 
+- unless @other_articles.empty?
+  #yesterday.container
+    .row
+      .col-xs-12
+        %h4
+          Otras noticias
+    - @other_articles.each_slice(2) do |slice|
+      .row
+        - slice.each do |article|
+          .col-xs-12.col-sm-12.col-md-6
+            %article.media
+              .media-left
+                = link_to ta_article_url(article) do
+                  = image_tag article.image.url(:small), class: 'media-object'
+              .media-body
+                - unless article.pretitle.blank?
+                  %small
+                    = article.pretitle
+                %h3
+                  = link_to ta_article_url(article) do
+                    = article.title
+    .row
+      .col-xs-12
+        .text-center
+          = link_to ta_articles_url, class: 'btn btn-inverse' do
+            Listado completo de noticias
+
+%br
+
+
 - unless gallery_articles.empty? && audio_articles.empty? && video_articles.empty?
   #media.container.toggable-container
     .row.tabs
@@ -78,36 +108,7 @@
       .col-xs-12
         = render partial: 'layouts/ta/slider'
 
-%br
-
-- unless @other_articles.empty?
-  #yesterday.container
-    .row
-      .col-xs-12
-        %h4
-          Otras noticias
-    - @other_articles.each_slice(2) do |slice|
-      .row
-        - slice.each do |article|
-          .col-xs-12.col-sm-12.col-md-6
-            %article.media
-              .media-left
-                = link_to ta_article_url(article) do
-                  = image_tag article.image.url(:small), class: 'media-object'
-              .media-body
-                - unless article.pretitle.blank?
-                  %small
-                    = article.pretitle
-                %h3
-                  = link_to ta_article_url(article) do
-                    = article.title
-    .row
-      .col-xs-12
-        .text-center
-          = link_to ta_articles_url, class: 'btn btn-inverse' do
-            Listado completo de noticias
-
-  %hr
+%hr
 
 -#
   #releases.container
