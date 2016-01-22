@@ -39,6 +39,12 @@
                   Institución:
                 %td.p15
                   = @job.institution_name
+              - if @job.location.present?
+                %tr
+                  %td
+                    Ubicación:
+                  %td.p15
+                    = @job.location
               %tr
                 %td
                   Salario:

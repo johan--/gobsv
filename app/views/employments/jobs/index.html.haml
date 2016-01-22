@@ -16,6 +16,10 @@
                     %p
                       = "Institución: "
                       = plaza.institution_name
+                    - if plaza.location.present?
+                      %p
+                        = "Departamento: "
+                        = plaza.split(',')[1].strip rescue ''
                     %p
                       = "Salario: "
                       = number_to_currency(plaza.salary)
