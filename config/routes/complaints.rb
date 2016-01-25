@@ -1,3 +1,5 @@
+domain = 'localhost.com'          if Rails.env.development?
+
 constraints subdomain: 'quejas' do
   scope module: 'complaints', as: 'complaints' do
     defaults subdomain: 'quejas' do

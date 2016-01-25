@@ -1,0 +1,2 @@
+module Forums::WelcomeHelper
+end
