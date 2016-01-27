@@ -16,15 +16,16 @@
       .col-xs-12
         = link_to employments_jobs_url, class: 'btn btn-primary btn-lg' do
           Consultar listado de empleos
-    -#
-      .row
-        .col-xs-12.col-sm-6.col-md-3
-          = link_to nil, class: 'icon' do
-            = image_tag 'employments/icon-sales.png'
-            %span
-              %strong 300
-              %br
-              Ventas
+    .row
+      .col-xs-12.col-sm-6.col-md-4
+        = link_to 'javascript:void(0)', class: 'icon' do
+          = image_tag 'employments/icon-sales.png'
+          %span
+            %strong
+              = @publish_plazas.count
+            %br
+            Empleos publicados
+      -#
         .col-xs-12.col-sm-6.col-md-3
           = link_to nil, class: 'icon' do
             = image_tag 'employments/icon-travel.png'
@@ -32,20 +33,21 @@
               %strong 567
               %br
               Aduanales
-        .col-xs-12.col-sm-6.col-md-3
-          = link_to nil, class: 'icon' do
-            = image_tag 'employments/icon-money.png'
-            %span
-              %strong 402
-              %br
-              Contaduría
-        .col-xs-12.col-sm-6.col-md-3
-          = link_to nil, class: 'icon' do
-            = image_tag 'employments/icon-statistics.png'
-            %span
-              %strong 128
-              %br
-              Administradores
+      .col-xs-12.col-sm-6.col-md-4
+        = link_to nil, class: 'icon' do
+          = image_tag 'employments/icon-money.png'
+          %span
+            %strong
+              = number_to_currency(@publish_plazas.pluck(:salary).sum)
+            %br
+            Total en salarios
+      .col-xs-12.col-sm-6.col-md-4
+        = link_to 'javascript:void(0)', class: 'icon' do
+          = image_tag 'employments/icon-statistics.png'
+          %span
+            %strong 27,000+
+            %br
+            Visitas a la fecha
 #lastjobs
   .container
     .row
