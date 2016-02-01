@@ -27,6 +27,15 @@
             %p.author
               Salvador Sanchez Ceren
             = link_to "ver fuente", "#", class: "source"
+            %p.like-or-dislike
+              %span
+                = link_to image_tag("forums/icon-heart.png"), "#"
+              %span
+                0
+              %span
+                = link_to image_tag("forums/icon-sadface.png"), "#"
+              %span
+                0
           %li.slide.sky-slide-bg
             %p
               = image_tag("forums/slv-flag-icon.png")
@@ -37,6 +46,15 @@
             %p.author
               Salvador Sanchez Ceren
             = link_to "ver fuente", "#", class: "source"
+            %p.like-or-dislike
+              %span
+                = link_to image_tag("forums/icon-heart.png"), "#"
+              %span
+                0
+              %span
+                = link_to image_tag("forums/icon-sadface.png"), "#"
+              %span
+                0
           %li.slide.blue-slide-bg
             %p
               = image_tag("forums/slv-flag-icon.png")
@@ -47,6 +65,15 @@
             %p.author
               Salvador Sanchez Ceren
             = link_to "ver fuente", "#", class: "source"
+            %p.like-or-dislike
+              %span
+                = link_to image_tag("forums/icon-heart.png"), "#"
+              %span
+                0
+              %span
+                = link_to image_tag("forums/icon-sadface.png"), "#"
+              %span
+                0
           %li.slide.sky-slide-bg
             %p
               = image_tag("forums/slv-flag-icon.png")
@@ -57,6 +84,15 @@
             %p.author
               Salvador Sanchez Ceren
             = link_to "ver fuente", "#", class: "source"
+            %p.like-or-dislike
+              %span
+                = link_to image_tag("forums/icon-heart.png"), "#"
+              %span
+                0
+              %span
+                = link_to image_tag("forums/icon-sadface.png"), "#"
+              %span
+                0
           %li.slide.blue-slide-bg
             %p
               = image_tag("forums/slv-flag-icon.png")
@@ -67,6 +103,15 @@
             %p.author
               Salvador Sanchez Ceren
             = link_to "ver fuente", "#", class: "source"
+            %p.like-or-dislike
+              %span
+                = link_to image_tag("forums/icon-heart.png"), "#"
+              %span
+                0
+              %span
+                = link_to image_tag("forums/icon-sadface.png"), "#"
+              %span
+                0
     .wage-people-position
       %h2
         Posturas de los ciudadanos
@@ -75,9 +120,9 @@
     #example3
     .submit-position
       .row
-        .col-sm-8
+        .col-sm-8.default-margin
           %textarea{name: "twitter_text", id: "twitter_text_id", maxlength: "123", class: "form-control", rows: "3"}
-        .col-sm-4
+        .col-sm-4.default-margin
           %input{type: "button", class: "btn btn-warning btn-custom-reply", :"data-url" => "https://twitter.com/intent/tweet", id: "twitter_popup", value: "Escribe tu postura"}
 
 .wage-historic-timeline
@@ -86,7 +131,17 @@
       Histórico del tema
     %p.description-topic
       It's complicated and I don't wish to discuss it. It's none of your concern. You know what, let's just say that I have a hell of a lot more on my mind, right now, than thinking about buying a damn car wash. Okay? So if you could just... please.
-
+    .filters
+      Filtrar por
+      .row
+        .col-md-3.col-sm-6.default-margin
+          = select_tag "credit_card", options_for_select([ "LPG", "Diario de Hoy", "El Mundo", "Todos los medios de comunicación" ], "Todos los medios de comunicación"), class: "form-control"
+        .col-md-3.col-sm-6.default-margin
+          = select_tag "credit_card", options_for_select([ "FMLN", "ARENA", "CD", "Todos los partidos políticos" ], "Todos los partidos políticos"), class: "form-control"
+        .col-md-3.col-sm-6.default-margin
+          = select_tag "credit_card", options_for_select([ "PDF", "VIDEOS", "AUDIOS", "DOC", "Todos los multimedia" ], "Todos los multimedia"), class: "form-control"
+        .col-md-3.col-sm-6.default-margin
+          = select_tag "credit_card", options_for_select([ "Twitter", "Facebook", "Todas las redes sociales" ], "Todas las redes sociales"), class: "form-control"
     =# EJEMPLO
     %section#cd-timeline.cd-container
       .cd-timeline-block
