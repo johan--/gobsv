@@ -337,11 +337,15 @@ es:
         priority: Prioridad
         created_at: Fecha de creación
         name: Nombre
-        description: Descripción
+        description: Descripción del tema
+        actors_description: Descripción de las posturas de los actores
+        citizens_description: Descripción de las posturas de los ciudadanos
+        historical_description: Descripción del histórico
         active: ¿Activo?
         main: ¿Principal?
         cover: Portada
         video_url: Video URL
+        twitter_id: Twitter ID (Búsqueda Timeline)
       forums/actor:
         created_at: Fecha de creación
         name: Nombre
@@ -349,6 +353,7 @@ es:
         created_at: Fecha de creación
         name: Nombre
         logo: Logo
+        kind: Tipo
       forums/posture:
         created_at: Fecha de creación
         organization_id: Organización

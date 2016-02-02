@@ -22,4 +22,12 @@ class Forums::PostureDecorator < Draper::Decorator
     theme.try(:name)
   end
 
+  def quoted_at
+    h.l object.quoted_at, format: :default if self[:quoted_at]
+  end
+
+  def quote
+    h.truncate(self[:quote], length: 50)
+  end
+
 end

@@ -15,3 +15,9 @@
 = f.form_group :cover do
   = f.file_field_without_bootstrap :cover, data: { preview: true }
   = image_tag((f.object.cover.present? ? f.object.cover.url(:small) : nil), height: 31)
+
+= f.text_area :actors_description, class: 'form-control'
+= f.text_area :citizens_description, class: 'form-control'
+= f.text_area :historical_description, class: 'form-control'
+
+= f.text_field :twitter_id, class: 'form-control'

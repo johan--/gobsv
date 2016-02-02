@@ -10,4 +10,12 @@ class Forums::OrganizationDecorator < Draper::Decorator
   #     end
   #   end
 
+  def kind
+    Forums::Organization::KIND[self[:kind]]
+  end
+
+  def created_at
+    h.l object.created_at, format: :default
+  end
+
 end

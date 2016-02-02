@@ -4,7 +4,7 @@ class Admin::Forums::PosturesController < Admin::ForumsController
   end
 
   def table_columns
-    %w(created_at theme_id organization_id actor_id quote)
+    %w(quoted_at theme_id organization_id actor_id quote)
   end
 
   def init_form
@@ -20,7 +20,8 @@ class Admin::Forums::PosturesController < Admin::ForumsController
       :organization_id,
       :actor_id,
       :entry_id,
-      :quote
+      :quote,
+      :quoted_at
     )
   end
 end

@@ -9,7 +9,6 @@
 #= require 'modernizr'
 #= require 'main'
 #= require 'forums/twitterFetcher'
-#= require 'forums/SalarioMinimo'
 #= require 'forums/jquery-queryParser.min'
 
 $(document).ready ->

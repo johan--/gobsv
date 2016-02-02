@@ -15,10 +15,14 @@ class Admin::Forums::ThemesController < Admin::ForumsController
     params.require(:forums_theme).permit(
       :name,
       :description,
+      :actors_description,
+      :citizens_description,
+      :historical_description,
       :active,
       :main,
       :video_url,
-      :cover
+      :cover,
+      :twitter_id
     )
   end
 end

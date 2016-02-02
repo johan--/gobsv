@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201160018) do
+ActiveRecord::Schema.define(version: 20160202201843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -265,9 +265,27 @@ ActiveRecord::Schema.define(version: 20160201160018) do
   end
 
   create_table "forums_entries", force: true do |t|
+    t.string   "kind"
+    t.integer  "theme_id"
+    t.integer  "organization_id"
+    t.integer  "actor_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "url"
+    t.date     "entry_at"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "admin_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "forums_entries", ["actor_id"], name: "index_forums_entries_on_actor_id", using: :btree
+  add_index "forums_entries", ["admin_id"], name: "index_forums_entries_on_admin_id", using: :btree
+  add_index "forums_entries", ["organization_id"], name: "index_forums_entries_on_organization_id", using: :btree
+  add_index "forums_entries", ["theme_id"], name: "index_forums_entries_on_theme_id", using: :btree
 
   create_table "forums_organizations", force: true do |t|
     t.string   "name"
@@ -277,7 +295,10 @@ ActiveRecord::Schema.define(version: 20160201160018) do
     t.datetime "logo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "kind"
   end
+
+  add_index "forums_organizations", ["kind"], name: "index_forums_organizations_on_kind", using: :btree
 
   create_table "forums_postures", force: true do |t|
     t.integer  "theme_id"
@@ -298,8 +319,8 @@ ActiveRecord::Schema.define(version: 20160201160018) do
   add_index "forums_postures", ["theme_id"], name: "index_forums_postures_on_theme_id", using: :btree
 
   create_table "forums_themes", force: true do |t|
-    t.boolean  "active",             default: false
-    t.integer  "priority",           default: 0
+    t.boolean  "active",                 default: false
+    t.integer  "priority",               default: 0
     t.string   "name"
     t.string   "video_url"
     t.text     "description"
@@ -307,10 +328,14 @@ ActiveRecord::Schema.define(version: 20160201160018) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
-    t.boolean  "main",               default: false
+    t.boolean  "main",                   default: false
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "actors_description"
+    t.text     "citizens_description"
+    t.text     "historical_description"
+    t.string   "twitter_id"
   end
 
   create_table "institutions", force: true do |t|

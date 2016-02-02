@@ -4,7 +4,7 @@ class Admin::Forums::OrganizationsController < Admin::ForumsController
   end
 
   def table_columns
-    %w(created_at name)
+    %w(created_at kind name)
   end
 
   def init_form
@@ -13,7 +13,8 @@ class Admin::Forums::OrganizationsController < Admin::ForumsController
   def item_params
     params.require(:forums_organization).permit(
       :name,
-      :logo
+      :logo,
+      :kind
     )
   end
 end
