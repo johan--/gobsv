@@ -24,9 +24,9 @@
           ="Gobierno Abierto por Secretaría de Participación, Transparencia y Anticorrupción está bajo una licencia de Creative Commons.<br>Reconocimiento-CompartirIgual 4.0 Internacional License.".html_safe
       .col-sm-1
         .footer-social-media
-          = link_to "https://www.facebook.com/GobiernoAbiertoSV" do
+          = link_to "https://www.facebook.com/GobiernoAbiertoSV", target: '_blank' do
             = image_tag('shared/icon-facebook.png')
-          = link_to "https://twitter.com/GobAbiertoSV" do
+          = link_to "https://twitter.com/GobAbiertoSV", target: '_blank' do
             = image_tag('shared/icon-twitter.png')
-          = link_to nil do
+          = mail_to 'info@gobiernoabierto.gob.sv' do
             = image_tag('shared/icon-mail.png')

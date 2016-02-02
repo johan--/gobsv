@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122170445) do
+ActiveRecord::Schema.define(version: 20160201160018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -257,6 +257,61 @@ ActiveRecord::Schema.define(version: 20160122170445) do
   end
 
   add_index "employments_technical_competences", ["plaza_id"], name: "index_employments_technical_competences_on_plaza_id", using: :btree
+
+  create_table "forums_actors", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forums_entries", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forums_organizations", force: true do |t|
+    t.string   "name"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forums_postures", force: true do |t|
+    t.integer  "theme_id"
+    t.integer  "organization_id"
+    t.integer  "actor_id"
+    t.integer  "entry_id"
+    t.integer  "admin_id"
+    t.text     "quote"
+    t.date     "quoted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "forums_postures", ["actor_id"], name: "index_forums_postures_on_actor_id", using: :btree
+  add_index "forums_postures", ["admin_id"], name: "index_forums_postures_on_admin_id", using: :btree
+  add_index "forums_postures", ["entry_id"], name: "index_forums_postures_on_entry_id", using: :btree
+  add_index "forums_postures", ["organization_id"], name: "index_forums_postures_on_organization_id", using: :btree
+  add_index "forums_postures", ["theme_id"], name: "index_forums_postures_on_theme_id", using: :btree
+
+  create_table "forums_themes", force: true do |t|
+    t.boolean  "active",             default: false
+    t.integer  "priority",           default: 0
+    t.string   "name"
+    t.string   "video_url"
+    t.text     "description"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.boolean  "main",               default: false
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "institutions", force: true do |t|
     t.string   "name"

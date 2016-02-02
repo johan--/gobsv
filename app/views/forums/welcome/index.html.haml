@@ -1,2 +1,7 @@
 =# TOPIC TYPE
-= render partial: 'forums/topics/minimum_wage'
+- if @main
+  = render @main
+- else
+  %h2
+    Actualmente no se encuentra una discusión activa
+  %br

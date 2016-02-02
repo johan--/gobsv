@@ -23,6 +23,12 @@ modules:
   - units
   req:
   - requirements
+  forums:
+  - themes
+  - organizations
+  - actors
+  - entries
+  - postures
 
 sapt:
   username: 'test'

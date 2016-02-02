@@ -1,0 +1,17 @@
+= f.form_group :active do
+  = f.check_box :active
+
+= f.form_group :main do
+  = f.check_box :main
+
+= f.text_field :priority, class: 'form-control', required: true
+
+= f.text_field :name, class: 'form-control', required: true
+
+= f.text_area :description, class: 'form-control'
+
+= f.text_field :video_url, class: 'form-control', placeholder: 'https://www.youtube.com'
+
+= f.form_group :cover do
+  = f.file_field_without_bootstrap :cover, data: { preview: true }
+  = image_tag((f.object.cover.present? ? f.object.cover.url(:small) : nil), height: 31)

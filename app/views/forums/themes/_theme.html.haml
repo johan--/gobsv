@@ -2,10 +2,11 @@
   %p.subject
     Tema
   %h1.problem-title
-    Salario Mínimo
+    = theme.name
   %h2.problem-description
-    Reproduce el video para contarte cual es la problemática<br>que enfrenta El Salvador referente a este tema.
-  = link_to image_tag("forums/play-icon.png"), nil, class: "play-video"
+    = simple_format theme.description
+  - if theme.video_url
+    = link_to image_tag("forums/play-icon.png"), theme.video_url, class: "play-video", title: theme.name
   .clearfix
   = link_to image_tag("forums/goto.png"), "#wrapper-positions", class: "go-to-positions"
 #wrapper-positions

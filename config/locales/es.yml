@@ -236,6 +236,21 @@ es:
       req/requirement:
         one: Requerimiento a bodega
         other: Requerimientos a bodega
+      forums/theme:
+        one: Tema
+        other: Temas
+      forums/actor:
+        one: Actor
+        other: Actores
+      forums/organization:
+        one: Organización
+        other: Organizaciones
+      forums/posture:
+        one: Postura
+        other: Posturas
+      forums/entry:
+        one: Entrada
+        other: Entradas
     attributes:
       id: ID
       created_at: Creado el
@@ -318,6 +333,30 @@ es:
       req/product_requirement:
         product_id: Producto
         quantity: Cantidad
+      forums/theme:
+        priority: Prioridad
+        created_at: Fecha de creación
+        name: Nombre
+        description: Descripción
+        active: ¿Activo?
+        main: ¿Principal?
+        cover: Portada
+        video_url: Video URL
+      forums/actor:
+        created_at: Fecha de creación
+        name: Nombre
+      forums/organization:
+        created_at: Fecha de creación
+        name: Nombre
+        logo: Logo
+      forums/posture:
+        created_at: Fecha de creación
+        organization_id: Organización
+        actor_id: Actor
+        theme_id: Tema
+        entry: Entrada
+        quote: Cita
+        quoted_at: Citado el
     enum:
       ta/article:
         status:
@@ -357,3 +396,4 @@ es:
     inv: Inventario
     qa: Quejas y Avisos
     req: Requerimientos
+    forums: Foros públicos
