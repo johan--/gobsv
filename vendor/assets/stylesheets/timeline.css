@@ -87,11 +87,11 @@ Main components
 }
 .cd-timeline-img img {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 60px;
+  height: 60px;
   position: relative;
-  left: 50%;
-  top: 50%;
+  left: 20%;
+  top: 19%;
   margin-left: -12px;
   margin-top: -12px;
 }
