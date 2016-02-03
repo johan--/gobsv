@@ -346,6 +346,17 @@ es:
         cover: Portada
         video_url: Video URL
         twitter_id: Twitter ID (Búsqueda Timeline)
+      forums/entry:
+        kind: Tipo de entrada
+        theme_id: Tema
+        organization_id: Organización
+        actor_id: Actor
+        title: Titulo
+        description: Descripción
+        url: Enlace
+        entry_at: Fecha de entrada
+        asset: Adjunto
+        created_at: Fecha de creación
       forums/actor:
         created_at: Fecha de creación
         name: Nombre

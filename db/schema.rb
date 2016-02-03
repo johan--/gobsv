@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202201843) do
+ActiveRecord::Schema.define(version: 20160202211625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -280,11 +280,13 @@ ActiveRecord::Schema.define(version: 20160202201843) do
     t.integer  "admin_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "forums_entries", ["actor_id"], name: "index_forums_entries_on_actor_id", using: :btree
   add_index "forums_entries", ["admin_id"], name: "index_forums_entries_on_admin_id", using: :btree
   add_index "forums_entries", ["organization_id"], name: "index_forums_entries_on_organization_id", using: :btree
+  add_index "forums_entries", ["slug"], name: "index_forums_entries_on_slug", using: :btree
   add_index "forums_entries", ["theme_id"], name: "index_forums_entries_on_theme_id", using: :btree
 
   create_table "forums_organizations", force: true do |t|
