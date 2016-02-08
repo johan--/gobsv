@@ -1,4 +1,4 @@
-domain = 'forums.gob.sv' if Rails.env.production?
+domain = 'yvosquepensas.gobiernoabierto.gob.sv' if Rails.env.production?
 domain = 'localhost.com'          if Rails.env.development?
 
 constraints DomainConstraint.new(domain) do
