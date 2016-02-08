@@ -1,0 +1,25 @@
+- case entry.kind
+  - when 'article'
+    .cd-timeline-block
+      .cd-timeline-img
+        = image_tag("forums/article_forum_icon.png")
+      .cd-timeline-content
+        %h2
+          = entry.title
+        - if entry.description
+          %p
+            = entry.description
+        - if entry.url
+          = link_to 'Leer más', entry.url, target: '_blank', class: 'cd-read-more'
+        %span.cd-date
+          = l(entry.entry_at, format: :default)
+  - when 'tweet'
+    .cd-timeline-block
+      .cd-timeline-img
+        = image_tag("forums/twitter_forum_icon.png")
+      / cd-timeline-img
+      .cd-timeline-content
+        %blockquote.twitter-tweet{"data-lang" => "es"}
+          %a{:href => entry.url}
+        %span.cd-date
+          = l(entry.entry_at, format: :default)

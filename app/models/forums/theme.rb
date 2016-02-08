@@ -1,5 +1,6 @@
 class Forums::Theme < ActiveRecord::Base
   has_many :postures, class_name: '::Forums::Posture'
+  has_many :entries, class_name: '::Forums::Entry'
 
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]

@@ -60,3 +60,7 @@ $(document).ready ->
   $('#mediaModal').on 'hidden.bs.modal', ->
     $('#mediaModal .modal-body').html ''
     return
+
+
+  $('.autoSb select').change ->
+    $(this).closest('form').submit()

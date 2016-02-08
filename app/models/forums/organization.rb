@@ -6,7 +6,7 @@ class Forums::Organization < ActiveRecord::Base
                     default_url: 'ta/missing.jpg'
 
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
-  validates :name, :kind, presence: true
+  validates :name, presence: true
 
   KIND = {
     'media' => 'Medio de comunicación',

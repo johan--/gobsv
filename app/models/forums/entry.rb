@@ -10,6 +10,8 @@ class Forums::Entry < ActiveRecord::Base
   belongs_to :organization
   belongs_to :theme
 
+  default_scope { order(entry_at: :asc) } 
+
   KIND = {
     'articulo' => 'Articulo',
     'document' => 'Documento',
@@ -19,6 +21,6 @@ class Forums::Entry < ActiveRecord::Base
     'facebook' => 'Facebook'
   }
 
-  validates :title, :organization_id, :theme_id, :kind, :entry_at, presence: true
+  validates :organization_id, :theme_id, :kind, :entry_at, presence: true
 
 end
