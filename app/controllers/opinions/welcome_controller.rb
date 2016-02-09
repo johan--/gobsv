@@ -1,4 +1,4 @@
-class Forums::WelcomeController < ForumsController
+class Opinions::WelcomeController < OpinionsController
   def index
     @main = Forums::Theme.active.main.first
     @medias = Forums::Organization.where(kind: 'media').order(:name)
