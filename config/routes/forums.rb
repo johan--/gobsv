@@ -1,5 +1,5 @@
-domain = 'yvosquepensas.gobiernoabierto.gob.sv' if Rails.env.production?
-domain = 'localhost.com'          if Rails.env.development?
+domain = 'vosquepensas.gob.sv' if Rails.env.production?
+#domain = 'localhost.com'          if Rails.env.development?
 
 constraints DomainConstraint.new(domain) do
   scope module: 'forums', as: 'forums' do
