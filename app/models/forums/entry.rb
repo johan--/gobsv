@@ -8,9 +8,9 @@ module Forums
     has_attached_file :asset
     do_not_validate_attachment_file_type :asset
 
-    belongs_to :actor
-    belongs_to :organization
-    belongs_to :theme
+    belongs_to :actor, class_name: '::Forums::Actor'
+    belongs_to :organization, class_name: '::Forums::Organization'
+    belongs_to :theme, class_name: '::Forums::Theme'
 
     default_scope { order(entry_at: :asc) }
 
