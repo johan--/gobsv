@@ -1,4 +1,6 @@
-class Admin::Forums::EntriesController < Admin::ForumsController
+class Admin::Forums::EntriesController < AdminController
+  include Tabled
+
   def model
     ::Forums::Entry
   end

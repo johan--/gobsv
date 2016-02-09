@@ -1,4 +1,6 @@
-class Admin::Forums::ActorsController < Admin::ForumsController
+class Admin::Forums::ActorsController < AdminController
+  include Tabled
+
   def model
     ::Forums::Actor
   end

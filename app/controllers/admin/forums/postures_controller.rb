@@ -1,4 +1,6 @@
-class Admin::Forums::PosturesController < Admin::ForumsController
+class Admin::Forums::PosturesController < AdminController
+  include Tabled
+
   def model
     ::Forums::Posture
   end

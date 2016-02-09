@@ -1,4 +1,6 @@
-class Admin::Forums::OrganizationsController < Admin::ForumsController
+class Admin::Forums::OrganizationsController < AdminController
+  include Tabled
+
   def model
     ::Forums::Organization
   end

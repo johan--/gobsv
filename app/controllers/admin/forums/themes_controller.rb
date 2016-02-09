@@ -1,4 +1,5 @@
-class Admin::Forums::ThemesController < Admin::ForumsController
+class Admin::Forums::ThemesController < AdminController
+  include Tabled
 
   def model
     ::Forums::Theme
