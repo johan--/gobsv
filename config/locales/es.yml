@@ -236,19 +236,19 @@ es:
       req/requirement:
         one: Requerimiento a bodega
         other: Requerimientos a bodega
-      forums/theme:
+      forum/theme:
         one: Tema
         other: Temas
-      forums/actor:
+      forum/actor:
         one: Actor
         other: Actores
-      forums/organization:
+      forum/organization:
         one: Organización
         other: Organizaciones
-      forums/posture:
+      forum/posture:
         one: Postura
         other: Posturas
-      forums/entry:
+      forum/entry:
         one: Entrada
         other: Entradas
     attributes:
@@ -333,7 +333,7 @@ es:
       req/product_requirement:
         product_id: Producto
         quantity: Cantidad
-      forums/theme:
+      forum/theme:
         priority: Prioridad
         created_at: Fecha de creación
         name: Nombre
@@ -346,7 +346,7 @@ es:
         cover: Portada
         video_url: Video URL
         twitter_id: Twitter ID (Búsqueda Timeline)
-      forums/entry:
+      forum/entry:
         kind: Tipo de entrada
         theme_id: Tema
         organization_id: Organización
@@ -357,15 +357,15 @@ es:
         entry_at: Fecha de entrada
         asset: Adjunto
         created_at: Fecha de creación
-      forums/actor:
+      forum/actor:
         created_at: Fecha de creación
         name: Nombre
-      forums/organization:
+      forum/organization:
         created_at: Fecha de creación
         name: Nombre
         logo: Logo
         kind: Tipo
-      forums/posture:
+      forum/posture:
         created_at: Fecha de creación
         organization_id: Organización
         actor_id: Actor
@@ -412,4 +412,4 @@ es:
     inv: Inventario
     qa: Quejas y Avisos
     req: Requerimientos
-    forums: Foros públicos
+    forum: Foros públicos

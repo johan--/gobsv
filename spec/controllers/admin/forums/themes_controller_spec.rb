@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Admin::Forums::ThemesController, :type => :controller do
+RSpec.describe Admin::Forum::ThemesController, :type => :controller do
 
 end

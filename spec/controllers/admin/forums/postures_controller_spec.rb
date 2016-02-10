@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Admin::Forums::PosturesController, :type => :controller do
+RSpec.describe Admin::Forum::PosturesController, :type => :controller do
 
 end

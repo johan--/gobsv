@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   #draw :www
   draw :employments
   draw :complaints
-  draw :opinions
+  draw :forums
   draw :ta
 end

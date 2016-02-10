@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Admin::Forums::ActorsController, :type => :controller do
+RSpec.describe Admin::Forum::ActorsController, :type => :controller do
 
 end

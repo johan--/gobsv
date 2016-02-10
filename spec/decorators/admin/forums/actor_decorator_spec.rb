@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Admin::Forums::ActorDecorator do
+describe Admin::Forum::ActorDecorator do
 end

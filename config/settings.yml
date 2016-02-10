@@ -23,7 +23,7 @@ modules:
   - units
   req:
   - requirements
-  forums:
+  forum:
   - themes
   - organizations
   - actors

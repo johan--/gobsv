@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Admin::Forums::ThemeDecorator do
+describe Admin::Forum::ThemeDecorator do
 end

@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Forums::OrganizationDecorator do
+describe Forum::OrganizationDecorator do
 end

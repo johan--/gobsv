@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Forums::EntryDecorator do
+describe Forum::EntryDecorator do
 end

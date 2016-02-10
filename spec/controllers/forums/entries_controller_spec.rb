@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Forums::EntriesController, :type => :controller do
+RSpec.describe Forum::EntriesController, :type => :controller do
 
 end

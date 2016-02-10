@@ -26,7 +26,7 @@ constraints subdomain: 'panel' do
         req: [
           :requirements
         ],
-        forums: [
+        forum: [
           :themes,
           :organizations,
           :actors,

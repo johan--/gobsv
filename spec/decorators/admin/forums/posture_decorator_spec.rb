@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Admin::Forums::PostureDecorator do
+describe Admin::Forum::PostureDecorator do
 end
