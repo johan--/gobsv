@@ -105,6 +105,19 @@
                 %strong= "Otros aspectos: "
                 %br
                 = simple_format @job.description
+
+            %br
+            .row
+              .col-sm-12
+                .center-block.hidden-sm.hidden-xs
+                  .btn-toolbar{role: "toolbar"}
+                    .line.visible-lg-inline-block.visible-md-inline-block
+                    .btn-group{role: "group"}
+                      = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
+                    .line.visible-lg-inline-block.visible-md-inline-block
+                .hidden-lg.hidden-md.text-centered
+                  = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
+
           .tab-pane#perfil{role: 'tabpanel'}
             - if @job.degrees.count > 0
               %div
@@ -165,6 +178,19 @@
                           = experience.exp_name
                       %td.p15
                         = sanitize experience.exp_description
+            %br
+            .row
+              .col-sm-12
+                .center-block.hidden-sm.hidden-xs
+                  .btn-toolbar{role: "toolbar"}
+                    .line.visible-lg-inline-block.visible-md-inline-block
+                    .btn-group{role: "group"}
+                      = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
+                    .line.visible-lg-inline-block.visible-md-inline-block
+                .hidden-lg.hidden-md.text-centered
+                  = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
+
+
           .tab-pane#criteria{role: 'tabpanel'}
             %h4
               Criterios de evaluación
@@ -188,14 +214,14 @@
                       %td.text-right.text-blue
                         = "#{area.score.to_i} puntos"
 
-    .row
-      .col-sm-12
-        .center-block.hidden-sm.hidden-xs
-          .btn-toolbar{role: "toolbar"}
-            .line.visible-lg-inline-block.visible-md-inline-block
-            .btn-group{role: "group"}
-              = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
-            .line.visible-lg-inline-block.visible-md-inline-block
-        .hidden-lg.hidden-md.text-centered
-          = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
-        %br
+            .row
+              .col-sm-12
+                .center-block.hidden-sm.hidden-xs
+                  .btn-toolbar{role: "toolbar"}
+                    .line.visible-lg-inline-block.visible-md-inline-block
+                    .btn-group{role: "group"}
+                      = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
+                    .line.visible-lg-inline-block.visible-md-inline-block
+                .hidden-lg.hidden-md.text-centered
+                  = link_to "Aplicar", contact_employments_job_url(@job), remote: true, class: "btn btn-primary"
+                %br

@@ -10,3 +10,6 @@
 
 $ ->
   $('[data-toggle="tooltip"]').tooltip()
+
+  $(document).on 'click', '.btnNext', ->
+    $('.nav-tabs > .active').next('li').find('a').trigger 'click'
