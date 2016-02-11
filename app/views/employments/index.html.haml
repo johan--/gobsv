@@ -90,12 +90,9 @@
                   %p
                     .btn-toolbar{role: "toolbar"}
                       .row
-                        .col-xs-6.col-md-4
+                        .col-xs-12
                           .btn-group{role: "group"}
-                            = link_to "Aplicar", contact_employments_job_url(plaza), remote: true, class: "btn btn-primary"
-                        .col-xs-6.col-md-8
-                          .btn-group{role: "group"}
-                            = link_to "Ver detalle", employments_job_url(plaza), remote: true
+                            = link_to "Ver detalle", employments_job_url(plaza), remote: true, class: "btn btn-primary"
                 .col-xs-7
                   %div
                     = "Descripción: "
