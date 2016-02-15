@@ -23,3 +23,18 @@
           %a{:href => entry.url}
         %span.cd-date
           = l(entry.entry_at, format: :default)
+  - when 'document'
+    .cd-timeline-block
+      .cd-timeline-img
+        = image_tag("forums/document_forum_icon.png")
+      / cd-timeline-img
+      .cd-timeline-content
+        %h2
+          = entry.title
+        - if entry.description
+          %p
+            = entry.description
+        - if entry.url
+          = link_to 'Descargar', entry.asset.url, target: '_blank', class: 'cd-read-more'
+        %span.cd-date
+          = l(entry.entry_at, format: :default)

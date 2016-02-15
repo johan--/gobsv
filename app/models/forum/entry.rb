@@ -11,7 +11,7 @@ class Forum::Entry < ActiveRecord::Base
   belongs_to :organization, class_name: '::Forum::Organization'
   belongs_to :theme, class_name: '::Forum::Theme'
 
-  default_scope { order(entry_at: :asc) }
+  default_scope { order(entry_at: :desc) }
 
   KIND = {
     'articulo' => 'Articulo',

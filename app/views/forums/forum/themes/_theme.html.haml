@@ -61,18 +61,18 @@
       Histórico del tema
     %p.description-topic
       = theme.historical_description
-    = search_form_for @q, url: forums_root_url, class: 'autoSb' do |f|
-      .filters
+    = form_for :q, url: "#{forums_root_url}#filters", method: :get, html: {class: 'autoSb'} do |f|
+      .filters#filters
         Filtrar por
         .row
           .col-md-3.col-sm-6.default-margin
-            = f.select :organization_id_eq, options_for_select(@medias.map{ |s| [s.name, s.id] }), {prompt: 'Todos los medios de comunicación'}, {:class => 'form-control'}
+            = f.select :media_id, options_for_select(@medias.map{ |s| [s.name, s.id] }, params[:q] ? params[:q][:media_id] : nil), {prompt: 'Todos los medios de comunicación'}, {:class => 'form-control'}
           .col-md-3.col-sm-6.default-margin
-            = f.select :organization_id_eq, options_for_select(@politics.map{ |s| [s.name, s.id] }), {prompt: 'Todos los partidos políticos'}, {:class => 'form-control'}
+            = f.select :political_id, options_for_select(@politics.map{ |s| [s.name, s.id] }, params[:q] ? params[:q][:political_id] : nil), {prompt: 'Todos los partidos políticos'}, {:class => 'form-control'}
           .col-md-3.col-sm-6.default-margin
-            = f.select :kind_eq, options_for_select([ "PDF", "VIDEOS", "AUDIOS", "DOC", "Todos los multimedia" ], 'Todos los multimedia'), {}, {:class => 'form-control'}
+            = f.select :year_eq, options_for_select(@years, params[:q] ? params[:q][:year_eq] : nil), {prompt: 'Todos los años'}, {:class => 'form-control'}
           .col-md-3.col-sm-6.default-margin
-            = f.select :kind_eq, options_for_select([ "Twitter", "Facebook", "Todas las redes sociales" ], 'Todas las redes sociales'), {}, {:class => 'form-control'}
+            = f.select :kind_eq, options_for_select([ "Twitter", "Facebook" ], params[:q] ? params[:q][:kind_eq] : nil), { prompt: "Todas las redes sociales"}, {:class => 'form-control'}
     %section#cd-timeline.cd-container
       = render @entries
 
