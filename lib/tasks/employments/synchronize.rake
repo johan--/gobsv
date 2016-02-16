@@ -128,6 +128,8 @@ namespace :employments do
         obj.updated_user = json[:usuarioModificacion]
         obj.contract_type = json[:nombreContratacion]
         obj.location = json[:Ubicacion]
+        obj.participants_number = json[:numeroParticipantes]
+        obj.closing_comment = json[:cierreComentario]
         obj.active = true
         obj.save
       end

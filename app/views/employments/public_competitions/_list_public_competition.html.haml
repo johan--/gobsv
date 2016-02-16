@@ -1,0 +1,42 @@
+.job
+  .job-title
+    = list_public_competition.post_name
+  .row
+    .col-xs-5
+      %p
+        = "Institución: "
+        = list_public_competition.institution_name
+      - if list_public_competition.location.present?
+        %p
+          = "Departamento: "
+          = list_public_competition.location.split(',')[1].strip rescue ''
+      %p
+        = "Salario: "
+        = number_to_currency(list_public_competition.salary)
+      %p
+        = "Vacantes: "
+        = list_public_competition.vacancies
+      %p
+        = "Fecha limite de inscripción: "
+        = l(list_public_competition.closing_registration, format: :date)
+      %p
+        .btn-toolbar{role: "toolbar"}
+          .row
+            .col-xs-12
+              .btn-group{role: "group"}
+                = link_to "Ver detalle", employments_job_url(list_public_competition), remote: true, class: "btn btn-primary"
+    .col-xs-7
+      %div
+        = "Descripción: "
+        %br
+        = list_public_competition.description.present? ? simple_format(list_public_competition.description) : 'Ninguno'
+      %br
+      #shareButtonLabelCount{class: "list_public_competition-#{list_public_competition_counter}"}
+      :javascript
+        $('.list_public_competition-#{list_public_competition_counter}').jsSocials({
+          url: "#{employments_job_url(list_public_competition)}",
+          text: "#{list_public_competition.post_name}",
+          showCount: true,
+          showLabel: true,
+          shares: ["twitter", "facebook", "googleplus", "linkedin"]
+        })

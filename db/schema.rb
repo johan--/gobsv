@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202211625) do
+ActiveRecord::Schema.define(version: 20160216172239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,6 +231,8 @@ ActiveRecord::Schema.define(version: 20160202211625) do
     t.boolean  "active",                                           default: true
     t.string   "location"
     t.string   "contract_type"
+    t.integer  "participants_number"
+    t.text     "closing_comment"
   end
 
   add_index "employments_public_competitions", ["plaza_id"], name: "index_employments_public_competitions_on_plaza_id", using: :btree

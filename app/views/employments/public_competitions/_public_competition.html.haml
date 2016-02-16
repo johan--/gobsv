@@ -1,0 +1,242 @@
+.job-detail
+  .job-detail-header
+    .row
+      .col-xs-5
+        .clip
+          = image_tag("employments/icon-clip.png")
+        .yellow
+          = truncate public_competition.institution_code, length: 7
+      .col-xs-7
+        %div{id: "shareButtonLabelCount#{public_competition.id}"}
+        :javascript
+          $("#shareButtonLabelCount#{public_competition.id}").jsSocials({
+            url: "#{employments_job_url(public_competition)}",
+            text: "#{public_competition.post_name}",
+            showCount: true,
+            showLabel: true,
+            shares: ["twitter", "facebook", "googleplus", "linkedin"]
+          })
+        %h2
+          = public_competition.post_name
+
+  .row
+    .col-xs-12
+      %ul.nav.nav-tabs{role: 'tablist'}
+        %li.presentation.active
+          = link_to 'Información del puesto', '#general', role: 'tab', data: {toggle: 'tab'}
+        %li.presentation
+          = link_to 'Perfil de contratación', '#perfil', role: 'tab', data: {toggle: 'tab'}
+        %li.presentation
+          = link_to 'Criterios de evaluación', '#criteria', role: 'tab', data: {toggle: 'tab'}
+
+      .tab-content
+        .tab-pane.active#general{role: 'tabpanel'}
+          %table{cellspacing: 10}
+            %tr
+              %td
+                Institución:
+              %td.p15
+                = public_competition.institution_name
+            - if public_competition.location.present?
+              %tr
+                %td
+                  Ubicación:
+                %td.p15
+                  = public_competition.location
+            %tr
+              %td
+                Salario:
+              %td.p15
+                = number_to_currency public_competition.salary
+            %tr
+              %td
+                Tipo de contratación:
+              %td.p15
+                = public_competition.contract_type
+            %tr
+              %td
+                Vacantes:
+              %td.p15
+                = public_competition.vacancies
+            %tr
+              %td
+                Fecha limite de inscripción:
+              %td.p15{ class: public_competition.plaza_state_id == 2 ? nil : 'text-danger' }
+                = l(public_competition.closing_registration, format: :date)
+                - if public_competition.plaza_state_id != 2
+                  (Plazo finalizado)
+                %br
+                - case public_competition.plaza_state_id
+                  - when 2
+                    %span.label.label-success
+                      Disponible
+                  - when 3
+                    %span.label.label-info
+                      En evaluación
+                  - when 4
+                    %span.label.label-danger
+                      Cerrado
+          - if public_competition.plaza_state_id == 4
+            .well
+              %strong
+                Proceso cerrado
+              - if public_competition.closing_comment.present?
+                %p
+                  = public_competition.closing_comment
+              - if public_competition.participants_number.to_i > 0
+                %p
+                  Número de participantes:
+                  = public_competition.participants_number
+          - if public_competition.mission.present?
+            %br
+            %div
+              %strong= "Misión: "
+              %br
+              = simple_format public_competition.mission
+          - if public_competition.function.present?
+            %br
+            %div
+              %strong= "Funciones básicas: "
+              %br
+              = simple_format public_competition.function
+          - if public_competition.result.present?
+            %br
+            %div
+              %strong= "Resultados principales: "
+              %br
+              = simple_format public_competition.result
+          - if public_competition.frame.present?
+            %br
+            %div
+              %strong= "Marco de referencia: "
+              %br
+              = simple_format public_competition.frame
+          - if public_competition.description.present?
+            %br
+            %div
+              %strong= "Otros aspectos: "
+              %br
+              = simple_format public_competition.description
+
+          %br
+          .row
+            .col-sm-12
+              .center-block.hidden-sm.hidden-xs
+                .btn-toolbar{role: "toolbar"}
+                  .line.visible-lg-inline-block.visible-md-inline-block
+                  .btn-group{role: "group"}
+                    = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
+                  .line.visible-lg-inline-block.visible-md-inline-block
+              .hidden-lg.hidden-md.text-centered
+                = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
+
+        .tab-pane#perfil{role: 'tabpanel'}
+          - if public_competition.degrees.count > 0
+            %div
+              %strong= "Grado académico: "
+              %table
+                - public_competition.degrees.each do |degree|
+                  %tr
+                    %td.p15
+                      %span.label{ class: degree.req_code.to_i == 1 ? 'label-info' : ( degree.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                        = degree.req_name
+                    %td.p15
+                      = sanitize degree.gra_name
+          - if public_competition.specialties.count > 0
+            %br
+            %div
+              %strong= "Especialidades: "
+              %table
+                - public_competition.specialties.each do |specialty|
+                  %tr
+                    %td.p15
+                      %span.label{ class: specialty.req_code.to_i == 1 ? 'label-info' : ( specialty.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                        = specialty.req_name
+                    %td.p15
+                      = sanitize specialty.esp_name
+          - if public_competition.technical_competences.count > 0
+            %br
+            %div
+              %strong= "Competencias técnicas: "
+              %table
+                - public_competition.technical_competences.each do |competence|
+                  %tr
+                    %td.p15
+                      %span.label{ class: competence.req_code.to_i == 1 ? 'label-info' : ( competence.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                        = competence.req_name
+                    %td.p15
+                      = sanitize competence.name
+          - if public_competition.languages.count > 0
+            %br
+            %div
+              %strong= "Idiomas: "
+              %table
+                - public_competition.languages.each do |language|
+                  %tr
+                    %td.p15
+                      %span.label{ class: language.req_code.to_i == 1 ? 'label-info' : ( language.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
+                        = language.req_name
+                    %td.p15
+                      = sanitize language.idi_name
+          - if public_competition.experiences.count > 0
+            %br
+            %div
+              %strong= "Experiencia previa: "
+              %table
+                - public_competition.experiences.each do |experience|
+                  %tr
+                    %td.p15
+                      %span.label.label-default
+                        = experience.exp_name
+                    %td.p15
+                      = sanitize experience.exp_description
+          %br
+          .row
+            .col-sm-12
+              .center-block.hidden-sm.hidden-xs
+                .btn-toolbar{role: "toolbar"}
+                  .line.visible-lg-inline-block.visible-md-inline-block
+                  .btn-group{role: "group"}
+                    = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
+                  .line.visible-lg-inline-block.visible-md-inline-block
+              .hidden-lg.hidden-md.text-centered
+                = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
+
+
+        .tab-pane#criteria{role: 'tabpanel'}
+          %h4
+            Criterios de evaluación
+          - public_competition.factors.order(:order).each_with_index do |factor, i|
+            - unless i == 0
+              %br
+            %strong
+              = factor.name
+              &nbsp
+              %span.text-green
+                = "#{factor.maximum_score.to_i} Máx"
+              &nbsp
+              %span.text-blue
+                = "#{factor.minimum_score.to_i} Mín"
+            - if factor.areas.count > 0
+              %table.table.borderless.table-striped.table-hover
+                - factor.areas.each do |area|
+                  %tr
+                    %td
+                      = area.name
+                    %td.text-right.text-blue
+                      = "#{area.score.to_i} puntos"
+
+          .row
+            .col-sm-12
+              .center-block.hidden-sm.hidden-xs
+                .btn-toolbar{role: "toolbar"}
+                  .line.visible-lg-inline-block.visible-md-inline-block
+                  .btn-group{role: "group"}
+                    - if public_competition.plaza_state_id == 2
+                      = link_to "Aplicar", contact_employments_job_url(public_competition), remote: true, class: "btn btn-primary"
+                    - else
+                      = link_to "Cerrar", employments_jobs_url, class: "btn btn-primary", data: { dismiss: 'modal' }
+                  .line.visible-lg-inline-block.visible-md-inline-block
+              .hidden-lg.hidden-md.text-centered
+                = link_to "Aplicar", contact_employments_job_url(public_competition), remote: true, class: "btn btn-primary"
+              %br

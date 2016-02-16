@@ -53,8 +53,9 @@
     .row
       .col-sm-4
         - if @institutions.size > 0
-          %strong
-            = "Instituciones"
+          %h4
+            %strong
+              Instituciones
           .institutions-list
             %ul.nav.nav-pills{role: "tablist"}
               - @institutions.each do |institution|
@@ -65,49 +66,7 @@
           %strong
             = "Últimos empleos disponibles"
         .job-list
-          - @last_plazas.each_with_index do |plaza, i|
-            .job
-              .job-title
-                = plaza.post_name
-              .row
-                .col-xs-5
-                  %p
-                    = "Institución: "
-                    = plaza.institution_name
-                  - if plaza.location.present?
-                    %p
-                      = "Departamento: "
-                      = plaza.location.split(',')[1].strip rescue ''
-                  %p
-                    = "Salario: "
-                    = number_to_currency(plaza.salary)
-                  %p
-                    = "Vacantes: "
-                    = plaza.vacancies
-                  %p
-                    = "Fecha limite de inscripción: "
-                    = l(plaza.closing_registration, format: :date)
-                  %p
-                    .btn-toolbar{role: "toolbar"}
-                      .row
-                        .col-xs-12
-                          .btn-group{role: "group"}
-                            = link_to "Ver detalle", employments_job_url(plaza), remote: true, class: "btn btn-primary"
-                .col-xs-7
-                  %div
-                    = "Descripción: "
-                    %br
-                    = plaza.description.present? ? simple_format(plaza.description) : 'Ninguno'
-                  %br
-                  #shareButtonLabelCount{class: "plaza-#{i}"}
-                  :javascript
-                    $('.plaza-#{i}').jsSocials({
-                      url: "#{employments_job_url(plaza)}",
-                      text: "#{plaza.post_name}",
-                      showCount: true,
-                      showLabel: true,
-                      shares: ["twitter", "facebook", "googleplus", "linkedin"]
-                    })
+          = render collection: @last_plazas, partial: 'employments/public_competitions/list_public_competition'
         .show-list
           = link_to "Ver listado completo", employments_jobs_url
 #create-cv

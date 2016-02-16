@@ -291,3 +291,17 @@ h2.header-title{
   float: left;
   margin-bottom: 5px;
 }
+
+.badge {
+  color: #3FB3E4;
+  background-color: #f2f2f2;
+  font-weight: normal;
+}
+.badge:hover {
+  color: #3FB3E4 !important;
+  background-color: #f2f2f2 !important;
+}
+
+.well {
+  margin: 10px 0 0 0;
+}

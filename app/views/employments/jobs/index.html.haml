@@ -2,54 +2,32 @@
 #lastjobs
   .container
     .row
-      .col-sm-12
-        %h2.header-title
-          = "Todos los empleos públicos disponibles"
+      .col-xs-12
+        %ul.nav.nav-tabs{role: 'tablist'}
+          %li.presentation{ class: params[:q][:plaza_state_id_eq].to_i == 2 ? 'active' : nil }
+            = link_to 'Empleos disponibles', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_eq: 2))
+          %li.presentation{ class: params[:q][:plaza_state_id_eq].to_i == 3 ? 'active' : nil }
+            = link_to 'Empleos en evaluación', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_eq: 3))
+          %li.presentation{ class: params[:q][:plaza_state_id_eq].to_i == 4 ? 'active' : nil }
+            = link_to 'Empleos cerrados', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_eq: 4))
+    %br
+    .row
+      .col-xs-4
+        - if @institutions.size > 0
+          .institutions-list
+            %ul.nav.nav-pills{role: "tablist"}
+              %li{role: "presentation"}
+                = link_to 'Todas las instituciones', employments_jobs_url(q: params[:q].try(:merge, institution_id_eq: nil)), title: 'Ver todas las instituciones', class: "badge", data: { toggle: 'tooltip', placement: 'top' }
+              - @institutions.each do |institution|
+                %li{role: "presentation"}
+                  = link_to institution.institution_code, employments_jobs_url(q: params[:q].try(:merge, institution_id_eq: institution.institution_id)), title: institution.institution_name, class: "badge", data: { toggle: 'tooltip', placement: 'top' }
+      .col-xs-8.dashed-border
+        -#
+          %h2.header-title
+            = "Todos los empleos públicos disponibles"
         .job-list
           - if @jobs.count > 0
-            - @jobs.each_with_index do |plaza, i|
-              .job
-                .job-title
-                  = plaza.post_name
-                .row
-                  .col-xs-5
-                    %p
-                      = "Institución: "
-                      = plaza.institution_name
-                    - if plaza.location.present?
-                      %p
-                        = "Departamento: "
-                        = plaza.location.split(',')[1].strip rescue ''
-                    %p
-                      = "Salario: "
-                      = number_to_currency(plaza.salary)
-                    %p
-                      = "Vacantes: "
-                      = plaza.vacancies
-                    %p
-                      = "Fecha limite de inscripción: "
-                      = l(plaza.closing_registration, format: :date)
-                    %p
-                      .btn-toolbar{role: "toolbar"}
-                        .row
-                          .col-xs-12
-                            .btn-group{role: "group"}
-                              = link_to "Ver detalle", employments_job_url(plaza), remote: true, class: "btn btn-primary"
-                  .col-xs-7
-                    %div
-                      = "Descripción: "
-                      %br
-                      = plaza.description.present? ? simple_format(plaza.description) : 'Ninguno'
-                    %br
-                    #shareButtonLabelCount{class: "plaza-#{i}"}
-                    :javascript
-                      $('.plaza-#{i}').jsSocials({
-                        url: "#{employments_job_url(plaza)}",
-                        text: "#{plaza.post_name}",
-                        showCount: true,
-                        showLabel: true,
-                        shares: ["twitter", "facebook", "googleplus", "linkedin"]
-                      })
+            = render collection: @jobs, partial: 'employments/public_competitions/list_public_competition'
             %center
               = will_paginate @jobs, renderer: BootstrapPagination::Rails
           - else
