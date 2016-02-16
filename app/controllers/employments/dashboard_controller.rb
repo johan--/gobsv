@@ -1,6 +1,7 @@
 class Employments::DashboardController < EmploymentsController
 
   def index
+    params[:q] ||= {}
     @publish_plazas = Employments::PublicCompetition.where(active: true).where.not(plaza_state_id: 1)
     @total_plazas = Employments::PublicCompetition.active.available.count.to_s.rjust(4, '0')
     @last_plazas = Employments::PublicCompetition.active.available.order(updated_date: :desc).limit(2)
