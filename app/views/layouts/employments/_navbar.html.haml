@@ -23,11 +23,12 @@
 
       %ul.nav.navbar-nav.navbar-right
         %li
-          = link_to nil do
+          = mail_to 'info@gobiernoabierto.gob.sv' do
             = icon('envelope')
-        %li
-          = link_to nil do
-            = icon('user')
+        -#
+          %li
+            = link_to nil do
+              = icon('user')
         -#
           %li
             = link_to nil do

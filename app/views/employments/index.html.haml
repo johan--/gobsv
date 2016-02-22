@@ -51,7 +51,7 @@
 #lastjobs
   .container
     .row
-      .col-sm-4
+      .col-sm-4.col-xs-12
         - if @institutions.size > 0
           %h4
             %strong
@@ -61,7 +61,7 @@
               - @institutions.each do |institution|
                 %li{role: "presentation"}
                   = link_to institution.institution_code, employments_jobs_url(:'q[institution_id_eq]' => institution.institution_id), title: institution.institution_name, class: "badge", data: { toggle: 'tooltip', placement: 'top' }
-      .col-sm-8.dashed-border
+      .col-sm-8.dashed-border.col-xs-12
         %h4
           %strong
             = "Últimos empleos disponibles"
