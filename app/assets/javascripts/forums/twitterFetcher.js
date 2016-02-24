@@ -334,9 +334,9 @@
           if (showInteractionLinks) {
             op += '<p class="interact"><a href="https://twitter.com/intent/' +
                 'tweet?in_reply_to=' + tids[n] +
-                '" class="twitter_reply_icon"' + (targetBlank ? ' target="_blank ">' : '>') + '<img src="/assets/forums/re.png"></a>'+
-                '<a href="https://twitter.com/intent/retweet?' + 'tweet_id=' + tids[n] + '" class="twitter_retweet_icon"' +        (targetBlank ? ' target="_blank">' : '> ') + '<img src="/assets/forums/rt.png"></a>' +
-                ' <a href="https://twitter.com/intent/like?tweet_id=' + tids[n] + '&tw_p=embeddedtimeline" class="twitter_fav_icon"' + (targetBlank ? ' target="_blank">' : '>') + '<img src="/assets/forums/heart.png"></a></p>';
+                '" class="twitter_reply_icon"' + (targetBlank ? ' target="_blank ">' : '>') + '<img src="/re.png"></a>'+
+                '<a href="https://twitter.com/intent/retweet?' + 'tweet_id=' + tids[n] + '" class="twitter_retweet_icon"' +        (targetBlank ? ' target="_blank">' : '> ') + '<img src="/rt.png"></a>' +
+                ' <a href="https://twitter.com/intent/like?tweet_id=' + tids[n] + '&tw_p=embeddedtimeline" class="twitter_fav_icon"' + (targetBlank ? ' target="_blank">' : '>') + '<img src="/heart.png"></a></p>';
           }
 
 
