@@ -6,6 +6,8 @@
       .cd-timeline-content
         %h2
           = entry.title
+        - if entry.asset.present?
+          = image_tag(entry.asset.url, class: 'img-responsive')
         - if entry.description
           %p
             = entry.description
