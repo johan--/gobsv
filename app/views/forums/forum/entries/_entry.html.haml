@@ -4,6 +4,13 @@
       .cd-timeline-img
         = image_tag("forums/article_forum_icon.png")
       .cd-timeline-content
+        - if entry.organization.present?
+          .label.label-primary
+            = entry.organization.name
+          &nbsp
+        - if entry.actor.present?
+          .label.label-info
+            = entry.actor.name
         %h2
           = entry.title
         - if entry.asset.present?
