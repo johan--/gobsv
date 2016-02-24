@@ -1,0 +1,86 @@
+- case entry.kind
+  - when 'article'
+    .cd-timeline-block
+      .cd-timeline-img
+        = image_tag("forums/article_forum_icon.png")
+      .cd-timeline-content
+        - if entry.organization.present?
+          .label.label-primary
+            = entry.organization.name
+          &nbsp
+        - if entry.actor.present?
+          .label.label-info
+            = entry.actor.name
+        %h2
+          = entry.title
+        - if entry.asset.present?
+          = image_tag(entry.asset.url, class: 'img-responsive')
+        - if entry.description
+          %p
+            = entry.description
+        - if entry.url
+          = link_to 'Leer más', entry.url, target: '_blank', class: 'cd-read-more'
+        %span.cd-date
+          = l(entry.entry_at, format: :default)
+  - when 'twitter'
+    .cd-timeline-block
+      .cd-timeline-img
+        = image_tag("forums/twitter_forum_icon.png")
+      / cd-timeline-img
+      .cd-timeline-content
+        - if entry.organization.present?
+          .label.label-primary
+            = entry.organization.name
+          &nbsp
+        - if entry.actor.present?
+          .label.label-info
+            = entry.actor.name
+        %blockquote.twitter-tweet{"data-lang" => "es"}
+          %a{:href => entry.url}
+        %span.cd-date
+          = l(entry.entry_at, format: :default)
+  - when 'document'
+    .cd-timeline-block
+      .cd-timeline-img
+        = image_tag("forums/document_forum_icon.png")
+      / cd-timeline-img
+      .cd-timeline-content
+        - if entry.organization.present?
+          .label.label-primary
+            = entry.organization.name
+          &nbsp
+        - if entry.actor.present?
+          .label.label-info
+            = entry.actor.name
+        %h2
+          = entry.title
+        - if entry.description
+          %p
+            = entry.description
+        - if entry.url
+          = link_to 'Descargar', entry.asset.url, target: '_blank', class: 'cd-read-more'
+        %span.cd-date
+          = l(entry.entry_at, format: :default)
+  - when 'video'
+    - if entry.url.present?
+      .cd-timeline-block
+        .cd-timeline-img
+          = image_tag("forums/youtube_forum_icon.png")
+        / cd-timeline-img
+        .cd-timeline-content
+          - if entry.organization.present?
+            .label.label-primary
+              = entry.organization.name
+            &nbsp
+          - if entry.actor.present?
+            .label.label-info
+              = entry.actor.name
+          %h2
+            = entry.title
+          - if entry.description
+            %p
+              = entry.description
+          = link_to entry.url, class: "play-video", title: entry.title do
+            = image_tag("http://img.youtube.com/vi/#{entry.youtubeid}/0.jpg", class: 'img-responsive')
+          %span.cd-date
+            = l(entry.entry_at, format: :default)

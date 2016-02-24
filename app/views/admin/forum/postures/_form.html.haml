@@ -1,0 +1,6 @@
+= f.select :theme_id, @themes.map{ |theme| [theme.name, theme.id] }, { prompt: true }, { required: true }
+= f.select :organization_id, @organizations.map{ |organization| [organization.name, organization.id] }, { prompt: true }, { required: true }
+= f.select :actor_id, @actors.map{ |actor| [actor.name, actor.id] }, { prompt: true }, {}
+=# f.select :entry_id, @entries.map{ |entry| [entry.name, entry.id] }, { prompt: true }, {}
+= f.text_area :quote, rows: 4
+= f.date_field :quoted_at

@@ -23,16 +23,19 @@
 
       %ul.nav.navbar-nav.navbar-right
         %li
-          = link_to nil do
+          = mail_to 'info@gobiernoabierto.gob.sv' do
             = icon('envelope')
-        %li
-          = link_to nil do
-            = icon('user')
+        -#
+          %li
+            = link_to nil do
+              = icon('user')
         -#
           %li
             = link_to nil do
               = icon('bars')
-      = search_form_for @q, url: employments_jobs_url, class: 'navbar-form navbar-right', role: :search do |f|
+      = search_form_for @q, url: employments_jobs_url(q: params[:q]), class: 'navbar-form navbar-right', role: :search do |f|
         .form-group.has-feedback
           = f.search_field :post_name_or_institution_name_or_institution_code_or_organization_department_or_description_or_address_cont, class: 'form-control', placeholder: 'Búsqueda'
           = icon('search', class: 'form-control-feedback text-muted')
+          - params[:q].except(:post_name_or_institution_name_or_institution_code_or_organization_department_or_description_or_address_cont).each do |k,v|
+            = f.hidden_field k, value: v

@@ -1,4 +1,4 @@
-class Forums::WelcomeDecorator < Draper::Decorator
+class Forum::OrganizationDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
@@ -9,5 +9,13 @@ class Forums::WelcomeDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+
+  def kind
+    Forum::Organization::KIND[self[:kind]]
+  end
+
+  def created_at
+    h.l object.created_at, format: :default
+  end
 
 end

@@ -1,0 +1,18 @@
+= f.select :theme_id, @themes.map{ |theme| [theme.name, theme.id] }, { prompt: true }, { required: true }
+= f.select :kind, options_for_select(Forum::Entry::KIND.invert, f.object.kind), { prompt: true }, { required: true }
+= f.select :organization_id, @organizations.map{ |organization| [organization.name, organization.id] }, { prompt: true }, { required: true }
+= f.select :actor_id, @actors.map{ |actor| [actor.name, actor.id] }, { prompt: true }, {}
+= f.text_field :title, class: 'form-control'
+= f.text_area :description, class: 'form-control', rows: 4
+= f.text_field :url, class: 'form-control', placeholder: 'http://'
+= f.date_field :entry_at, class: 'form-control', required: true
+.form-group
+  %label.control-label.col-sm-2
+    Adjunto
+  .col-sm-9
+    = f.file_field_without_bootstrap :asset
+    - if f.object.valid? and f.object.asset.present?
+      %br
+      = link_to f.object.asset.url do
+        %span.glyphicon.glyphicon-save
+        Descargar archivo

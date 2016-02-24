@@ -1,2 +1,7 @@
-%h1 Forums::Welcome#index
-%p Find me in app/views/forums/welcome/index.html.haml
+=# TOPIC TYPE
+- if @main
+  = render @main
+- else
+  %h2
+    Actualmente no se encuentra una discusión activa
+  %br

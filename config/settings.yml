@@ -23,6 +23,15 @@ modules:
   - units
   req:
   - requirements
+  forum:
+  - themes
+  - organizations
+  - actors
+  - entries
+  - postures
+  paa:
+  - financial_sources
+  - savings
 
 sapt:
   username: 'test'

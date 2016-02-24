@@ -9,7 +9,7 @@ namespace :employments do
     Settings.reload!
     begin
       # First get a valid token
-      uri = URI('http://sapt.presidencia.gob.sv/STPPplazas/token')
+      uri = URI('http://www.funcionpublica.gob.sv/STPPplazas/token')
       params = {
         'Username' => Settings.sapt.username,
         'Password' => Settings.sapt.password,
@@ -19,7 +19,7 @@ namespace :employments do
       json = JSON.parse(res.body, symbolize_names: true)
       access_token = [json[:token_type], json[:access_token]].join(' ')
       # Get factors
-      jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/VistaFactores', access_token
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaFactores', access_token
       jsons.each do |json|
         obj = Employments::Factor.where(factor_id: json[:idFactor], plaza_id: json[:idPlaza]).first_or_initialize
         obj.name = json[:nombreFactor]
@@ -30,7 +30,7 @@ namespace :employments do
         obj.save
       end
       # Get areas
-      jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/Area', access_token
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/Area', access_token
       jsons.each do |json|
         obj = Employments::Area.where(id: json[:idArea]).first_or_initialize
         obj.factor_score_id = json[:idFactorPuntaje]
@@ -40,7 +40,7 @@ namespace :employments do
         obj.save
       end
       # Get degrees
-      jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/GOES_Grado', access_token
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Grado', access_token
       jsons.each do |json|
         obj = Employments::Degree.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
@@ -51,7 +51,7 @@ namespace :employments do
         obj.save
       end
       # Get experiences
-      jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/GOES_Experiencia', access_token
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Experiencia', access_token
       jsons.each do |json|
         obj = Employments::Experience.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
@@ -61,7 +61,7 @@ namespace :employments do
         obj.save
       end
       # Get languages
-      jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/GOES_Idioma', access_token
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Idioma', access_token
       jsons.each do |json|
         obj = Employments::Language.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
@@ -72,7 +72,7 @@ namespace :employments do
         obj.save
       end
       # Get specialties
-      jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/GOES_Especialidad', access_token
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Especialidad', access_token
       jsons.each do |json|
         obj = Employments::Specialty.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
@@ -83,7 +83,7 @@ namespace :employments do
         obj.save
       end
       # Get technical competences
-      jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/GOES_CompTecnica', access_token
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_CompTecnica', access_token
       jsons.each do |json|
         obj = Employments::TechnicalCompetence.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
@@ -94,7 +94,7 @@ namespace :employments do
       end
       # Get public competitions
       Employments::PublicCompetition.update_all(active: false)
-      jsons = get_json_data 'http://sapt.presidencia.gob.sv/STPPplazas/api/VistaConcursosPublicos', access_token
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaConcursosPublicos', access_token
       jsons.each do |json|
         obj = Employments::PublicCompetition.where(identifier: json[:Identificador]).first_or_initialize
         obj.post_name = json[:nombrePuesto]
@@ -128,6 +128,8 @@ namespace :employments do
         obj.updated_user = json[:usuarioModificacion]
         obj.contract_type = json[:nombreContratacion]
         obj.location = json[:Ubicacion]
+        obj.participants_number = json[:numeroParticipantes]
+        obj.closing_comment = json[:cierreComentario]
         obj.active = true
         obj.save
       end
@@ -135,7 +137,15 @@ namespace :employments do
       puts e.message
       puts e.backtrace.inspect
     end
-
+    # Get contracts
+    jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/Contratos', access_token
+    jsons.each do |json|
+      obj = Employments::Contract.where(id: json[:idContrato]).first_or_initialize
+      obj.plaza_id = json[:idPlaza]
+      obj.name = json[:nombre]
+      obj.last_name = json[:apellido]
+      obj.save
+    end
   end
 
   def get_json_data url, token

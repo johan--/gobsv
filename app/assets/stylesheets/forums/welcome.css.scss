@@ -1,3 +1,131 @@
-// Place all the styles related to the Forums::Welcome controller here.
+// Place all the styles related to the Forum::Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1.problem-title{
+  font-family: "Montserrat";
+  font-size: 6em;
+  text-align: center;
+  color: #fff;
+}
+
+h2{
+  font-family: "Montserrat";
+  font-size: 24px;
+  color: #33495E;
+  text-align: center;
+}
+
+h2.problem-description{
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+p.subject{
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0 0;
+  margin: 0;
+}
+
+.wrapper-wage-video{
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 600px;
+  position: relative;
+}
+
+#wrapper-positions{
+  background: #EEEEEF;
+  padding: 30px 0;
+}
+
+p.description-topic{
+  font-family: "Dosis";
+  text-align: center;
+}
+
+.play-video{
+  display: block;
+  text-align: center;
+  margin: 30px 0 50px;
+}
+.go-to-positions{
+  display: block;
+  text-align: center;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+}
+
+.blue-slide-bg, .sky-slide-bg{
+  padding: 20px 25px 30px;
+}
+
+.blue-slide-bg{
+  background: #8AC4F4;
+}
+
+.sky-slide-bg{
+  background: #86E2D5;
+}
+
+.btn-custom-reply{
+  border-color: #b85b28;
+  border-image: none;
+  border-style: solid;
+  border-width: 2px 2px 6px;
+  font-size: 2em;
+  padding: 18px 0;
+  width: 100%;
+  font-weight: bold;
+}
+
+li.slide{
+  text-align: center;
+  p.quote{
+    text-align: left;
+  }
+  a.source{
+    border: 1px solid #fff;
+    color: #fff;
+    display: table;
+    margin: 15px auto;
+    padding: 5px;
+    width: 100%;
+    max-width: 100px;
+  }
+}
+
+li.slide:hover{
+  background: #F7CA17;
+}
+
+@media (max-width: 720px) {
+  h1.problem-title{
+    font-size: 4em;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  h2.problem-description{
+    font-size: 20px;
+  }
+
+  p.subject{
+    font-size: 20px;
+  }
+
+  .wrapper-wage-video{
+    height: 600px;
+  }
+
+
+}

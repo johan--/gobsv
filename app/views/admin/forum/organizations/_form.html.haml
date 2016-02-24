@@ -1,0 +1,6 @@
+= f.select :kind, options_for_select(Forum::Organization::KIND.invert, f.object.kind), { prompt: true }, { required: true }
+= f.text_field :name, class: 'form-control', required: true
+.form-group
+  .col-sm-9.col-sm-offset-2
+    = f.file_field_without_bootstrap :logo, data: { preview: true }
+    = image_tag((f.object.logo.present? ? f.object.logo.url(:small) : nil), height: 31)
