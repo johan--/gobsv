@@ -17,7 +17,7 @@ class Forums::WelcomeController < ForumsController
         end
         case params[:q][:kind_eq].to_s
           when 'Twitter'
-            search[:kind_eq] = 'tweet'
+            search[:kind_eq] = 'twitter'
         end
       end
       @entries = @main.entries.ransack(search).result()
