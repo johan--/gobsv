@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224195332) do
+ActiveRecord::Schema.define(version: 20160224210528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -355,6 +355,8 @@ ActiveRecord::Schema.define(version: 20160224195332) do
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.integer  "asset_downloads",        default: 0
+    t.string   "asset_title"
+    t.string   "hashtag"
   end
 
   create_table "institutions", force: true do |t|

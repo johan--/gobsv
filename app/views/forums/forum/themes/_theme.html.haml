@@ -12,7 +12,8 @@
     .text-center
       = link_to forums_download_url, class: 'btn btn-primary btn-lg', target: '_blank' do
         %i.glyphicon.glyphicon-download-alt
-        &nbspDescarga la propuesta de reforma a la ley de pensiones
+        &nbsp
+        = theme.asset_title
   .clearfix
   = link_to image_tag("forums/goto.png"), "#wrapper-positions", class: "go-to-positions"
 #wrapper-positions
@@ -94,7 +95,7 @@
 
       var input_msg = $('#twitter_text_id').val()
       var msg       = "?text=" + encodeURIComponent(input_msg);
-      var tag       = encodeURIComponent(" #PensionesSV");
+      var tag       = encodeURIComponent(" #{theme.hashtag}");
       var msg_tag   = msg + tag;
 
       var width  = 575,

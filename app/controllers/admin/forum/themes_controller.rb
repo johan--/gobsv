@@ -22,7 +22,9 @@ class Admin::Forum::ThemesController < Admin::ForumController
       :video_url,
       :cover,
       :twitter_id,
-      :asset
+      :asset,
+      :asset_title,
+      :hashtag
     )
   end
 end

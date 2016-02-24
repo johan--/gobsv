@@ -352,6 +352,8 @@ es:
         cover: Portada
         video_url: Video URL
         twitter_id: Twitter ID (Búsqueda Timeline)
+        hashtag: Hashtag del tema
+        asset_title: Titulo del botón
       forum/entry:
         kind: Tipo de entrada
         theme_id: Tema

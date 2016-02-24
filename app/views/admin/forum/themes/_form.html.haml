@@ -1,44 +1,49 @@
-= f.form_group :active do
-  = f.check_box :active
+= field_set_tag 'General' do
+  = f.form_group :active do
+    = f.check_box :active
 
-= f.form_group :main do
-  = f.check_box :main
+  = f.form_group :main do
+    = f.check_box :main
 
-= f.text_field :priority, class: 'form-control', required: true
+  = f.text_field :priority, class: 'form-control', required: true
 
-= f.text_field :name, class: 'form-control', required: true
+  = f.text_field :name, class: 'form-control', required: true
 
-= f.text_area :description, class: 'form-control'
+  = f.text_area :description, class: 'form-control'
 
-= f.text_field :video_url, class: 'form-control', placeholder: 'https://www.youtube.com'
+  = f.text_field :video_url, class: 'form-control', placeholder: 'https://www.youtube.com'
 
-.form-group
-  %label.control-label.col-sm-2
-    Cover
-  .col-sm-9
-    = f.file_field_without_bootstrap :cover, data: { preview: true }
-    = image_tag((f.object.cover.present? ? f.object.cover.url(:small) : nil), height: 31)
+  .form-group
+    %label.control-label.col-sm-2
+      Cover
+    .col-sm-9
+      = f.file_field_without_bootstrap :cover, data: { preview: true }
+      = image_tag((f.object.cover.present? ? f.object.cover.url(:small) : nil), height: 31)
 
+= field_set_tag 'Descripción de las secciones' do
+  = f.text_area :actors_description, class: 'form-control'
+  = f.text_area :citizens_description, class: 'form-control'
+  = f.text_area :historical_description, class: 'form-control'
 
-= f.text_area :actors_description, class: 'form-control'
-= f.text_area :citizens_description, class: 'form-control'
-= f.text_area :historical_description, class: 'form-control'
+= field_set_tag 'Twitter' do
+  = f.text_field :twitter_id, class: 'form-control'
+  = f.text_field :hashtag, class: 'form-control'
 
-= f.text_field :twitter_id, class: 'form-control'
-
-.form-group
-  %label.control-label.col-sm-2
-    Documento adjunto
-  .col-sm-9
-    = f.file_field_without_bootstrap :asset
-    - if f.object.valid? and f.object.asset.present?
-      %br
-      = link_to f.object.asset.url do
-        %span.glyphicon.glyphicon-save
-        Descargar archivo
-.form-group
-  %label.control-label.col-sm-2
-    Total de descargas
-  .col-sm-9
-    %label.form-control
-      = f.object.asset_downloads
+= field_set_tag 'Botón para el documento principal' do
+  = f.text_field :asset_title
+  .form-group
+    %label.control-label.col-sm-2
+      Documento adjunto
+    .col-sm-9
+      = f.file_field_without_bootstrap :asset
+      - if f.object.valid? and f.object.asset.present?
+        %br
+        = link_to f.object.asset.url do
+          %span.glyphicon.glyphicon-save
+          Descargar archivo
+  .form-group
+    %label.control-label.col-sm-2
+      Total de descargas
+    .col-sm-9
+      %label.form-control
+        = f.object.asset_downloads
