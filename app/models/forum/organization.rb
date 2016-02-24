@@ -10,11 +10,12 @@ class Forum::Organization < ActiveRecord::Base
   validates :name, presence: true
 
   KIND = {
-    'media' => 'Medio de comunicación',
-    'politic' => 'Partido politico',
     'private' => 'Empresa privada',
-    'society' => 'Sociedad civil',
+    'gov' => 'Instituciones del Estado',
+    'media' => 'Medio de comunicación',
     'ong' => 'ONG',
-    'other' => 'Otro'
+    'politic' => 'Partido politico',
+    'society' => 'Sociedad civil',
+    'other' => 'Otros'
   }
 end
