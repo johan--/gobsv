@@ -37,17 +37,18 @@
                 = posture.actor.name
               - if posture.entry.present?
                 = link_to "ver fuente", "#", class: "source"
-              .row.like-or-dislike
-                .col-xs-6
-                  %span
-                    = link_to image_tag("forums/icon-heart.png"), "#"
-                  %span
-                    0
-                .col-xs-6
-                  %span
-                    = link_to image_tag("forums/icon-sadface.png"), "#"
-                  %span
-                    0
+              -#
+                .row.like-or-dislike
+                  .col-xs-6
+                    %span
+                      = link_to image_tag("forums/icon-heart.png"), "#"
+                    %span
+                      0
+                  .col-xs-6
+                    %span
+                      = link_to image_tag("forums/icon-sadface.png"), "#"
+                    %span
+                      0
     .wage-people-position
       %h2
         Posturas de los ciudadanos
@@ -71,12 +72,14 @@
       .filters#filters
         Filtrar por
         .row
-          .col-md-4.col-sm-6.default-margin
+          .col-md-3.col-sm-6.default-margin
             = f.select :organization_kind_eq, options_for_select(Forum::Organization::KIND.invert, params[:q] ? params[:q][:organization_kind_eq] : nil), {prompt: 'Todos los tipos de organizaciones'}, {:class => 'form-control'}
-          .col-md-4.col-sm-6.default-margin
+          .col-md-3.col-sm-6.default-margin
             = f.select :year_eq, options_for_select(@years, params[:q] ? params[:q][:year_eq] : nil), {prompt: 'Todos los años'}, {:class => 'form-control'}
-          .col-md-4.col-sm-12.default-margin
-            = f.text_field :kind_or_title_or_description_or_url_or_organization_name_or_actor_name_cont, placeholder: 'Buscar', class: 'form-control', value: params[:q] ? params[:q][:kind_or_title_or_description_or_url_or_organization_name_or_actor_name_cont] : nil
+          .col-md-3.col-sm-6.default-margin
+            = f.select :kind_eq, options_for_select(Forum::Entry::KIND.invert, params[:q] ? params[:q][:kind_eq] : nil), {prompt: 'Todos los tipos'}, {:class => 'form-control'}
+          .col-md-3.col-sm-6.default-margin
+            = f.text_field :kind_or_title_or_description_or_url_or_organization_name_or_actor_name_cont, placeholder: 'Buscar por texto', class: 'form-control', value: params[:q] ? params[:q][:kind_or_title_or_description_or_url_or_organization_name_or_actor_name_cont] : nil
     - if @entries.count > 0
       %section#cd-timeline.cd-container
         = render @entries

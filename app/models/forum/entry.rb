@@ -44,4 +44,15 @@ class Forum::Entry < ActiveRecord::Base
     rescue
       nil
   end
+
+  def youtubeid
+    {
+      1 => %r{youtu\.be\/([^\?]*)},
+      5 => %r{^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*}
+    }.each do |position, regex|
+      matches = url.match(regex)
+      return matches[position] unless matches.nil?
+    end
+    nil
+  end
 end
