@@ -8,6 +8,7 @@ class Forum::Entry < ActiveRecord::Base
   do_not_validate_attachment_file_type :asset
 
   before_save :set_asset, if: Proc.new { |obj| obj.kind == 'article' }
+  before_save :set_description, if: Proc.new { |obj| obj.kind == 'article' }
 
   belongs_to :actor, class_name: '::Forum::Actor'
   belongs_to :organization, class_name: '::Forum::Organization'
@@ -30,6 +31,15 @@ class Forum::Entry < ActiveRecord::Base
     if url.present? && asset.blank?
       page = MetaInspector.new(url)
       self.asset = URI.parse(page.images.best)
+    end
+    rescue
+      nil
+  end
+
+  def set_description
+    if description.blank?
+      page = MetaInspector.new(url)
+      self.description = page.description
     end
     rescue
       nil
