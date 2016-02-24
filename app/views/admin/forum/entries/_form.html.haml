@@ -9,7 +9,7 @@
 .form-group
   %label.control-label.col-sm-2
     Adjunto
-  .col-sm-9.col-sm-offset-2
+  .col-sm-9
     = f.file_field_without_bootstrap :asset
     - if f.object.valid? and f.object.asset.present?
       %br

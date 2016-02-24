@@ -1,4 +1,4 @@
-domain = 'vosquepensas.gob.sv' if Rails.env.production?
+domain = 'reformadepensiones.com' if Rails.env.production?
 domain = 'localhost.com'          if Rails.env.development?
 
 constraints DomainConstraint.new(domain) do
@@ -6,9 +6,7 @@ constraints DomainConstraint.new(domain) do
 
     root to: 'welcome#index'
     resources :themes
-    #resources :actors
-    #resources :organizations
-    #resources :postures
     resources :entries
+    get '/download' => 'welcome#download'
   end
 end

@@ -9,12 +9,15 @@ class Forum::Theme < ActiveRecord::Base
   has_attached_file :cover,
                     styles: {
                       small:  '200x113#',
-                      large:  '1600x532#'
+                      large:  '1800x600>'
                     },
                     default_url: 'ta/missing.jpg'
 
   validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 
+  has_attached_file :asset
+  do_not_validate_attachment_file_type :asset
+  
   scope :active, -> { where(active: true) }
   scope :main, -> { where(main: true) }
 

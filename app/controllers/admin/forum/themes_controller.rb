@@ -21,7 +21,8 @@ class Admin::Forum::ThemesController < Admin::ForumController
       :main,
       :video_url,
       :cover,
-      :twitter_id
+      :twitter_id,
+      :asset
     )
   end
 end

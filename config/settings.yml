@@ -29,6 +29,9 @@ modules:
   - actors
   - entries
   - postures
+  paa:
+  - financial_sources
+  - savings
 
 sapt:
   username: 'test'

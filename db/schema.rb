@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216205950) do
+ActiveRecord::Schema.define(version: 20160224195332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -350,6 +350,11 @@ ActiveRecord::Schema.define(version: 20160216205950) do
     t.text     "citizens_description"
     t.text     "historical_description"
     t.string   "twitter_id"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "asset_downloads",        default: 0
   end
 
   create_table "institutions", force: true do |t|
@@ -413,6 +418,96 @@ ActiveRecord::Schema.define(version: 20160216205950) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "paa_financial_sources", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "paa_savings", force: true do |t|
+    t.string   "state",                                                         default: "draft"
+    t.integer  "institution_id"
+    t.date     "start_at"
+    t.date     "end_at"
+    t.integer  "financial_source_id"
+    t.integer  "admin_id"
+    t.decimal  "remuneration",                         precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "food_products",                        precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "textile_products",                     precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "fuels_products",                       precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "paper_products",                       precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "basic_services",                       precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "social_services",                      precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "passages",                             precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "training_services",                    precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "ad_services",                          precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "financial_expenses",                   precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "transfers",                            precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "investments",                          precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "remuneration_audited",                 precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "food_products_audited",                precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "textile_products_audited",             precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "fuels_products_audited",               precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "paper_products_audited",               precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "basic_services_audited",               precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "social_services_audited",              precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "passages_audited",                     precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "training_services_audited",            precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "ad_services_audited",                  precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "financial_expenses_audited",           precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "transfers_audited",                    precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "investments_audited",                  precision: 18, scale: 2, default: 0.0,     null: false
+    t.text     "remuneration_explanation"
+    t.text     "remuneration_actions"
+    t.text     "food_products_explanation"
+    t.text     "food_products_actions"
+    t.text     "textile_products_explanation"
+    t.text     "textile_products_actions"
+    t.text     "fuels_products_explanation"
+    t.text     "fuels_products_actions"
+    t.text     "paper_products_explanation"
+    t.text     "paper_products_actions"
+    t.text     "basic_services_explanation"
+    t.text     "basic_services_actions"
+    t.text     "social_services_explanation"
+    t.text     "social_services_actions"
+    t.text     "passages_explanation"
+    t.text     "passages_actions"
+    t.text     "training_services_explanation"
+    t.text     "training_services_actions"
+    t.text     "ad_services_explanation"
+    t.text     "ad_services_actions"
+    t.text     "financial_expenses_explanation"
+    t.text     "financial_expenses_actions"
+    t.text     "transfers_explanation"
+    t.text     "transfers_actions"
+    t.text     "investments_explanation"
+    t.text     "investments_actions"
+    t.text     "remuneration_audit_explanation"
+    t.text     "food_products_audit_explanation"
+    t.text     "textil_products_audit_explanation"
+    t.text     "fuels_products_audit_explanation"
+    t.text     "paper_products_audit_explanation"
+    t.text     "basic_services_audit_explanation"
+    t.text     "social_services_audit_explanation"
+    t.text     "passages_audit_explanation"
+    t.text     "training_services_audit_explanation"
+    t.text     "ad_services_audit_explanation"
+    t.text     "financial_expenses_audit_explanation"
+    t.text     "transfers_audit_explanation"
+    t.text     "investments_audit_explanation"
+    t.integer  "auditor_id_id"
+    t.datetime "audited_at"
+    t.text     "audit_comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "paa_savings", ["admin_id"], name: "index_paa_savings_on_admin_id", using: :btree
+  add_index "paa_savings", ["auditor_id_id"], name: "index_paa_savings_on_auditor_id_id", using: :btree
+  add_index "paa_savings", ["financial_source_id"], name: "index_paa_savings_on_financial_source_id", using: :btree
+  add_index "paa_savings", ["institution_id"], name: "index_paa_savings_on_institution_id", using: :btree
 
   create_table "req_product_requirements", force: true do |t|
     t.integer  "requirement_id",             null: false

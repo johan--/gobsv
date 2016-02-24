@@ -32,6 +32,10 @@ constraints subdomain: 'panel' do
           :actors,
           :entries,
           :postures
+        ],
+        paa: [
+          :financial_sources,
+          :savings
         ]
       }
 

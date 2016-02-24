@@ -1,12 +1,18 @@
-.wrapper-wage-video{ style: theme.cover.present? ? "background: url('#{asset_url(theme.cover.url)}') no-repeat center center;" : nil }
+.wrapper-wage-video{ style: theme.cover.present? ? "background-image: url('#{asset_url(theme.cover.url)}');" : nil }
   %p.subject
     Tema
   %h1.problem-title
     = theme.name
-  %h2.problem-description
-    = simple_format theme.description
+  - if theme.description?
+    %h2.problem-description
+      = simple_format theme.description
   - if theme.video_url
     = link_to image_tag("forums/play-icon.png"), theme.video_url, class: "play-video", title: theme.name
+  - if theme.asset.present?
+    .text-center
+      = link_to forums_download_url, class: 'btn btn-primary btn-lg', target: '_blank' do
+        %i.glyphicon.glyphicon-download-alt
+        &nbspDescarga la reforma de pensiones
   .clearfix
   = link_to image_tag("forums/goto.png"), "#wrapper-positions", class: "go-to-positions"
 #wrapper-positions
@@ -84,7 +90,7 @@
 
       var input_msg = $('#twitter_text_id').val()
       var msg       = "?text=" + encodeURIComponent(input_msg);
-      var tag       = encodeURIComponent(" #SalarioMinimoSV");
+      var tag       = encodeURIComponent(" #PensionesSV");
       var msg_tag   = msg + tag;
 
       var width  = 575,

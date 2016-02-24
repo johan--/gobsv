@@ -13,4 +13,14 @@ class Forums::WelcomeController < ForumsController
       @years = @main.entries.pluck(:entry_at).map{|x| x.year}.uniq
     end
   end
+
+  def download
+    @main = Forum::Theme.active.main.first
+    @main.update_column(:asset_downloads, @main.asset_downloads + 1)
+    file_location = @main.asset.path
+    send_file file_location,
+      :filename => @main.asset_file_name,
+      :type => @main.asset_content_type,
+      :disposition => 'inline'
+  end
 end

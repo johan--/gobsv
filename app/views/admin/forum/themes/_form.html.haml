@@ -12,12 +12,33 @@
 
 = f.text_field :video_url, class: 'form-control', placeholder: 'https://www.youtube.com'
 
-= f.form_group :cover do
-  = f.file_field_without_bootstrap :cover, data: { preview: true }
-  = image_tag((f.object.cover.present? ? f.object.cover.url(:small) : nil), height: 31)
+.form-group
+  %label.control-label.col-sm-2
+    Cover
+  .col-sm-9
+    = f.file_field_without_bootstrap :cover, data: { preview: true }
+    = image_tag((f.object.cover.present? ? f.object.cover.url(:small) : nil), height: 31)
+
 
 = f.text_area :actors_description, class: 'form-control'
 = f.text_area :citizens_description, class: 'form-control'
 = f.text_area :historical_description, class: 'form-control'
 
 = f.text_field :twitter_id, class: 'form-control'
+
+.form-group
+  %label.control-label.col-sm-2
+    Documento adjunto
+  .col-sm-9
+    = f.file_field_without_bootstrap :asset
+    - if f.object.valid? and f.object.asset.present?
+      %br
+      = link_to f.object.asset.url do
+        %span.glyphicon.glyphicon-save
+        Descargar archivo
+.form-group
+  %label.control-label.col-sm-2
+    Total de descargas
+  .col-sm-9
+    %label.form-control
+      = f.object.asset_downloads
