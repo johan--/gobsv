@@ -65,16 +65,18 @@
       .filters#filters
         Filtrar por
         .row
-          .col-md-3.col-sm-6.default-margin
-            = f.select :media_id, options_for_select(@medias.map{ |s| [s.name, s.id] }, params[:q] ? params[:q][:media_id] : nil), {prompt: 'Todos los medios de comunicación'}, {:class => 'form-control'}
-          .col-md-3.col-sm-6.default-margin
-            = f.select :political_id, options_for_select(@politics.map{ |s| [s.name, s.id] }, params[:q] ? params[:q][:political_id] : nil), {prompt: 'Todos los partidos políticos'}, {:class => 'form-control'}
-          .col-md-3.col-sm-6.default-margin
+          .col-md-4.col-sm-6.default-margin
+            = f.select :organization_kind_eq, options_for_select(Forum::Organization::KIND.invert, params[:q] ? params[:q][:organization_kind_eq] : nil), {prompt: 'Todos los tipos de organizaciones'}, {:class => 'form-control'}
+          .col-md-4.col-sm-6.default-margin
             = f.select :year_eq, options_for_select(@years, params[:q] ? params[:q][:year_eq] : nil), {prompt: 'Todos los años'}, {:class => 'form-control'}
-          .col-md-3.col-sm-6.default-margin
-            = f.select :kind_eq, options_for_select([ "Twitter", "Facebook" ], params[:q] ? params[:q][:kind_eq] : nil), { prompt: "Todas las redes sociales"}, {:class => 'form-control'}
-    %section#cd-timeline.cd-container
-      = render @entries
+          .col-md-4.col-sm-12.default-margin
+            = f.text_field :kind_or_title_or_description_or_url_or_organization_name_or_actor_name_cont, placeholder: 'Buscar', class: 'form-control', value: params[:q] ? params[:q][:kind_or_title_or_description_or_url_or_organization_name_or_actor_name_cont] : nil
+    - if @entries.count > 0
+      %section#cd-timeline.cd-container
+        = render @entries
+    - else
+      .well
+        No existen resultados para su búsqueda
 
 :javascript
   $(document).ready(function(){
