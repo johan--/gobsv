@@ -7,9 +7,13 @@ class Forum::Entry < ActiveRecord::Base
   has_attached_file :asset
   do_not_validate_attachment_file_type :asset
 
+  before_save :set_asset, if: Proc.new { |obj| obj.kind == 'article' }
+
   belongs_to :actor, class_name: '::Forum::Actor'
   belongs_to :organization, class_name: '::Forum::Organization'
   belongs_to :theme, class_name: '::Forum::Theme'
+
+  validates :organization_id, :theme_id, :kind, :entry_at, presence: true
 
   default_scope { order(entry_at: :desc) }
 
@@ -22,6 +26,12 @@ class Forum::Entry < ActiveRecord::Base
     'facebook' => 'Facebook'
   }
 
-  validates :organization_id, :theme_id, :kind, :entry_at, presence: true
-
+  def set_asset
+    if url.present? && asset.blank?
+      page = MetaInspector.new(url)
+      self.asset = URI.parse(page.images.best)
+    end
+    rescue
+      nil
+  end
 end
