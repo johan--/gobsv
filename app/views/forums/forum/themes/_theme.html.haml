@@ -80,10 +80,10 @@
   $(document).ready(function(){
     $('#twitter_popup').on("click", function(event) {
 
-      var input_msg = document.getElementById('twitter_text_id').dataset.url
-      var msg = "?text=" + encodeURIComponent(input_msg);
-      var tag = encodeURIComponent(" #SalarioMinimoSV");
-      var msg_tag = msg + tag;
+      var input_msg = $('#twitter_text_id').val()
+      var msg       = "?text=" + encodeURIComponent(input_msg);
+      var tag       = encodeURIComponent(" #SalarioMinimoSV");
+      var msg_tag   = msg + tag;
 
       var width  = 575,
       height = 430,
