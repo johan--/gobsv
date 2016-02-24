@@ -14,7 +14,7 @@ class Forum::Entry < ActiveRecord::Base
   default_scope { order(entry_at: :desc) }
 
   KIND = {
-    'articulo' => 'Articulo',
+    'article' => 'Articulo',
     'document' => 'Documento',
     'video' => 'Video',
     'image' => 'Imagen',
