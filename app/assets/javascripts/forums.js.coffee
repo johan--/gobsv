@@ -67,7 +67,7 @@ $(document).ready ->
 
 
   if $('.timeline-pagination').size() > 0
-    $('.timeline-pagination').addClass('hide')
+    $('.timeline-pagination a').addClass('hide')
     $(window).on 'scroll', ->
       more_posts_url = $('.timeline-pagination a').attr('href')
       if more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
