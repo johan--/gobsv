@@ -64,3 +64,14 @@ $(document).ready ->
 
   $('.autoSb select').change ->
     $(this).closest('form').submit()
+
+
+  if $('.timeline-pagination').size() > 0
+    $('.timeline-pagination').addClass('hide')
+    $(window).on 'scroll', ->
+      more_posts_url = $('.timeline-pagination a').attr('href')
+      if more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
+        $('.timeline-pagination').html('<button class="btn btn-lg btn-info"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>Cargando...</button>')
+        $.getScript more_posts_url
+      return
+    return

@@ -8,7 +8,7 @@ namespace :forums do
       entry = Forum::Entry.new
       entry.kind = case entries_hash['Tipo'].to_s
       when 'tweet'
-        'tweet'
+        'twitter'
       else
         'article'
       end
