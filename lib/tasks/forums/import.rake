@@ -16,6 +16,7 @@ namespace :forums do
       fecha = entries_hash['Fecha'].split('/')
       entry.entry_at = Date.parse("#{fecha[2]}-#{fecha[1]}-#{fecha[0]}")
       entry.title = entries_hash['Titulo']
+      entry.description = entries_hash['Descripcion']
       entry.organization_id = organization.id
       entry.url = entries_hash['URL']
       entry.theme_id = Forum::Theme.first.id
