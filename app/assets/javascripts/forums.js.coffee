@@ -12,6 +12,8 @@
 #= require 'forums/jquery-queryParser.min'
 
 $(document).ready ->
+  @mobileWeb = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i.test(navigator.userAgent)
+
   $("#lightSlider").lightSlider
     item:4,
     controls:false,
@@ -64,3 +66,15 @@ $(document).ready ->
 
   $('.autoSb select').change ->
     $(this).closest('form').submit()
+
+
+  if $('.timeline-pagination').size() > 0
+    $('.timeline-pagination a').addClass('hide')
+    footer_height = $('#subscribe').height() + $('footer').height() - 20
+    $(window).on 'scroll', ->
+      more_posts_url = $('.timeline-pagination a').attr('href')
+      if more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - footer_height
+        $('.timeline-pagination').html('<button class="btn btn-lg btn-info"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>Cargando...</button>')
+        $.getScript more_posts_url
+      return
+    return

@@ -1,0 +1,7 @@
+$('#cd-timeline').append('<%= j render @entries %>');
+<% if @entries.next_page %>
+  $('.timeline-pagination').replaceWith('<div class="timeline-pagination"><a href="<%= forums_root_url(page: @entries.next_page, anchor: "cd-timeline") %>" id="load_more" class="hide"><i class="glyphicon glyphicon-chevron-down"></i>Ver más</a></div>');
+<% else %>
+  $(window).off('scroll');
+  $('.timeline-pagination').remove();
+<% end %>
