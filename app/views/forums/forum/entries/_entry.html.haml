@@ -84,3 +84,25 @@
             = image_tag("http://img.youtube.com/vi/#{entry.youtubeid}/0.jpg", class: 'img-responsive')
           %span.cd-date
             = l(entry.entry_at, format: :default)
+  - when 'facebook'
+    - if entry.url.present?
+      .cd-timeline-block
+        .cd-timeline-img
+          = image_tag("forums/facebook_forum_icon.png")
+        / cd-timeline-img
+        .cd-timeline-content
+          - if entry.organization.present?
+            .label.label-primary
+              = entry.organization.name
+            &nbsp
+          - if entry.actor.present?
+            .label.label-info
+              = entry.actor.name
+          %h2
+            = entry.title
+          - if entry.description
+            %p
+              = entry.description
+          .fb-post{data: {href: entry.url, width: '500'}}
+          %span.cd-date
+            = l(entry.entry_at, format: :default)
