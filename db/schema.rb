@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224210528) do
+ActiveRecord::Schema.define(version: 20160229140002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
 
   create_table "admin_hierarchies", id: false, force: true do |t|
     t.integer "ancestor_id",   null: false
@@ -262,7 +261,7 @@ ActiveRecord::Schema.define(version: 20160224210528) do
 
   create_table "employments_technical_competences", force: true do |t|
     t.integer  "plaza_id"
-    t.string   "name"
+    t.text     "name"
     t.string   "req_code"
     t.string   "req_name"
     t.datetime "created_at"

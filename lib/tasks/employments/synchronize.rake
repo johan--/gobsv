@@ -133,18 +133,17 @@ namespace :employments do
         obj.active = true
         obj.save
       end
+      # Get contracts
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/Contratos', access_token
+      jsons.each do |json|
+        obj = Employments::Contract.where(id: json[:idContrato]).first_or_initialize
+        obj.plaza_id = json[:idPlaza]
+        obj.name = json[:nombre]
+        obj.last_name = json[:apellido]
+        obj.save
+      end
     rescue Exception => e
-      puts e.message
-      puts e.backtrace.inspect
-    end
-    # Get contracts
-    jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/Contratos', access_token
-    jsons.each do |json|
-      obj = Employments::Contract.where(id: json[:idContrato]).first_or_initialize
-      obj.plaza_id = json[:idPlaza]
-      obj.name = json[:nombre]
-      obj.last_name = json[:apellido]
-      obj.save
+      UserMailer.report_employments_import(e).deliver
     end
   end
 
