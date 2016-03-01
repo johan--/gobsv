@@ -16,7 +16,7 @@ class Forum::Entry < ActiveRecord::Base
 
   validates :organization_id, :theme_id, :kind, :entry_at, presence: true
 
-  default_scope { order(entry_at: :desc) }
+  default_scope { order(entry_at: :desc, created_at: :desc) }
 
   KIND = {
     'article' => 'Articulo',
