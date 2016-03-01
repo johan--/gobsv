@@ -22,7 +22,7 @@ class Forum::Entry < ActiveRecord::Base
     'article' => 'Articulo',
     'document' => 'Documento',
     'video' => 'Video',
-    'image' => 'Imagen',
+    #'image' => 'Imagen',
     'twitter' => 'Twitter',
     'facebook' => 'Facebook'
   }

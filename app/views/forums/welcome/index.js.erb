@@ -1,4 +1,6 @@
 $('#cd-timeline').append('<%= j render @entries %>');
+twttr.widgets.load(); // Reload twitters
+FB.XFBML.parse(); // Reload facebook
 <% if @entries.next_page %>
   $('.timeline-pagination').replaceWith('<div class="timeline-pagination"><a href="<%= forums_root_url(page: @entries.next_page, anchor: "cd-timeline", q: params[:q]) %>" id="load_more" class="hide"><i class="glyphicon glyphicon-chevron-down"></i>Ver más</a></div>');
 <% else %>
