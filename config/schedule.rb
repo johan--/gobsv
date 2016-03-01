@@ -23,3 +23,24 @@ set :output, "#{path}/log/cron.log"
 every :day, :at => '5:00am' do
   rake "employments:import"
 end
+
+every 5.minutes do
+  rake "forums:articles" 
+end
+
+every 120.minutes do
+  rake "forums:retweets" 
+end
+
+every 60.minutes do
+  rake "forums:documents" 
+end
+
+every 300.minutes do
+  rake "forums:videos" 
+end
+
+every 300.minutes do
+  rake "forums:facebook" 
+end
+

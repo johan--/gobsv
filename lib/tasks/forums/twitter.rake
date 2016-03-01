@@ -1,6 +1,28 @@
 namespace :forums do
   desc 'Auto tweet random article'
   task :articles => [:environment] do
+    client = TWITTERBOT
+    client.update(Forum::Entry.twt_article)
+  end
+  desc 'Auto retweets random'
+  task :retweets => [:environment] do
+    client = TWITTERBOT
+    client.retweet(Forum::Entry.retweet_id)
+  end
+  desc 'Auto tweets random document urls'
+  task :documents => [:environment] do
+    client = TWITTERBOT
+    client.update(Forum::Entry.twt_document)
+  end
+  desc 'Auto tweets random youtube urls'
+  task :videos => [:environment] do
+    client = TWITTERBOT
+    client.update(Forum::Entry.twt_video)
+  end
+  desc 'Auto tweets random facebook urls'
+  task :facebook => [:environment] do
+    client = TWITTERBOT
+    client.update(Forum::Entry.twt_facebook)
   end
   desc 'Auto tweet postures'
   task :postures => [:environment] do
