@@ -88,7 +88,7 @@
       - if @entries.total_pages > 2
         .timeline-pagination
           - if params[:page].to_i < @entries.total_pages
-            = link_to forums_root_url(page: params[:page].to_i + 1, anchor: 'cd-timeline'), id: 'load_more' do
+            = link_to forums_root_url(page: @entries.next_page, anchor: 'cd-timeline'), id: 'load_more' do
               %i.glyphicon.glyphicon-chevron-down
               Ver más
     - else
