@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229140002) do
+ActiveRecord::Schema.define(version: 20160302190938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -324,6 +324,7 @@ ActiveRecord::Schema.define(version: 20160229140002) do
     t.date     "quoted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url"
   end
 
   add_index "forums_postures", ["actor_id"], name: "index_forums_postures_on_actor_id", using: :btree

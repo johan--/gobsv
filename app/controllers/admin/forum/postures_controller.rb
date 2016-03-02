@@ -11,7 +11,7 @@ class Admin::Forum::PosturesController < Admin::ForumController
     @themes = ::Forum::Theme.order(:name)
     @organizations = ::Forum::Organization.order(:name)
     @actors = ::Forum::Actor.order(:name)
-    @entries = ::Forum::Entry.order(:name)
+    @entries = ::Forum::Entry.order(:title)
   end
 
   def item_params
@@ -19,7 +19,7 @@ class Admin::Forum::PosturesController < Admin::ForumController
       :theme_id,
       :organization_id,
       :actor_id,
-      :entry_id,
+      :url,
       :quote,
       :quoted_at
     )

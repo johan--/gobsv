@@ -381,6 +381,7 @@ es:
         entry: Entrada
         quote: Cita
         quoted_at: Citado el
+        url: Enlace
       paa/financial_source:
         name: Nombre
       paa/saving:
