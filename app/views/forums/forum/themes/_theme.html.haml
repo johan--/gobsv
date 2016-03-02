@@ -18,38 +18,39 @@
   = link_to image_tag("forums/goto.png"), "#wrapper-positions", class: "go-to-positions"
 #wrapper-positions
   .container
-    .wage-authorities-position
-      %h2
-        Posturas de los actores de la sociedad
-      %p.description-topic
-        = theme.actors_description
-      .list
-        %ul#lightSlider
-          - theme.postures.latest.each_with_index do |posture, i|
-            %li.slide{ class: i % 2 == 0 ? 'blue-slide-bg' : 'sky-slide-bg' }
-              -# if posture.organization.logo.present?
-                %p
-                  = image_tag(posture.organization.logo.url(:small))
-              %h3.institution
-                = posture.organization.name
-              %p.quote
-                = posture.quote
-              %p.author
-                = posture.actor.name
-              - if posture.url.present?
-                = link_to "ver fuente", posture.url, class: "source", target: '_blank'
-              -#
-                .row.like-or-dislike
-                  .col-xs-6
-                    %span
-                      = link_to image_tag("forums/icon-heart.png"), "#"
-                    %span
-                      0
-                  .col-xs-6
-                    %span
-                      = link_to image_tag("forums/icon-sadface.png"), "#"
-                    %span
-                      0
+    - if theme.postures.size > 0
+      .wage-authorities-position
+        %h2
+          Posturas de los actores de la sociedad
+        %p.description-topic
+          = theme.actors_description
+        .list
+          %ul#lightSlider
+            - theme.postures.latest.each_with_index do |posture, i|
+              %li.slide{ class: i % 2 == 0 ? 'blue-slide-bg' : 'sky-slide-bg' }
+                -# if posture.organization.logo.present?
+                  %p
+                    = image_tag(posture.organization.logo.url(:small))
+                %h3.institution
+                  = posture.organization.name
+                %p.quote
+                  = posture.quote
+                %p.author
+                  = posture.actor.name
+                - if posture.url.present?
+                  = link_to "ver fuente", posture.url, class: "source", target: '_blank'
+                -#
+                  .row.like-or-dislike
+                    .col-xs-6
+                      %span
+                        = link_to image_tag("forums/icon-heart.png"), "#"
+                      %span
+                        0
+                    .col-xs-6
+                      %span
+                        = link_to image_tag("forums/icon-sadface.png"), "#"
+                      %span
+                        0
     .wage-people-position
       %h2
         Posturas de los ciudadanos
