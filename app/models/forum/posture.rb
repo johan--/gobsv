@@ -6,7 +6,6 @@ class Forum::Posture < ActiveRecord::Base
   belongs_to :theme, class_name: '::Forum::Theme'
 
   scope :latest, -> { select('DISTINCT ON(forums_postures.organization_id) *').order('organization_id, quoted_at DESC') }
-  default_scope { order(updated_at: :desc) }
 
   validates :organization_id, :actor_id, :theme_id, :quote, :quoted_at, presence: true
   validates :quote, length: { maximum: 500 }
