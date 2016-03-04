@@ -213,3 +213,25 @@ ul.tweet-deck li p.interact{
 .hide {
   display: none;
 }
+
+ul#lightSlider {
+  display: flex;
+  flex-wrap: wrap;
+  li.slide {
+    display: flex;
+    padding: 0.5em;
+    width: 100%;
+  }
+  div.slide-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    width: 100%;
+  }
+  p.quote {
+    flex: 1 0 auto;
+  }
+  p.author {
+    font-weight: bolder;
+  }
+}
