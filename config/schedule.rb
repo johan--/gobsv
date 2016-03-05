@@ -25,7 +25,7 @@ every :day, :at => '5:00am' do
 end
 
 every 30.minutes do
-  rake "forums:articles" 
+#  rake "forums:articles" 
 end
 
 #every 120.minutes do
