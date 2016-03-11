@@ -35,14 +35,16 @@ constraints subdomain: 'panel' do
         ],
         paa: [
           :financial_sources,
-          :savings
+          :savings                    
         ]
       }
 
       namespaces.each do |ns, controllers|
         namespace ns do
           controllers.each do |controller|
-            resources controller
+            resources controller do |c|
+              get 'download', :on => :collection
+            end            
           end
         end
       end

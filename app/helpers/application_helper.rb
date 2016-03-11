@@ -31,4 +31,8 @@ module ApplicationHelper
   def ErrorDisplayer
 
   end
+  
+  def is_auditor?
+    current_admin.id == 10 ? true : false
+  end
 end
