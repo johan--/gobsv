@@ -10,11 +10,10 @@ class Admin::Paa::SavingsController < Admin::PaaController
 
   def init_form
     @financial_sources = Paa::FinancialSource.order :name
-    @institutions = Institution.order :name
+    @institutions      = Institution.order :name
   end
 
   def download
-    @savings = Paa::Saving.all
     respond_to do |format|
       format.xls # { send_data @products.to_csv(col_sep: "\t") }
     end

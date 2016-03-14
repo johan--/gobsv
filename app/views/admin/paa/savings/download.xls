@@ -7,24 +7,48 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-        <Cell><Data ss:Type="String">RUBRO</Data></Cell>
-        <Cell><Data ss:Type="String">FONDO GENERAL</Data></Cell>
-        <Cell><Data ss:Type="String">RECURSOS PROPIOS</Data></Cell>
-        <Cell><Data ss:Type="String">PRESTAMOS EXTERNOS</Data></Cell>
-        <Cell><Data ss:Type="String">DONACIONES</Data></Cell>
-        <Cell><Data ss:Type="String">TOTAL</Data></Cell>
-        
+        <Cell><Data ss:Type="String">DETALLE DE AHORROS POR FUENTE DE FINANCIAMIENTO</Data></Cell>
       </Row>
-    <% @savings.each do |saving| %>
       <Row>
-        <Cell><Data ss:Type="Number"><% %></Data></Cell>
-        <Cell><Data ss:Type="String"><% %></Data></Cell>
-        <Cell><Data ss:Type="String"><% %></Data></Cell>
-        <Cell><Data ss:Type="String"><% %></Data></Cell>
-        <Cell><Data ss:Type="String"><% %></Data></Cell>
-        <Cell><Data ss:Type="Number"><% %></Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
       </Row>
-    <% end %>
+      <Row>
+        <Cell><Data ss:Type="String">Rubro</Data></Cell>
+        <% fsources = Paa::FinancialSource.all 
+           fsources.each do |fsource| %>
+             <Cell><Data ss:Type="String"><%= fsource.name %></Data></Cell>
+        <% end %>
+        <Cell><Data ss:Type="String">Total</Data></Cell>
+      </Row>
+      <% Paa::Saving::SAVING_CATEGORY.each do |category| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= category[0] %></Data></Cell>
+          <% total = 0
+             fsources.each do |fsource|
+               fsum = Paa::Saving.savings_by_financial_source(fsource.id, category[1])
+               total += fsum %>
+               <Cell><Data ss:Type="String"><%= number_to_currency(fsum, precision: 2) %></Data></Cell>
+          <% end %>
+          <Cell><Data ss:Type="String"><%= number_to_currency(total, precision: 2) %></Data></Cell>
+        </Row>
+      <% end %>
+      <Row>
+        <Cell><Data ss:Type="String">Total</Data></Cell>
+        <% Paa::FinancialSource.all.each do |fsource| %>
+          <% total = 0
+             Paa::Saving::SAVING_CATEGORY.each do |category| 
+               fsum = Paa::Saving.savings_by_financial_source(fsource.id, category[1])
+               total += fsum %>
+          <% end %>
+          <Cell><Data ss:Type="String"><%= number_to_currency(total, precision: 2) %></Data></Cell>
+        <% end %>
+        <% 
+           fields = []
+           Paa::Saving::SAVING_CATEGORY.each{|a| fields.push(a[1])}
+           ttotal =  Paa::Saving.savings_by_financial_source(nil, fields.flatten)
+         %>
+        <Cell><Data ss:Type="String"><%= number_to_currency(ttotal, precision: 2) %></Data></Cell>
+      </Row>
     </Table>
   </Worksheet>
 </Workbook>
