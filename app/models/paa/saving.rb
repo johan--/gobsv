@@ -34,8 +34,13 @@ class Paa::Saving < ActiveRecord::Base
 
   def self.savings_by_financial_source(id, fields = [])
     r = 0
-    fields.each do |f|
-      r += self.where(:financial_source_id => id).sum(f).to_f
+      fields.each do |f|
+      if id.nil?
+        query = self.sum(f).to_f
+      else
+        query = self.where(:financial_source_id => id).sum(f).to_f
+      end
+      r += query
     end
     r
   end
