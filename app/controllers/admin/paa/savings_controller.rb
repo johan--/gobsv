@@ -13,12 +13,6 @@ class Admin::Paa::SavingsController < Admin::PaaController
     @institutions      = Institution.order :name
   end
 
-  def download
-    respond_to do |format|
-      format.xls # { send_data @products.to_csv(col_sep: "\t") }
-    end
-  end
-
   def item_params
     params.require(:paa_saving).permit(
       :state, 

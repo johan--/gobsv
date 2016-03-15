@@ -35,15 +35,20 @@ constraints subdomain: 'panel' do
         ],
         paa: [
           :financial_sources,
-          :savings                    
+          :savings,
+          :reports
         ]
       }
 
       namespaces.each do |ns, controllers|
         namespace ns do
           controllers.each do |controller|
-            resources controller do |c|
-              get 'download', :on => :collection
+            if ns == :paa and controller == :reports
+              resources controller, only: [:index] do |c|
+                get 'savings_by_financial_source', :on => :collection
+              end
+            else
+              resources controller
             end            
           end
         end

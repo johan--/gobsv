@@ -49,6 +49,17 @@
          %>
         <Cell><Data ss:Type="String"><%= number_to_currency(ttotal, precision: 2) %></Data></Cell>
       </Row>
+      <Row>
+        <Cell><Data ss:Type="String">%</Data></Cell>
+        <% Paa::FinancialSource.all.each do |fsource| %>
+          <% total = 0
+             Paa::Saving::SAVING_CATEGORY.each do |category| 
+               fsum = Paa::Saving.savings_by_financial_source(fsource.id, category[1])
+               total += fsum %>
+          <% end %>
+          <Cell><Data ss:Type="String"><%= number_to_percentage((total * 100) / ttotal, precision: 2) %></Data></Cell>
+        <% end %>
+      </Row>
     </Table>
   </Worksheet>
 </Workbook>
