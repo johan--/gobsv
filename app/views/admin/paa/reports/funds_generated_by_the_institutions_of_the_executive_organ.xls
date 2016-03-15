@@ -37,11 +37,14 @@
                <Cell><Data ss:Type="String"></Data></Cell>
                <Cell><Data ss:Type="String"><%= institution.name %></Data></Cell>
                <% @fsources.each do |fsource|
+                    fsum_total = 0
                     @categories.each do |category| 
-                      fsum = Paa::Saving.savings_by(institution.id, fsource.id, category[1]) %>
+                      fsum = Paa::Saving.savings_by(institution.id, fsource.id, category[1]) 
+                      fsum_total += fsum %>
                       <Cell><Data ss:Type="String"><%= number_to_currency(fsum, precision: 2) %></Data></Cell>
-                    <% end
-                  end %>
+                    <% end %>
+                    <Cell><Data ss:Type="String"><%= number_to_currency(fsum_total, precision: 2) %></Data></Cell>
+                 <% end %>
              </Row>
         <% end %>
     </Table>
