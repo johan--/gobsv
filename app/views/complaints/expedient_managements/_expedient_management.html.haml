@@ -1,12 +1,12 @@
 .management{id: "management-#{expedient_management.id}"}
   .row
-    .col-xs-2
+    .col-xs-12.col-md-2
       .management_date
         %strong
           = l(expedient_management.created_at, format: :small)
         %small
           = l(expedient_management.created_at, format: :hour)
-    .col-xs-10
+    .col-xs-12.col-md-10
       .management_info
         %p
           - if expedient_management.assigned_names.present?
@@ -28,8 +28,6 @@
           = sanitize expedient_management.comment
         - if expedient_management.asset_ids.count > 0
           %div
-            %strong
-              Con los siguientes adjuntos:
             %ul.list-unstyled
               = render expedient_management.assets
         = render expedient_management.comments

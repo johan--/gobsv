@@ -1,122 +1,75 @@
 %h1
   Tablero
 .content
+  - if @new_managements.count > 0
+    .row
+      .col-xs-12
+        %table.table
+          %thead
+            %tr
+              %th{colspan: 5}
+                Horas transcurridas sin comunicarse con el usuario
+          %tbody.list-expedients
+            - @new_managements.each do |management|
+              %tr
+                %td
+                  = link_to complaints_expedient_url(management.expedient) do
+                    %span{ class: management.hours_passed <= 24 ? 'text-success' : ( management.hours_passed <= 48 ? 'text-warning' : 'text-danger' ) }
+                      = management.hours_passed
+                      horas
+                %td
+                  = link_to management.expedient.try(:correlative), complaints_expedient_url(management.expedient)
+                %td
+                  = link_to management.kind_s, complaints_expedient_url(management.expedient)
+                %td
+                  = link_to management.expedient.try(:contact), complaints_expedient_url(management.expedient)
+                %td
+                  = link_to complaints_expedient_url(management.expedient), class: 'show-item' do
+                    &nbsp
+
   .row
-    .col-xs-12
-      %table.table
-        %thead
-          %tr
-            %th{colspan: 5}
-              Alerta de comunicación
-        %tbody
-          %tr
-            %td
-              2 horas
-            %td
-              TEST-2015-1
-            %td
-              Queja
-            %td
-              Juan Miguel
-            %td
-              = image_tag("complaints/arrow_hover.png")
-          %tr
-            %td
-              5 horas
-            %td
-              TEST-2015-2
-            %td
-              Aviso
-            %td
-              Juan Perez
-            %td
-              = image_tag("complaints/arrow_normal.png")
-          %tr
-            %td
-              5 horas
-            %td
-              TEST-2015-2
-            %td
-              Aviso
-            %td
-              Juan Perez
-            %td
-              = image_tag("complaints/arrow_normal.png")
-          %tr
-            %td
-              8 horas
-            %td
-              TEST-2015-2
-            %td
-              Aviso
-            %td
-              Juan Perez
-            %td
-              = image_tag("complaints/arrow_normal.png")
-  .row
-    .col-sm-12.col-xs-12.col-md-6.col-lg-6
-      .gray_widget
-        %p.blue
-          Últimos casos resueltos
-        %table.table.borderless
-          %tbody
-            %tr
-              %td
-                TEST-2015-1
-              %td
-                Queja
-              %td
-                Juan Miguel
-              %td
-                = image_tag("complaints/arrow_normal.png")
-            %tr
-              %td
-                TEST-2015-2
-              %td
-                Aviso
-              %td
-                Juan Perez
-              %td
-                = image_tag("complaints/arrow_normal.png")
-            %tr
-              %td
-                TEST-2015-3
-              %td
-                Aviso
-              %td
-                Juan Perez
-              %td
-                = image_tag("complaints/arrow_normal.png")
-            %tr
-              %td
-                TEST-2015-3
-              %td
-                Aviso
-              %td
-                Juan Perez
-              %td
-                = image_tag("complaints/arrow_normal.png")
-    .col-sm-12.col-xs-12.col-md-6.col-lg-6
+    - if @last_managements.count > 0
+      .col-sm-12.col-xs-12.col-md-12.col-lg-6
+        .gray_widget
+          %p.blue
+            Últimos casos resueltos
+          %table.table.borderless.m0
+            %tbody.list-expedients
+              - @last_managements.each do |management|
+                %tr
+                  %td
+                    = link_to management.expedient.try(:correlative), complaints_expedient_url(management.expedient)
+                  %td
+                    = link_to management.kind_s, complaints_expedient_url(management.expedient)
+                  %td
+                    = link_to management.expedient.try(:contact), complaints_expedient_url(management.expedient)
+                  %td
+                    = link_to complaints_expedient_url(management.expedient), class: 'show-item' do
+                      &nbsp
+    .col-sm-12.col-xs-12.col-md-12.col-lg-6
       .gray_widget
         %p.blue
           Total de casos
         .row
-          .col-xs-4.col-sm-4.col-md-2.col-lg-2
-            = image_tag('complaints/dummy-nuevos.png', class: 'img-responsive')
-          .col-xs-8.col-sm-8.col-md-10.col-lg-10
-            %h3
-              Casos nuevos
+          .col-xs-12
+            .clearfix
+              .bg-news.pull-left
+                18
+              .total-title.pull-left
+                Casos nuevos
         %br
         .row
-          .col-xs-4.col-sm-4.col-md-2.col-lg-2
-            = image_tag('complaints/dummy-procesos.png', class: 'img-responsive')
-          .col-xs-8.col-sm-8.col-md-10.col-lg-10
-            %h3
-              Casos en proceso
+          .col-xs-12
+            .clearfix
+              .bg-process.pull-left
+                5
+              .total-title.pull-left
+                Casos nuevos
         %br
         .row
-          .col-xs-4.col-sm-4.col-md-2.col-lg-2
-            = image_tag('complaints/dummy-cerrados.png', class: 'img-responsive')
-          .col-xs-8.col-sm-8.col-md-10.col-lg-10
-            %h3
-              Casos cerrados
+          .col-xs-12
+            .clearfix
+              .bg-closed.pull-left
+                565
+              .total-title.pull-left
+                Casos cerrados

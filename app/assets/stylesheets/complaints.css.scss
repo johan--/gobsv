@@ -237,7 +237,8 @@ a.btn-primary-gray:hover {
 .show-item {
   display: block;
   background: image-url("complaints/arrow_normal.png") no-repeat center center;
-  height: 12px;
+  height: 100%;
+  width: 100%;
 }
 .show-item:hover {
   background: image-url("complaints/arrow_hover.png") no-repeat center center;
@@ -266,8 +267,10 @@ span.blue, p.blue {
   }
 }
 
-.management_section {
-  padding: 0 40px;
+@media (min-width: 768px) {
+  .management_section {
+    padding: 0 40px;
+  }
 }
 
 .w100 {
@@ -288,7 +291,7 @@ span.blue, p.blue {
   text-align: center;
   padding: 10px;
   strong {
-    font-size: 20px;
+    font-size: 30px;
     display: block;
     color: #333333;
   }
@@ -302,6 +305,12 @@ span.blue, p.blue {
   background: white;
   padding: 10px;
   border-bottom: 2px solid #bfd1d3;
+  li {
+    overflow: hidden;
+    width:100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .management {
@@ -342,6 +351,7 @@ span.blue, p.blue {
 .gray_widget {
   background: $gray_widget;
   padding: 15px;
+  min-height: 260px;
 
   .borderless td {
     border: none;
@@ -517,4 +527,54 @@ span.blue, p.blue {
 a.gray:hover {
   color: $placeholder;
   text-decoration: none;
+}
+
+.list-expedients {
+  a {
+    color: $placeholder !important;
+  }
+  a:hover {
+    color: $placeholder !important;
+    text-decoration: none;
+  }
+}
+
+.lnk-download-asset {
+  background: image-url('complaints/bg-document.jpg') 0 0 no-repeat transparent;
+  padding-left: 20px;
+  font-size: 0.9em;
+  font-weight: bolder;
+}
+
+.bg-news {
+  background: #32727e;
+}
+
+.bg-process {
+  background: #f53600;
+}
+
+.bg-closed {
+  background: #00bd47;
+}
+
+.bg-news, .bg-process, .bg-closed {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+  color: #245157;
+  font-size: 24px;
+}
+
+.total-title {
+  font-size: 24px;
+  line-height: 50px;
+  padding-left: 10px;
+}
+
+.m0 {
+  margin: 0;
 }

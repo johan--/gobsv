@@ -25,17 +25,17 @@
             %th
               Comentario
             %th
-        %tbody
+        %tbody.list-expedients
           - @expedients.each do |exp|
             %tr
               %td
-                = exp.received_at.try(:strftime, '%d/%m/%Y')
+                = link_to exp.received_at.try(:strftime, '%d/%m/%Y'), complaints_expedient_url(exp)
               %td
-                = exp.correlative
+                = link_to exp.correlative, complaints_expedient_url(exp)
               %td
-                = exp.contact
+                = link_to exp.contact, complaints_expedient_url(exp)
               %td
-                = exp.comment.try(:truncate, 100)
+                = link_to exp.comment.try(:truncate, 100), complaints_expedient_url(exp)
               %td
                 = link_to complaints_expedient_url(exp), class: 'show-item' do
                   &nbsp

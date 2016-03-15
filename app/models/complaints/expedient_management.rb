@@ -1,5 +1,6 @@
 class Complaints::ExpedientManagement < ActiveRecord::Base
   belongs_to :admin
+  belongs_to :expedient, class_name: '::Complaints::Expedient'
   has_many :events, class_name: '::Complaints::ExpedientManagementEvent', dependent: :destroy
   has_many :comments, class_name: '::Complaints::ExpedientManagementComment', dependent: :destroy
   has_and_belongs_to_many :assets,
@@ -11,6 +12,8 @@ class Complaints::ExpedientManagement < ActiveRecord::Base
   validates :kind, :comment, presence: true
 
   scope :newer, -> { order(created_at: :desc) }
+  scope :closed, -> { where(status: 'closed') }
+  scope :news, -> { where(status: 'new') }
 
   KIND = {
     'notice' => 'Aviso',
@@ -51,5 +54,9 @@ class Complaints::ExpedientManagement < ActiveRecord::Base
 
   def closed?
     status == 'closed'
+  end
+
+  def hours_passed
+    ((Time.current - created_at) / 1.hour).round
   end
 end
