@@ -1,5 +1,3 @@
-= link_to "Excel", download_admin_paa_savings_path(format: "xls")
-
 = field_set_tag 'General' do
   = f.select :state, options_for_select(Paa::Saving::STATE.invert, f.object.state), { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil, required: true, disabled: is_auditor?   }
   = f.select :institution_id, @institutions.map{ |institution| [institution.name, institution.id] }, { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil, required: true, disabled: is_auditor? }

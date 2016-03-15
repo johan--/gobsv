@@ -1,0 +1,22 @@
+.row
+  .col-sx-12.col-sm-12.col-md-12.col-lg-12
+    .panel.panel-default
+      .panel-heading
+        .panel-title.clearfix
+          %h4.pull-left
+            Reportes
+      .panel-body
+        %table.table.table-hover.table-striped.data-table
+          %thead
+            %tr
+              %th{:width => "50%"}
+                Nombre
+              %th{:width => "50%"}
+                Detalle
+          %tbody
+            %tr
+              %td
+                = link_to "Detalle de ahorro por fuente de financiamiento", savings_by_financial_source_admin_paa_reports_path(format: "xls")
+              %td
+                
+

@@ -1,16 +1,18 @@
 class Paa::Saving < ActiveRecord::Base
 
+  scope :evaluated, -> { where(state: 'evaluated') }
+
   STATE = {
-    'draft' => 'Borrador',
+    'draft'      => 'Borrador',
     'evaluation' => 'En evaluación',
-    'evaluated' => 'Evaluado'
+    'evaluated'  => 'Evaluado'
   }
   
   SAVING_CATEGORY = {
-    'remunerations' => [
+    'Remuneraciones' => [
       :remuneration
     ], 
-    'procurement of goods and services' => [
+    'Adquisiciones de Bienes y Servicios' => [
       :food_products,
       :textile_products,
       :fuels_products,
@@ -21,13 +23,13 @@ class Paa::Saving < ActiveRecord::Base
       :training_services,
       :ad_services
     ],
-    'financial expenses and other' => [
+    'Gastos Financieros y Otros' => [
       :financial_expenses      
     ],
-    'current and capital transfers' => [
+    'Transferencias Corrientes' => [
       :transfers
     ],
-    'capital expenditures' => [
+    'Inversión en Activos Fijos' => [
       :investments
     ]
   }
@@ -36,9 +38,9 @@ class Paa::Saving < ActiveRecord::Base
     r = 0
       fields.each do |f|
       if id.nil?
-        query = self.sum(f).to_f
+        query = self.evaluated.sum(f).to_f
       else
-        query = self.where(:financial_source_id => id).sum(f).to_f
+        query = self.evaluated.where(:financial_source_id => id).sum(f).to_f
       end
       r += query
     end

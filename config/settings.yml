@@ -32,6 +32,7 @@ modules:
   paa:
   - financial_sources
   - savings
+  - reports
 
 sapt:
   username: 'test'

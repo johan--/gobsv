@@ -257,6 +257,9 @@ es:
       paa/financial_source:
         one: Fuente de financiamiento
         other: Fuentes de financiamiento
+      paa/report:
+        one: Reporte
+        other: Reportes
     attributes:
       id: ID
       created_at: Creado el
