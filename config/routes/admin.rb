@@ -45,7 +45,9 @@ constraints subdomain: 'panel' do
           controllers.each do |controller|
             if ns == :paa and controller == :reports
               resources controller, only: [:index] do |c|
-                get 'savings_by_financial_source', :on => :collection
+                get 'savings_by_financial_source_unaudited',                      :on => :collection
+                get 'savings_by_financial_source_audited',                        :on => :collection
+                get 'funds_generated_by_the_institutions_of_the_executive_organ', :on => :collection
               end
             else
               resources controller

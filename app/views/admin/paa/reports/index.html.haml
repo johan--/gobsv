@@ -11,12 +11,16 @@
             %tr
               %th{:width => "50%"}
                 Nombre
-              %th{:width => "50%"}
-                Detalle
           %tbody
             %tr
               %td
-                = link_to "Detalle de ahorro por fuente de financiamiento", savings_by_financial_source_admin_paa_reports_path(format: "xls")
+                = link_to "Detalle de ahorro por fuente de financiamiento (sin auditar)", savings_by_financial_source_unaudited_admin_paa_reports_path(format: "xls")
+            %tr
               %td
+                = link_to "Detalle de ahorro por fuente de financiamiento (auditado)", savings_by_financial_source_audited_admin_paa_reports_path(format: "xls")
+            %tr
+              %td
+                = link_to "Ahorros generados por las instituciones del órgano ejecutivo (auditados)", funds_generated_by_the_institutions_of_the_executive_organ_admin_paa_reports_path(format: "xls")
+
                 
 
