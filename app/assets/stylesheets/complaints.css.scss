@@ -9,7 +9,6 @@
 @import 'select2';
 @import 'select2-bootstrap';
 
-
 body {
   background: $gray !important;
   color: $placeholder !important;
@@ -119,12 +118,16 @@ a.white:hover {
   }
 }
 
-.sidebar_b .col-height {
+.sidebar_b {
+  background: $menu;
+}
+
+.sidebar_b .item {
   color: white;
   padding: 25px 0;
   text-align: center;
-  background: $menu;
   border-right: 2px solid $menu_border;
+  min-height: 111px;
   img {
     display: block;
     margin: 0 auto 10px;
@@ -138,7 +141,7 @@ a.white:hover {
   }
 }
 
-.sidebar_b .col-height.active {
+.sidebar_b .item.active {
   background: $menu_active;
   border-right: 2px solid $menu_active_border;
 }
@@ -198,6 +201,11 @@ h1 {
   border-color: #00a04a;
   padding: 10px 25px;
 }
+.btn-primary-gray {
+  background: #808080;
+  border-color: #6d6d6d;
+  padding: 10px 25px;
+}
 .btn-primary-red {
   background: #f63700;
   border-color: #b73b15;
@@ -209,7 +217,15 @@ h1 {
   text-decoration: none;
 }
 
-.btn-active, .btn-inactive, .btn-primary-green, .btn-primary-red {
+a.btn-primary-gray {
+  display: block;
+  text-decoration: none;
+}
+a.btn-primary-gray:hover {
+  text-decoration: none;
+}
+
+.btn-active, .btn-inactive, .btn-primary-green, .btn-primary-red, .btn-primary-gray {
   border-width: 0 0 2px 0;
   border-style: solid;
   text-align: center;
@@ -256,6 +272,9 @@ span.blue, p.blue {
 
 .w100 {
   width: 100%;
+}
+.w50 {
+  width: 50%;
 }
 
 .managements_area {
@@ -465,4 +484,37 @@ span.blue, p.blue {
   .col-lg-bottom {
     vertical-align: bottom;
   }
+}
+
+.modal-content {
+  color: $placeholder;
+}
+
+.bordered {
+  border-left: 1px dashed $placeholder;
+}
+
+.p20 {
+  padding: 20px;
+}
+
+.mauto {
+  margin: 0 auto;
+}
+
+.label-as-badge {
+    border-radius: 1em;
+}
+
+.white {
+  color: white;
+}
+
+.gray {
+  color: $placeholder;
+}
+
+a.gray:hover {
+  color: $placeholder;
+  text-decoration: none;
 }

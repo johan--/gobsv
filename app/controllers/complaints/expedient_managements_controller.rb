@@ -3,7 +3,11 @@ class Complaints::ExpedientManagementsController < ComplaintsController
     @management = expedient.managements.new(item_params)
     @management.admin_id = current_admin.id
     @success = @management.save
-    @errors = @management.errors.messages.to_json.html_safe unless @success
+    if @success
+      @management.asset_ids = item_params['asset_ids'].split(',')
+    else
+      @errors = @management.errors.messages.to_json.html_safe
+    end
   end
 
   def expedient
@@ -15,6 +19,7 @@ class Complaints::ExpedientManagementsController < ComplaintsController
     params.require(:complaints_expedient_management).permit(
       :kind,
       :comment,
+      :asset_ids,
       :assigned_ids => []
     )
   end

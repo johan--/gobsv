@@ -1,22 +1,26 @@
 .row
-  .row-height
-    .col-xs-3.col-height{ class: params[:state] == 'new' ? 'active' : nil }
-      = link_to complaints_expedients_url(state: 'new') do
-        = image_tag "complaints/new_cases.png"
-        Casos Nuevos
-    .col-xs-2.col-height{ class: params[:state] == 'process' ? 'active' : nil }
-      = link_to complaints_expedients_url(state: 'process') do
-        = image_tag "complaints/proccess_cases.png"
-        Casos en Proceso
-    .col-xs-2.col-height{ class: params[:state] == 'closed' ? 'active' : nil }
-      = link_to complaints_expedients_url(state: 'closed') do
-        = image_tag "complaints/closed_cases.png"
-        Casos Cerrados
-    .col-xs-2.col-height{ class: controller_name == 'users' ? 'active' : nil }
-      = link_to complaints_users_url do
-        = image_tag "complaints/links.png"
-        Enlaces
-    .col-xs-3.col-height
-      = link_to '/' do
-        = image_tag "complaints/statistics.png"
-        Estadísticas
+  .col-xs-4.item{ class: params[:state] == 'new' ? 'active' : nil }
+    = link_to complaints_expedients_url(state: 'new') do
+      = image_tag "complaints/new_cases.png"
+      Casos Nuevos
+  .col-xs-4.item{ class: params[:state] == 'process' ? 'active' : nil }
+    = link_to complaints_expedients_url(state: 'process') do
+      = image_tag "complaints/proccess_cases.png"
+      Casos en Proceso
+  .col-xs-4.item{ class: params[:state] == 'closed' ? 'active' : nil }
+    = link_to complaints_expedients_url(state: 'closed') do
+      = image_tag "complaints/closed_cases.png"
+      Casos Cerrados
+.row
+  .col-xs-4.item{ class: controller_name == 'users' ? 'active' : nil }
+    = link_to complaints_users_url do
+      = image_tag "complaints/links.png"
+      Enlaces
+  .col-xs-4.item
+    = link_to '/' do
+      = image_tag "complaints/statistics.png"
+      Estadísticas
+  .col-xs-4.item
+    = link_to '/' do
+      = image_tag "complaints/new_cases.png"
+      Archivos

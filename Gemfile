@@ -168,3 +168,6 @@ gem 'jquery-slick-rails'
 
 # Ruby gem for web scraping purposes. It scrapes a given URL, and returns you its title, meta description, meta keywords, an array with all the links, all the images in it, etc.
 gem 'metainspector'
+
+# Rails jQuery file uploads via standard Rails "remote: true" forms. http://os.alfajango.com/remotipart
+gem 'remotipart'

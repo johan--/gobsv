@@ -1,0 +1,13 @@
+#file-form-upload.hidden
+  = form_for Complaints::Asset.new, remote: true do |f|
+    = f.file_field :asset
+  :javascript
+    $(".trigger-input-file").off();
+    $(".trigger-input-file").on("click", function(e) {
+      e.preventDefault();
+      return $(this).closest("div").find("input:file").trigger("click");
+    });
+    $("#complaints_asset_asset").off();
+    $("#complaints_asset_asset").change(function(e) {
+      $(this).closest('form').submit();
+    });

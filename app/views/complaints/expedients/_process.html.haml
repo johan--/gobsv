@@ -10,18 +10,24 @@
       .col-xs-12
         %p.blue
           Asignar gestión
-        = form_for expedient.managements.new, url: complaints_expedient_expedient_managements_url(expedient), remote: true do |f|
+        = form_for expedient.managements.new, url: complaints_expedient_expedient_managements_url(expedient), remote: true, html: { id: 'fileupload' } do |f|
           .row
-            .form-group.col-xs-8
+            .form-group.col-sm-8.col-xs-12
               = f.collection_select :assigned_ids, current_admin.children.order(:name), :id, :name, { }, {class: "form-control select2", multiple: true}
-            .form-group.col-xs-4
+            .form-group.col-sm-4.col-xs-12
               = f.select :kind, options_for_select(Complaints::ExpedientManagement::KIND.invert), { prompt: true }, { class: 'form-control' }
           .row
             .form-group.col-xs-12
               = f.cktext_area :comment, required: true, ckeditor: { toolbar: 'mini', height: 100 }
           .row
-            .form-group.col-xs-12
+            .form-group.col-xs-12.col-sm-6
               = f.submit "Agregar caso", class: 'btn-primary-green w100', data: {disable_with: "Agregando..."}
+            .form-group.col-xs-12.col-sm-6
+              .toggle-files-management{ data: { href: complaints_assets_url } }
+                = link_to complaints_assets_url, class: 'btn-primary-gray w100', remote: true do
+                  Adjuntar archivo
+
+
 .row
   .management_section.clearfix
     .col-xs-12

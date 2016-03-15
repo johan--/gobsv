@@ -4,6 +4,8 @@
     scrollTop: $("#management-<%= @management.id %>").offset().top
   }, 2000);
   /* clear all inputs */
+  var href = $('.toggle-files-management').data('href');
+  $('.toggle-files-management').html('<a class="btn-primary-gray w100" data-remote="true" href="' + href + '">Adjuntar archivo</a>');
   $("#complaints_expedient_management_assigned_ids").select2("val", "");
   $("#complaints_expedient_management_kind").val("");
   $("#complaints_expedient_management_comment").val("");

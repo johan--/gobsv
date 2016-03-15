@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302190938) do
+ActiveRecord::Schema.define(version: 20160315055113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 20160302190938) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "complaints_assets", force: true do |t|
+    t.integer  "admin_id"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "complaints_assets", ["admin_id"], name: "index_complaints_assets_on_admin_id", using: :btree
 
   create_table "complaints_expedient_events", force: true do |t|
     t.string   "status",        default: "process"
@@ -113,6 +126,14 @@ ActiveRecord::Schema.define(version: 20160302190938) do
 
   add_index "complaints_expedient_managements", ["admin_id"], name: "index_complaints_expedient_managements_on_admin_id", using: :btree
   add_index "complaints_expedient_managements", ["expedient_id"], name: "index_complaints_expedient_managements_on_expedient_id", using: :btree
+
+  create_table "complaints_expedient_managements_complaints_assets", id: false, force: true do |t|
+    t.integer "complaints_asset_id"
+    t.integer "complaints_expedient_management_id"
+  end
+
+  add_index "complaints_expedient_managements_complaints_assets", ["complaints_asset_id", "complaints_expedient_management_id"], name: "asset_expedient_management", using: :btree
+  add_index "complaints_expedient_managements_complaints_assets", ["complaints_expedient_management_id", "complaints_asset_id"], name: "expedient_management_asset", using: :btree
 
   create_table "complaints_expedients", force: true do |t|
     t.string   "kind"
@@ -489,7 +510,7 @@ ActiveRecord::Schema.define(version: 20160302190938) do
     t.text     "investments_actions"
     t.text     "remuneration_audit_explanation"
     t.text     "food_products_audit_explanation"
-    t.text     "textil_products_audit_explanation"
+    t.text     "textile_products_audit_explanation"
     t.text     "fuels_products_audit_explanation"
     t.text     "paper_products_audit_explanation"
     t.text     "basic_services_audit_explanation"
@@ -500,7 +521,7 @@ ActiveRecord::Schema.define(version: 20160302190938) do
     t.text     "financial_expenses_audit_explanation"
     t.text     "transfers_audit_explanation"
     t.text     "investments_audit_explanation"
-    t.integer  "auditor_id_id"
+    t.integer  "auditor_id"
     t.datetime "audited_at"
     t.text     "audit_comment"
     t.datetime "created_at"
@@ -508,7 +529,7 @@ ActiveRecord::Schema.define(version: 20160302190938) do
   end
 
   add_index "paa_savings", ["admin_id"], name: "index_paa_savings_on_admin_id", using: :btree
-  add_index "paa_savings", ["auditor_id_id"], name: "index_paa_savings_on_auditor_id_id", using: :btree
+  add_index "paa_savings", ["auditor_id"], name: "index_paa_savings_on_auditor_id", using: :btree
   add_index "paa_savings", ["financial_source_id"], name: "index_paa_savings_on_financial_source_id", using: :btree
   add_index "paa_savings", ["institution_id"], name: "index_paa_savings_on_institution_id", using: :btree
 

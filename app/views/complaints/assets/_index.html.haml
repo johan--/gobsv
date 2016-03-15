@@ -1,0 +1,73 @@
+.modal-dialog.modal-lg{role: "document"}
+  .modal-content
+    .modal-body
+      - if params[:q]
+        / Vista de listado
+        %h2
+          = link_to complaints_assets_url, class: 'gray', remote: true do
+            %span.glyphicon.glyphicon-chevron-left
+          Elija el archivo(s) que necesite
+
+        .row
+          .col-xs-12
+            = search_form_for @q, remote: true, html: { class: 'form-inline' } do |f|
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %span.glyphicon.glyphicon-search.gray
+                  = f.search_field :asset_file_name_cont, class: 'form-control gray', placeholder: 'Buscar...'
+        %br
+        .row
+          .col-xs-12
+            %table.table.table-striped.table-hover.list-files
+              = render partial: 'asset_row', collection: @assets
+            %center.remote-paginate
+              = will_paginate @assets, renderer: BootstrapPagination::Rails
+              :javascript
+                $('.remote-paginate a').click(function(e){
+                  e.preventDefault();
+                  e.stopPropagation();
+                  $.get($(this).attr('href'));
+                });
+      - else
+        / Vista principal
+        %h2.text-center
+          Adjuntar archivos
+        .row
+          .col-xs-12.col-sm-6.p20.text-center
+            %strong
+              Seleccionar desde su PC
+            %br
+            %br
+            = link_to 'Seleccionar', '#', class: 'btn-primary-gray w50 mauto trigger-input-file'
+            %br
+            Subir un archivo desde su escritorio o carpeta de sus documentos
+            = render 'file_form'
+          .col-xs-12.col-sm-6.p20.text-center.bordered
+            %strong
+              Seleccionar desde el sistema
+            %br
+            %br
+            = link_to 'Seleccionar', complaints_assets_url(q: { asset_file_name_cont: '' }), class: 'btn-primary-gray w50 mauto', remote: true
+            %br
+            Seleccione un archivo que ya adjunto antes y esta guardado en el sistema
+        .row
+          %table.table.table-striped.table-hover.list-files
+      / Scripts para la inserción de archivos
+      :javascript
+        $('.add-main-files').click(function(){
+          var checkIds = $(".list-files input:checkbox:checked").map(function(){
+            return $(this).val();
+          }).get();
+          if ( checkIds.length > 0) {
+            $('.toggle-files-management').html("<a class='btn-primary-gray w100 remove-main-files' href='#'><span class='label label-warning label-as-badge'>" + checkIds.length + "</span>&nbspArchivos adjuntos&nbsp<span class='glyphicon glyphicon-remove'></span></a><input type='hidden' name='complaints_expedient_management[asset_ids]' value='" + checkIds + "' />");
+          }
+          $('.remove-main-files').click(function(e){
+            e.preventDefault();
+            var href = $('.toggle-files-management').data('href');
+            $('.toggle-files-management').html('<a class="btn-primary-gray w100" data-remote="true" href="' + href + '">Adjuntar archivo</a>');
+          });
+          $(this).closest('.modal').modal('hide');
+        });
+    .modal-footer
+      %button.btn-primary-gray.add-main-files{:type => "button"} Aceptar

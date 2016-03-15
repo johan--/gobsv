@@ -26,6 +26,12 @@
               = expedient_management.kind_s.upcase
         %div
           = sanitize expedient_management.comment
+        - if expedient_management.asset_ids.count > 0
+          %div
+            %strong
+              Con los siguientes adjuntos:
+            %ul.list-unstyled
+              = render expedient_management.assets
         = render expedient_management.comments
         %div.actions
           - if expedient_management.new?
