@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">DETALLE DE AHORROS POR FUENTE DE FINANCIAMIENTO SIN AUDITAR</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String"></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Rubro</Data></Cell>
+        <% @fsources.each do |fsource| %>
+             <Cell><Data ss:Type="String"><%= fsource.name %></Data></Cell>
+        <% end %>
+        <Cell><Data ss:Type="String">Total</Data></Cell>
+      </Row>
+      <% @categories.each do |category| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= category[0] %></Data></Cell>
+          <% total = 0
+             @fsources.each do |fsource|
+               fsum = Paa::Saving.savings_by(nil, fsource.id, category[1])
+               total += fsum %>
+               <Cell><Data ss:Type="String"><%= number_to_currency(fsum, precision: 2) %></Data></Cell>
+          <% end %>
+          <Cell><Data ss:Type="String"><%= number_to_currency(total, precision: 2) %></Data></Cell>
+        </Row>
+      <% end %>
+      <Row>
+        <Cell><Data ss:Type="String">Total</Data></Cell>
+        <% @fsources.each do |fsource| %>
+          <% total = 0
+             @categories.each do |category| 
+               fsum = Paa::Saving.savings_by(nil, fsource.id, category[1])
+               total += fsum %>
+          <% end %>
+          <Cell><Data ss:Type="String"><%= number_to_currency(total, precision: 2) %></Data></Cell>
+        <% end %>
+        <% 
+           fields = []
+           @categories.each{|a| fields.push(a[1])}
+           ttotal =  Paa::Saving.savings_by(nil, nil, fields.flatten)
+         %>
+        <Cell><Data ss:Type="String"><%= number_to_currency(ttotal, precision: 2) %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">%</Data></Cell>
+        <% Paa::FinancialSource.all.each do |fsource| %>
+          <% total = 0
+             @categories.each do |category| 
+               fsum = Paa::Saving.savings_by(nil, fsource.id, category[1])
+               total += fsum %>
+          <% end %>
+          <Cell><Data ss:Type="String"><%= number_to_percentage((total * 100) / ttotal, precision: 2) %></Data></Cell>
+        <% end %>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>
+

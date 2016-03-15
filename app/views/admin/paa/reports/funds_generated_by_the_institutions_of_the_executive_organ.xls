@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row> 
+        <Cell><Data ss:Type="String">AHORROS GENERADOS POR LAS INSTITUCIONES DEL ÓRGANO EJECUTIVO SEGUNDO TRIMESTRE</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String"></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <% @fsources.each do |fsource| %>
+          <Cell ss:MergeAcross="5"><Data ss:Type="String"><%= fsource.name %></Data></Cell>
+        <% end %>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Co.</Data></Cell>
+        <Cell><Data ss:Type="String">Id.</Data></Cell>
+        <Cell><Data ss:Type="String">Institución</Data></Cell>
+        <% @fsources.each do |fsource| %>
+             <% @categories.each do |category| %>
+               <Cell><Data ss:Type="String"><%= category[0] %></Data></Cell>
+             <% end %>
+             <Cell><Data ss:Type="String">Total</Data></Cell>
+           <% end %>
+      </Row>
+        <% @institutions.each do |institution| %>
+             <Row>
+               <Cell><Data ss:Type="String"></Data></Cell>
+               <Cell><Data ss:Type="String"></Data></Cell>
+               <Cell><Data ss:Type="String"><%= institution.name %></Data></Cell>
+               <% @fsources.each do |fsource|
+                    @categories.each do |category| 
+                      fsum = Paa::Saving.savings_by(institution.id, fsource.id, category[1]) %>
+                      <Cell><Data ss:Type="String"><%= number_to_currency(fsum, precision: 2) %></Data></Cell>
+                    <% end
+                  end %>
+             </Row>
+        <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+
