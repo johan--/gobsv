@@ -573,6 +573,12 @@ a.gray:hover {
   font-size: 24px;
   line-height: 50px;
   padding-left: 10px;
+  a {
+    color: $placeholder;
+  }
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .m0 {

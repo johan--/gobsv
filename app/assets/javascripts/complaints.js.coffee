@@ -13,6 +13,7 @@
 #= require 'select2'
 #= require 'select2_locale_es'
 #= require 'jquery.remotipart'
+#= require 'google-chart-loader'
 
 $ ->
 

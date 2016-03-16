@@ -1,0 +1,43 @@
+.row
+  .col-xs-12.col-sm-6
+    #statusPie
+  .col-xs-12.col-sm-6
+    #ManagementsPie
+
+:javascript
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawStatusPie);
+  google.charts.setOnLoadCallback(drawManagementsBar);
+
+  function drawStatusPie() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Estado');
+    data.addColumn('number', 'Cantidad');
+    data.addRows([
+      ['Nuevos', #{Complaints::Expedient.status('new').count}],
+      ['En proceso', #{Complaints::Expedient.status('process').count}],
+      ['Cerrados', #{Complaints::Expedient.status('closed').count}]
+    ]);
+    var options = {title:'Estado de los casos', pieHole: 0.2,
+                   width:'100%', height:'500px'};
+    var chart = new google.visualization.PieChart(document.getElementById('statusPie'));
+    chart.draw(data, options);
+  }
+
+  function drawManagementsBar() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Tipo de gestión');
+    data.addColumn('number', 'Cantidad');
+    data.addRows([
+      ['Aviso', #{Complaints::ExpedientManagement.kind('notice').count}],
+      ['Comentario', #{Complaints::ExpedientManagement.kind('comment').count}],
+      ['Consulta', #{Complaints::ExpedientManagement.kind('query').count}],
+      ['Denuncia', #{Complaints::ExpedientManagement.kind('complaint').count}],
+      ['Petición', #{Complaints::ExpedientManagement.kind('request').count}],
+      ['Queja', #{Complaints::ExpedientManagement.kind('complaint').count}]
+    ]);
+    var options = {title:'Tipo de gestiones', pieHole: 0.2,
+                   width:'100%', height:'500px'};
+    var chart = new google.visualization.PieChart(document.getElementById('ManagementsPie'));
+    chart.draw(data, options);
+  }

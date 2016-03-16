@@ -24,6 +24,6 @@ class ComplaintsController < ApplicationController
   end
 
   def prepare_search
-    @search = ::Complaints::Expedient.newer.status(params[:state]).ransack(params[:q])
+    @search = ::Complaints::Expedient.newer.status(params[:state]).ransack(params[:search], search_key: :search)
   end
 end

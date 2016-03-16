@@ -14,6 +14,8 @@ class Complaints::ExpedientManagement < ActiveRecord::Base
   scope :newer, -> { order(created_at: :desc) }
   scope :closed, -> { where(status: 'closed') }
   scope :news, -> { where(status: 'new') }
+  scope :kind, -> (kind) { where(kind: kind) }
+
 
   KIND = {
     'notice' => 'Aviso',
