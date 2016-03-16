@@ -1,5 +1,6 @@
 class ComplaintsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :prepare_search
 
   def menu_active
     @menu_active ||= menu_active_element
@@ -20,5 +21,9 @@ class ComplaintsController < ApplicationController
       # Evaluamos si tenemos un elemento
       return expedient.status
     end
+  end
+
+  def prepare_search
+    @search = ::Complaints::Expedient.newer.status(params[:state]).ransack(params[:q])
   end
 end

@@ -1,7 +1,7 @@
 class Complaints::ExpedientsController < ComplaintsController
 
   def index
-    @expedients = Complaints::Expedient.newer.status(params[:state]).paginate(page: params[:page])
+    @expedients = @search.result(distinct: true).paginate(page: params[:page], per_page: 5)
   end
 
   def create

@@ -3,6 +3,7 @@ module Complaints
   class Expedient < ActiveRecord::Base
     has_many :events, class_name: '::Complaints::ExpedientEvent', dependent: :destroy
     has_many :managements, class_name: '::Complaints::ExpedientManagement', dependent: :destroy
+    belongs_to :institution
 
     scope :newer, -> { order(received_at: :desc) }
     scope :status, -> (status) { where(status: status) }

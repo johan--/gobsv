@@ -1,14 +1,14 @@
 %ul.sidebar
   %li{ class: menu_active == 'new' ? 'active' : nil }
-    = link_to complaints_expedients_url(state: 'new') do
+    = link_to complaints_expedients_url(state: 'new', q: params[:q]) do
       = image_tag "complaints/new_cases.png"
       Casos Nuevos
   %li{ class: menu_active == 'process' ? 'active' : nil }
-    = link_to complaints_expedients_url(state: 'process') do
+    = link_to complaints_expedients_url(state: 'process', q: params[:q]) do
       = image_tag "complaints/proccess_cases.png"
       Casos en Proceso
   %li{ class: menu_active == 'closed' ? 'active' : nil }
-    = link_to complaints_expedients_url(state: 'closed') do
+    = link_to complaints_expedients_url(state: 'closed', q: params[:q]) do
       = image_tag "complaints/closed_cases.png"
       Casos Cerrados
   %li{ class: menu_active == 'users' ? 'active' : nil }

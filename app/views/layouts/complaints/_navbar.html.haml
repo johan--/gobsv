@@ -7,8 +7,9 @@
             = image_tag("complaints/logo.png")
       .col-sm-6.hidden-xs.search.col-height
         .inside-form
-          = form_tag '/search', method: :get do
-            = text_field_tag :q, params[:q], placeholder: 'Buscar'
+          = search_form_for @search, url: complaints_expedients_url do |f|
+            = f.text_field :contact_or_phone_or_email_or_comment_or_correlative_or_institution_name_cont, placeholder: 'Buscar'
+            = hidden_field_tag 'state', params[:state] || 'new'
       .col-sm-3.col-xs-7.new_case.col-height
         .inside
           = link_to new_complaints_expedient_url, class: 'white' do
@@ -25,5 +26,6 @@
             = image_tag("complaints/profile.png")
   .row
     .col-xs-12.hidden-sm.hidden-md.hidden-lg.search.search_b
-      = form_tag '/search', method: :get do
-        = text_field_tag :q, params[:q], placeholder: 'Buscar'
+      = search_form_for @search, url: complaints_expedients_url do |f|
+        = f.text_field :contact_or_phone_or_email_or_comment_or_correlative_or_institution_name_cont, placeholder: 'Buscar'
+        = hidden_field_tag 'state', params[:state] || 'new'
