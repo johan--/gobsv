@@ -1,0 +1,7 @@
+- if controller_name == 'documents'
+  = search_form_for @q, url: complaints_documents_url do |f|
+    = f.text_field :asset_file_name_cont, placeholder: 'Buscar'
+- else
+  = search_form_for @search, url: complaints_expedients_url, as: :search do |f|
+    = f.text_field :contact_or_phone_or_email_or_comment_or_correlative_or_institution_name_cont, placeholder: 'Buscar'
+    = hidden_field_tag 'state', params[:state] || 'new'

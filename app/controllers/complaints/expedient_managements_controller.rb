@@ -4,7 +4,7 @@ class Complaints::ExpedientManagementsController < ComplaintsController
     @management.admin_id = current_admin.id
     @success = @management.save
     if @success
-      @management.asset_ids = item_params['asset_ids'].split(',')
+      @management.asset_ids = item_params['asset_ids'].split(',') if item_params['asset_ids']
     else
       @errors = @management.errors.messages.to_json.html_safe
     end

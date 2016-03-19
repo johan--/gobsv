@@ -54,22 +54,25 @@
           .col-xs-12
             .clearfix
               .bg-news.pull-left
-                18
+                = @new
               .total-title.pull-left
-                Casos nuevos
+                = link_to complaints_expedients_url(state: 'new') do
+                  Casos nuevos
         %br
         .row
           .col-xs-12
             .clearfix
               .bg-process.pull-left
-                5
+                = @process
               .total-title.pull-left
-                Casos nuevos
+                = link_to complaints_expedients_url(state: 'process') do
+                  Casos en proceso
         %br
         .row
           .col-xs-12
             .clearfix
               .bg-closed.pull-left
-                565
+                = @closed
               .total-title.pull-left
-                Casos cerrados
+                = link_to complaints_expedients_url(state: 'closed') do
+                  Casos cerrados

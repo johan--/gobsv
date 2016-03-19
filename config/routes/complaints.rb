@@ -12,6 +12,8 @@ constraints subdomain: 'quejas' do
       resources :notifications, only: [:index]
       resources :users
       resources :assets
+      resources :documents, only: [:index]
+      resources :statistics, only: [:index]
       resources :expedient_managements, only: [] do
         resources :expedient_management_events, only: [:create]
         resources :expedient_management_comments, only: [:create]

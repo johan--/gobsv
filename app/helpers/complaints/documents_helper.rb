@@ -1,0 +1,2 @@
+module Complaints::DocumentsHelper
+end

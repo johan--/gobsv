@@ -1,0 +1,34 @@
+%h1
+  Mis archivos
+.content
+  - if @documents.size == 0
+    .alert.alert-info{role: 'alert'}
+      No hay archivos que mostrar
+  - else
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th
+              Fecha
+            %th
+              Nombre de archivo
+            %th
+              Peso
+            %th{ colspan: 1 }
+        %tbody
+          - @documents.each do |doc|
+            %tr
+              %td
+                = doc.created_at.try(:strftime, '%d/%m/%Y')
+              %td
+                = doc.asset_file_name
+              %td
+                = number_to_human_size(doc.asset_file_size)
+              %td
+                = link_to doc.asset.url, class: 'btn btn-primary btn-sm white' do
+                  %span.glyphicon.glyphicon-save-file
+                  %span.hidden-xs.hidden-sm
+                    Descargar
+    %center
+      = will_paginate @documents, renderer: BootstrapPagination::Rails

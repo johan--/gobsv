@@ -4,4 +4,7 @@ class Complaints::Asset < ActiveRecord::Base
   has_attached_file :asset
   validates :asset, attachment_presence: true
   do_not_validate_attachment_file_type :asset
+
+  scope :newer, -> { order(created_at: :desc) }
+
 end

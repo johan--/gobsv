@@ -7,8 +7,7 @@
             = image_tag("complaints/logo.png")
       .col-sm-6.hidden-xs.search.col-height
         .inside-form
-          = form_tag '/search', method: :get do
-            = text_field_tag :q, params[:q], placeholder: 'Buscar'
+          = render 'layouts/complaints/search_form'
       .col-sm-3.col-xs-7.new_case.col-height
         .inside
           = link_to new_complaints_expedient_url, class: 'white' do
@@ -25,5 +24,4 @@
             = image_tag("complaints/profile.png")
   .row
     .col-xs-12.hidden-sm.hidden-md.hidden-lg.search.search_b
-      = form_tag '/search', method: :get do
-        = text_field_tag :q, params[:q], placeholder: 'Buscar'
+      = render 'layouts/complaints/search_form'
