@@ -30,3 +30,11 @@ $ ->
   $(document).ajaxStop ->
     $('#spinner').hide()
     return
+
+  $(document).on 'ajax:start', 'form', (event, data, status, xhr) ->
+    $('#spinner').show()
+    return
+
+  $(document).on 'ajax:stop', 'form', (event, data, status, xhr) ->
+    $('#spinner').hide()
+    return
