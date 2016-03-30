@@ -9,5 +9,6 @@
     });
     $("#complaints_asset_asset").off();
     $("#complaints_asset_asset").change(function(e) {
+      $("#spinner").show();
       $(this).closest('form').submit();
     });

@@ -2,3 +2,4 @@
   $('.list-files').prepend("<%= j(render partial: 'asset_row', object: @asset) %>");
   $('#file-form-upload').replaceWith("<%= j(render 'file_form') %>");
 <% end %>
+$("#spinner").hide();
