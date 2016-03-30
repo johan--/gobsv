@@ -8,7 +8,7 @@ Rails.application.config.assets.version = '1.0'
 # already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += %w( admin.css admin.js )
+Rails.application.config.assets.precompile += %w( admin.css admin.js admin/login.css )
 Rails.application.config.assets.precompile += %w( complaints.css complaints.js )
 Rails.application.config.assets.precompile += %w( www.css www.js )
 Rails.application.config.assets.precompile += %w( ta.css ta.js ta/*.js )

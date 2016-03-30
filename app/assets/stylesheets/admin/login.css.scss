@@ -1,19 +1,28 @@
-/*
-@import 'theme/bootstrap';
-@import 'theme/login';
-@import 'theme/animate';
-@import 'admin/icons';
-*/
-
-body {
-  background: #333;
+body.login {
+  background: #00b9bc;
 }
 
-.logo {
-  display: block;
+.form-group {
+  margin: 0;
 }
 
-.ga-icon-logo {
-  display: block;
-  font-size: 3em;
+input[type=email],
+input[type=password] {
+  border: none;
+  height: 3em;
+  font-size: 1.2em;
+}
+
+span.glyphicon {
+  font-size: 1.2em;
+}
+
+.input-group-addon {
+  background-color: white;
+  border: 0;
+}
+
+.btn-login {
+  border: 1px solid white;
+  width: 100%;
 }
