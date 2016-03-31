@@ -16,6 +16,8 @@
       %table.table
         %thead
           %tr
+            - unless params[:state] == 'closed'
+              %th.hidden-xs{ width: '10%' }
             %th
               Fecha
             %th
@@ -28,6 +30,15 @@
         %tbody.list-expedients
           - @expedients.each do |exp|
             %tr
+              - unless params[:state] == 'closed'
+                %td.hidden-xs
+                  .progress{ data: { toggle: 'tooltip', placement: 'top' }, title: "#{exp.days_passed} días" }
+                    - if exp.days_passed <= 5
+                      .progress-bar.progress-bar-success{"aria-valuemax" => "10", "aria-valuemin" => "0", "aria-valuenow" => exp.days_passed, :role => "progressbar", :style => "width: #{exp.days_passed}0%"}
+                    - elsif exp.days_passed <= 10
+                      .progress-bar.progress-bar-warning{"aria-valuemax" => "10", "aria-valuemin" => "0", "aria-valuenow" => exp.days_passed, :role => "progressbar", :style => "width: #{exp.days_passed}0%"}
+                    - else
+                      .progress-bar.progress-bar-danger{"aria-valuemax" => "10", "aria-valuemin" => "0", "aria-valuenow" => 10, :role => "progressbar", :style => "width: 100%"}
               %td
                 = link_to exp.received_at.try(:strftime, '%d/%m/%Y'), complaints_expedient_url(exp)
               %td

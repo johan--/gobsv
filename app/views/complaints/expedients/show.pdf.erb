@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+    <%= wicked_pdf_javascript_include_tag "number_pages" %>
+  </head>
+  <body onload='number_pages' style="font-size: 12px;">
+
+    Sistema de Quejas y Avisos
+    <hr>
+    <h2>Caso <%= expedient.correlative.present? ? expedient.correlative : 'nuevo' %></h2>
+    <table>
+      <tr>
+        <td width="25%">Fecha de ingreso</td>
+        <td width="25%">Contacto</td>
+        <td width="25%">Vía de ingreso</td>
+      </tr>
+      <tr>
+        <td><%= expedient.received_at.try(:strftime, '%d/%m/%Y') %></td>
+        <td><%= expedient.contact.present? ? expedient.contact : 'Anónimo' %></td>
+        <td><%= expedient.kind_s %></td>
+      </tr>
+    </table>
+    <p>Comentario</p>
+    <%= simple_format expedient.comment %>
+    <table>
+      <tr>
+        <td colspan="2">Datos de contacto</td>
+      </tr>
+      <tr>
+        <td width="25%">
+          Teléfono: <%= expedient.phone %>
+        </td>
+        <td width="25%">
+          Correo electrónico: <%= expedient.email %>
+        </td>
+      </tr>
+    </table>
+
+    <% unless expedient.new? %>
+      <br>
+      <br>
+      Gestión del Caso
+      <hr>
+      <% managements.each do |management| %>
+        <br>
+        <br>
+        <strong>
+        <%= l(management.created_at, format: :small) %>
+        <%= l(management.created_at, format: :hour) %>
+        </strong>
+        <br>
+        <p><% if management.assigned_names.present? %>
+          <%= management.admin.name %> asignó a <%= management.assigned_names %> una <%= management.kind_s.upcase %>
+        <% else %>
+          <%= management.admin.name %> se asignó a si mismo una <%= management.kind_s.upcase %>
+        <% end %></p>
+        <p><%= simple_format management.comment %></p>
+        <% if management.comments.count > 0 %>
+          <ul style="list-style: none;">
+            <% management.comments.each do |comment| %>
+              <li>
+                <%= comment.admin.name %> comento <%= l(comment.created_at, format: :resume) %>
+                <br>
+                <%= simple_format comment.comment %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  </body>
+</html>

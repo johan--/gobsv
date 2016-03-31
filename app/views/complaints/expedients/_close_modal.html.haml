@@ -1,4 +1,6 @@
 .text-right
+  = link_to 'Imprimir caso', complaints_expedient_url(expedient, format: :pdf), target: '_blank', class: 'btn-primary-gray no-block'
+
   %button.btn-primary-red{type: 'button', data: {toggle: 'modal', target: '#closedModal'}}
     Cerrar
 
@@ -18,7 +20,7 @@
               .form-inline
                 = f.datetime_select :start_at, {}, { class: 'form-control' }
           .form-group
-            = f.label :justification, 'Comentario', class: 'col-sm-2 control-label'
+            = f.label :justification, 'Justificación', class: 'col-sm-2 control-label'
             .col-sm-10
               = f.text_area :justification, class: 'form-control'
         .modal-footer

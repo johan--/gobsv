@@ -1,0 +1,12 @@
+crud: &crud
+- index
+- show
+- new
+- create
+- edit
+- update
+- destroy
+
+expedient:
+- *crud
+- test

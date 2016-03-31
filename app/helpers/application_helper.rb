@@ -21,7 +21,7 @@ module ApplicationHelper
   def flash_helper
     content_tag :div, class: "flash-messages" do
       flash.map do |key, value|
-        content_tag :div, class: "alert alert-dismissable alert-#{key}" do
+        content_tag :div, class: "alert alert-dismissable alert-#{key == 'notice' ? 'success' : 'danger'}" do
           content_tag(:span, '&times;'.html_safe, class: :close, 'data-dismiss' => 'alert') + value
         end
       end.join().html_safe
@@ -31,7 +31,7 @@ module ApplicationHelper
   def ErrorDisplayer
 
   end
-  
+
   def is_auditor?
     current_admin.id == 10 ? true : false
   end

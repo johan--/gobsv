@@ -599,3 +599,11 @@ div#spinner
   z-index:9999;
   overflow: auto;
 }
+
+.flash-messages {
+  margin: 10px 0;
+}
+
+.no-block {
+  display: inline-block !important;
+}

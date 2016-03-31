@@ -1,36 +1,37 @@
 %br
-.row
-  .col-sm-12
-    %p.blue
-      Gestión del caso
-    %hr
-- unless expedient.closed?
-  .row
-    .management_section.clearfix
-      .col-xs-12
-        %p.blue
-          Asignar gestión
-        = form_for expedient.managements.new, url: complaints_expedient_expedient_managements_url(expedient), remote: true, html: { id: 'fileupload' } do |f|
-          .row
-            .form-group.col-sm-8.col-xs-12
-              = f.collection_select :assigned_ids, current_admin.children.order(:name), :id, :name, { }, {class: "form-control select2", multiple: true}
-            .form-group.col-sm-4.col-xs-12
-              = f.select :kind, options_for_select(Complaints::ExpedientManagement::KIND.invert), { prompt: true }, { class: 'form-control' }
-          .row
-            .form-group.col-xs-12
-              = f.cktext_area :comment, required: true, ckeditor: { toolbar: 'mini', height: 100 }
-          .row
-            .form-group.col-xs-12.col-sm-6
-              = f.submit "Agregar caso", class: 'btn-primary-green w100', data: {disable_with: "Agregando..."}
-            .form-group.col-xs-12.col-sm-6
-              .toggle-files-management{ data: { href: complaints_assets_url } }
-                = link_to complaints_assets_url, class: 'btn-primary-gray w100', remote: true do
-                  Adjuntar archivo
-
-
-.row
-  .management_section.clearfix
-    .col-xs-12
-      .managements_area
-        - managements.each do |m|
-          = render m
+.well
+  %p
+    Estimado/a #{current_admin.name}, antes de iniciar con el proceso es necesario que se comunique con el usuario, haciendo uso de los datos de contacto brindados en el caso.
+  %p
+    Si por algún motivo esta comunicación no pudo establecerse, por favor dejar constancia de la razón por la cual no fue posible.
+  %br
+  = form_for expedient.events.new, url: complaints_expedient_expedient_events_path(expedient), html: { class: 'form-horizontal', remote: true} do |f|
+    .form-group
+      = f.label :received_at, 'Fecha de comunicación', class: 'col-sm-2 control-label'
+      .col-sm-10
+        .form-inline
+          = f.datetime_select :start_at, {}, { class: 'form-control' }
+    .form-group
+      = f.label :justification, 'Justificación', class: 'col-sm-2 control-label', required: true
+      .col-sm-10
+        = f.text_area :justification, class: 'form-control'
+    .form-group
+      .col-sm-10.col-sm-offset-2
+        %button.btn.btn-primary{:type => "submit", data: {disable_with: "Procesando..."}} Procesar
+  %hr
+  %p
+    Si este caso no le compete a su institución, puede redireccionarlo a otra institución haciendo uso del siguiente formulario:
+  %br
+  = form_for :expedient, url: redirect_complaints_expedient_path(expedient), html: { class: 'form-horizontal', remote: true, method: :post} do |f|
+    .form-group
+      = f.label :institution_id, 'Institución', class: 'col-sm-2 control-label'
+      .col-sm-10
+        .form-inline
+          = f.collection_select :institution_id, Institution.order(:name), :id, :name, {prompt: "Seleccione una institución"}, {class: "form-control"}
+    .form-group
+      = f.label :justification, 'Justificación', class: 'col-sm-2 control-label', required: true
+      .col-sm-10
+        = f.text_area :justification, class: 'form-control'
+    .form-group
+      .col-sm-10.col-sm-offset-2
+        %button.btn.btn-primary{:type => "submit", data: {disable_with: "Redireccionando..."}} Redireccionar

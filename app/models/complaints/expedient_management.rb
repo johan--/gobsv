@@ -57,8 +57,4 @@ class Complaints::ExpedientManagement < ActiveRecord::Base
   def closed?
     status == 'closed'
   end
-
-  def hours_passed
-    ((Time.current - created_at) / 1.hour).round
-  end
 end

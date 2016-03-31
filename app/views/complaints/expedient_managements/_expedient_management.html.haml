@@ -55,7 +55,7 @@
                 .form-inline
                   = f.datetime_select :start_at, {}, { class: 'form-control' }
             .form-group
-              = f.label :justification, 'Comentario', class: 'col-sm-2 control-label'
+              = f.label :justification, 'Justificación', class: 'col-sm-2 control-label'
               .col-sm-10
                 = f.text_area :justification, class: 'form-control'
           .modal-footer
@@ -100,10 +100,6 @@
               = f.label :weight, "Número de #{expedient_management.kind_s.upcase} procesadas", class: 'col-sm-2 control-label'
               .col-sm-10
                 = f.text_field :weight, value: 1, class: 'form-control'
-            .form-group
-              = f.label :closed_as, "Tipo de cierre", class: 'col-sm-2 control-label'
-              .col-sm-10
-                = f.select :closed_as, options_for_select(Complaints::ExpedientManagement::CLOSED_AS.invert), { prompt: true }, { class: 'form-control' }
             .form-group
               = f.label :justification, "Justificación", class: 'col-sm-2 control-label'
               .col-sm-10

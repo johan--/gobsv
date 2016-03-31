@@ -4,6 +4,15 @@ class Complaints::ExpedientsController < ComplaintsController
     @expedients = @search.result(distinct: true).paginate(page: params[:page], per_page: 5)
   end
 
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: expedient.correlative.present? ? "#{expedient.correlative}.pdf" : "nuevo_caso.pdf", encoding: "UTF-8"
+      end
+    end
+  end
+
   def create
     expedient.assign_attributes item_params
     expedient.admin_id = current_admin.id
@@ -16,6 +25,10 @@ class Complaints::ExpedientsController < ComplaintsController
     else
       render :new
     end
+  end
+
+  def redirect
+
   end
 
   def expedient
@@ -36,7 +49,8 @@ class Complaints::ExpedientsController < ComplaintsController
       :phone,
       :email,
       :comment,
-      :institution_id
+      :institution_id,
+      :asset
     )
   end
 end

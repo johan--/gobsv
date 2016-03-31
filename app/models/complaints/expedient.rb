@@ -8,6 +8,8 @@ module Complaints
     scope :newer, -> { order(received_at: :desc) }
     scope :status, -> (status) { where(status: status) }
 
+    has_attached_file :asset
+    do_not_validate_attachment_file_type :asset
 
     validates :kind, :comment, presence: true
 
@@ -39,6 +41,14 @@ module Complaints
 
     def closed?
       status == 'closed'
+    end
+
+    def hours_passed
+      ((Time.current - created_at) / 1.hour).round
+    end
+
+    def days_passed
+      ((Time.current - created_at) / 1.day).round
     end
 
   end

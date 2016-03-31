@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315055113) do
+ActiveRecord::Schema.define(version: 20160330181256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20160315055113) do
     t.string   "email"
     t.text     "comment"
     t.integer  "institution_id"
-    t.string   "status",         default: "new"
+    t.string   "status",             default: "new"
     t.string   "correlative"
     t.integer  "admin_id"
     t.datetime "received_at"
@@ -150,6 +150,10 @@ ActiveRecord::Schema.define(version: 20160315055113) do
     t.datetime "admitted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
   end
 
   add_index "complaints_expedients", ["contact"], name: "index_complaints_expedients_on_contact", using: :btree
@@ -550,11 +554,14 @@ ActiveRecord::Schema.define(version: 20160315055113) do
   end
 
   create_table "roles", force: true do |t|
-    t.string   "name",       null: false
-    t.json     "activities"
+    t.string   "name",                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "activities",     default: [],              array: true
+    t.integer  "institution_id"
   end
+
+  add_index "roles", ["institution_id"], name: "index_roles_on_institution_id", using: :btree
 
   create_table "ta_articles", force: true do |t|
     t.string   "title"

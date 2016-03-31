@@ -9,6 +9,13 @@
     = "/ Caso #{expedient.correlative}"
 .content
   .row
+    .col-xs-12.text-right
+      - if expedient.process?
+        = render 'close_modal'
+      - else
+        .text-right
+          = link_to 'Imprimir caso', complaints_expedient_url(expedient, format: :pdf), target: '_blank', class: 'btn-primary-gray no-block'
+  .row
     .col-sm-2
       %p.blue
         Fecha de ingreso
@@ -21,17 +28,22 @@
       %p.blue
         Vía de ingreso
       = expedient.kind_s
-    .col-sm-5
-      - if expedient.new?
-        = render 'process_modal'
-      - elsif expedient.process?
-        = render 'close_modal'
+
   %br
   .row
     .col-sm-12
       %p.blue
         Comentario
       = expedient.comment
+  - if expedient.asset.present?
+    %br
+    .row
+      .col-sm-12
+        %p.blue
+          Archivo
+        = link_to expedient.asset.url, target: '_blank', class: 'lnk-download-asset' do
+          = expedient.asset_file_name
+          (#{number_to_human_size(expedient.asset_file_size)})
   %br
   .row
     .col-sm-12
@@ -41,4 +53,6 @@
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = "Correo electrónico: #{expedient.email.present? ? expedient.email : 'Ninguno'}"
   - unless expedient.new?
+    = render "management"
+  - else
     = render "process"

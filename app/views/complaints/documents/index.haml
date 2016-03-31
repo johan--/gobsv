@@ -15,7 +15,7 @@
               Nombre de archivo
             %th
               Peso
-            %th{ colspan: 1 }
+            %th{ colspan: 2 }
         %tbody
           - @documents.each do |doc|
             %tr
@@ -30,5 +30,11 @@
                   %span.glyphicon.glyphicon-save-file
                   %span.hidden-xs.hidden-sm
                     Descargar
+              %td
+                - if doc.can_delete?
+                  = link_to complaints_document_url(doc), data: { method: :delete, confirm: '¿Realmente desea eliminar este documento?' }, class: 'btn btn-danger btn-sm white' do
+                    %span.glyphicon.glyphicon-remove
+                    %span.hidden-xs.hidden-sm
+                      Eliminar
     %center
       = will_paginate @documents, renderer: BootstrapPagination::Rails

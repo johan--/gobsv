@@ -15,6 +15,7 @@ class Complaints::ExpedientManagementEventsController < ComplaintsController
     @success = event.save
     if @success
       @management.status = event.status
+      @management.weight = event.weight
       @management.save
       @management.comments.create(admin_id: current_admin.id, comment: message)
     end
@@ -26,8 +27,7 @@ class Complaints::ExpedientManagementEventsController < ComplaintsController
       :justification,
       :start_at,
       :status,
-      :weight,
-      :closed_as
+      :weight
     )
   end
 end

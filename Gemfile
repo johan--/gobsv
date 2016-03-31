@@ -171,3 +171,7 @@ gem 'metainspector'
 
 # Rails jQuery file uploads via standard Rails "remote: true" forms. http://os.alfajango.com/remotipart
 gem 'remotipart'
+
+# PDF generator (from HTML) plugin for Ruby on Rails http://mileszs.com/blog/2009/06/17/wicked-pdf-plugin.html
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

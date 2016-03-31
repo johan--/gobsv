@@ -9,6 +9,7 @@
   $("#complaints_expedient_management_assigned_ids").select2("val", "");
   $("#complaints_expedient_management_kind").val("");
   $("#complaints_expedient_management_comment").val("");
+  CKEDITOR.instances['complaints_expedient_management_comment'].setData('');
   $("#management-<%= @management.id %>").effect("highlight", {}, 3500);
 <% else %>
   form = $("#management-<%= @management.id %>").find("form#new_complaints_expedient_management");

@@ -1,30 +1,29 @@
 %h1
   Tablero
 .content
-  - if @new_managements.count > 0
+  - if @new_expedients.count > 0
     .row
       .col-xs-12
         %table.table
           %thead
             %tr
-              %th{colspan: 5}
-                Horas transcurridas sin comunicarse con el usuario
+              %th{colspan: 4}
+                %p.blue
+                  Horas transcurridas sin comunicarse con el usuario
           %tbody.list-expedients
-            - @new_managements.each do |management|
+            - @new_expedients.each do |expedient|
               %tr
                 %td
-                  = link_to complaints_expedient_url(management.expedient) do
-                    %span{ class: management.hours_passed <= 24 ? 'text-success' : ( management.hours_passed <= 48 ? 'text-warning' : 'text-danger' ) }
-                      = management.hours_passed
+                  = link_to complaints_expedient_url(expedient) do
+                    %span{ class: expedient.hours_passed <= 24 ? 'text-success' : ( expedient.hours_passed <= 48 ? 'text-warning' : 'text-danger' ) }
+                      = expedient.hours_passed
                       horas
                 %td
-                  = link_to management.expedient.try(:correlative), complaints_expedient_url(management.expedient)
+                  = link_to expedient.try(:correlative), complaints_expedient_url(expedient)
                 %td
-                  = link_to management.kind_s, complaints_expedient_url(management.expedient)
+                  = link_to expedient.try(:contact), complaints_expedient_url(expedient)
                 %td
-                  = link_to management.expedient.try(:contact), complaints_expedient_url(management.expedient)
-                %td
-                  = link_to complaints_expedient_url(management.expedient), class: 'show-item' do
+                  = link_to complaints_expedient_url(expedient), class: 'show-item' do
                     &nbsp
 
   .row
@@ -54,7 +53,7 @@
           .col-xs-12
             .clearfix
               .bg-news.pull-left
-                = @new
+                = @new_expedients.count
               .total-title.pull-left
                 = link_to complaints_expedients_url(state: 'new') do
                   Casos nuevos

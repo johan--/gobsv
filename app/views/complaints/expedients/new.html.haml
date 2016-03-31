@@ -28,6 +28,10 @@
       .col-sm-10
         = f.text_area :comment, class: 'form-control'
     .form-group
+      = f.label :asset, 'Archivo', class: 'col-sm-2 control-label'
+      .col-sm-10
+        = f.file_field :asset
+    .form-group
       = f.label :institution_id, 'Responsable de este caso', class: 'col-sm-2 control-label'
       .col-sm-10
         = f.collection_select :institution_id, Institution.order(:name), :id, :name, {prompt: "Seleccione una institución"}, {class: "form-control"}
