@@ -36,8 +36,9 @@
             = link_to "Comunicarme con el usuario", '#', class: 'lnk-success', data: {toggle: 'modal', target: "#newModal#{expedient_management.id}"}
           - elsif expedient_management.process?
             = link_to "Responder", '#', class: 'lnk-primary', data: {toggle: 'modal', target: "#newComment#{expedient_management.id}"}
-            &nbsp&nbsp&nbsp&nbsp&nbsp
-            = link_to "Terminar gestión", '#', class: 'lnk-danger', data: {toggle: 'modal', target: "#closeModal#{expedient_management.id}"}
+            - if current_admin.oficial?
+              &nbsp&nbsp&nbsp&nbsp&nbsp
+              = link_to "Terminar gestión", '#', class: 'lnk-danger', data: {toggle: 'modal', target: "#closeModal#{expedient_management.id}"}
 
   / Modal comunicación
   .modal.fade{"aria-labelledby" => "modalLabel", :role => "dialog", :tabindex => "-1", :id => "newModal#{expedient_management.id}"}

@@ -1,5 +1,6 @@
 class Complaints::DashboardController < ComplaintsController
   def index
+    #skip_authorization
     @process = ::Complaints::Expedient.status('process').count
     @closed = ::Complaints::Expedient.status('closed').count
     @last_managements = ::Complaints::ExpedientManagement.closed.limit(4).order(updated_at: :desc)

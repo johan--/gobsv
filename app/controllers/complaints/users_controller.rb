@@ -6,7 +6,7 @@ class Complaints::UsersController < ComplaintsController
   def create
     admin.assign_attributes item_params
     if admin.save
-      flash[:success] = 'Usuario creado con exito'
+      flash[:notice] = 'Usuario creado con exito'
       redirect_to complaints_users_url and return
     else
       render :new
@@ -16,7 +16,7 @@ class Complaints::UsersController < ComplaintsController
   def update
     admin.assign_attributes item_params
     if admin.save
-      flash[:success] = 'Usuario actualizado con exito'
+      flash[:notice] = 'Usuario actualizado con exito'
       redirect_to complaints_users_url and return
     else
       render :edit
@@ -25,7 +25,7 @@ class Complaints::UsersController < ComplaintsController
 
   def destroy
     admin.destroy
-    flash[:success] = 'Usuario eliminado con exito'
+    flash[:notice] = 'Usuario eliminado con exito'
     redirect_to complaints_users_url and return
   end
 

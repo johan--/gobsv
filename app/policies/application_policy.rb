@@ -1,53 +1,28 @@
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :admin, :record
 
-  def initialize(user, record)
-    @user = user
+  def initialize(admin, record)
+    @admin = admin
     @record = record
   end
 
-  def index?
-    false
+  def admin_activities
+    @admin.role.try(:activities) || []
   end
 
-  def show?
-    scope.where(id: record.id).exists?
+  def inferred_activity(method)
+    "#{@record.class.name.downcase}:#{method.to_s}"
   end
 
-  def create?
-    false
-  end
-
-  def new?
-    create?
-  end
-
-  def update?
-    false
-  end
-
-  def edit?
-    update?
-  end
-
-  def destroy?
-    false
+  def method_missing(name,*args)
+    if name.to_s.last == '?'
+      admin_activities.include?(inferred_activity(name.to_s.gsub('?','')))
+    else
+      super
+    end
   end
 
   def scope
-    Pundit.policy_scope!(user, record.class)
-  end
-
-  class Scope
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      scope
-    end
+    Pundit.policy_scope!(admin, record.class)
   end
 end

@@ -57,4 +57,9 @@ class Complaints::ExpedientManagement < ActiveRecord::Base
   def closed?
     status == 'closed'
   end
+
+  def has_admin? current_admin
+    return true if current_admin.oficial?
+    return assigned_ids.include?(current_admin.id)
+  end
 end

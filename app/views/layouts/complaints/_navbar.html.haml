@@ -10,9 +10,10 @@
           = render 'layouts/complaints/search_form'
       .col-sm-3.col-xs-7.new_case.col-height
         .inside
-          = link_to new_complaints_expedient_url, class: 'white' do
-            %i.glyphicon.glyphicon-plus-sign
-            Agregar caso
+          - if current_admin.oficial?
+            = link_to new_complaints_expedient_url, class: 'white' do
+              %i.glyphicon.glyphicon-plus-sign
+              Agregar caso
       -#
         .col-sm-1.col-xs-2.notification.col-height
           .inside
