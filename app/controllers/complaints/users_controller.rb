@@ -23,9 +23,9 @@ class Complaints::UsersController < ComplaintsController
     end
   end
 
-  def destroy
-    admin.destroy
-    flash[:notice] = 'Usuario eliminado con exito'
+  def deactivate
+    admin.update_column(:is_active, !admin.is_active?)
+    flash[:notice] = 'Usuario actualizado con exito'
     redirect_to complaints_users_url and return
   end
 
@@ -39,7 +39,8 @@ class Complaints::UsersController < ComplaintsController
       :name,
       :email,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :is_active
     )
   end
 end

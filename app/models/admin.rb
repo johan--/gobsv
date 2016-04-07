@@ -14,4 +14,12 @@ class Admin < ActiveRecord::Base
     role_id.present?
   end
 
+  def active_for_authentication?
+    super && self.is_active?
+  end
+
+  def inactive_message
+    "Lo sentimos, esta cuenta ha sido desactivada."
+  end
+
 end

@@ -1,4 +1,8 @@
 .form-group
+  = f.label :is_active, '¿Activo?', class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.check_box :is_active
+.form-group
   = f.label :name, 'Nombre', class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :name, class: 'form-control'
