@@ -4,7 +4,7 @@
       - if params[:q]
         / Vista de listado
         %h2
-          = link_to complaints_assets_url, class: 'gray', remote: true do
+          = link_to complaints_assets_url(m: params[:m]), class: 'gray', remote: true do
             %span.glyphicon.glyphicon-chevron-left
           Elija el archivo(s) que necesite
 
@@ -48,7 +48,7 @@
               Seleccionar desde el sistema
             %br
             %br
-            = link_to 'Seleccionar', complaints_assets_url(q: { asset_file_name_cont: '' }), class: 'btn-primary-gray w50 mauto', remote: true
+            = link_to 'Seleccionar', complaints_assets_url(q: { asset_file_name_cont: '' }, m: params[:m]), class: 'btn-primary-gray w50 mauto', remote: true
             %br
             Seleccione un archivo que ya adjunto antes y esta guardado en el sistema
         .row
@@ -56,18 +56,30 @@
       / Scripts para la inserción de archivos
       :javascript
         $('.add-main-files').click(function(){
+          mid = $(this).data("management");
           var checkIds = $(".list-files input:checkbox:checked").map(function(){
             return $(this).val();
           }).get();
           if ( checkIds.length > 0) {
-            $('.toggle-files-management').html("<a class='btn-primary-gray w100 remove-main-files' href='#'><span class='label label-warning label-as-badge'>" + checkIds.length + "</span>&nbspArchivos adjuntos&nbsp<span class='glyphicon glyphicon-remove'></span></a><input type='hidden' name='complaints_expedient_management[asset_ids]' value='" + checkIds + "' />");
+            if ( mid ) {
+              $('form', '#management-' + mid).append("<input type='hidden' id='comment_files' name='complaints_expedient_management_comment[asset_ids]' value='" + checkIds + "' />");
+              $('.has_files', '#management-' + mid).addClass('remove_files').removeClass('has_files');
+            } else
+              $('.toggle-files-management').html("<a class='btn-primary-gray w100 remove-main-files' href='#'><span class='label label-warning label-as-badge'>" + checkIds.length + "</span>&nbspArchivos adjuntos&nbsp<span class='glyphicon glyphicon-remove'></span></a><input type='hidden' name='complaints_expedient_management[asset_ids]' value='" + checkIds + "' />");
           }
           $('.remove-main-files').click(function(e){
             e.preventDefault();
             var href = $('.toggle-files-management').data('href');
             $('.toggle-files-management').html('<a class="btn-primary-gray w100" data-remote="true" href="' + href + '">Adjuntar archivo</a>');
           });
+          $('.remove_files').closest('a').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).closest('form').find('#comment_files').remove();
+            $(this).find('.remove_files').addClass('has_files').removeClass('remove_files');
+            $(this).off();
+          });
           $(this).closest('.modal').modal('hide');
         });
     .modal-footer
-      %button.btn-primary-gray.add-main-files{:type => "button"} Aceptar
+      %button.btn-primary-gray.add-main-files{:type => "button", :data => { management: params[:m] }} Aceptar

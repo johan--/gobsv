@@ -3,11 +3,7 @@ class Complaints::ExpedientManagement < ActiveRecord::Base
   belongs_to :expedient, class_name: '::Complaints::Expedient'
   has_many :events, class_name: '::Complaints::ExpedientManagementEvent', dependent: :destroy
   has_many :comments, class_name: '::Complaints::ExpedientManagementComment', dependent: :destroy
-  has_and_belongs_to_many :assets,
-    join_table: :complaints_expedient_managements_complaints_assets,
-    class_name: '::Complaints::Asset',
-    foreign_key: 'complaints_expedient_management_id',
-    association_foreign_key: 'complaints_asset_id'
+  has_and_belongs_to_many :assets
 
   validates :kind, :comment, presence: true
 

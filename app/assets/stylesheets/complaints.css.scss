@@ -339,8 +339,25 @@ span.blue, p.blue {
     color: $orange;
     text-decoration: none;
   }
+  a.lnk-warning {
+    color: $placeholder;
+    font-weight: bolder;
+  }
+  a.lnk-warning:hover {
+    color: $placeholder;
+    text-decoration: none;
+  }
   .actions {
     padding-top: 10px;
+    .input-group {
+      color: black;
+    }
+    input {
+      color: $placeholder !important;
+    }
+    .remove_files {
+      color: $blue_notification;
+    }
   }
 }
 

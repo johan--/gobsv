@@ -1,3 +1,4 @@
+$("label.message", "form.new_complaints_expedient_management").remove();
 <% if @success %>
   $(".managements_area").prepend("<%= j render @management %>");
   $('html, body').animate({
@@ -5,14 +6,14 @@
   }, 2000);
   /* clear all inputs */
   var href = $('.toggle-files-management').data('href');
-  $('.toggle-files-management').html('<a class="btn-primary-gray w100" data-remote="true" href="' + href + '">Adjuntar archivo</a>');
+  $('.toggle-files-management').html('<a class="btn-primary-gray w100" data-remote="true" href="' + href + '">Adjuntar archivos</a>');
   $("#complaints_expedient_management_assigned_ids").select2("val", "");
   $("#complaints_expedient_management_kind").val("");
   $("#complaints_expedient_management_comment").val("");
   CKEDITOR.instances['complaints_expedient_management_comment'].setData('');
   $("#management-<%= @management.id %>").effect("highlight", {}, 3500);
 <% else %>
-  form = $("#management-<%= @management.id %>").find("form#new_complaints_expedient_management");
+  form = $("form.new_complaints_expedient_management");
   errors = $.parseJSON("<%= j @errors %>");
   new ErrorDisplayer(form, errors);
 <% end %>

@@ -7,3 +7,7 @@
     = l(expedient_management_comment.created_at, format: :resume)
   %div
     = sanitize expedient_management_comment.comment
+  - if expedient_management_comment.asset_ids.count > 0
+    %div
+      %ul.list-unstyled
+        = render expedient_management_comment.assets

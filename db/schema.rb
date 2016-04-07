@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331071652) do
+ActiveRecord::Schema.define(version: 20160407155405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,22 @@ ActiveRecord::Schema.define(version: 20160331071652) do
 
   add_index "complaints_assets", ["admin_id"], name: "index_complaints_assets_on_admin_id", using: :btree
 
+  create_table "complaints_assets_expedient_management_comments", id: false, force: true do |t|
+    t.integer "asset_id"
+    t.integer "expedient_management_comment_id"
+  end
+
+  add_index "complaints_assets_expedient_management_comments", ["asset_id", "expedient_management_comment_id"], name: "asset_expedient_management_comment", using: :btree
+  add_index "complaints_assets_expedient_management_comments", ["expedient_management_comment_id", "asset_id"], name: "expedient_management_comment_asset", using: :btree
+
+  create_table "complaints_assets_expedient_managements", id: false, force: true do |t|
+    t.integer "asset_id"
+    t.integer "expedient_management_id"
+  end
+
+  add_index "complaints_assets_expedient_managements", ["asset_id", "expedient_management_id"], name: "asset_expedient_management", using: :btree
+  add_index "complaints_assets_expedient_managements", ["expedient_management_id", "asset_id"], name: "expedient_management_asset", using: :btree
+
   create_table "complaints_expedient_events", force: true do |t|
     t.string   "status",        default: "process"
     t.integer  "expedient_id"
@@ -128,14 +144,6 @@ ActiveRecord::Schema.define(version: 20160331071652) do
 
   add_index "complaints_expedient_managements", ["admin_id"], name: "index_complaints_expedient_managements_on_admin_id", using: :btree
   add_index "complaints_expedient_managements", ["expedient_id"], name: "index_complaints_expedient_managements_on_expedient_id", using: :btree
-
-  create_table "complaints_expedient_managements_complaints_assets", id: false, force: true do |t|
-    t.integer "complaints_asset_id"
-    t.integer "complaints_expedient_management_id"
-  end
-
-  add_index "complaints_expedient_managements_complaints_assets", ["complaints_asset_id", "complaints_expedient_management_id"], name: "asset_expedient_management", using: :btree
-  add_index "complaints_expedient_managements_complaints_assets", ["complaints_expedient_management_id", "complaints_asset_id"], name: "expedient_management_asset", using: :btree
 
   create_table "complaints_expedients", force: true do |t|
     t.string   "kind"
