@@ -3,14 +3,19 @@
     = link_to "Casos nuevos", complaints_expedients_url(state: 'new')
   - elsif expedient.status == 'process'
     = link_to "Casos en Proceso", complaints_expedients_url(state: 'process')
-  - elsif expedient.status == 'closed'
+  - else
     = link_to "Casos Cerrados", complaints_expedients_url(state: 'closed')
   - if expedient.correlative.present?
     = "/ Caso #{expedient.correlative}"
 .content
   - if current_admin.oficial?
     .row
-      .col-xs-12.text-right
+      .col-xs-12.col-sm-6
+        - if expedient.expedient
+          %p.blue
+            %span.glyphicon.glyphicon-plane
+            = "Solicitud reenviada desde #{expedient.expedient.try(:institution_name)}"
+      .col-xs-12.col-sm-6.text-right
         - if expedient.process?
           = render 'close_modal'
         - else
@@ -53,7 +58,8 @@
         = "Teléfono: #{expedient.phone.present? ? expedient.phone : 'Ninguno'}"
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         = "Correo electrónico: #{expedient.email.present? ? expedient.email : 'Ninguno'}"
-  - unless expedient.new?
-    = render "management"
-  - else
-    = render "process"
+  - unless expedient.redirected?
+    - unless expedient.new?
+      = render "management"
+    - else
+      = render "process"

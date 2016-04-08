@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407163750) do
+ActiveRecord::Schema.define(version: 20160408053001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,10 +165,12 @@ ActiveRecord::Schema.define(version: 20160407163750) do
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
+    t.integer  "expedient_id"
   end
 
   add_index "complaints_expedients", ["contact"], name: "index_complaints_expedients_on_contact", using: :btree
   add_index "complaints_expedients", ["correlative"], name: "index_complaints_expedients_on_correlative", using: :btree
+  add_index "complaints_expedients", ["expedient_id"], name: "index_complaints_expedients_on_expedient_id", using: :btree
   add_index "complaints_expedients", ["institution_id"], name: "index_complaints_expedients_on_institution_id", using: :btree
   add_index "complaints_expedients", ["kind"], name: "index_complaints_expedients_on_kind", using: :btree
   add_index "complaints_expedients", ["status"], name: "index_complaints_expedients_on_status", using: :btree

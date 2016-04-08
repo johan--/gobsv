@@ -10,6 +10,12 @@ class Admin < ActiveRecord::Base
 
   belongs_to :role
 
+  delegate :institution_id, to: :role, allow_nil: true, allow_prefix: true
+
+  def admin?
+    role.try(:institution_id).blank?
+  end
+
   def oficial?
     role_id.present?
   end
