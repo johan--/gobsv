@@ -464,6 +464,3 @@ DEPENDENCIES
   will_paginate-bootstrap (~> 1.0.1)
   wkhtmltopdf-binary
   yt (~> 0.25.0)
-
-BUNDLED WITH
-   1.10.6

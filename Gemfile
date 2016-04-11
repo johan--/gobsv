@@ -175,3 +175,6 @@ gem 'remotipart'
 # PDF generator (from HTML) plugin for Ruby on Rails http://mileszs.com/blog/2009/06/17/wicked-pdf-plugin.html
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+gem 'rack-cors', require: 'rack/cors'
+gem 'devise_token_auth'
