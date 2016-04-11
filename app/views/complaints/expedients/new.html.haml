@@ -31,10 +31,13 @@
       = f.label :asset, 'Archivo', class: 'col-sm-2 control-label'
       .col-sm-10
         = f.file_field :asset
-    .form-group
-      = f.label :institution_id, 'Responsable de este caso', class: 'col-sm-2 control-label'
-      .col-sm-10
-        = f.collection_select :institution_id, Institution.order(:name), :id, :name, {prompt: "Seleccione una institución"}, {class: "form-control"}
+    - if current_admin.admin?
+      .form-group
+        = f.label :institution_id, 'Responsable de este caso', class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.collection_select :institution_id, Institution.order(:name), :id, :name, {prompt: "Seleccione una institución"}, {class: "form-control"}
+    - else
+      = f.hidden_field :institution_id, value: current_admin.institution_id
     .form-group
       .col-sm-offset-2.col-sm-10
         = f.submit 'Terminar', class: 'btn-active'

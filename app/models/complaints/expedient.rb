@@ -2,11 +2,13 @@ require 'complaints'
 module Complaints
   class Expedient < ActiveRecord::Base
     has_many :events, class_name: '::Complaints::ExpedientEvent', dependent: :destroy
+    has_many :expedients
+    belongs_to :expedient
     has_many :managements, class_name: '::Complaints::ExpedientManagement', dependent: :destroy
     belongs_to :institution
 
     scope :newer, -> { order(received_at: :desc) }
-    scope :status, -> (status) { where(status: status) }
+    scope :status, -> (status) { where(status: status=='closed' ? ['closed', 'redirected'] : status) }
 
     has_attached_file :asset
     do_not_validate_attachment_file_type :asset
@@ -43,12 +45,20 @@ module Complaints
       status == 'closed'
     end
 
+    def redirected?
+      status == 'redirected'
+    end
+
     def hours_passed
       ((Time.current - created_at) / 1.hour).round
     end
 
     def days_passed
       ((Time.current - created_at) / 1.day).round
+    end
+
+    def institution_name
+      institution.name
     end
 
   end

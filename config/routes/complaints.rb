@@ -13,11 +13,15 @@ constraints subdomain: 'quejas' do
         resources :expedient_managements, only: [:create]
       end
       resources :notifications, only: [:index]
-      resources :users
+      resources :users, except: [:destroy] do
+        member do
+          get 'deactivate'
+        end
+      end
       resources :assets
       resources :documents, only: [:index, :destroy]
       resources :statistics, only: [:index]
-      resources :expedient_managements, only: [] do
+      resources :expedient_managements, only: [:destroy] do
         resources :expedient_management_events, only: [:create]
         resources :expedient_management_comments, only: [:create]
       end

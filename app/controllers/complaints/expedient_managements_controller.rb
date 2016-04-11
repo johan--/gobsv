@@ -13,6 +13,11 @@ class Complaints::ExpedientManagementsController < ComplaintsController
     end
   end
 
+  def destroy
+    @management = ::Complaints::ExpedientManagement.find(params[:id])
+    @management.destroy
+  end
+
   def expedient
     @expedient ||= params[:expedient_id] ? Complaints::Expedient.find(params[:expedient_id]) : nil
   end

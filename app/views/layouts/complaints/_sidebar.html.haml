@@ -8,7 +8,7 @@
     = link_to complaints_expedients_url(state: 'process', search: params[:search]) do
       = image_tag "complaints/proccess_cases.png"
       Casos en Proceso
-  %li{ class: menu_active == 'closed' ? 'active' : nil }
+  %li{ class: ['closed', 'redirected'].include?(menu_active) ? 'active' : nil }
     = link_to complaints_expedients_url(state: 'closed', search: params[:search]) do
       = image_tag "complaints/closed_cases.png"
       Casos Cerrados

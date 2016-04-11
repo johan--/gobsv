@@ -1,7 +1,7 @@
 class Complaints::ExpedientsController < ComplaintsController
 
   def index
-    @expedients = @search.result(distinct: true).paginate(page: params[:page], per_page: 5)
+    @expedients = @search.result(distinct: true).paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -28,7 +28,22 @@ class Complaints::ExpedientsController < ComplaintsController
   end
 
   def redirect
-
+    data = params[:expedient]
+    new_exp = expedient.dup
+    new_exp.admin_id = nil
+    new_exp.institution_id = data[:institution_id]
+    new_exp.expedient_id = expedient.id
+    new_exp.confirmed_at = Time.current
+    new_exp.admitted_at = Time.current
+    new_exp.status = 'new'
+    new_exp.asset = expedient.asset
+    if new_exp.valid?
+      new_exp.set_correlative
+      new_exp.save
+      # cerramos la solicitud como redireccionada
+      expedient.events.create admin_id: current_admin.id, status: 'redirected', justification: data[:justification], start_at: Time.current
+    end
+    redirect_to complaints_expedient_url(expedient) and return
   end
 
   def expedient

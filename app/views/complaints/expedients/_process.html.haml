@@ -22,12 +22,12 @@
   %p
     Si este caso no le compete a su institución, puede redireccionarlo a otra institución haciendo uso del siguiente formulario:
   %br
-  = form_for :expedient, url: redirect_complaints_expedient_path(expedient), html: { class: 'form-horizontal', remote: true, method: :post} do |f|
+  = form_for :expedient, url: redirect_complaints_expedient_path(expedient), html: { class: 'form-horizontal', method: :post} do |f|
     .form-group
       = f.label :institution_id, 'Institución', class: 'col-sm-2 control-label'
       .col-sm-10
         .form-inline
-          = f.collection_select :institution_id, Institution.order(:name), :id, :name, {prompt: "Seleccione una institución"}, {class: "form-control"}
+          = f.collection_select :institution_id, Institution.order(:name).where.not(id: expedient.institution_id), :id, :name, {}, {class: "form-control"}
     .form-group
       = f.label :justification, 'Justificación', class: 'col-sm-2 control-label', required: true
       .col-sm-10

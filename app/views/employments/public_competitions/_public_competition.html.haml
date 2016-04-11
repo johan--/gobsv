@@ -87,6 +87,10 @@
                 %p
                   Número de participantes:
                   = public_competition.participants_number
+              - public_competition.contracts.each do |contract|
+                %p
+                  Persona contratada:
+                  = contract.full_name
           - if public_competition.mission.present?
             %br
             %div

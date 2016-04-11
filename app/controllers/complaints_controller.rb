@@ -30,8 +30,10 @@ class ComplaintsController < ApplicationController
   end
 
   def prepare_search
-    if current_admin.oficial?
+    if current_admin.admin?
       @search = ::Complaints::Expedient.newer.status(params[:state]).ransack(params[:search], search_key: :search)
+    elsif current_admin.oficial?
+      @search = ::Complaints::Expedient.where(institution_id: current_admin.institution_id).newer.status(params[:state]).ransack(params[:search], search_key: :search)
     else
       @search = ::Complaints::Expedient.newer.joins(:managements).where("complaints_expedient_managements.assigned_ids @> '{?}'", current_admin.id).status(params[:state]).ransack(params[:search], search_key: :search)
     end

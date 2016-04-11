@@ -14,9 +14,9 @@
     data.addColumn('string', 'Estado');
     data.addColumn('number', 'Cantidad');
     data.addRows([
-      ['Nuevos', #{Complaints::Expedient.status('new').count}],
-      ['En proceso', #{Complaints::Expedient.status('process').count}],
-      ['Cerrados', #{Complaints::Expedient.status('closed').count}]
+      ['Nuevos', #{@my_expedients.status('new').count}],
+      ['En proceso', #{@my_expedients.status('process').count}],
+      ['Cerrados', #{@my_expedients.status('closed').count}]
     ]);
     var options = {title:'Estado de los casos', pieHole: 0.2,
                    width:'100%', height:'500px'};
@@ -29,12 +29,12 @@
     data.addColumn('string', 'Tipo de gestión');
     data.addColumn('number', 'Cantidad');
     data.addRows([
-      ['Aviso', #{Complaints::ExpedientManagement.kind('notice').count}],
-      ['Comentario', #{Complaints::ExpedientManagement.kind('comment').count}],
-      ['Consulta', #{Complaints::ExpedientManagement.kind('query').count}],
-      ['Denuncia', #{Complaints::ExpedientManagement.kind('complaint').count}],
-      ['Petición', #{Complaints::ExpedientManagement.kind('request').count}],
-      ['Queja', #{Complaints::ExpedientManagement.kind('complaint').count}]
+      ['Aviso', #{Complaints::ExpedientManagement.where(expedient_id: @my_expedients.pluck(:id)).kind('notice').count}],
+      ['Comentario', #{Complaints::ExpedientManagement.where(expedient_id: @my_expedients.pluck(:id)).where(expedient_id: @my_expedients.pluck(:id)).kind('comment').count}],
+      ['Consulta', #{Complaints::ExpedientManagement.where(expedient_id: @my_expedients.pluck(:id)).kind('query').count}],
+      ['Denuncia', #{Complaints::ExpedientManagement.where(expedient_id: @my_expedients.pluck(:id)).kind('complaint').count}],
+      ['Petición', #{Complaints::ExpedientManagement.where(expedient_id: @my_expedients.pluck(:id)).kind('request').count}],
+      ['Queja', #{Complaints::ExpedientManagement.where(expedient_id: @my_expedients.pluck(:id)).kind('complaint').count}]
     ]);
     var options = {title:'Tipo de gestiones', pieHole: 0.2,
                    width:'100%', height:'500px'};

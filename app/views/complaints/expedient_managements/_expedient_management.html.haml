@@ -32,54 +32,45 @@
               = render expedient_management.assets
         = render expedient_management.comments
         %div.actions
-          - if expedient_management.new?
-            = link_to "Comunicarme con el usuario", '#', class: 'lnk-success', data: {toggle: 'modal', target: "#newModal#{expedient_management.id}"}
-          - elsif expedient_management.process?
-            = link_to "Responder", '#', class: 'lnk-primary', data: {toggle: 'modal', target: "#newComment#{expedient_management.id}"}
-            - if current_admin.oficial?
-              &nbsp&nbsp&nbsp&nbsp&nbsp
-              = link_to "Terminar gestión", '#', class: 'lnk-danger', data: {toggle: 'modal', target: "#closeModal#{expedient_management.id}"}
+          = form_for expedient_management.comments.new, url: complaints_expedient_management_expedient_management_comments_url(expedient_management), html: { class: 'form-vertical', remote: true, method: :post} do |f|
+            .form-group
+              .input-group
+                = f.text_field :comment, class: 'form-control', placeholder: 'Escribe un comentario...'
+                %span.input-group-btn
+                  = link_to complaints_assets_url(m: expedient_management.id), class: 'btn btn-default', remote: true do
+                    %i.glyphicon.glyphicon-open-file.has_files{ data: { toggle: 'tooltip', placement: 'top' }, title: 'Adjuntar archivos' }
+                  = link_to '#', class: 'btn btn-default', data: {toggle: 'modal', target: "#closeModal#{expedient_management.id}"} do
+                    %i.glyphicon.glyphicon-log-out{ data: { toggle: 'tooltip', placement: 'top' }, title: 'Terminar gestión' }
+          -#
+            - if expedient_management.new?
+              = link_to "Comunicarme con el usuario", '#', class: 'lnk-success', data: {toggle: 'modal', target: "#newModal#{expedient_management.id}"}
+            - elsif expedient_management.process?
+              = link_to "Responder", '#', class: 'lnk-primary', data: {toggle: 'modal', target: "#newComment#{expedient_management.id}"}
+              - if current_admin.oficial?
+                &nbsp&nbsp&nbsp&nbsp&nbsp
+                = link_to "Terminar gestión", '#', class: 'lnk-danger', data: {toggle: 'modal', target: "#closeModal#{expedient_management.id}"}
+                - if expedient_management.comments.count == 0
+                  &nbsp&nbsp&nbsp&nbsp&nbsp
+                  = link_to "Eliminar gestión", complaints_expedient_management_url(expedient_management), data: {method: :delete, confirm: "¿Esta seguro/a que desea eliminar esta gestión?"}, class: 'lnk-warning', remote: true
 
-  / Modal comunicación
-  .modal.fade{"aria-labelledby" => "modalLabel", :role => "dialog", :tabindex => "-1", :id => "newModal#{expedient_management.id}"}
-    .modal-dialog{:role => "document"}
-      .modal-content
-        = form_for expedient_management.events.new, url: complaints_expedient_management_expedient_management_events_path(expedient_management), html: { class: 'form-horizontal', remote: true} do |f|
-          .modal-header
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
-            %h4#modalLabel.modal-title Comunicación con el usuario
-          .modal-body
-            .form-group
-              = f.label :received_at, 'Fecha de la comunicación', class: 'col-sm-2 control-label'
-              .col-sm-10
-                .form-inline
-                  = f.datetime_select :start_at, {}, { class: 'form-control' }
-            .form-group
-              = f.label :justification, 'Justificación', class: 'col-sm-2 control-label'
-              .col-sm-10
-                = f.text_area :justification, class: 'form-control'
-          .modal-footer
-            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
-            %button.btn.btn-primary{:type => "submit", data: {disable_with: "Procesando..."}} Procesar
-
-  / Modal nuevo comentario
-  .modal.fade{"aria-labelledby" => "modalLabel", :role => "dialog", :tabindex => "-1", :id => "newComment#{expedient_management.id}"}
-    .modal-dialog{:role => "document"}
-      .modal-content
-        = form_for expedient_management.comments.new, url: complaints_expedient_management_expedient_management_comments_url(expedient_management), html: { class: 'form-horizontal', remote: true, method: :post} do |f|
-          .modal-header
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
-            %h4#modalLabel.modal-title Nuevo comentario
-          .modal-body
-            .form-group
-              = f.label :comment, 'Comentario', class: 'col-sm-2 control-label'
-              .col-sm-10
-                = f.text_area :comment, class: 'form-control'
-          .modal-footer
-            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
-            %button.btn.btn-primary{:type => "submit", data: {disable_with: "Comentando..."}} Comentar
+  -#
+    / Modal nuevo comentario
+    .modal.fade{"aria-labelledby" => "modalLabel", :role => "dialog", :tabindex => "-1", :id => "newComment#{expedient_management.id}"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          = form_for expedient_management.comments.new, url: complaints_expedient_management_expedient_management_comments_url(expedient_management), html: { class: 'form-horizontal', remote: true, method: :post} do |f|
+            .modal-header
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"} ×
+              %h4#modalLabel.modal-title Nuevo comentario
+            .modal-body
+              .form-group
+                = f.label :comment, 'Comentario', class: 'col-sm-2 control-label'
+                .col-sm-10
+                  = f.text_area :comment, class: 'form-control'
+            .modal-footer
+              %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
+              %button.btn.btn-primary{:type => "submit", data: {disable_with: "Comentando..."}} Comentar
 
 
   / Modal cierre

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331071652) do
+ActiveRecord::Schema.define(version: 20160408053001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,12 +26,12 @@ ActiveRecord::Schema.define(version: 20160331071652) do
   add_index "admin_hierarchies", ["descendant_id"], name: "admin_desc_idx", using: :btree
 
   create_table "admins", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160331071652) do
     t.string   "name"
     t.integer  "parent_id"
     t.integer  "role_id"
+    t.boolean  "is_active",              default: true
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -75,6 +76,22 @@ ActiveRecord::Schema.define(version: 20160331071652) do
   end
 
   add_index "complaints_assets", ["admin_id"], name: "index_complaints_assets_on_admin_id", using: :btree
+
+  create_table "complaints_assets_expedient_management_comments", id: false, force: true do |t|
+    t.integer "asset_id"
+    t.integer "expedient_management_comment_id"
+  end
+
+  add_index "complaints_assets_expedient_management_comments", ["asset_id", "expedient_management_comment_id"], name: "asset_expedient_management_comment", using: :btree
+  add_index "complaints_assets_expedient_management_comments", ["expedient_management_comment_id", "asset_id"], name: "expedient_management_comment_asset", using: :btree
+
+  create_table "complaints_assets_expedient_managements", id: false, force: true do |t|
+    t.integer "asset_id"
+    t.integer "expedient_management_id"
+  end
+
+  add_index "complaints_assets_expedient_managements", ["asset_id", "expedient_management_id"], name: "asset_expedient_management", using: :btree
+  add_index "complaints_assets_expedient_managements", ["expedient_management_id", "asset_id"], name: "expedient_management_asset", using: :btree
 
   create_table "complaints_expedient_events", force: true do |t|
     t.string   "status",        default: "process"
@@ -129,14 +146,6 @@ ActiveRecord::Schema.define(version: 20160331071652) do
   add_index "complaints_expedient_managements", ["admin_id"], name: "index_complaints_expedient_managements_on_admin_id", using: :btree
   add_index "complaints_expedient_managements", ["expedient_id"], name: "index_complaints_expedient_managements_on_expedient_id", using: :btree
 
-  create_table "complaints_expedient_managements_complaints_assets", id: false, force: true do |t|
-    t.integer "complaints_asset_id"
-    t.integer "complaints_expedient_management_id"
-  end
-
-  add_index "complaints_expedient_managements_complaints_assets", ["complaints_asset_id", "complaints_expedient_management_id"], name: "asset_expedient_management", using: :btree
-  add_index "complaints_expedient_managements_complaints_assets", ["complaints_expedient_management_id", "complaints_asset_id"], name: "expedient_management_asset", using: :btree
-
   create_table "complaints_expedients", force: true do |t|
     t.string   "kind"
     t.string   "contact"
@@ -156,10 +165,12 @@ ActiveRecord::Schema.define(version: 20160331071652) do
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
+    t.integer  "expedient_id"
   end
 
   add_index "complaints_expedients", ["contact"], name: "index_complaints_expedients_on_contact", using: :btree
   add_index "complaints_expedients", ["correlative"], name: "index_complaints_expedients_on_correlative", using: :btree
+  add_index "complaints_expedients", ["expedient_id"], name: "index_complaints_expedients_on_expedient_id", using: :btree
   add_index "complaints_expedients", ["institution_id"], name: "index_complaints_expedients_on_institution_id", using: :btree
   add_index "complaints_expedients", ["kind"], name: "index_complaints_expedients_on_kind", using: :btree
   add_index "complaints_expedients", ["status"], name: "index_complaints_expedients_on_status", using: :btree
