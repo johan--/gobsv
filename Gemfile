@@ -176,5 +176,5 @@ gem 'remotipart'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-gem 'rack-cors', require: 'rack/cors'
-gem 'devise_token_auth'
+gem 'rack-cors', '~> 0.4.0', require: 'rack/cors'
+gem 'devise_token_auth', '~> 0.1.30'
