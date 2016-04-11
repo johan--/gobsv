@@ -36,6 +36,16 @@ module Gobsv
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
+    config.middleware.insert_before 0, 'Rack::Cors' do
+      allow do
+        origins '*'
+        resource '*',
+          headers: :any,
+          expose:  ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          methods: [:get, :post, :options, :delete, :put]
+      end
+    end
+
   end
 end
 SocialKeys = YAML.load_file("#{Rails.root}/config/social_keys.yml").with_indifferent_access

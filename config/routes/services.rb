@@ -2,7 +2,7 @@ constraints subdomain: 'services' do
   scope module: 'serv', as: 'serv' do
     defaults subdomain: 'services' do
 
-      #mount_devise_token_auth_for 'Admin', at: 'auth'
+      mount_devise_token_auth_for 'Admin', at: 'auth'
 
       resources :rooms do
         resources :meets, only: [:index]
@@ -16,6 +16,4 @@ constraints subdomain: 'services' do
       end
     end
   end
-
-  mount_devise_token_auth_for 'Admin', at: 'auth'
 end
