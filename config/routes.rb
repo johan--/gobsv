@@ -6,10 +6,11 @@ Rails.application.routes.draw do
 
   draw :ckeditor
   draw :admin
-  #draw :user
-  #draw :www
+  draw :user
+  draw :www
   draw :employments
   draw :complaints
   draw :forums
   draw :ta
+  draw :services
 end

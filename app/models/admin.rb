@@ -2,7 +2,8 @@ class Admin < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable
 
   has_closure_tree
 
@@ -26,6 +27,15 @@ class Admin < ActiveRecord::Base
 
   def inactive_message
     "Lo sentimos, esta cuenta ha sido desactivada."
+  end
+
+  def confirmed?
+    true
+  end
+
+  after_create :ensure_provider
+  def ensure_provider
+    self.update_attribute(:uid, email) if provider == 'email'
   end
 
 end

@@ -34,7 +34,7 @@ GEM
     autoprefixer-rails (5.2.0)
       execjs
       json
-    bcrypt (3.1.10)
+    bcrypt (3.1.11)
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
@@ -92,6 +92,9 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise_token_auth (0.1.30)
+      devise (~> 3.3)
+      rails (~> 4.1)
     diff-lcs (1.2.5)
     domain_name (0.5.20160216)
       unf (>= 0.0.5, < 1.0.0)
@@ -247,6 +250,7 @@ GEM
     pundit (1.0.1)
       activesupport (>= 3.0.0)
     rack (1.5.3)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.6)
@@ -374,7 +378,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
-    warden (1.2.3)
+    warden (1.2.6)
       rack (>= 1.0)
     websocket (1.2.2)
     whenever (0.9.4)
@@ -411,6 +415,7 @@ DEPENDENCIES
   database_cleaner (~> 1.3.0)
   date_validator (~> 0.7.0)
   devise (~> 3.3.0)
+  devise_token_auth (~> 0.1.30)
   draper (~> 1.4.0)
   factory_girl_rails (~> 4.4.1)
   faker (~> 1.4.3)
@@ -439,6 +444,7 @@ DEPENDENCIES
   pg
   photoswipe-rails (~> 4.1.0)
   pundit (~> 1.0.1)
+  rack-cors (~> 0.4.0)
   rails (= 4.1.6)
   rails_config (~> 0.4.2)
   ransack (~> 1.6.6)
@@ -464,6 +470,3 @@ DEPENDENCIES
   will_paginate-bootstrap (~> 1.0.1)
   wkhtmltopdf-binary
   yt (~> 0.25.0)
-
-BUNDLED WITH
-   1.10.6

@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20160408053001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "admin_hierarchies", id: false, force: true do |t|
     t.integer "ancestor_id",   null: false
@@ -26,12 +27,12 @@ ActiveRecord::Schema.define(version: 20160408053001) do
   add_index "admin_hierarchies", ["descendant_id"], name: "admin_desc_idx", using: :btree
 
   create_table "admins", force: true do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
+    t.string   "email",                  default: "",      null: false
+    t.string   "encrypted_password",     default: "",      null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",          default: 0,       null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -41,6 +42,9 @@ ActiveRecord::Schema.define(version: 20160408053001) do
     t.string   "name"
     t.integer  "parent_id"
     t.integer  "role_id"
+    t.string   "provider",               default: "email", null: false
+    t.string   "uid",                    default: "",      null: false
+    t.text     "tokens"
     t.boolean  "is_active",              default: true
   end
 
@@ -575,6 +579,26 @@ ActiveRecord::Schema.define(version: 20160408053001) do
   end
 
   add_index "roles", ["institution_id"], name: "index_roles_on_institution_id", using: :btree
+
+  create_table "serv_meets", force: true do |t|
+    t.integer  "room_id"
+    t.integer  "admin_id"
+    t.integer  "audience_type",                      null: false
+    t.integer  "assistants_number",                  null: false
+    t.boolean  "require_assistance", default: false, null: false
+    t.text     "observations"
+    t.string   "title",              default: "",    null: false
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "serv_rooms", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ta_articles", force: true do |t|
     t.string   "title"

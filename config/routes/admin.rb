@@ -51,7 +51,7 @@ constraints subdomain: 'panel' do
               end
             else
               resources controller
-            end            
+            end
           end
         end
       end
