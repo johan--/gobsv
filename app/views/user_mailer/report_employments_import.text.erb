@@ -1,7 +1,15 @@
-Se reporto un error en la sincronización de empleos, a continuación los datos:
+<% if @error %>
 
-Mensaje:
-<%= @exception.message %>
+  Se reporto un error en la sincronización de empleos, a continuación los datos:
 
-Backtrace:
-<%= @exception.backtrace.inspect %>
+  Mensaje:
+  <%= @exception.message %>
+
+  Backtrace:
+  <%= @exception.backtrace.inspect %>
+
+<% else %>
+
+Sincronización completa... <%= @exception %>
+
+<% end %>

@@ -142,8 +142,9 @@ namespace :employments do
         obj.last_name = json[:apellido]
         obj.save
       end
+      UserMailer.report_employments_import(Time.current.strftime('%d/%m/%Y %H:%M:%S'), false).deliver
     rescue Exception => e
-      UserMailer.report_employments_import(e).deliver
+      UserMailer.report_employments_import(e, true).deliver
     end
   end
 
