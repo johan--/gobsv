@@ -389,6 +389,8 @@ es:
       paa/financial_source:
         name: Nombre
       paa/saving:
+        trimester: Trimestre
+        year: Año
         state: Estado
         institution_id: Institución
         start_at: Fecha de inicio
@@ -567,3 +569,6 @@ es:
   recaptcha:
     errors:
       incorrect-captcha-sol: 'La autenticación ha fallado'
+
+  labels:
+    trimester_duplicated: Esta fecha ya se esta utilizando.

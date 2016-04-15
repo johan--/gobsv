@@ -15,6 +15,8 @@ class Admin::Paa::SavingsController < Admin::PaaController
 
   def item_params
     params.require(:paa_saving).permit(
+      :year,
+      :trimester,
       :state, 
       :institution_id,
       :financial_source_id, 
