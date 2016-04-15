@@ -1,0 +1,165 @@
+.container
+  .row
+    .col-xs-8  
+      %h2
+        Crear curriculum
+      %p
+        Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
+    .col-xs-4
+      .well
+        %h5
+          Documentos que ocupará para la creación del currículum
+        %ul
+          %li DUI
+          %li NIT
+          %li NUP (Tarjeta AFP)
+          %li Tarjeta del ISSS
+  .clearfix
+  .row
+    .col-sm-12.col-xs-12
+      = form_tag save_employments_resumes_url(), method: "post", id: "resume-form" do 
+        %h3 Datos personales
+        %section
+          .form-group
+            = label_tag(:name, {},{class: "sr-only"})
+            = text_field_tag(:name, nil, class: 'form-control', placeholder: "Nombres")
+          .form-group
+            = label_tag(:lastname1, {},{class: "sr-only"})
+            = text_field_tag(:lastname1, nil, class: 'form-control', placeholder: "Primer Apellido")            
+          .form-group
+            = label_tag(:lastname2, {},{class: "sr-only"})
+            = text_field_tag(:lastname2, nil, class: 'form-control', placeholder: "Segundo Apellido")
+          .form-group
+            = label_tag(:email, {},{class: "sr-only"})
+            = email_field_tag(:email, nil, class: 'form-control', placeholder: "Correo Electronico")
+          .row#pwd-container
+            .col-xs-6
+              .form-group
+                = label_tag(:password, {},{class: "sr-only"})
+                = password_field_tag(:password, nil, class: 'form-control', placeholder: "Contraseña")
+            .col-xs-6
+              .pwstrength_viewport_progress
+              .pwstrength_viewport_errors
+          .row
+            .col-xs-6
+              .form-group
+                = label_tag(:password, {},{class: "sr-only"})
+                = password_field_tag(:password, nil, class: 'form-control', placeholder: "Confirmar Contraseña")
+            .col-xs-6
+          .form-group
+            = label_tag(:dui, {},{class: "sr-only"})
+            = text_field_tag(:dui, nil, class: 'form-control', placeholder: "Número de DUI")
+          .form-group
+            = label_tag(:nit, {},{class: "sr-only"})
+            = text_field_tag(:nit, nil, class: 'form-control', placeholder: "Número de NIT")
+          .form-group
+            = label_tag(:nup, {},{class: "sr-only"})
+            = text_field_tag(:nup, nil, class: 'form-control', placeholder: "Número de NUP")
+        %h3 Información Académica
+        %section
+          %fieldset
+            Formación Académica
+
+            .row
+              .col-xs-6
+                .form-group
+                  = label_tag(:institution, {},{class: "sr-only"})
+                  = text_field_tag(:institution, nil, class: 'form-control', placeholder: "Institución Educativa")
+              .col-xs-6
+                .form-group
+                  = label_tag(:career, {},{class: "sr-only"})
+                  = text_field_tag(:career, nil, class: 'form-control', placeholder: "Area de Estudio")
+            .row
+              .col-xs-3
+                .form-group
+                  = label_tag(:start_date, {},{class: "sr-only"})
+                  = text_field_tag(:start_date, nil, class: 'form-control', placeholder: "Fecha inicio")
+              .col-xs-3
+                .form-group
+                  = label_tag(:end_date, {},{class: "sr-only"})
+                  = text_field_tag(:end_date, nil, class: 'form-control', placeholder: "Fecha fin")
+              .col-xs-6
+                .form-group
+                  = label_tag(:document, {},{class: "sr-only"})
+                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
+
+          %fieldset
+            Estudios
+            .row
+              .col-xs-6
+                .form-group
+                  = label_tag(:institution, {},{class: "sr-only"})
+                  = text_field_tag(:institution, nil, class: 'form-control', placeholder: "Institución Educativa")
+              .col-xs-6
+                .form-group
+                  = label_tag(:career, {},{class: "sr-only"})
+                  = text_field_tag(:career, nil, class: 'form-control', placeholder: "Area de Estudio")
+            .row
+              .col-xs-3
+                .form-group
+                  = label_tag(:start_date, {},{class: "sr-only"})
+                  = text_field_tag(:start_date, nil, class: 'form-control', placeholder: "Fecha inicio")
+              .col-xs-3
+                .form-group
+                  = label_tag(:end_date, {},{class: "sr-only"})
+                  = text_field_tag(:end_date, nil, class: 'form-control', placeholder: "Fecha fin")
+              .col-xs-6
+                .form-group
+                  = label_tag(:document, {},{class: "sr-only"})
+                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
+          %fieldset
+            Conocimientos especificos
+            .row
+              .col-xs-6
+                .form-group
+                  = label_tag(:institution, {},{class: "sr-only"})
+                  = text_field_tag(:institution, nil, class: 'form-control', placeholder: "Institución Educativa")
+              .col-xs-6
+                .form-group
+                  = label_tag(:career, {},{class: "sr-only"})
+                  = text_field_tag(:career, nil, class: 'form-control', placeholder: "Area de Estudio")
+            .row
+              .col-xs-3
+                .form-group
+                  = label_tag(:start_date, {},{class: "sr-only"})
+                  = text_field_tag(:start_date, nil, class: 'form-control', placeholder: "Fecha inicio")
+              .col-xs-3
+                .form-group
+                  = label_tag(:end_date, {},{class: "sr-only"})
+                  = text_field_tag(:end_date, nil, class: 'form-control', placeholder: "Fecha fin")
+              .col-xs-6
+                .form-group
+                  = label_tag(:document, {},{class: "sr-only"})
+                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
+          %fieldset
+            Dominio de idiomas
+            .row
+              .col-xs-4
+                .form-group
+                  = label_tag(:language, {},{class: "sr-only"})
+                  = text_field_tag(:language, nil, class: 'form-control', placeholder: "Idioma")
+              .col-xs-4
+                .form-group
+                  = label_tag(:level, {},{class: "sr-only"})
+                  = text_field_tag(:level, nil, class: 'form-control', placeholder: "Nivel")
+              .col-xs-4
+                .form-group
+                  = label_tag(:document, {},{class: "sr-only"})
+                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
+        %h3 Información Experiencia
+        %section
+          %fieldset
+            Dominio de idiomas
+            .row
+              .col-xs-4
+                .form-group
+                  = label_tag(:language, {},{class: "sr-only"})
+                  = text_field_tag(:language, nil, class: 'form-control', placeholder: "Idioma")
+              .col-xs-4
+                .form-group
+                  = label_tag(:level, {},{class: "sr-only"})
+                  = text_field_tag(:level, nil, class: 'form-control', placeholder: "Nivel")
+              .col-xs-4
+                .form-group
+                  = label_tag(:document, {},{class: "sr-only"})
+                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")

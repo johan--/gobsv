@@ -7,9 +7,36 @@
 #= require 'bootstrap-sprockets'
 #= require 'jssocials'
 #= require 'jssocials.shares'
+#= require 'jquery.steps.min'
+#= require 'pwstrength-bootstrap'
 
 $ ->
   $('[data-toggle="tooltip"]').tooltip()
 
   $(document).on 'click', '.btnNext', ->
     $('.nav-tabs > .active').next('li').find('a').trigger 'click'
+
+
+  $('form#resume-form').steps
+    headerTag: "h3"
+    bodyTag: "section"
+    transitionEffect: "fade"
+    autoFocus: true
+    labels: {
+      previous: "Anterior"
+      next: "Siguiente"
+      finish: "Finalizar"
+    }
+
+  options = {}
+  options.ui =
+    container: "#pwd-container"
+    showErrors: true
+    showProgressBar: true
+    showVerdictsInsideProgressBar: true 
+    viewports: {
+      progress: ".pwstrength_viewport_progress"
+      errors: ".pwstrength_viewport_errors"
+    }
+
+  $('#password').pwstrength(options)

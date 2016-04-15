@@ -1,47 +1,46 @@
 .login-container
-  %ul.nav.nav-tabs{ role: 'tablist' }
-    %li
-      = link_to '#login', { class: controller.controller_name == 'sessions' ? 'active' : nil } do
-        = t '.login'
-    %li
-      = link_to '#register', { class: controller.controller_name == 'registrations' ? 'active' : nil } do
-        = t '.register'
-    %li
-      = link_to '#password', { class: controller.controller_name == 'passwords' ? 'active' : nil } do
-        = t '.forgot_password'
+  .row
+    .col-sm-5
+      #login.animated.bounceInDown{ class: controller.controller_name == 'sessions' ? 'show' : 'hide' }
+        %h4
+          Ingresar a tu cuenta de Gobierno Abierto
+        %p
+          Si ya posees una cuenta de Gobierno Abierto
 
-  #login.animated.bounceInDown{ class: controller.controller_name == 'sessions' ? 'show' : 'hide' }
+        .row
+          .col-sm-12
+            = link_to omniauth_authorize_path('user', :facebook), class: 'btn btn-dark-blue' do
+              %span.icon-facebook
+              = t('.signin_with', provider: t('.facebook'))
+          -#
+            .col-sm-6
+            = link_to omniauth_authorize_path('user', :google_oauth2), class: 'btn btn-red' do
+              = t('.signin_with', provider: t('.google_oauth2'))
+        %br
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group.has-feedback
+            = f.email_field :email, class: 'input-lg form-control', placeholder: t('.email_placeholder'), autofocus: true
+            %span{class: "glyphicon glyphicon-envelope form-control-feedback", :"aria-hidden"=>true}
+          .form-group.has-feedback
+            = f.password_field :password, class: 'input-lg form-control', autocomplete: 'off', placeholder: t('.password_placeholder')
+            %span{class: "glyphicon glyphicon-lock form-control-feedback", :"aria-hidden"=>true}
 
-    .row.providers
-      .col-xs-6.col-sm-6.col-md-6.col-lg-6
-        = link_to omniauth_authorize_path('user', :facebook), class: 'btn btn-dark-blue' do
-          %span.icon-facebook
-          = t('.signin_with', provider: t('.facebook'))
+          = f.submit t('.login'), class: 'center-block btn btn-blue btn-lg'
 
-      .col-xs-6.col-sm-6.col-md-6.col-lg-6
-        = link_to omniauth_authorize_path('user', :google_oauth2), class: 'btn btn-red' do
-          = t('.signin_with', provider: t('.google_oauth2'))
+    .col-sm-5.col-sm-offset-2
+      #register
+        %h4
+          Regístrate
+        %p
+          Crear una cuenta en Gobierno Abierto es gratis
+          = image_tag("shared/bg-register.png")
+        .row
+          .col-xs-12.text-center
+            = link_to t('.signup'), new_user_registration_url, class: 'btn btn-success btn-lg'
+        =# f.submit t('.signup'), class: 'center-block btn btn-blue btn-lg'
 
-    %hr
 
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .form-group
-        = f.email_field :email, class: 'form-control', placeholder: t('.email_placeholder'), autofocus: true
-      .form-group
-        = f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: t('.password_placeholder')
-
-      = f.submit t('.login'), class: 'btn btn-blue'
-
-  #register.animated.flipInY{ class: controller.controller_name == 'registrations' ? 'show' : 'hide' }
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      .form-group
-        = f.email_field :email, class: 'form-control', placeholder: t('.email_placeholder'), autofocus: true
-      .form-group
-        = f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: t('.password_placeholder')
-      .form-group
-        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: t('.password_confirmation_placeholder')
-
-      = f.submit t('.signup'), class: 'btn btn-blue'
+    
 
   #password.animated.flipInX{ class: controller.controller_name == 'passwords' ? 'show' : 'hide' }
     %p

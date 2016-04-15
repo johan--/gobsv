@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   ##
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,6 +8,50 @@ class User < ActiveRecord::Base
          :omniauthable
 
   has_many :user_authorizations, dependent: :destroy
+
+  has_many :references, class_name: '::Employments::UserReference', dependent: :destroy
+  accepts_nested_attributes_for :references, allow_destroy: true
+
+  has_many :specialties, class_name: '::Employments::UserSpecialty', dependent: :destroy
+  accepts_nested_attributes_for :specialties, allow_destroy: true
+
+  has_many :work_experiences, class_name: '::Employments::UserWorkExperience', dependent: :destroy
+  accepts_nested_attributes_for :work_experiences, allow_destroy: true
+
+  has_many :trainings, class_name: '::Employments::UserTraining', dependent: :destroy
+  accepts_nested_attributes_for :trainings, allow_destroy: true
+
+  has_many :languages, class_name: '::Employments::UserLanguage', dependent: :destroy
+  accepts_nested_attributes_for :languages, allow_destroy: true
+
+  has_many :disabilities, class_name: '::Employments::UserDisability', dependent: :destroy
+  accepts_nested_attributes_for :disabilities, allow_destroy: true
+
+  # Validations
+  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
+  validates :name, :presence => true #:role_id
+  validates :password, :presence => true, :confirmation => true, :on => :create
+  validates :password, :presence => true, :confirmation => true, :if => Proc.new{|o| o.password.present?}
+
+  validates :tax_id, length: { is: 17 }
+  
+  #User::Gender
+  Gender = {
+    '1' => 'Femenino',
+    '2' => 'Masculino',
+  }
+
+  Treatment = {
+    '1' => 'Sra.',
+    '2' => 'Srta.',
+    '3' => 'Sr.'
+  }
+
+  DocumentType = {
+    :dui => 'DUI',
+    :resident_card => 'Carnet de Residente',
+    :passport => 'Pasaporte'
+  }
 
   def self.new_with_session(params,session)
     if session['devise.user_attributes']
@@ -43,4 +86,10 @@ class User < ActiveRecord::Base
     end
     user_authorization.user
   end
+
+  private
+  def password_required?
+    new_record? ? super : false
+  end  
+
 end

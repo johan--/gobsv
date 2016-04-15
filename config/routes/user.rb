@@ -19,6 +19,12 @@ constraints subdomain: 'user' do
   scope module: 'user', as: 'user' do
     defaults subdomain: 'user' do
       root to: 'dashboard#index'
+
+      resources :dashboard, only: [:index] do
+        member do
+          post :save
+        end
+      end
     end
   end
 end

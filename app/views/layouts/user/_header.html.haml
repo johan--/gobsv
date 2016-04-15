@@ -1,0 +1,43 @@
+.navbar.navbar-default.navbar-inverse
+  .container
+    .navbar-header
+      %button.navbar-toggle{ type: 'button', data: { target: '.navbar-responsive-collapse', toggle: 'collapse' }}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      = link_to employments_root_url, class: 'navbar-brand' do
+        = image_tag 'employments/gobierno-abierto.png', alt: 'Gobierno Abierto', class: 'img-reponsive'
+
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to 'http://www.gobiernoabierto.gob.sv/' do
+            SPTA
+        %li
+          = link_to 'http://www.gobiernoabierto.gob.sv/pages/ley-de-acceso-a-la-informacion-publica' do
+            = "Acceso a la información"
+        %li
+          = link_to 'http://www.gobiernoabierto.gob.sv/' do
+            Aplicaciones
+
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = mail_to 'info@gobiernoabierto.gob.sv' do
+            = icon('envelope')
+        %li
+          - if current_user.nil?
+            = link_to new_user_session_url, title: "Iniciar sesión" do
+              = icon('user')
+          - else
+            = link_to destroy_user_session_url, title: "Cerrar sesión" do
+              = icon('power-off')
+        -#
+          %li
+            = link_to nil do
+              = icon('bars')
+      = search_form_for @q, url: employments_jobs_url(q: params[:q]), class: 'navbar-form navbar-right', role: :search do |f|
+        .form-group.has-feedback
+          = f.search_field :post_name_or_institution_name_or_institution_code_or_organization_department_or_description_or_address_cont, class: 'form-control', placeholder: 'Búsqueda'
+          = icon('search', class: 'form-control-feedback text-muted')
+

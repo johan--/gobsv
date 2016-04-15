@@ -260,6 +260,7 @@ es:
       paa/report:
         one: Reporte
         other: Reportes
+      user: Usuario
     attributes:
       id: ID
       created_at: Creado el
@@ -463,6 +464,64 @@ es:
         audit_comment: Comentarios
         created_at: Fecha de creación
         updated_at: Fecha de actualización
+      user:
+        email: Correo electrónico
+        name: Nombres
+        last_name: Apellidos
+        password: Contraseña
+        gender: Género
+        birthday: Fecha de nacimiento
+        phone: Teléfono (Oficina / Casa)
+        alt_phone: Teléfono (Celular)
+        document_type: Tipo de documento
+        document_number: Número de documento
+        tax_id: Número de Identificación Tributaria
+        photo: Foto
+        nationality: Nacionalidad
+        status: Estado civil
+        country_id: País de nacimiento
+        treatment: Trato
+        address: Dirección
+      employments/user_reference:
+        name: Nombre
+        charge: Cargo que desempeña
+        address: Dirección
+        phone: Teléfono
+        type: Tipo de referencia
+      employments/user_specialty:
+        name: Grado Académico
+        esp_code: Unknown
+        esp_name: Especialidad Académica
+        gra_code: Unknown
+        country_id: País
+        institution_name: Institución
+        certificate: Certificado (adjunto)
+        start_at: Inicio de especialización
+        end_at: Finalización de especialización
+      employments/user_training:
+        institution_name: Institución educativa
+        name: Area de estudio
+        description: Conocimientos adquiridos
+        place: Lugar
+        duration: Duración
+        year: Año 
+      employments/user_work_experience:
+        institution_name: Nombre de la institución
+        charge: Cargo que desempeñó
+        description: Descripción del puesto
+        country_id: País
+        sector: Sector
+        start_at: Desde
+        end_at: Hasta
+        active: Actualmente
+      employments/user_language:
+        name: Idioma
+        read: Nivel de lectura
+        write: Nivel de escritura
+        speak: Nivel de fluidez verbal
+      employments/user_disability:
+        disability_type_id: Tipo de discapacidad
+        disability_certification_id: Certificado por
     enum:
       ta/article:
         status:
@@ -504,3 +563,7 @@ es:
     req: Requerimientos
     forum: Foros públicos
     paa: Política de ahorro y austeridad
+
+  recaptcha:
+    errors:
+      incorrect-captcha-sol: 'La autenticación ha fallado'

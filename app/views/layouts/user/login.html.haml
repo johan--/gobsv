@@ -8,31 +8,11 @@
     = javascript_include_tag 'user/login'
     = csrf_meta_tags
   %body.animated.fadeInDown
-    .container
-      .row
-        .col-xs-12.col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
-          %header.text-center.animated.flipInY
-            = link_to user_root_url, class: 'logo' do
-              = image_tag 'user/logo-gobierno-abierto.png'
+    = render partial: 'layouts/user/header'
+    = render partial: 'layouts/shared/notice'
+    = render partial: 'layouts/employments/breadcrumb'
+    #wrapper
+      .container  
+        = yield
 
-      - if flash[:notice]
-        .row
-          .col-xs-12.col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
-            .alert.alert-success
-              = flash[:notice]
-
-      .row
-        .col-xs-12.col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
-          %br
-          %br
-          = yield
-
-    %footer.text-center
-      = link_to nil do
-        = image_tag 'user/logo-gobierno-abierto.png'
-
-      = link_to nil do
-        = image_tag 'user/logo-infoutil.png'
-
-      = link_to nil do
-        = image_tag 'user/logo-consulta.png'
+    = render partial: 'layouts/employments/footer'

@@ -1,0 +1,83 @@
+%section.wrapper-pensions-title
+  .container
+    .row
+      .col-xs-12
+        %h2.header-title
+          Todo sobre las
+        %h1.header-title
+          pensiones
+        %h2.header-title
+          en El Salvador
+
+    = link_to "#index-video", class: "btn-shortcut" do
+      %span.glyphicon.glyphicon-play-circle
+      = "Reproducir video"
+    .index-items
+      .row
+        .col-md-3.col-sm-3
+          = link_to "#", class: "shortcut" do
+            = image_tag("pensions/document.png")
+            %br
+            = "Documentos"
+        .col-md-3.col-sm-3
+          = link_to "#", class: "shortcut" do
+            = image_tag("pensions/video.png")
+            %br
+            = "Videos"
+        .col-md-3.col-sm-3
+          = link_to "#", class: "shortcut" do
+            = image_tag("pensions/comment.png")
+            %br
+            = "Comentarios"
+        .col-md-3.col-sm-3
+          = link_to "#", class: "shortcut" do
+            = image_tag("pensions/audio.png")
+            %br
+            = "Audios"
+%section#index-news
+  .container
+    %h2.title
+      Ultimas noticias agregadas
+    .row
+      .col-sm-4
+        .news-item
+          = image_tag("pensions/pensions-news-dummy.jpeg", class: "news-image")
+          %p.item-date
+            = "20 de noviembre de 2015"
+          %h2.item-title
+            = "Lo que necesitas saber sobre las pensiones"
+          %p.summary
+            = "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby."
+      .col-sm-4
+        .news-item
+          = image_tag("pensions/pensions-news-dummy.jpeg", class: "news-image")
+          %p.item-date
+            = "20 de noviembre de 2015"
+          %h2.item-title
+            = "Lo que necesitas saber sobre las pensiones"
+          %p.summary
+            = "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby."
+      .col-sm-4
+        .news-item
+          = image_tag("pensions/pensions-news-dummy.jpeg", class: "news-image")
+          %p.item-date
+            = "20 de noviembre de 2015"
+          %h2.item-title
+            = "Lo que necesitas saber sobre las pensiones"
+          %p.summary
+            = "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby."
+    = link_to ta_root_url, class: "btn-news" do
+      = "ver todas las notas"
+%section#index-video
+  .container
+    %h2.title
+      = "Video sobre el problema actual de las pensiones en El Salvador"
+    .wrapper-video
+      .embed-responsive.embed-responsive-16by9.video-embed
+        %iframe.embed-responsive-item{ src: "https://www.youtube.com/embed/_HA7rIPK1Ok" }
+    .share-video
+      = image_tag("pensions/share-video.png")
+      %br
+      %br
+      = link_to image_tag("pensions/facebook_pensions.png"), "#", class: "social-networks"
+      = link_to image_tag("pensions/twitter_pensions.png"), "#", class: "social-networks"

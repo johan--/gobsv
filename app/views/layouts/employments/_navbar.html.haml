@@ -27,8 +27,12 @@
             = icon('envelope')
         -#
           %li
-            = link_to nil do
-              = icon('user')
+            - if current_user.nil?
+              = link_to new_user_session_url do
+                = icon('user')
+            - else
+              = link_to destroy_user_session_url(current_user) do
+                = icon('user')
         -#
           %li
             = link_to nil do
