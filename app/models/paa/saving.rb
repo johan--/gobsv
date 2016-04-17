@@ -4,7 +4,7 @@ class DupTrimesterValidator < ActiveModel::EachValidator
     object.send :set_start_at, object.year.to_i, value.to_i
     object.send :set_end_at, object.year.to_i, value.to_i
     
-    q = Paa::Saving.where("institution_id = ? and financial_source_id = ? and start_at = ? and end_at = ?", object.institution_id, object.financial_source_id, object.start_at, object.end_at).count 
+    q = Paa::Saving.where("institution_id = ? and financial_source_id = ? and start_at = ? and end_at = ? and id <> ?", object.institution_id, object.financial_source_id, object.start_at, object.end_at, object.id).count 
     
     if q > 0
 
@@ -23,7 +23,12 @@ class Paa::Saving < ActiveRecord::Base
 
   attr_accessor :trimester
   attr_accessor :year
+  
+  
+  belongs_to :institution
+  belongs_to :financial_source, class_name: '::Paa::FinancialSource'
 
+  
   #validates :institution_id, :uniqueness => { :scope => [:financial_source_id, :start_at, :end_at] }
   validates :trimester, :presence => true, :dup_trimester => true
 

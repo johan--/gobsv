@@ -1,20 +1,34 @@
 = field_set_tag 'General' do
+  = f.select :state, options_for_select(Paa::Saving::STATE.invert, f.object.state), { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil, required: true }
   .form-group
-    -#%label.control-label.col-sm-2
-      -#test
-    -#.col-sm-9
-      -#test
-  = f.select :state, options_for_select(Paa::Saving::STATE.invert, f.object.state), { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil, required: true, disabled: is_auditor?   }
-  = f.select :institution_id, @institutions.map{ |institution| [institution.name, institution.id] }, { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil, required: true, disabled: is_auditor? }
-  = f.select :financial_source_id, @financial_sources.map{ |financial_source| [financial_source.name, financial_source.id] }, { include_blank: true, required: true }, { class: 'select2', required: true, disabled: is_auditor?   }
+    %label.control-label.col-sm-2
+      = t('activerecord.attributes.paa/saving.institution_id')
+    .col-sm-9.text_form
+      %span
+        = f.object.institution.name
+  .form-group
+    %label.control-label.col-sm-2
+      = t('activerecord.attributes.paa/saving.financial_source_id')
+    .col-sm-9.text_form
+      %span
+        = f.object.financial_source.name
+  .form-group
+    %label.control-label.col-sm-2
+      = t('activerecord.attributes.paa/saving.trimester')
+    .col-sm-9.text_form
+      %span
+        = Paa::Saving::TRIMESTER["#{f.object.get_trimester[1]}"]
+  .form-group
+    %label.control-label.col-sm-2
+      = t('activerecord.attributes.paa/saving.year')
+    .col-sm-9.text_form
+      %span
+        = f.object.get_trimester[0]
+  = f.text_area :audit_comment
+  = f.text_field :auditor_id
+  = f.text_field :audited_at
 
-  = f.select :trimester, options_for_select(Paa::Saving::TRIMESTER.invert, f.object.get_trimester[1]), { include_blank: true }, { class: 'select2', required: true, disabled: is_auditor?   }
 
-  = f.select :year, options_for_select(2000..2025, f.object.get_trimester[0]), { include_blank: true }, { class: 'select2', required: true, disabled: is_auditor?   }
-
-  -#= f.text_field :auditor_id
-  = is_auditor? ? (f.text_area :audit_comment) : ""
-  -#= f.text_field :audited_at
 = field_set_tag 'Cuantificación de Ahorro a Nivel de Medida de Gasto Implementada' do
   %ul.nav.nav-tabs{:role => "tablist"}
     %li.active{:role => "presentation"}
@@ -31,108 +45,329 @@
       %a{"aria-controls" => "investments", "data-toggle" => "tab", :href => "#investments", :role => "tab"} Inversiones
   .tab-content
     %br
+
+
     #remuneration.tab-pane.active{:role => "tabpanel"}
       / Remuneraciones
       %h4
         = t('.remuneration')
-      = f.text_field :remuneration, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :remuneration_audited) : ""
-      = f.text_area  :remuneration_actions, disabled: is_auditor?
-      = f.text_area  :remuneration_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :remuneration_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.remuneration')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.remuneration, precision: 2)
+      = f.text_field :remuneration_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.remuneration_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.remuneration_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.remuneration_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.remuneration_explanation)
+      = f.text_area  :remuneration_audit_explanation
+
+
     #acquisitions1.tab-pane{:role => "tabpanel"}
       %h4
         = t('.food_products')
-      = f.text_field :food_products, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :food_products_audited) : ""
-      = f.text_area  :food_products_actions, disabled: is_auditor?
-      = f.text_area  :food_products_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :food_products_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.food_products')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.food_products, precision: 2)
+      = f.text_field :food_products_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.food_products_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.food_products_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.food_products_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.food_products_explanation)
+      = f.text_area  :food_products_audit_explanation
       %hr
+
+
       %h4
         = t('.textile_products')
-      = f.text_field :textile_products, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :textile_products_audited) : ""
-      = f.text_area  :textile_products_actions, disabled: is_auditor?
-      = f.text_area  :textile_products_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :textile_products_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.textile_products')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.textile_products, precision: 2)
+      = f.text_field :textile_products_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.textile_products_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.textile_products_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.textile_products_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.textile_products_explanation)
+      = f.text_area  :textile_products_audit_explanation
       %hr
+
+
       %h4
         = t('.fuels_products')
-      = f.text_field :fuels_products, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :fuels_products_audited) : ""
-      = f.text_area  :fuels_products_actions, disabled: is_auditor?
-      = f.text_area  :fuels_products_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :fuels_products_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.fuels_products')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.fuels_products, precision: 2)
+      = f.text_field :fuels_products_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.fuels_products_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.fuels_products_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.fuels_products_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.fuels_products_explanation)
+      = f.text_area  :fuels_products_audit_explanation
       %hr
+
+
       %h4
         = t('.paper_products')
-      = f.text_field :paper_products, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :paper_products_audited) : ""
-      = f.text_area  :paper_products_actions, disabled: is_auditor?
-      = f.text_area  :paper_products_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :paper_products_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.paper_products')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.paper_products, precision: 2)
+      = f.text_field :paper_products_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.paper_products_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.paper_products_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.paper_products_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.paper_products_explanation)
+      = f.text_area  :paper_products_audit_explanation
+
+
     #acquisitions2.tab-pane{:role => "tabpanel"}
       %h4
         = t('.basic_services')
-      = f.text_field :basic_services, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :basic_services_audited) : ""
-      = f.text_area  :basic_services_actions, disabled: is_auditor?
-      = f.text_area  :basic_services_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :basic_services_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.basic_services')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.basic_services, precision: 2)
+      = f.text_field :basic_services_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.basic_services_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.basic_services_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.basic_services_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.basic_services_explanation)
+      = f.text_area  :basic_services_audit_explanation
       %hr
+
+
       %h4
       = t('.social_services')
-      = f.text_field :social_services, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :social_services_audited) : ""
-      = f.text_area  :social_services_actions, disabled: is_auditor?
-      = f.text_area  :social_services_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :social_services_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.social_services')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.social_services, precision: 2)
+      = f.text_field :social_services_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.social_services_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.social_services_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.social_services_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.social_services_explanation)
+      = f.text_area  :social_services_audit_explanation
       %hr
+
+
       %h4
         = t('.passages')
-      = f.text_field :passages, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :passages_audited) : ""
-      = f.text_area  :passages_actions, disabled: is_auditor?
-      = f.text_area  :passages_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :passages_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.passages')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.passages, precision: 2)
+      = f.text_field :passages_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.passages_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.passages_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.passages_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.passages_explanation)
+      = f.text_area  :passages_audit_explanation
       %hr
+
+
       %h4
         = t('.training_services')
-      = f.text_field :training_services, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :training_services_audited) : ""
-      = f.text_area  :training_services_actions, disabled: is_auditor?
-      = f.text_area  :training_services_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area  :training_services_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.training_services')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.training_services, precision: 2)
+      = f.text_field :training_services_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.training_services_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.training_services_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.training_services_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.training_services_explanation)
+      = f.text_area  :training_services_audit_explanation
       %hr
+
+
       %h4
         = t('.ad_services')
-      = f.text_field :ad_services, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :ad_services_audited) : ""
-      = f.text_area :ad_services_actions, disabled: is_auditor?
-      = f.text_area :ad_services_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area :ad_services_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.ad_services')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.ad_services, precision: 2)
+      = f.text_field :ad_services_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.ad_services_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.ad_services_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.ad_services_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.ad_services_explanation)
+      = f.text_area :ad_services_audit_explanation
+
+
     #expenses.tab-pane{:role => "tabpanel"}
       %h4
         = t('.financial_expenses')
-      = f.text_field :financial_expenses, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :financial_expenses_audited) : ""
-      = f.text_area :financial_expenses_actions, disabled: is_auditor?
-      = f.text_area :financial_expenses_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area :financial_expenses_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.financial_expenses')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.financial_expenses, precision: 2)
+      = f.text_field :financial_expenses_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.financial_expenses_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.financial_expenses_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.financial_expenses_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.financial_expenses_explanation)
+      = f.text_area :financial_expenses_audit_explanation
+
+
     #transfers.tab-pane{:role => "tabpanel"}
       %h4
         = t('.transfers')
-      = f.text_field :transfers, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :transfers_audited) : ""
-      = f.text_area :transfers_actions, disabled: is_auditor?
-      = f.text_area :transfers_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area :transfers_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.transfers')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.transfers, precision: 2)
+      = f.text_field :transfers_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.transfers_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.transfers_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.transfers_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.transfers_explanation)
+      = f.text_area :transfers_audit_explanation
+
+
     #investments.tab-pane{:role => "tabpanel"}
       %h4
         = t('.investments')
-      = f.text_field :investments, disabled: is_auditor?
-      = is_auditor? ? (f.text_field :investments_audited) : ""
-      = f.text_area :investments_actions, disabled: is_auditor?
-      = f.text_area :investments_explanation, disabled: is_auditor?
-      = is_auditor? ? (f.text_area :investments_audit_explanation) : ""
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.investments')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.investments, precision: 2)
+      = f.text_field :investments_audited
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.investments_actions')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.investments_actions)
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.investments_explanation')
+        .col-sm-9.text_form
+          %span
+            = simple_format(f.object.investments_explanation)
+      = f.text_area :investments_audit_explanation
