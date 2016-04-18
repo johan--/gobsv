@@ -17,7 +17,7 @@ class User::DashboardController < UserController
     @user.assign_attributes item_params
     @success = @user.save
     respond_to do |format|
-      if false
+      if @success
         flash[:notice] = 'Curriculum actualizado con éxito'
         format.js
       else
