@@ -9,19 +9,19 @@ class CreatePaaSavings < ActiveRecord::Migration
       t.references :admin, index: true
 
       # Valores que ingresan los enlaces de las instituciones
-      t.decimal :remuneration, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :food_products, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :textile_products, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :fuels_products, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :paper_products, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :basic_services, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :social_services, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :passages, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :training_services, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :ad_services, null: false, default: 0, precision: 18, scale: 2
+      t.decimal :remuneration,       null: false, default: 0, precision: 18, scale: 2
+      t.decimal :food_products,      null: false, default: 0, precision: 18, scale: 2
+      t.decimal :textile_products,   null: false, default: 0, precision: 18, scale: 2
+      t.decimal :fuels_products,     null: false, default: 0, precision: 18, scale: 2
+      t.decimal :paper_products,     null: false, default: 0, precision: 18, scale: 2
+      t.decimal :basic_services,     null: false, default: 0, precision: 18, scale: 2
+      t.decimal :social_services,    null: false, default: 0, precision: 18, scale: 2
+      t.decimal :passages,           null: false, default: 0, precision: 18, scale: 2
+      t.decimal :training_services,  null: false, default: 0, precision: 18, scale: 2
+      t.decimal :ad_services,        null: false, default: 0, precision: 18, scale: 2
       t.decimal :financial_expenses, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :transfers, null: false, default: 0, precision: 18, scale: 2
-      t.decimal :investments, null: false, default: 0, precision: 18, scale: 2
+      t.decimal :transfers,          null: false, default: 0, precision: 18, scale: 2
+      t.decimal :investments,        null: false, default: 0, precision: 18, scale: 2
 
       # Valores reales según auditoria
       t.decimal :remuneration_audited, null: false, default: 0, precision: 18, scale: 2
