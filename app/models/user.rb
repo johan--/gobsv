@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :confirmation => true, :on => :create
   validates :password, :presence => true, :confirmation => true, :if => Proc.new{|o| o.password.present?}
 
-  validates :tax_id, length: { is: 17 }
+  #validates :tax_id, :presence => true, length: { is: 17 }, :unless => :create 
   
   #User::Gender
   Gender = {
