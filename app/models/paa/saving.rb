@@ -21,9 +21,15 @@ class Paa::Saving < ActiveRecord::Base
   scope :evaluation, -> { where(state: 'evaluation') }
   scope :evaluated,  -> { where(state: 'evaluated') }
 
+  #fake_fields
   attr_accessor :trimester
   attr_accessor :year
   
+  #sum_fields
+  attr_accessor :cat_remuneration_total
+  attr_accessor :cat_financial_expenses_and_other_total
+  attr_accessor :cat_current_transfers_total
+  attr_accessor :cat_investment_in_fixed_assets_total
   
   belongs_to :institution
   belongs_to :financial_source, class_name: '::Paa::FinancialSource'
@@ -155,7 +161,35 @@ class Paa::Saving < ActiveRecord::Base
     end
     r
   end
+
+  def cat_remuneration_total
+    remuneration
+  end
+
+  def cat_procurement_of_goods_total
+    @cat_procurement_of_goods_and_services_total = food_products + textile_products + fuels_products + paper_products
+  end
   
+  def cat_procurement_of_services_total
+    @cat_procurement_of_goods_and_services_total = basic_services + social_services + passages + training_services + ad_services
+  end
+  
+  def cat_procurement_of_goods_and_services_total
+    @cat_procurement_of_goods_and_services_total = food_products + textile_products + fuels_products + paper_products + basic_services + social_services + passages + training_services + ad_services
+  end
+
+  def cat_financial_expenses_and_other_total
+    financial_expenses
+  end
+  
+  def cat_current_transfers_total
+    transfers
+  end
+  
+  def cat_investment_in_fixed_assets_total
+    investments
+  end
+
   private
     def set_start_at(tmp_year=self.year, tmp_trimester=self.trimester)
       if [1,2,3,4].include? tmp_trimester
