@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408053001) do
+ActiveRecord::Schema.define(version: 20160418030926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
 
   create_table "admin_hierarchies", id: false, force: true do |t|
     t.integer "ancestor_id",   null: false
@@ -42,10 +41,10 @@ ActiveRecord::Schema.define(version: 20160408053001) do
     t.string   "name"
     t.integer  "parent_id"
     t.integer  "role_id"
+    t.boolean  "is_active",              default: true
     t.string   "provider",               default: "email", null: false
     t.string   "uid",                    default: "",      null: false
     t.text     "tokens"
-    t.boolean  "is_active",              default: true
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -198,6 +197,12 @@ ActiveRecord::Schema.define(version: 20160408053001) do
 
   add_index "employments_contracts", ["plaza_id"], name: "index_employments_contracts_on_plaza_id", using: :btree
 
+  create_table "employments_countries", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "employments_degrees", force: true do |t|
     t.integer  "plaza_id"
     t.string   "gra_code"
@@ -209,6 +214,18 @@ ActiveRecord::Schema.define(version: 20160408053001) do
   end
 
   add_index "employments_degrees", ["plaza_id"], name: "index_employments_degrees_on_plaza_id", using: :btree
+
+  create_table "employments_disability_certifications", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employments_disability_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "employments_experiences", force: true do |t|
     t.integer  "plaza_id"
@@ -311,6 +328,103 @@ ActiveRecord::Schema.define(version: 20160408053001) do
   end
 
   add_index "employments_technical_competences", ["plaza_id"], name: "index_employments_technical_competences_on_plaza_id", using: :btree
+
+  create_table "employments_user_disabilities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "disability_type_id"
+    t.integer  "disability_certification_id"
+    t.integer  "user_created"
+    t.integer  "user_edited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_user_disabilities", ["user_id"], name: "index_employments_user_disabilities_on_user_id", using: :btree
+
+  create_table "employments_user_languages", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "read"
+    t.integer  "write"
+    t.integer  "speak"
+    t.integer  "user_created"
+    t.integer  "user_edited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_user_languages", ["user_id"], name: "index_employments_user_languages_on_user_id", using: :btree
+
+  create_table "employments_user_references", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "charge"
+    t.string   "address"
+    t.string   "phone"
+    t.integer  "type"
+    t.integer  "user_created"
+    t.integer  "user_edited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_user_references", ["user_id"], name: "index_employments_user_references_on_user_id", using: :btree
+
+  create_table "employments_user_specialties", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "country_id"
+    t.string   "name"
+    t.string   "esp_code"
+    t.string   "esp_name"
+    t.string   "gra_code"
+    t.string   "institution_name"
+    t.string   "certificate_file_name"
+    t.string   "certificate_content_type"
+    t.integer  "certificate_file_size"
+    t.datetime "certificate_updated_at"
+    t.date     "start_at"
+    t.date     "end_at"
+    t.integer  "user_created"
+    t.integer  "user_edited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_user_specialties", ["user_id"], name: "index_employments_user_specialties_on_user_id", using: :btree
+
+  create_table "employments_user_trainings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "institution_name"
+    t.string   "name"
+    t.text     "description"
+    t.string   "place"
+    t.string   "duration"
+    t.integer  "year"
+    t.integer  "user_created"
+    t.integer  "user_edited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_user_trainings", ["user_id"], name: "index_employments_user_trainings_on_user_id", using: :btree
+
+  create_table "employments_user_work_experiences", force: true do |t|
+    t.integer  "user_id"
+    t.string   "sector"
+    t.integer  "country_id"
+    t.string   "institution_name"
+    t.string   "charge"
+    t.text     "description"
+    t.date     "start_at"
+    t.date     "end_at"
+    t.integer  "active"
+    t.integer  "user_created"
+    t.integer  "user_edited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_user_work_experiences", ["user_id"], name: "index_employments_user_work_experiences_on_user_id", using: :btree
 
   create_table "forums_actors", force: true do |t|
     t.string   "name"
@@ -471,38 +585,38 @@ ActiveRecord::Schema.define(version: 20160408053001) do
   end
 
   create_table "paa_savings", force: true do |t|
-    t.string   "state",                                                         default: "draft"
+    t.string   "state",                                                                      default: "draft"
     t.integer  "institution_id"
     t.date     "start_at"
     t.date     "end_at"
     t.integer  "financial_source_id"
     t.integer  "admin_id"
-    t.decimal  "remuneration",                         precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "food_products",                        precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "textile_products",                     precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "fuels_products",                       precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "paper_products",                       precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "basic_services",                       precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "social_services",                      precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "passages",                             precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "training_services",                    precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "ad_services",                          precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "financial_expenses",                   precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "transfers",                            precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "investments",                          precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "remuneration_audited",                 precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "food_products_audited",                precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "textile_products_audited",             precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "fuels_products_audited",               precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "paper_products_audited",               precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "basic_services_audited",               precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "social_services_audited",              precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "passages_audited",                     precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "training_services_audited",            precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "ad_services_audited",                  precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "financial_expenses_audited",           precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "transfers_audited",                    precision: 18, scale: 2, default: 0.0,     null: false
-    t.decimal  "investments_audited",                  precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "remuneration",                                      precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "food_products",                                     precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "textile_products",                                  precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "fuels_products",                                    precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "paper_products",                                    precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "basic_services",                                    precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "social_services",                                   precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "passages",                                          precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "training_services",                                 precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "ad_services",                                       precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "financial_expenses",                                precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "transfers",                                         precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "investments",                                       precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "remuneration_audited",                              precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "food_products_audited",                             precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "textile_products_audited",                          precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "fuels_products_audited",                            precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "paper_products_audited",                            precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "basic_services_audited",                            precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "social_services_audited",                           precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "passages_audited",                                  precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "training_services_audited",                         precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "ad_services_audited",                               precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "financial_expenses_audited",                        precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "transfers_audited",                                 precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "investments_audited",                               precision: 18, scale: 2, default: 0.0,     null: false
     t.text     "remuneration_explanation"
     t.text     "remuneration_actions"
     t.text     "food_products_explanation"
@@ -547,6 +661,16 @@ ActiveRecord::Schema.define(version: 20160408053001) do
     t.text     "audit_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "cat_remuneration_frozen",                           precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_procurement_of_goods_and_services_frozen",      precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_financial_expenses_and_other_frozen",           precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_current_transfers_frozen",                      precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_investment_in_fixed_assets_frozen",             precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_remuneration_rescheduled",                      precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_procurement_of_goods_and_services_rescheduled", precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_financial_expenses_and_other_rescheduled",      precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_current_transfers_rescheduled",                 precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_investment_in_fixed_assets_rescheduled",        precision: 18, scale: 2, default: 0.0,     null: false
   end
 
   add_index "paa_savings", ["admin_id"], name: "index_paa_savings_on_admin_id", using: :btree
@@ -770,9 +894,27 @@ ActiveRecord::Schema.define(version: 20160408053001) do
     t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "alt_phone"
+    t.string   "document_type"
+    t.string   "document_number"
+    t.string   "tax_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "user_created"
+    t.integer  "user_edited"
+    t.string   "unknown_code"
+    t.string   "username"
+    t.string   "treatment"
+    t.text     "address"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["country_id"], name: "index_users_on_country_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree

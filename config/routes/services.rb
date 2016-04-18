@@ -1,3 +1,6 @@
+domain = 'serv.gobiernoabierto.gob.sv' if Rails.env.production?
+domain = 'serv.localhost.com'          if Rails.env.development?
+
 constraints subdomain: 'services' do
   scope module: 'serv', as: 'serv' do
     defaults subdomain: 'services' do
