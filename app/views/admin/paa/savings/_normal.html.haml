@@ -34,7 +34,12 @@
           %span
             = number_to_currency(f.object.cat_remuneration_total, precision: 2)
       = f.text_field :cat_remuneration_frozen
-      = f.text_field :cat_remuneration_rescheduled 
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_remuneration_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_remuneration_rescheduled, precision: 2) 
       %hr
       %h4
         = t('.remuneration')
@@ -49,7 +54,12 @@
           %span
             = number_to_currency(f.object.cat_procurement_of_goods_total, precision: 2)   
       = f.text_field :cat_procurement_of_goods_frozen
-      = f.text_field :cat_procurement_of_goods_rescheduled 
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_procurement_of_goods_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_procurement_of_goods_rescheduled , precision: 2) 
       %hr
       %h4
         = t('.food_products')
@@ -82,7 +92,12 @@
           %span
             = number_to_currency(f.object.cat_procurement_of_services_total, precision: 2)
       = f.text_field :cat_procurement_of_services_frozen
-      = f.text_field :cat_procurement_of_services_rescheduled 
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_procurement_of_services_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_procurement_of_services_rescheduled, precision: 2)  
       %hr
       %h4
         = t('.basic_services')
@@ -121,7 +136,12 @@
           %span
             = number_to_currency(f.object.cat_financial_expenses_and_other_total, precision: 2)
       = f.text_field :cat_financial_expenses_and_other_frozen
-      = f.text_field :cat_financial_expenses_and_other_rescheduled 
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_financial_expenses_and_other_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_financial_expenses_and_other_rescheduled, precision: 2)   
       %hr
       %h4
         = t('.financial_expenses')
@@ -136,7 +156,12 @@
           %span
             = number_to_currency(f.object.cat_current_transfers_total, precision: 2)
       = f.text_field :cat_current_transfers_frozen
-      = f.text_field :cat_current_transfers_rescheduled 
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_current_transfers_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_current_transfers_rescheduled, precision: 2)  
       %hr
       %h4
         = t('.transfers')
@@ -151,7 +176,12 @@
           %span
             = number_to_currency(f.object.cat_investment_in_fixed_assets_total, precision: 2)
       = f.text_field :cat_investment_in_fixed_assets_frozen
-      = f.text_field :cat_investment_in_fixed_assets_rescheduled 
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_investment_in_fixed_assets_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_investment_in_fixed_assets_rescheduled, precision: 2)  
       %hr
       %h4
         = t('.investments')

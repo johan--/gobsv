@@ -41,7 +41,7 @@ end
 
 class Paa::Saving < ActiveRecord::Base
 
-  before_save :set_start_at, :set_end_at, :set_cat_remuneration_rescheduled
+  before_save :set_start_at, :set_end_at, :set_cat_remuneration_rescheduled, :set_cat_procurement_of_goods_rescheduled, :set_cat_procurement_of_services_rescheduled, :set_cat_procurement_of_goods_and_services_rescheduled, :set_cat_financial_expenses_and_other_rescheduled, :set_cat_current_transfers_rescheduled, :set_cat_investment_in_fixed_assets_rescheduled
   
   scope :draft,      -> { where(state: 'draft') }
   scope :evaluation, -> { where(state: 'evaluation') }
@@ -198,11 +198,11 @@ class Paa::Saving < ActiveRecord::Base
   end
 
   def cat_procurement_of_goods_total
-    @cat_procurement_of_goods_and_services_total = food_products + textile_products + fuels_products + paper_products
+    @cat_procurement_of_goods_total = food_products + textile_products + fuels_products + paper_products
   end
   
   def cat_procurement_of_services_total
-    @cat_procurement_of_goods_and_services_total = basic_services + social_services + passages + training_services + ad_services
+    @cat_procurement_of_services_total = basic_services + social_services + passages + training_services + ad_services
   end
   
   def cat_procurement_of_goods_and_services_total
@@ -262,4 +262,29 @@ class Paa::Saving < ActiveRecord::Base
   def set_cat_remuneration_rescheduled
     self.cat_remuneration_rescheduled = cat_remuneration_total - cat_remuneration_frozen
   end
+
+  def set_cat_procurement_of_goods_rescheduled
+    self.cat_procurement_of_goods_rescheduled = cat_procurement_of_goods_total - cat_procurement_of_goods_frozen
+  end
+  
+  def set_cat_procurement_of_services_rescheduled
+    self.cat_procurement_of_services_rescheduled = cat_procurement_of_services_total - cat_procurement_of_services_frozen
+  end
+  
+  def set_cat_procurement_of_goods_and_services_rescheduled
+    self.cat_procurement_of_goods_and_services_rescheduled = cat_procurement_of_goods_and_services_total - cat_procurement_of_goods_and_services_frozen
+  end
+
+  def set_cat_financial_expenses_and_other_rescheduled
+    self.cat_financial_expenses_and_other_rescheduled = cat_financial_expenses_and_other_total - cat_financial_expenses_and_other_frozen
+  end
+  
+  def set_cat_current_transfers_rescheduled
+    self.cat_current_transfers_rescheduled = cat_current_transfers_total - cat_current_transfers_frozen
+  end
+  
+  def set_cat_investment_in_fixed_assets_rescheduled
+    self.cat_investment_in_fixed_assets_rescheduled = cat_investment_in_fixed_assets_total - cat_investment_in_fixed_assets_frozen
+  end
+
 end

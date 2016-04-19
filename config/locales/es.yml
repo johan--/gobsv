@@ -390,7 +390,7 @@ es:
         name: Nombre
       paa/saving:
         cat_remuneration_frozen: No ejecutado (Congelado)
-        cat_procurement_of_goods_and_services_frozen: No ejecutado (Congelado)
+        cat_procurement_of_goods_frozen: No ejecutado (Congelado)
         cat_procurement_of_goods_frozen: No ejecutado (Congelado)
         cat_procurement_of_services_frozen: No ejecutado (Congelado)
         cat_financial_expenses_and_other_frozen: No ejecutado (Congelado)
