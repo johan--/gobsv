@@ -1,11 +1,11 @@
 = field_set_tag 'General' do
-  = f.select :state, options_for_select(Paa::Saving::STATE.invert, f.object.state), { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil, required: true   }
-  = f.select :institution_id, @institutions.map{ |institution| [institution.name, institution.id] }, { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil, required: true }
-  = f.select :financial_source_id, @financial_sources.map{ |financial_source| [financial_source.name, financial_source.id] }, { include_blank: true, required: true }, { class: 'select2', required: true   }
+  = f.select :state, options_for_select(Paa::Saving::STATE.invert, f.object.state), { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil}
+  = f.select :institution_id, @institutions.map{ |institution| [institution.name, institution.id] }, { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil}
+  = f.select :financial_source_id, @financial_sources.map{ |financial_source| [financial_source.name, financial_source.id] }, { include_blank: true}, { class: 'select2'}
 
-  = f.select :trimester, options_for_select(Paa::Saving::TRIMESTER.invert, f.object.get_trimester[1]), { include_blank: true }, { class: 'select2', required: true   }
+  = f.select :trimester, options_for_select(Paa::Saving::TRIMESTER.invert, f.object.get_trimester[1]), { include_blank: true }, { class: 'select2'}
 
-  = f.select :year, options_for_select(2005..2025, f.object.get_trimester[0]), { include_blank: true }, { class: 'select2', required: true   }
+  = f.select :year, options_for_select(2005..2025, f.object.get_trimester[0]), { include_blank: true }, { class: 'select2' }
 
   -#= f.text_field :auditor_id
   -#= f.text_field :audited_at

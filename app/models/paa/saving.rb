@@ -13,9 +13,35 @@ class DupTrimesterValidator < ActiveModel::EachValidator
   end
 end
 
+class RemunerationValueValidator < ActiveModel::EachValidator
+  def validate_each(object, attribute, value)
+    
+    case attribute
+    when :cat_remuneration_frozen
+      total = object.cat_remuneration_total
+    when :cat_procurement_of_goods_frozen
+      total = object.cat_procurement_of_goods_total
+    when :cat_procurement_of_services_frozen
+      total = object.cat_procurement_of_services_total
+    when :cat_financial_expenses_and_other_frozen
+      total = object.cat_financial_expenses_and_other_total
+    when :cat_current_transfers_frozen
+      total = object.cat_current_transfers_total
+    when :cat_investment_in_fixed_assets_frozen
+      total = object.cat_investment_in_fixed_assets_total
+    when :cat_procurement_of_goods_and_services_frozen
+      total = object.cat_procurement_of_goods_and_services_total
+    end
+    
+    if (value > total)
+      object.errors[attribute] << (options[:message] || I18n.t("labels.frozen_value_too_high"))
+    end
+  end
+end
+
 class Paa::Saving < ActiveRecord::Base
 
-  before_save :set_start_at, :set_end_at 
+  before_save :set_start_at, :set_end_at, :set_cat_remuneration_rescheduled
   
   scope :draft,      -> { where(state: 'draft') }
   scope :evaluation, -> { where(state: 'evaluation') }
@@ -36,10 +62,13 @@ class Paa::Saving < ActiveRecord::Base
 
   #ufi
   validates_numericality_of :remuneration, :food_products, :textile_products, :fuels_products, :paper_products, :basic_services, :social_services, :passages, :training_services, :ad_services, :financial_expenses, :transfers, :investments, :cat_procurement_of_services_frozen, :cat_procurement_of_services_rescheduled, :cat_procurement_of_goods_frozen, :cat_procurement_of_goods_rescheduled, :cat_remuneration_frozen, :cat_procurement_of_goods_and_services_frozen, :cat_financial_expenses_and_other_frozen, :cat_current_transfers_frozen, :cat_investment_in_fixed_assets_frozen, :cat_remuneration_rescheduled, :cat_procurement_of_goods_and_services_rescheduled, :cat_financial_expenses_and_other_rescheduled, :cat_current_transfers_rescheduled, :cat_investment_in_fixed_assets_rescheduled, :greater_than_or_equal_to => 0
+
   #auditor
+
   
   validates :trimester, :presence => true, :dup_trimester => true
-
+  validates :state, :year, :institution_id, :financial_source_id, :presence => true
+  validates :cat_remuneration_frozen, :cat_procurement_of_goods_frozen, :cat_procurement_of_services_frozen, :cat_financial_expenses_and_other_frozen, :cat_current_transfers_frozen, :cat_investment_in_fixed_assets_frozen, :cat_procurement_of_goods_and_services_frozen, :remuneration_value => true
 
   STATE = {
     'draft'      => 'Borrador',
@@ -165,7 +194,7 @@ class Paa::Saving < ActiveRecord::Base
   end
 
   def cat_remuneration_total
-    remuneration
+    @cat_remuneration_total = remuneration
   end
 
   def cat_procurement_of_goods_total
@@ -181,15 +210,15 @@ class Paa::Saving < ActiveRecord::Base
   end
 
   def cat_financial_expenses_and_other_total
-    financial_expenses
+    @cat_financial_expenses_and_other_total = financial_expenses
   end
   
   def cat_current_transfers_total
-    transfers
+    @cat_current_transfers_total = transfers
   end
   
   def cat_investment_in_fixed_assets_total
-    investments
+    @cat_investment_in_fixed_assets_total = investments
   end
 
   private
@@ -229,4 +258,8 @@ class Paa::Saving < ActiveRecord::Base
         self.end_at = Date.new(tmp_year, tmp_month, last_day)
       end
     end
+    
+  def set_cat_remuneration_rescheduled
+    self.cat_remuneration_rescheduled = cat_remuneration_total - cat_remuneration_frozen
+  end
 end
