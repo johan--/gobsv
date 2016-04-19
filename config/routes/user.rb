@@ -1,3 +1,4 @@
+=begin
 devise_for :users,
   controllers: {
     sessions: 'user/sessions',
@@ -14,6 +15,7 @@ devise_for :users,
   },
   constraints: { subdomain: 'user' },
   defaults: { subdomain: 'user' }
+=end
 
 constraints subdomain: 'user' do
   scope module: 'user', as: 'user' do
