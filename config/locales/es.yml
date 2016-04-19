@@ -593,3 +593,4 @@ es:
 
   labels:
     trimester_duplicated: Esta fecha ya se esta utilizando.
+    frozen_value_too_high: El valor congelado no debe ser mayor al ahorro total.
