@@ -389,6 +389,27 @@ es:
       paa/financial_source:
         name: Nombre
       paa/saving:
+        cat_remuneration_frozen: No ejecutado (Congelado)
+        cat_procurement_of_goods_and_services_frozen: No ejecutado (Congelado)
+        cat_procurement_of_goods_frozen: No ejecutado (Congelado)
+        cat_procurement_of_services_frozen: No ejecutado (Congelado)
+        cat_financial_expenses_and_other_frozen: No ejecutado (Congelado)
+        cat_current_transfers_frozen: No ejecutado (Congelado)
+        cat_investment_in_fixed_assets_frozen: No ejecutado (Congelado)
+        cat_remuneration_rescheduled: Reprogramado
+        cat_procurement_of_goods_and_services_rescheduled: Reprogramado
+        cat_procurement_of_goods_rescheduled: Reprogramado
+        cat_procurement_of_services_rescheduled: Reprogramado
+        cat_financial_expenses_and_other_rescheduled: Reprogramado
+        cat_current_transfers_rescheduled: Reprogramado
+        cat_investment_in_fixed_assets_rescheduled: Reprogramado      
+        cat_remuneration_total: Ahorro total
+        cat_procurement_of_goods_and_services_total: Ahorro total
+        cat_procurement_of_goods_total: Ahorro total
+        cat_procurement_of_services_total: Ahorro total
+        cat_financial_expenses_and_other_total: Ahorro total
+        cat_current_transfers_total: Ahorro total
+        cat_investment_in_fixed_assets_total: Ahorro total
         trimester: Trimestre
         year: Año
         state: Estado
@@ -397,13 +418,13 @@ es:
         end_at: Fecha de fin
         financial_source_id: Fuente de financiamiento
         admin_id: Enlace financiero
-        remuneration: Ahorro Total
-        food_products: Ahorro Total
-        textile_products: Ahorro Total
-        fuels_products: Ahorro Total
-        paper_products: Ahorro Total
-        basic_services: Ahorro Total
-        social_services: Ahorro Total
+        remuneration: Ahorro
+        food_products: Ahorro
+        textile_products: Ahorro
+        fuels_products: Ahorro
+        paper_products: Ahorro
+        basic_services: Ahorro
+        social_services: Ahorro
         passages: Ahorro Total
         training_services: Ahorro Total
         ad_services: Ahorro Total

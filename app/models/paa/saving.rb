@@ -34,8 +34,10 @@ class Paa::Saving < ActiveRecord::Base
   belongs_to :institution
   belongs_to :financial_source, class_name: '::Paa::FinancialSource'
 
+  #ufi
+  validates_numericality_of :remuneration, :food_products, :textile_products, :fuels_products, :paper_products, :basic_services, :social_services, :passages, :training_services, :ad_services, :financial_expenses, :transfers, :investments, :cat_procurement_of_services_frozen, :cat_procurement_of_services_rescheduled, :cat_procurement_of_goods_frozen, :cat_procurement_of_goods_rescheduled, :cat_remuneration_frozen, :cat_procurement_of_goods_and_services_frozen, :cat_financial_expenses_and_other_frozen, :cat_current_transfers_frozen, :cat_investment_in_fixed_assets_frozen, :cat_remuneration_rescheduled, :cat_procurement_of_goods_and_services_rescheduled, :cat_financial_expenses_and_other_rescheduled, :cat_current_transfers_rescheduled, :cat_investment_in_fixed_assets_rescheduled, :greater_than_or_equal_to => 0
+  #auditor
   
-  #validates :institution_id, :uniqueness => { :scope => [:financial_source_id, :start_at, :end_at] }
   validates :trimester, :presence => true, :dup_trimester => true
 
 
