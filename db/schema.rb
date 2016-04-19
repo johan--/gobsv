@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418030926) do
+ActiveRecord::Schema.define(version: 20160418223035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -671,6 +671,10 @@ ActiveRecord::Schema.define(version: 20160418030926) do
     t.decimal  "cat_financial_expenses_and_other_rescheduled",      precision: 18, scale: 2, default: 0.0,     null: false
     t.decimal  "cat_current_transfers_rescheduled",                 precision: 18, scale: 2, default: 0.0,     null: false
     t.decimal  "cat_investment_in_fixed_assets_rescheduled",        precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_procurement_of_services_frozen",                precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_procurement_of_services_rescheduled",           precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_procurement_of_goods_frozen",                   precision: 18, scale: 2, default: 0.0,     null: false
+    t.decimal  "cat_procurement_of_goods_rescheduled",              precision: 18, scale: 2, default: 0.0,     null: false
   end
 
   add_index "paa_savings", ["admin_id"], name: "index_paa_savings_on_admin_id", using: :btree

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '~> 4.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # To use mysql to some migration or reading process
@@ -35,7 +35,7 @@ gem 'haml-rails', '~> 0.5.3'
 gem 'draper', '~> 1.4.0'
 
 # Flexible authentication solution for Rails with Warden.
-gem 'devise', '~> 3.3.0'
+gem 'devise', '~> 3.4'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -181,3 +181,6 @@ gem 'devise_token_auth', '~> 0.1.30'
 
 # ambethia/recaptcha
 gem "recaptcha", require: "recaptcha/rails"
+
+# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions. http://rubydoc.info/projects/rest-client/rest-client
+gem 'rest-client'

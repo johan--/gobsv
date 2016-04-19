@@ -1,12 +1,26 @@
 domain = 'empleospublicos.gob.sv' if Rails.env.production?
 domain = 'empleos.localhost.com'          if Rails.env.development?
+domain = 'employments.localhost.com'          if Rails.env.development?
 domain = 'localhost.com'          if Rails.env.development?
 
 constraints DomainConstraint.new(domain) do
-  devise_scope :users do
-    get '/auth/login' => 'employments/sessions#new', as: :employments_new_user_session
-    post '/auth/login'  => 'employments/sessions#create',  as: :employments_user_session
-  end
+  devise_for :users,
+    controllers: {
+      sessions: 'employments/sessions',
+      registrations: 'employments/registrations',
+      passwords: 'employments/passwords',
+      omniauth_callbacks: 'employments/omniauth_callbacks'
+    },
+    path: 'auth',
+    path_names: {
+      sign_in: 'login',
+      sign_out: 'logout',
+      registration: 'register',
+      sign_up: 'signup'
+    },
+    constraints: { subdomain: 'employments' },
+    defaults: { subdomain: 'employments' }
+
   scope module: 'employments', as: 'employments' do
     root to: 'dashboard#index'
     resources :jobs, only: [:index, :show] do
