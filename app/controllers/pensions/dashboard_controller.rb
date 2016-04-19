@@ -1,6 +1,6 @@
-class Pensions::DashboardController < PensionsController
+class Pensions::DashboardController < ApplicationController
 
   def index
-    
+
   end
 end

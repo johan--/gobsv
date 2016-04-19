@@ -237,10 +237,10 @@
                   .line.visible-lg-inline-block.visible-md-inline-block
                   .btn-group{role: "group"}
                     - if public_competition.plaza_state_id == 2
-                      = link_to "Aplicar", contact_employments_job_url(public_competition), remote: true, class: "btn btn-primary"
+                      = link_to "Aplicar", apply_employments_job_url(id: public_competition.id), class: "btn btn-primary"
                     - else
                       = link_to "Cerrar", employments_jobs_url, class: "btn btn-primary", data: { dismiss: 'modal' }
                   .line.visible-lg-inline-block.visible-md-inline-block
               .hidden-lg.hidden-md.text-centered
-                = link_to "Aplicar", contact_employments_job_url(public_competition), remote: true, class: "btn btn-primary"
+                = link_to "Aplicar", apply_employments_job_url(id: public_competition.id), class: "btn btn-primary"
               %br

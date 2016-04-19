@@ -4,12 +4,12 @@
     .row
       .col-xs-12
         %ul.nav.nav-tabs{role: 'tablist'}
-          %li.presentation{ class: params[:q][:plaza_state_id_eq].to_i == 2 ? 'active' : nil }
-            = link_to 'Empleos disponibles', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_eq: 2))
-          %li.presentation{ class: params[:q][:plaza_state_id_eq].to_i == 3 ? 'active' : nil }
-            = link_to 'Empleos en evaluación', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_eq: 3))
-          %li.presentation{ class: params[:q][:plaza_state_id_eq].to_i == 4 ? 'active' : nil }
-            = link_to 'Empleos cerrados', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_eq: 4))
+          %li.presentation{ class: params[:q][:plaza_state_id_in].include?('2') ? 'active' : nil }
+            = link_to 'Empleos disponibles', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_in: [2]))
+          %li.presentation{ class: params[:q][:plaza_state_id_in].include?('3') ? 'active' : nil }
+            = link_to 'Empleos en evaluación', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_in: [3,5,6]))
+          %li.presentation{ class: params[:q][:plaza_state_id_in].include?('4') ? 'active' : nil }
+            = link_to 'Empleos cerrados', employments_jobs_url(q: params[:q].try(:merge, plaza_state_id_in: [4]))
     %br
     .row
       .col-xs-12.col-sm-4
@@ -33,4 +33,4 @@
           - else
             .well
               Lo sentimos, no hay empleos disponibles para su búsqueda. Puede probar nuevamente
-              = link_to "limpiando sus filtros de búsqueda.", employments_jobs_url(q: { plaza_state_id_eq: params[:q][:plaza_state_id_eq] })
+              = link_to "limpiando sus filtros de búsqueda.", employments_jobs_url(q: { plaza_state_id_in: params[:q][:plaza_state_id_in] })
