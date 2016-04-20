@@ -1,165 +1,267 @@
 .container
   .row
-    .col-xs-8  
+    .col-sm-8
       %h2
         Crear curriculum
       %p
-        Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
-    .col-xs-4
+        Sus datos personales no seran utilizados en la primera fase de Selección. No se publicará su información personal.
+    .col-sm-4
       .well
         %h5
-          Documentos que ocupará para la creación del currículum
+          Documentos que ocupará para la edición del currículum
         %ul
           %li DUI
           %li NIT
-          %li NUP (Tarjeta AFP)
-          %li Tarjeta del ISSS
   .clearfix
+  %br
   .row
     .col-sm-12.col-xs-12
-      = form_tag save_employments_resumes_url(), method: "post", id: "resume-form" do 
+
+      = bootstrap_nested_form_for @user, url: save_employments_resume_path(@user), method: :post, html: {id: "resume-form", multipart: true} do |f|
         %h3 Datos personales
         %section
+          %fieldset
+            %h4
+              Informacion General
+          .row
+            .col-sm-6
+              .form-group
+              = f.select :treatment, User::Treatment.invert, {include_blank: t('activerecord.attributes.user.treatment'), hide_label: true}, { required: true } 
+          .row
+            .col-sm-6
+              .form-group
+                = f.text_field :name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.user.name')
+            .col-sm-6
+              .form-group
+                = f.text_field :last_name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.user.last_name')
           .form-group
-            = label_tag(:name, {},{class: "sr-only"})
-            = text_field_tag(:name, nil, class: 'form-control', placeholder: "Nombres")
-          .form-group
-            = label_tag(:lastname1, {},{class: "sr-only"})
-            = text_field_tag(:lastname1, nil, class: 'form-control', placeholder: "Primer Apellido")            
-          .form-group
-            = label_tag(:lastname2, {},{class: "sr-only"})
-            = text_field_tag(:lastname2, nil, class: 'form-control', placeholder: "Segundo Apellido")
-          .form-group
-            = label_tag(:email, {},{class: "sr-only"})
-            = email_field_tag(:email, nil, class: 'form-control', placeholder: "Correo Electronico")
+            =# f.email_field :email, class: 'form-control', hide_label: true, placeholder: t('user.login.email_placeholder'), autofocus: true
           .row#pwd-container
-            .col-xs-6
+            .col-sm-6
               .form-group
                 = label_tag(:password, {},{class: "sr-only"})
-                = password_field_tag(:password, nil, class: 'form-control', placeholder: "Contraseña")
-            .col-xs-6
+                = f.password_field :password, class: 'form-control', autocomplete: 'off', hide_label: true, placeholder: t('user.login.password_placeholder')
+              .form-group
+                = label_tag(:password, {},{class: "sr-only"})
+                = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', hide_label: true, placeholder: t('user.login.password_confirmation_placeholder')
+            .col-sm-6
               .pwstrength_viewport_progress
               .pwstrength_viewport_errors
           .row
-            .col-xs-6
+            .col-sm-6
+              = f.select :gender, User::Gender.invert, {include_blank: t('activerecord.attributes.user.gender'), hide_label: true}, { required: true }
+          .row
+            .col-sm-6
               .form-group
-                = label_tag(:password, {},{class: "sr-only"})
-                = password_field_tag(:password, nil, class: 'form-control', placeholder: "Confirmar Contraseña")
-            .col-xs-6
-          .form-group
-            = label_tag(:dui, {},{class: "sr-only"})
-            = text_field_tag(:dui, nil, class: 'form-control', placeholder: "Número de DUI")
-          .form-group
-            = label_tag(:nit, {},{class: "sr-only"})
-            = text_field_tag(:nit, nil, class: 'form-control', placeholder: "Número de NIT")
-          .form-group
-            = label_tag(:nup, {},{class: "sr-only"})
-            = text_field_tag(:nup, nil, class: 'form-control', placeholder: "Número de NUP")
+                = f.text_field :birthday, class: 'form-control datepicker required', :"data-provide"=>"datepicker", :"data-date-format"=>"yyyy-mm-dd", hide_label: true, placeholder: t('activerecord.attributes.user.birthday'), required: true
+          .row
+            .col-sm-6
+              .form-group  
+                = f.text_field :phone, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.user.phone'), required: true
+            .col-sm-6
+              .form-group
+                = f.text_field :alt_phone, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.user.alt_phone')
+          .row
+            .col-sm-6
+              .form-group 
+                = f.select :document_type, User::DocumentType.invert, {include_blank: t('activerecord.attributes.user.document_type'), hide_label: true}, { required: true }
+            .col-sm-6
+              .form-group
+                = f.text_field :document_number, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.user.document_number')
+          .row
+            .col-sm-6
+              .form-group
+                = f.text_field :tax_id, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.user.tax_id') 
+          .row
+            .col-sm-12
+              .form-group
+                = f.text_area :address, placeholder: t('activerecord.attributes.user.address'), rows: 3, class: ""
+          %fieldset
+            %h4
+              Discapacidad
+            = f.fields_for :disabilities do |ff|
+              .row
+                .col-sm-5
+                  .form-group
+                    = ff.select :disability_type_id, @disability_types.collect {|a| [a.name, a.id]}, {include_blank: t('activerecord.attributes.employments/user_disability.disability_type_id'), hide_label: true}, { required: true }
+                 
+                .col-sm-5
+                  .form-group 
+                    = ff.select :disability_certification_id, @disability_certifications.collect {|a| [a.name, a.id]}, {include_blank: t('activerecord.attributes.employments/user_disability.disability_certification_id'), hide_label: true}, { required: true }
+                .col-sm-2
+                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                    %span.glyphicon.glyphicon-trash
+            = f.link_to_add :disabilities, class: 'btn btn-sm btn-success pull-right' do
+              Agregar discapacidad 
+              %span.glyphicon.glyphicon-plus        
+
         %h3 Información Académica
         %section
           %fieldset
-            Formación Académica
+            %h4
+              Formacion académica
 
-            .row
-              .col-xs-6
-                .form-group
-                  = label_tag(:institution, {},{class: "sr-only"})
-                  = text_field_tag(:institution, nil, class: 'form-control', placeholder: "Institución Educativa")
-              .col-xs-6
-                .form-group
-                  = label_tag(:career, {},{class: "sr-only"})
-                  = text_field_tag(:career, nil, class: 'form-control', placeholder: "Area de Estudio")
-            .row
-              .col-xs-3
-                .form-group
-                  = label_tag(:start_date, {},{class: "sr-only"})
-                  = text_field_tag(:start_date, nil, class: 'form-control', placeholder: "Fecha inicio")
-              .col-xs-3
-                .form-group
-                  = label_tag(:end_date, {},{class: "sr-only"})
-                  = text_field_tag(:end_date, nil, class: 'form-control', placeholder: "Fecha fin")
-              .col-xs-6
-                .form-group
-                  = label_tag(:document, {},{class: "sr-only"})
-                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
+            = f.fields_for :specialties do |ff|
+              .row
+                .col-sm-11
+                  .form-group
+                    = ff.select :name, ::Employments::UserSpecialty::AcademicGrade.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.name'), hide_label: true}, { required: true }
+              .row
+                .col-sm-11
+                  .form-group 
+                    = ff.text_field :esp_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.esp_name')
+              .row
+                .col-sm-11
+                  .form-group 
+                    = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.institution_name')
+              .row
+                .col-sm-11
+                  .form-group
+                    %label.control-label
+                      = t('activerecord.attributes.employments/user_specialty.certificate')
+                    = ff.file_field_without_bootstrap :certificate
 
+              .row
+                .col-sm-1
+                  Período
+                .col-sm-5
+                  = ff.date_select :start_at, { :discard_day => true, :start_year=>1960 }, { hide_label: true, class: 'form-control datetime-select required', required: true }
+                .col-sm-5 
+                  = ff.date_select :end_at, { :discard_day => true, :start_year=>1960 }, { hide_label: true, class: 'form-control datetime-select required', required: true }
+                .col-sm-1
+                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                    %span.glyphicon.glyphicon-trash
+            = f.link_to_add :specialties, class: 'btn btn-sm btn-success pull-right' do
+              Agregar grado 
+              %span.glyphicon.glyphicon-plus
+          
           %fieldset
-            Estudios
-            .row
-              .col-xs-6
-                .form-group
-                  = label_tag(:institution, {},{class: "sr-only"})
-                  = text_field_tag(:institution, nil, class: 'form-control', placeholder: "Institución Educativa")
-              .col-xs-6
-                .form-group
-                  = label_tag(:career, {},{class: "sr-only"})
-                  = text_field_tag(:career, nil, class: 'form-control', placeholder: "Area de Estudio")
-            .row
-              .col-xs-3
-                .form-group
-                  = label_tag(:start_date, {},{class: "sr-only"})
-                  = text_field_tag(:start_date, nil, class: 'form-control', placeholder: "Fecha inicio")
-              .col-xs-3
-                .form-group
-                  = label_tag(:end_date, {},{class: "sr-only"})
-                  = text_field_tag(:end_date, nil, class: 'form-control', placeholder: "Fecha fin")
-              .col-xs-6
-                .form-group
-                  = label_tag(:document, {},{class: "sr-only"})
-                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
+            %h4
+              Dominio de idiomas
+            = f.fields_for :languages do |ff|
+              .row
+                .col-sm-11
+                  .form-group
+                    = ff.select :name, ::Employments::UserLanguage::Languages.invert, {include_blank: t('activerecord.attributes.employments/user_language.name'), hide_label: true}, { required: true }
+
+                .col-sm-1
+                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                    %span.glyphicon.glyphicon-trash
+              .row
+                .col-sm-3
+                  = ff.select :read, ::Employments::UserLanguage::Ability.invert, {include_blank: t('activerecord.attributes.employments/user_language.read'), hide_label: true}, { required: true }
+                .col-sm-3
+                  = ff.select :write, ::Employments::UserLanguage::Ability.invert, {include_blank: t('activerecord.attributes.employments/user_language.write'), hide_label: true}, { required: true }
+                .col-sm-3
+                  = ff.select :speak, ::Employments::UserLanguage::Ability.invert, {include_blank: t('activerecord.attributes.employments/user_language.speak'), hide_label: true}, { required: true }
+            = f.link_to_add :languages, class: 'btn btn-sm btn-success pull-right' do
+              Agregar idioma 
+              %span.glyphicon.glyphicon-plus
+        %h3 Capacitaciones / Diplomas
+        %section
           %fieldset
-            Conocimientos especificos
-            .row
-              .col-xs-6
-                .form-group
-                  = label_tag(:institution, {},{class: "sr-only"})
-                  = text_field_tag(:institution, nil, class: 'form-control', placeholder: "Institución Educativa")
-              .col-xs-6
-                .form-group
-                  = label_tag(:career, {},{class: "sr-only"})
-                  = text_field_tag(:career, nil, class: 'form-control', placeholder: "Area de Estudio")
-            .row
-              .col-xs-3
-                .form-group
-                  = label_tag(:start_date, {},{class: "sr-only"})
-                  = text_field_tag(:start_date, nil, class: 'form-control', placeholder: "Fecha inicio")
-              .col-xs-3
-                .form-group
-                  = label_tag(:end_date, {},{class: "sr-only"})
-                  = text_field_tag(:end_date, nil, class: 'form-control', placeholder: "Fecha fin")
-              .col-xs-6
-                .form-group
-                  = label_tag(:document, {},{class: "sr-only"})
-                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
-          %fieldset
-            Dominio de idiomas
-            .row
-              .col-xs-4
-                .form-group
-                  = label_tag(:language, {},{class: "sr-only"})
-                  = text_field_tag(:language, nil, class: 'form-control', placeholder: "Idioma")
-              .col-xs-4
-                .form-group
-                  = label_tag(:level, {},{class: "sr-only"})
-                  = text_field_tag(:level, nil, class: 'form-control', placeholder: "Nivel")
-              .col-xs-4
-                .form-group
-                  = label_tag(:document, {},{class: "sr-only"})
-                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
+            %h4
+              Agregar capacitaciones o diplomas recibidos
+           
+            = f.fields_for :trainings do |ff|
+              .row
+                .col-sm-6
+                  .form-group
+                    = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.institution_name')
+                .col-sm-5
+                  .form-group
+                    = ff.text_field :name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.name')
+              .row
+                .col-sm-11
+                  .form-group
+                    = ff.text_area :description, placeholder: t('activerecord.attributes.employments/user_training.description'), rows: 3, class: "required"
+                  .form-group
+                    = ff.text_field :place, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.place')
+              .row
+                .col-sm-6
+                  .form-group
+                    = ff.text_field :duration, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.duration')
+                .col-sm-5
+                  .form-group
+                    = ff.text_field :year, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.year')
+                .col-sm-1
+                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                    %span.glyphicon.glyphicon-trash
+            
+            = f.link_to_add :trainings, class: 'btn btn-sm btn-success pull-right' do
+              Agregar capacitación 
+              %span.glyphicon.glyphicon-plus
+
         %h3 Información Experiencia
         %section
           %fieldset
-            Dominio de idiomas
-            .row
-              .col-xs-4
-                .form-group
-                  = label_tag(:language, {},{class: "sr-only"})
-                  = text_field_tag(:language, nil, class: 'form-control', placeholder: "Idioma")
-              .col-xs-4
-                .form-group
-                  = label_tag(:level, {},{class: "sr-only"})
-                  = text_field_tag(:level, nil, class: 'form-control', placeholder: "Nivel")
-              .col-xs-4
-                .form-group
-                  = label_tag(:document, {},{class: "sr-only"})
-                  = text_field_tag(:document, nil, class: 'form-control', placeholder: "Certificado")
+            %h4
+              Experiencia laboral
+            %br
+            = f.fields_for :work_experiences do |ff|
+              .row
+                .col-sm-5
+                  .form-group
+                    = ff.select :sector, ::Employments::UserWorkExperience::Sectors.invert, {include_blank: t('activerecord.attributes.employments/user_work_experience.sector'), hide_label: true}, { required: true }
+                .col-sm-5
+                  .form-group
+                    = ff.select :country_id, @countries.map{|c| [c.name, c.id]}, {include_blank: t('activerecord.attributes.employments/user_work_experience.country_id'), hide_label: true}, { required: true }
+              .row
+                .col-sm-5
+                  .form-group
+                    = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_work_experience.institution_name')
+                .col-sm-5
+                  .form-group
+                    = ff.text_field :charge, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_work_experience.charge')
+              .row
+                .col-sm-10
+                  .form-group
+                    = ff.text_area :description, rows: 3, placeholder: t('activerecord.attributes.employments/user_work_experience.description')
+              .row
+                .col-sm-1
+                  Periodo
+                .col-sm-5
+                  = ff.date_select :start_at, { :discard_day => true, :start_year=>1970 }, { hide_label: true, class: 'form-control datetime-select', required: true }
+                .col-sm-5
+                  = ff.date_select :end_at, { :discard_day => true, :start_year=>1970 }, { hide_label: true, class: 'form-control datetime-select', required: true }
+                  = ff.check_box :active
+                .col-sm-1
+                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                    %span.glyphicon.glyphicon-trash            
+            = f.link_to_add :work_experiences, class: 'btn btn-sm btn-success pull-right' do
+              Agregar experiencia 
+              %span.glyphicon.glyphicon-plus
+        
+        %h3 Referencias 
+        %section
+          %fieldset
+            %h4
+              Referencias Personales
+            %br
+            = f.fields_for :references do |ff|
+              .row
+                .col-sm-11
+                  .form-group
+                    = ff.text_field :name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.name')
+              .row
+                .col-sm-4
+                  .form-group
+                    = ff.text_field :charge, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.charge')
+                .col-sm-4
+                  .form-group
+                    = ff.select :type, ::Employments::UserReference::ReferenceType.invert, {include_blank: t('activerecord.attributes.employments/user_reference.type'), hide_label: true}, { required: true }
+                .col-sm-3
+                  .form-group
+                    = ff.text_field :phone, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.phone')
+              .row
+                .col-sm-11
+                  .form-group
+                    = ff.text_area :address, rows: 3, placeholder: t('activerecord.attributes.employments/user_reference.address')
+                .col-sm-1
+                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                    %span.glyphicon.glyphicon-trash
+              
+            
+            = f.link_to_add :references, class: 'btn btn-sm btn-success pull-right' do
+              Agregar referencia 
+              %span.glyphicon.glyphicon-plus

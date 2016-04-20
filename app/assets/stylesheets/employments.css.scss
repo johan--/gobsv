@@ -177,7 +177,6 @@ h2.header-title{
   font-size: 1.5em;
 }
 
-
 .nav > li > a:hover {
   background-color: #777777;
 }
@@ -238,6 +237,23 @@ h2.header-title{
   text-align: center;
 }
 
+.progress-job{
+  margin: 10px 0 40px;
+  .item-progress, .item-progress-active{
+    min-height: 360px;
+    background: url("./employments/bg-step.jpeg") no-repeat center center;
+    width: 16.5%;
+    float: left;
+    text-align: center;
+    margin: 20px 0;
+    img{
+      margin: 0 auto;
+    }
+  }
+  .item-progress-active{
+    background: url("./employments/bg-step-active.jpeg") no-repeat center center;
+  }
+}
 
 /* Overwrite navtab */
 
@@ -316,4 +332,33 @@ h2.header-title{
 
 .well {
   margin: 10px 0 0 0;
+}
+
+
+
+@media (max-width: 800px) {
+  .progress-job{
+    .item-progress, .item-progress-active{
+      min-height: 360px;
+      width: 150px;
+      float: left;
+    }
+    .item-progress-active{
+      background: url("./employments/bg-step-active.jpeg") no-repeat center center;
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .progress-job{
+    .item-progress, .item-progress-active{
+      min-height: 360px;
+      background: url("./employments/bg-step.jpeg") no-repeat center center;
+      width: 120px;
+    }
+    .item-progress-active{
+      background: url("./employments/bg-step-active.jpeg") no-repeat center center;
+    }
+  }
 }

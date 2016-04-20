@@ -1,0 +1,32 @@
+%h2
+  Acceder a tu cuenta
+%p 
+  Accede a tu cuenta para poder aplicar a plazas, empleos, pasantías en las instituciones del gobierno, sin cuello ni favores, procesos transparentes. Si no tienes una cuenta puedes crear una.
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  .form-group
+    = f.text_field :name, class: 'form-control', placeholder: t('activerecord.attributes.user.name')
+  .form-group
+    = f.text_field :last_name, class: 'form-control', placeholder: t('activerecord.attributes.user.last_name')
+  .form-group
+    = f.email_field :email, class: 'form-control', placeholder: t('user.login.email_placeholder'), autofocus: true
+  .row#pwd-container
+    .col-xs-6
+      .form-group
+        = label_tag(:password, {},{class: "sr-only"})
+        = f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: t('user.login.password_placeholder')
+      .form-group
+        = label_tag(:password, {},{class: "sr-only"})
+        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: t('user.login.password_confirmation_placeholder')
+    .col-xs-6
+      .pwstrength_viewport_progress
+      .pwstrength_viewport_errors
+  .row
+    .col-xs-12
+      = recaptcha_tags
+  %br
+  .row
+    .col-xs-12
+      = f.submit t('user.login.signup'), class: 'btn btn-blue btn-lg'
+  %br
+  %br
