@@ -89,7 +89,7 @@
                   .form-group 
                     = ff.select :disability_certification_id, @disability_certifications.collect {|a| [a.name, a.id]}, {include_blank: t('activerecord.attributes.employments/user_disability.disability_certification_id'), hide_label: true}, { required: true }
                 .col-sm-2
-                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right erase-row' do
                     %span.glyphicon.glyphicon-trash
             = f.link_to_add :disabilities, class: 'btn btn-sm btn-success pull-right' do
               Agregar discapacidad 

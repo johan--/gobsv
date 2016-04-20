@@ -9,7 +9,7 @@ class Employments::ResumesController < EmploymentsController
     @disability_certifications = ::Employments::DisabilityCertification.all
     @countries = ::Employments::Country.all
     add_breadcrumb 'Inicio', employments_root_url
-    add_breadcrumb "Curriculum", employments_jobs_url
+    add_breadcrumb "Curriculum"
   end
 
   def save
@@ -20,7 +20,7 @@ class Employments::ResumesController < EmploymentsController
     unless @success
       flash[:notice] = 'No se pudo actualizar la información'
       @errors = @user.errors.messages.to_json.html_safe
-      render :index
+      render :personal
     end
   end
 
@@ -45,9 +45,9 @@ class Employments::ResumesController < EmploymentsController
       :treatment,
       :address,
       references_attributes: [:id, :name, :charge, :address, :phone, :kind, :_destroy],
-      specialties_attributes: [:id, :name, :esp_name, :institution_name, :certificate, :start_at, :end_at, :_destroy],
+      specialties_attributes: [:id, :country, :name, :esp_name, :gra_code, :institution_name, :certificate, :start_at, :end_at, :_destroy],
       trainings_attributes: [:id, :institution_name, :name, :description, :place, :duration, :year, :_destroy],
-      work_experiences_attributes: [:institution_name, :charge, :description, :start_at, :end_at, :active, :_destroy],
+      work_experiences_attributes: [:id, :sector, :country, :institution_name, :charge, :description, :start_at, :end_at, :active, :_destroy],
       languages_attributes: [:id, :name, :read, :write, :speak, :_destroy],
       disabilities_attributes: [:id, :disability_type_id, :disability_certification_id, :_destroy]
     )

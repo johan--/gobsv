@@ -240,15 +240,49 @@ h2.header-title{
 .progress-job{
   margin: 10px 0 40px;
   .item-progress, .item-progress-active{
-    min-height: 360px;
+    min-height: 370px;
     background: url("./employments/bg-step.jpeg") no-repeat center center;
     width: 16.5%;
     float: left;
     text-align: center;
     margin: 20px 0;
+    position: relative;
     img{
       margin: 0 auto;
     }
+    .view-more{
+      width: 90%;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+    }
+    .description-selection-step1, .description-selection-step2, .description-selection-step3, .description-selection-step4, .description-selection-step5, .description-selection-step6{
+      margin-top: 80px;
+      text-align: center;
+      padding: 10px;
+      span{
+        color: #3C3C3C;
+        font-size: 12px;
+      }
+    }
+    .description-selection-step1{
+      color: #22B573;
+    } 
+    .description-selection-step2{
+      color: #0071BC;
+    } 
+    .description-selection-step3{
+      color: #D4145A;
+    } 
+    .description-selection-step4{
+      color: #E09721;
+    } 
+    .description-selection-step5{
+      color: #29AAE1;
+    } 
+    .description-selection-step6{
+      color: #603814;
+    } 
   }
   .item-progress-active{
     background: url("./employments/bg-step-active.jpeg") no-repeat center center;
@@ -334,8 +368,6 @@ h2.header-title{
   margin: 10px 0 0 0;
 }
 
-
-
 @media (max-width: 800px) {
   .progress-job{
     .item-progress, .item-progress-active{
@@ -348,7 +380,6 @@ h2.header-title{
     }
   }
 }
-
 
 @media (max-width: 768px) {
   .progress-job{

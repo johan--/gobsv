@@ -33,6 +33,8 @@ $(document).ready ->
       .hide()
       .fadeIn(550)
 
+
+
   form = $('form#resume-form').show()
 
   $('#user_birthday').datepicker
@@ -42,8 +44,6 @@ $(document).ready ->
   $("#user_tax_id").mask("9999-999999-999-9")
   
   $("select#user_document_type").on  "change", ->
-    console.log "-----"
-    console.log $("#user_document_type option:selected").val()
     if $(this).find(":selected").val() == "dui"
       alert "something"
       $("#user_document_number").mask("9999999-9")

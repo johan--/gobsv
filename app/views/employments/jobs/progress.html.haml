@@ -1,3 +1,4 @@
+
 .container
   .row
     .col-sm-12
@@ -10,15 +11,63 @@
       .progress-job
         .item-progress
           = image_tag("employments/step-1.jpeg", class: "img-responsive")
-          
-        .item-progress-active
-          = image_tag("employments/step-2.jpeg", class: "img-responsive")  
+          .description-selection-step1
+            %h4
+              Recepcion del CV
+            %span
+              140
+              recibidos
+          .view-more
+            = link_to "Ver detalle", nil, class: "btn btn-default"
+        .item-progress-active           
+          = image_tag("employments/step-2.jpeg", class: "img-responsive") 
+          .description-selection-step2
+            %h4
+              Seleccion del CV
+            %span
+              140
+              seleccionados
+          .view-more
+            = link_to "Ver detalle", nil, class: "btn btn-default"
         .item-progress
           = image_tag("employments/step-3.jpeg", class: "img-responsive")
+          .description-selection-step3
+            %h4
+              Entrevista ?
+            %span
+              Fecha estimada:
+              = "21 de agosto 2016"
+          .view-more
+            = link_to "Ver detalle", nil, class: "btn btn-default"
         .item-progress
           = image_tag("employments/step-4.jpeg", class: "img-responsive")
+          .description-selection-step4
+            %h4
+              Prueba Psicologica
+            %span
+              Fecha estimada:
+              = "25 de agosto 2016"
+          .view-more
+            = link_to "Ver detalle", nil, class: "btn btn-default"
         .item-progress
           = image_tag("employments/step-5.jpeg", class: "img-responsive")
+          .description-selection-step5
+            %h4
+              Pruebas Practicas
+            %span
+              Fecha estimada:
+              = "27 de agosto 2016"
+          .view-more
+            = link_to "Ver detalle", nil, class: "btn btn-default"
         .item-progress
-          = image_tag("employments/step-1.jpeg", class: "img-responsive")
+          = image_tag("employments/step-6.jpeg", class: "img-responsive")
+          .description-selection-step6
+            %h4
+              Selección Final
+            %span
+              Fecha estimada:
+              = "31 de agosto 2016"
+          .view-more
+            = link_to "Ver detalle", nil, class: "btn btn-default"
+
         .clearfix
