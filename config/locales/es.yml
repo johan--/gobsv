@@ -425,24 +425,24 @@ es:
         paper_products: Ahorro
         basic_services: Ahorro
         social_services: Ahorro
-        passages: Ahorro Total
-        training_services: Ahorro Total
-        ad_services: Ahorro Total
-        financial_expenses: Ahorro Total
-        transfers: Ahorro Total
-        investments: Ahorro Total
-        remuneration_audited: Remuneraciones
-        food_products_audited: Productos Alimenticios para Personas
-        fuels_products_audited: Combustibles y Lubricantes
-        paper_products_audited: Productos de Papel y Cartón
-        basic_services_audited: Servicios básicos
-        social_services_audited: Atenciones Sociales
-        passages_audited: Pasajes y Viáticos
-        training_services_audited: Servicios de Capacitación
-        ad_services_audited: Servicios de Publicidad
-        financial_expenses_audited: Primas y Gastos de Seguros de Bienes y Personas
-        transfers_audited: Transferencias Corrientes y de Capital
-        investments_audited: Inversiones en Activos Fijos
+        passages: Ahorro
+        training_services: Ahorro
+        ad_services: Ahorro
+        financial_expenses: Ahorro
+        transfers: Ahorro
+        investments: Ahorro
+        remuneration_audited: Ahorro auditado
+        food_products_audited: Ahorro auditado
+        fuels_products_audited: Ahorro auditado
+        paper_products_audited: Ahorro auditado
+        basic_services_audited: Ahorro auditado
+        social_services_audited: Ahorro auditado
+        passages_audited: Ahorro auditado
+        training_services_audited: Ahorro auditado
+        ad_services_audited: Ahorro auditado
+        financial_expenses_audited: Ahorro auditado
+        transfers_audited: Ahorro auditado
+        investments_audited: Ahorro auditado
         remuneration_explanation: Explicación de las Acciones Específicas Aplicadas
         remuneration_actions: ¿Qué se hizo con este ahorro?
         food_products_explanation: Explicación de las Acciones Específicas Aplicadas
@@ -510,7 +510,7 @@ es:
         charge: Cargo que desempeña
         address: Dirección
         phone: Teléfono
-        kind: Tipo de referencia
+        type: Tipo de referencia
       employments/user_specialty:
         name: Grado Académico
         esp_code: Unknown
