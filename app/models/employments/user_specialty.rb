@@ -3,6 +3,10 @@ class Employments::UserSpecialty < ActiveRecord::Base
 
   validates :name, :esp_name, :institution_name, :start_at, :end_at, presence: true
 
+  has_attached_file :certificate
+  do_not_validate_attachment_file_type :certificate
+
+
   AcademicGrade = {
     1 => "1° y 2° CICLO DE EDUCACION BASICA (6° GRADO)",
     2 => "3° CICLO DE EDUCACION BASICA (9° GRADO)",
