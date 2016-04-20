@@ -3,7 +3,7 @@ class Employments::ResumesController < EmploymentsController
   before_filter :prepare_search
   layout 'user/login'
 
-  def personal_resume
+  def personal
     @user = current_user
     @disability_types = ::Employments::DisabilityType.all
     @disability_certifications = ::Employments::DisabilityCertification.all
@@ -44,7 +44,7 @@ class Employments::ResumesController < EmploymentsController
       :user_edited,
       :treatment,
       :address,
-      references_attributes: [:id, :name, :charge, :address, :phone, :type, :_destroy],
+      references_attributes: [:id, :name, :charge, :address, :phone, :kind, :_destroy],
       specialties_attributes: [:id, :name, :esp_name, :institution_name, :certificate, :start_at, :end_at, :_destroy],
       trainings_attributes: [:id, :institution_name, :name, :description, :place, :duration, :year, :_destroy],
       work_experiences_attributes: [:institution_name, :charge, :description, :start_at, :end_at, :active, :_destroy],

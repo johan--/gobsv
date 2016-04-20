@@ -120,6 +120,7 @@
                     %label.control-label
                       = t('activerecord.attributes.employments/user_specialty.certificate')
                     = ff.file_field_without_bootstrap :certificate
+                    = link_to "Certificado", ff.object.certificate.url if ff.object.certificate.present?
 
               .row
                 .col-sm-1
@@ -249,7 +250,7 @@
                     = ff.text_field :charge, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.charge')
                 .col-sm-4
                   .form-group
-                    = ff.select :type, ::Employments::UserReference::ReferenceType.invert, {include_blank: t('activerecord.attributes.employments/user_reference.type'), hide_label: true}, { required: true }
+                    = ff.select :kind, ::Employments::UserReference::ReferenceType.invert, {include_blank: t('activerecord.attributes.employments/user_reference.kind'), hide_label: true}, { required: true }
                 .col-sm-3
                   .form-group
                     = ff.text_field :phone, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.phone')
