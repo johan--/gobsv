@@ -1,8 +1,0 @@
-<% if @success %>
-  window.location.replace("<%= user_root_url %>");
-<% else %>
-  form = $("form#resume-form");
-  errors = $.parseJSON("<%= j @errors %>");
-  new ErrorDisplayer(form, errors);
-  <% flash.discard %>
-<% end %>

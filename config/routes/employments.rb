@@ -28,10 +28,15 @@ constraints DomainConstraint.new(domain) do
         get :contact
         get :apply
       end
+      collection do
+        get :progress
+      end
     end
     resources :resumes, only: [:show] do
       collection do
         get :personal_resume
+      end
+      member do
         post :save
       end
     end

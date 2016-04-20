@@ -16,15 +16,11 @@ class User::DashboardController < UserController
     @user = User.find current_user.id
     @user.assign_attributes item_params
     @success = @user.save
-    respond_to do |format|
-      if @success
-        flash[:notice] = 'Curriculum actualizado con éxito'
-        format.js
-      else
-        flash[:notice] = 'No se pudo actualizar la información'
-        @errors = @user.errors.messages.to_json.html_safe
-        format.js
-      end
+    
+    unless @success
+      flash[:notice] = 'No se pudo actualizar la información'
+      @errors = @user.errors.messages.to_json.html_safe
+      render :index
     end
   end
 

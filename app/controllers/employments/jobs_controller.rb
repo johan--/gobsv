@@ -2,7 +2,7 @@ class Employments::JobsController < EmploymentsController
   respond_to :html, :js
   before_action :authenticate_user!, only: [:apply]
   before_action :define_params
-  before_action :get_job, except: [:index]
+  before_action :get_job, except: [:index, :progress]
   before_action :prepare_breadcrumb
 
   def index
