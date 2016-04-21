@@ -102,36 +102,37 @@
               Formacion académica
 
             = f.fields_for :specialties do |ff|
-              .row
-                .col-sm-11
-                  .form-group
-                    = ff.select :name, ::Employments::UserSpecialty::AcademicGrade.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.name'), hide_label: true}, { required: true }
-              .row
-                .col-sm-11
-                  .form-group 
-                    = ff.text_field :esp_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.esp_name')
-              .row
-                .col-sm-11
-                  .form-group 
-                    = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.institution_name')
-              .row
-                .col-sm-11
-                  .form-group
-                    %label.control-label
-                      = t('activerecord.attributes.employments/user_specialty.certificate')
-                    = ff.file_field_without_bootstrap :certificate
-                    = link_to "Certificado", ff.object.certificate.url if ff.object.certificate.present?
+              %div{id: "specialty-#{ff.options[:child_index]}"}
+                .row
+                  .col-sm-11
+                    .form-group
+                      = ff.select :name, ::Employments::UserSpecialty::AcademicGrade.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.name'), hide_label: true}, { required: true }
+                .row
+                  .col-sm-11
+                    .form-group 
+                      = ff.text_field :esp_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.esp_name')
+                .row
+                  .col-sm-11
+                    .form-group 
+                      = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.institution_name')
+                .row
+                  .col-sm-11
+                    .form-group
+                      %label.control-label
+                        = t('activerecord.attributes.employments/user_specialty.certificate')
+                      = ff.file_field_without_bootstrap :certificate
+                      = link_to "Certificado", ff.object.certificate.url if ff.object.certificate.present?
 
-              .row
-                .col-sm-1
-                  Período
-                .col-sm-5
-                  = ff.date_select :start_at, { :discard_day => true, :start_year=>1960 }, { hide_label: true, class: 'form-control datetime-select required', required: true }
-                .col-sm-5 
-                  = ff.date_select :end_at, { :discard_day => true, :start_year=>1960 }, { hide_label: true, class: 'form-control datetime-select required', required: true }
-                .col-sm-1
-                  = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
-                    %span.glyphicon.glyphicon-trash
+                .row
+                  .col-sm-1
+                    Período
+                  .col-sm-5
+                    = ff.date_select :start_at, { :discard_day => true, :start_year=>1960 }, { hide_label: true, class: 'form-control datetime-select required', required: true }
+                  .col-sm-5 
+                    = ff.date_select :end_at, { :discard_day => true, :start_year=>1960 }, { hide_label: true, class: 'form-control datetime-select required', required: true }
+                  .col-sm-1
+                    = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                      %span.glyphicon.glyphicon-trash
             = f.link_to_add :specialties, class: 'btn btn-sm btn-success pull-right' do
               Agregar grado 
               %span.glyphicon.glyphicon-plus

@@ -8,6 +8,7 @@
 #= require 'pwstrength-bootstrap'
 #= require 'jquery.validate.min'
 
+
 $(document).ready ->
 
   SHOW_CLASS = "show"
@@ -74,7 +75,7 @@ $(document).ready ->
         form.steps 'previous'
       return
     onFinishing: (event, currentIndex) ->
-      form.validate().settings.ignore = ':disabled'
+      form.validate().settings.ignore = ':disabled,:hidden'
       form.valid()
     onFinished: (event, currentIndex) ->
       form.submit()

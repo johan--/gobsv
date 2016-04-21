@@ -4,8 +4,9 @@ class Employments::UserSpecialty < ActiveRecord::Base
   validates :name, :esp_name, :institution_name, :start_at, :end_at, presence: true
 
   has_attached_file :certificate
-  do_not_validate_attachment_file_type :certificate
-
+  #do_not_validate_attachment_file_type :certificate
+  validates_attachment_presence :certificate
+  validates_attachment_content_type :certificate, content_type: ['application/pdf']
 
   AcademicGrade = {
     1 => "1° y 2° CICLO DE EDUCACION BASICA (6° GRADO)",

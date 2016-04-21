@@ -13,10 +13,13 @@ class Employments::ResumesController < EmploymentsController
   end
 
   def save
+    puts " ........... #{item_params.inspect}"
     @user = User.find current_user.id
     @user.assign_attributes item_params
     @success = @user.save
-    
+    params = {}
+    item_params = {}
+    puts "------------params #{params.inspect}\n -----------item_params #{item_params.inspect}"
     unless @success
       flash[:notice] = 'No se pudo actualizar la información'
       @errors = @user.errors.messages.to_json.html_safe
