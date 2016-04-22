@@ -50,7 +50,7 @@ class Employments::ResumesController < EmploymentsController
       references_attributes: [:id, :name, :charge, :address, :phone, :kind, :_destroy],
       specialties_attributes: [:id, :country, :name, :esp_name, :gra_code, :institution_name, :certificate, :start_at, :end_at, :_destroy],
       trainings_attributes: [:id, :institution_name, :name, :description, :place, :duration, :year, :_destroy],
-      work_experiences_attributes: [:id, :sector, :country, :institution_name, :charge, :description, :start_at, :end_at, :active, :_destroy],
+      work_experiences_attributes: [:id, :sector, :country_id, :institution_name, :charge, :description, :start_at, :end_at, :active, :_destroy],
       languages_attributes: [:id, :name, :read, :write, :speak, :_destroy],
       disabilities_attributes: [:id, :disability_type_id, :disability_certification_id, :_destroy]
     )

@@ -3,6 +3,8 @@ domain = 'empleos.localhost.com'          if Rails.env.development?
 domain = 'employments.localhost.com'          if Rails.env.development?
 domain = 'localhost.com'          if Rails.env.development?
 
+#post 'resumes/save', to: 'employments/resumes#save'
+
 constraints DomainConstraint.new(domain) do
   devise_for :users,
     controllers: {

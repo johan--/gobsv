@@ -33,8 +33,11 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :confirmation => true, :on => :create
   validates :password, :presence => true, :confirmation => true, :if => Proc.new{|o| o.password.present?}
 
-  #validates :tax_id, :presence => true, length: { is: 17 }, :unless => :create 
-  
+  #validates :tax_id, :presence => true, length: { is: 17 }, :unless => :create
+
+  # Callbacks
+  # after_save :send_user_info_to_api
+
   #User::Gender
   Gender = {
     '1' => 'Femenino',
@@ -50,7 +53,7 @@ class User < ActiveRecord::Base
   DocumentType = {
     :dui => 'DUI',
     :resident_card => 'Carnet de Residente',
-    :passport => 'Pasaporte'
+    #:passport => 'Pasaporte'
   }
 
   def self.new_with_session(params,session)
@@ -87,9 +90,47 @@ class User < ActiveRecord::Base
     user_authorization.user
   end
 
+  def gender_s
+    case gender
+    when '1'
+      return 'F'
+    else
+      return 'M'
+    end
+  end
+
+  def document_code
+    case document_type.to_s
+    when 'dui'
+      return 0
+    else
+      return 1
+    end
+  end
+
+  def document_number_clean(is_dui = true)
+    if is_dui
+      if document_type.to_s == 'dui'
+        document_number.gsub(/[^0-9]/i, '') rescue ""
+      else
+        ""
+      end
+    else
+      if document_type.to_s == 'dui'
+        ""
+      else
+        document_number.gsub(/[^0-9]/i, '') rescue ""
+      end
+    end
+  end
+
   private
   def password_required?
     new_record? ? super : false
-  end  
+  end
+
+  def send_user_info_to_api
+    SynchronizeUsersJob.perform_later self
+  end
 
 end
