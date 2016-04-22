@@ -7,6 +7,7 @@ constraints DomainConstraint.new(domain) do
     root to: 'welcome#index'
     resources :themes
     resources :entries
+    get '/calculator' => 'welcome#calculator'
     get '/download' => 'welcome#download'
   end
 end

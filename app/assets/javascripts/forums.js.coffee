@@ -10,6 +10,8 @@
 #= require 'main'
 #= require 'forums/twitterFetcher'
 #= require 'forums/jquery-queryParser.min'
+#= require 'chart.min'
+#= require 'jquery.validate.min'
 
 $(document).ready ->
   @mobileWeb = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i.test(navigator.userAgent)
