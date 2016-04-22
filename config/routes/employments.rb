@@ -19,9 +19,9 @@ constraints DomainConstraint.new(domain) do
       sign_out: 'logout',
       registration: 'register',
       sign_up: 'signup'
-    },
-    constraints: { subdomain: 'employments' },
-    defaults: { subdomain: 'employments' }
+    }#,
+    #constraints: { subdomain: 'employments' },
+    #defaults: { subdomain: 'employments' }
 
   scope module: 'employments', as: 'employments' do
     root to: 'dashboard#index'

@@ -4,15 +4,15 @@ class Employments::RegistrationsController < Devise::RegistrationsController
 
   layout 'user/login'
 
-  # POST /resource 
+  # POST /resource
   def create
     super do |resource|
       verify_recaptcha(model: resource, message: 'La verificación del reCAPTCHA es incorrecta, intente de nuevo.')
     end
   end
 
-  private   
-  
+  private
+
   def draw_breadcrumb
     add_breadcrumb 'Inicio', employments_jobs_url
     add_breadcrumb "Usuario"
@@ -23,14 +23,14 @@ class Employments::RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:name, :last_name)
   end
-  
+
   def after_sign_up_path_for(resource)
-    personal_resume_employments_resumes_url
+    personal_employments_resumes_url
   end
 
-  def after_inactive_sign_up_path_for(resource) 
+  def after_inactive_sign_up_path_for(resource)
     employments_jobs_url
-  end 
+  end
 
   def prepare_search
     @q = Employments::PublicCompetition.ransack(params[:q])
