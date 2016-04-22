@@ -63,7 +63,7 @@ class SynchronizeUsersJob < ActiveJob::Base
           'finMes' => s.end_at.month,
           'finAnio' => s.end_at.year,
           'certificado' => "#{Time.current.to_i}_#{s.certificate_file_name}",
-          'certificado_url' => "http://empleospublicos.gob.sv#{s.certificate.url(:original, timestamp: false)}"
+          'certificado_url' => "http://www.empleospublicos.gob.sv#{s.certificate.url(:original, timestamp: false)}"
         }
       }
       # First get a valid token
