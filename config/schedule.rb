@@ -20,27 +20,30 @@ set :output, "#{path}/log/cron.log"
 # Learn more: http://github.com/javan/whenever
 
 
-every :day, :at => '5:00am' do
+every :day, :at => '11:00am' do
+  rake "employments:import"
+end
+
+every :day, :at => '08:00pm' do
   rake "employments:import"
 end
 
 #every 30.minutes do
-#  rake "forums:articles" 
+#  rake "forums:articles"
 #end
 
 #every 120.minutes do
-#  rake "forums:retweets" 
+#  rake "forums:retweets"
 #end
 
 #every 60.minutes do
-#  rake "forums:documents" 
+#  rake "forums:documents"
 #end
 
 #every 300.minutes do
-#  rake "forums:videos" 
+#  rake "forums:videos"
 #end
 
 #every 300.minutes do
-#  rake "forums:facebook" 
+#  rake "forums:facebook"
 #end
-
