@@ -11,12 +11,26 @@
             %center
               =# image_tag('forums/logo_GA-01.png')
             %br
-            = bootstrap_form_tag url: forums_calculator_path, method: :get, label_errors: true do |f|
+            = form_tag forums_calculator_path, method: :get, class: "form-horizontal", id: "calculator-form" do
               .form-group
                 .input-group
                   .input-group-addon
                     %span.glyphicon.glyphicon-usd
-                  = f.number_field :wage, placeholder: t('.enter_wage'), autofocus: true, class: 'form-control', hide_label: true, value: params[:wage].to_f.abs, required: true
+                  = number_field_tag :wage, "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", placeholder: t('.enter_wage'), class: 'form-control'
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %span.glyphicon.glyphicon-user
+                  = select_tag "gender", options_for_select([["Hombre", :male], ["Mujer", :female]]), {prompt: t('.enter_gender'), class: "selectpicker form-control"}
+                 
+              .form-group
+                = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
+            -# bootstrap_form_tag url: forums_calculator_path, method: :get, html: {id: "calculator-sform"} do |f|
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %span.glyphicon.glyphicon-usd
+                  = f.number_field :wage, placeholder: t('.enter_wage'), autofocus: true, class: 'form-control', hide_label: true, value: "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", required: true, data: {:"fv-numeric-message"=>"Ingresa un número"}
               .form-group
                 .input-group
                   .input-group-addon
@@ -188,7 +202,7 @@
         .col-sm-6.col-md-6
           = image_tag("forums/analysis-03.png", class: "img-analysis")
           %p.analysis
-            = "La comisión por administración que reciben las AFP se reduce, por lo tanto, tienes recibirás más dinero."
+            = "La comisión por administración que reciben las AFP se reduce, por lo tanto, recibirás más dinero."
         .col-sm-6.col-md-6
           = image_tag("forums/analysis-04.png", class: "img-analysis")
           %p.analysis

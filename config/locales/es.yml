@@ -599,7 +599,7 @@ es:
     welcome:
       calculator:
         enter_wage: Ingresa tu salario actual
-        enter_gender: Sexo
+        enter_gender: Por favor selecciona tu sexo
         mixed_system: Sistema Mixto
         current_system: Sistema Actual
         reform: Reforma 
