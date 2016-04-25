@@ -1,12 +1,14 @@
 class Employments::UserSpecialty < ActiveRecord::Base
   belongs_to :user
 
-  validates :name, :esp_name, :institution_name, :start_at, :end_at, presence: true
+  validates :gra_code, :esp_code, :country_id, :institution_name, :start_at, :end_at, presence: true
 
   has_attached_file :certificate
   #do_not_validate_attachment_file_type :certificate
   validates_attachment_presence :certificate
   validates_attachment_content_type :certificate, content_type: ['application/pdf']
+
+  before_save :set_missing_data
 
   AcademicGrade = {
     1 => "1° y 2° CICLO DE EDUCACION BASICA (6° GRADO)",
@@ -25,5 +27,10 @@ class Employments::UserSpecialty < ActiveRecord::Base
     15 => "ESPECIALISTA EN ODONTOLOGIA",
     16 => "ESPECIALISTA EN MEDICINA"
   }
+
+  def set_missing_data
+    self.esp_name = ::Employments::Specialty.select(:esp_name).where(esp_code: self.esp_code).limit(1).first.try(:esp_name)
+    self.name = ::Employments::Specialty.select(:gra_name).where(gra_code: self.gra_code).limit(1).first.try(:gra_name)
+  end
 
 end

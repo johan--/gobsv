@@ -115,11 +115,11 @@
                 .row
                   .col-sm-11
                     .form-group
-                      = ff.select :name, ::Employments::UserSpecialty::AcademicGrade.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.name'), hide_label: true}, { required: true }
+                      = ff.select :gra_code, ::Employments::Specialty.order(:gra_name).uniq.pluck(:gra_name, :gra_code), {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true }
                 .row
                   .col-sm-11
                     .form-group
-                      = ff.text_field :esp_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.esp_name')
+                      = ff.select :esp_code, ::Employments::Specialty.order(:esp_name).uniq.pluck(:esp_name, :esp_code), {include_blank: t('activerecord.attributes.employments/user_specialty.esp_code'), hide_label: true}, { required: true }
                 .row
                   .col-sm-11
                     .form-group
