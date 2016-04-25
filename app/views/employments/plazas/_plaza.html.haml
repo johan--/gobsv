@@ -5,19 +5,19 @@
         .clip
           = image_tag("employments/icon-clip.png")
         .yellow
-          = truncate public_competition.institution_code, length: 7
+          = truncate plaza.institution_code, length: 7
       .col-xs-7
-        %div{id: "shareButtonLabelCount#{public_competition.id}"}
+        %div{id: "shareButtonLabelCount#{plaza.id}"}
         :javascript
-          $("#shareButtonLabelCount#{public_competition.id}").jsSocials({
-            url: "#{employments_job_url(public_competition)}",
-            text: "#{public_competition.post_name}",
+          $("#shareButtonLabelCount#{plaza.id}").jsSocials({
+            url: "#{employments_job_url(plaza)}",
+            text: "#{plaza.post_name}",
             showCount: true,
             showLabel: true,
             shares: ["twitter", "facebook", "googleplus", "linkedin"]
           })
         %h2
-          = public_competition.post_name
+          = plaza.post_name
 
   .row
     .col-xs-12
@@ -36,37 +36,37 @@
               %td
                 Institución:
               %td.p15
-                = public_competition.institution_name
-            - if public_competition.location.present?
+                = plaza.institution_name
+            - if plaza.location.present?
               %tr
                 %td
                   Ubicación:
                 %td.p15
-                  = public_competition.location
+                  = plaza.location
             %tr
               %td
                 Salario:
               %td.p15
-                = number_to_currency public_competition.salary
+                = number_to_currency plaza.salary
             %tr
               %td
                 Tipo de contratación:
               %td.p15
-                = public_competition.contract_type
+                = plaza.contract_type
             %tr
               %td
                 Vacantes:
               %td.p15
-                = public_competition.vacancies
+                = plaza.vacancies
             %tr
               %td
                 Fecha limite de inscripción:
-              %td.p15{ class: public_competition.plaza_state_id == 2 ? nil : 'text-danger' }
-                = l(public_competition.closing_registration, format: :date)
-                - if public_competition.plaza_state_id != 2
+              %td.p15{ class: plaza.plaza_state_id == 2 ? nil : 'text-danger' }
+                = l(plaza.closing_registration, format: :date)
+                - if plaza.plaza_state_id != 2
                   (Plazo finalizado)
                 %br
-                - case public_competition.plaza_state_id
+                - case plaza.plaza_state_id
                   - when 2
                     %span.label.label-success
                       Disponible
@@ -76,51 +76,51 @@
                   - when 4
                     %span.label.label-danger
                       Cerrado
-          - if public_competition.plaza_state_id == 4
+          - if plaza.plaza_state_id == 4
             .well
               %strong
                 Proceso cerrado
-              - if public_competition.closing_comment.present?
+              - if plaza.closing_comment.present?
                 %p
-                  = public_competition.closing_comment
-              - if public_competition.participants_number.to_i > 0
+                  = plaza.closing_comment
+              - if plaza.participants_number.to_i > 0
                 %p
                   Número de participantes:
-                  = public_competition.participants_number
-              - public_competition.contracts.each do |contract|
+                  = plaza.participants_number
+              - plaza.plaza_contracts.each do |contract|
                 %p
                   Persona contratada:
                   = contract.full_name
-          - if public_competition.mission.present?
+          - if plaza.mission.present?
             %br
             %div
               %strong= "Misión: "
               %br
-              = simple_format public_competition.mission
-          - if public_competition.function.present?
+              = simple_format plaza.mission
+          - if plaza.function.present?
             %br
             %div
               %strong= "Funciones básicas: "
               %br
-              = simple_format public_competition.function
-          - if public_competition.result.present?
+              = simple_format plaza.function
+          - if plaza.result.present?
             %br
             %div
               %strong= "Resultados principales: "
               %br
-              = simple_format public_competition.result
-          - if public_competition.frame.present?
+              = simple_format plaza.result
+          - if plaza.frame.present?
             %br
             %div
               %strong= "Marco de referencia: "
               %br
-              = simple_format public_competition.frame
-          - if public_competition.description.present?
+              = simple_format plaza.frame
+          - if plaza.description.present?
             %br
             %div
               %strong= "Otros aspectos: "
               %br
-              = simple_format public_competition.description
+              = simple_format plaza.description
 
           %br
           .row
@@ -135,59 +135,59 @@
                 = link_to 'Ver más', '#', class: "btn btn-primary btnNext"
 
         .tab-pane#perfil{role: 'tabpanel'}
-          - if public_competition.degrees.count > 0
+          - if plaza.plaza_degrees.count > 0
             %div
               %strong= "Grado académico: "
               %table
-                - public_competition.degrees.each do |degree|
+                - plaza.plaza_degrees.each do |degree|
                   %tr
                     %td.p15
                       %span.label{ class: degree.req_code.to_i == 1 ? 'label-info' : ( degree.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
                         = degree.req_name
                     %td.p15
                       = sanitize degree.gra_name
-          - if public_competition.specialties.count > 0
+          - if plaza.plaza_specialties.count > 0
             %br
             %div
               %strong= "Especialidades: "
               %table
-                - public_competition.specialties.each do |specialty|
+                - plaza.plaza_specialties.each do |specialty|
                   %tr
                     %td.p15
                       %span.label{ class: specialty.req_code.to_i == 1 ? 'label-info' : ( specialty.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
                         = specialty.req_name
                     %td.p15
                       = sanitize specialty.esp_name
-          - if public_competition.technical_competences.count > 0
+          - if plaza.plaza_skills.count > 0
             %br
             %div
               %strong= "Competencias técnicas: "
               %table
-                - public_competition.technical_competences.each do |competence|
+                - plaza.plaza_skills.each do |competence|
                   %tr
                     %td.p15
                       %span.label{ class: competence.req_code.to_i == 1 ? 'label-info' : ( competence.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
                         = competence.req_name
                     %td.p15
                       = sanitize competence.name
-          - if public_competition.languages.count > 0
+          - if plaza.plaza_languages.count > 0
             %br
             %div
               %strong= "Idiomas: "
               %table
-                - public_competition.languages.each do |language|
+                - plaza.plaza_languages.each do |language|
                   %tr
                     %td.p15
                       %span.label{ class: language.req_code.to_i == 1 ? 'label-info' : ( language.req_code.to_i == 2 ? 'label-primary' : 'label-default' ) }
                         = language.req_name
                     %td.p15
                       = sanitize language.idi_name
-          - if public_competition.experiences.count > 0
+          - if plaza.plaza_experiences.count > 0
             %br
             %div
               %strong= "Experiencia previa: "
               %table
-                - public_competition.experiences.each do |experience|
+                - plaza.plaza_experiences.each do |experience|
                   %tr
                     %td.p15
                       %span.label.label-default
@@ -210,7 +210,7 @@
         .tab-pane#criteria{role: 'tabpanel'}
           %h4
             Criterios de evaluación
-          - public_competition.factors.order(:order).each_with_index do |factor, i|
+          - plaza.plaza_factors.order(:order).each_with_index do |factor, i|
             - unless i == 0
               %br
             %strong
@@ -236,16 +236,16 @@
                 .btn-toolbar{role: "toolbar"}
                   .line.visible-lg-inline-block.visible-md-inline-block
                   .btn-group{role: "group"}
-                    - if public_competition.plaza_state_id == 2
-                      =# link_to "Aplicar", apply_employments_job_url(id: public_competition.id), class: "btn btn-primary"
-                      = link_to "Aplicar", contact_employments_job_url(public_competition), remote: true, class: "btn btn-primary"
+                    - if plaza.plaza_state_id == 2
+                      =# link_to "Aplicar", apply_employments_job_url(id: plaza.id), class: "btn btn-primary"
+                      = link_to "Aplicar", contact_employments_job_url(plaza), remote: true, class: "btn btn-primary"
                     - else
                       = link_to "Cerrar", employments_jobs_url, class: "btn btn-primary", data: { dismiss: 'modal' }
                   .line.visible-lg-inline-block.visible-md-inline-block
               .hidden-lg.hidden-md.text-centered
-                - if public_competition.plaza_state_id == 2
-                  =# link_to "Aplicar", apply_employments_job_url(id: public_competition.id), class: "btn btn-primary"
-                  = link_to "Aplicar", contact_employments_job_url(public_competition), remote: true, class: "btn btn-primary"
+                - if plaza.plaza_state_id == 2
+                  =# link_to "Aplicar", apply_employments_job_url(id: plaza.id), class: "btn btn-primary"
+                  = link_to "Aplicar", contact_employments_job_url(plaza), remote: true, class: "btn btn-primary"
                 - else
                   = link_to "Cerrar", employments_jobs_url, class: "btn btn-primary", data: { dismiss: 'modal' }
               %br

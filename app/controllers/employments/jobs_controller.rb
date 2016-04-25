@@ -7,7 +7,7 @@ class Employments::JobsController < EmploymentsController
 
   def index
     params[:q][:plaza_state_id_in] = ['2'] unless params[:q][:plaza_state_id_in].present?
-    @search = Employments::PublicCompetition
+    @search = Employments::Plaza
       .active
       .order(created_date: :desc)
     @search = @search.available if params[:q][:plaza_state_id_in].include?('2')
@@ -15,7 +15,7 @@ class Employments::JobsController < EmploymentsController
       .ransack(params[:q])
       .result(distinct: true)
       .paginate(page: params[:page], per_page: 5)
-    @search = Employments::PublicCompetition
+    @search = Employments::Plaza
       .select(:institution_id, :institution_name, :institution_code)
       .active
       .uniq(:institution_id)
@@ -39,7 +39,7 @@ class Employments::JobsController < EmploymentsController
       params[:q] ||= {}
     end
     def get_job
-      @job = Employments::PublicCompetition.active.find(params[:id])
+      @job = Employments::Plaza.active.find(params[:id])
       redirect_to employments_jobs_url and return unless @job
     end
     def prepare_breadcrumb

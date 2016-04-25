@@ -238,7 +238,7 @@ Devise.setup do |config|
 
   _keys = SocialKeys[Rails.env.to_sym]
 
-  config.omniauth :facebook,      _keys[:facebook_key], _keys[:facebook_secret], { scope: 'email, publish_actions, user_birthday' }
+  config.omniauth :facebook,      _keys[:facebook_key], _keys[:facebook_secret], { scope: 'email' }
   config.omniauth :twitter,       _keys[:twitter_key],  _keys[:twitter_secret]
   config.omniauth :google_oauth2, _keys[:google_key],   _keys[:google_secret]
   config.omniauth :github,        _keys[:github_key],   _keys[:github_secret],   { scope: 'user' }

@@ -21,7 +21,7 @@ namespace :employments do
       # Get factors
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaFactores', access_token
       jsons.each do |json|
-        obj = Employments::Factor.where(factor_id: json[:idFactor], plaza_id: json[:idPlaza]).first_or_initialize
+        obj = Employments::PlazaFactor.where(factor_id: json[:idFactor], plaza_id: json[:idPlaza]).first_or_initialize
         obj.name = json[:nombreFactor]
         obj.factor_score_id = json[:idFactorPuntaje]
         obj.minimum_score = json[:FactorPuntajeMinimo]
@@ -42,7 +42,7 @@ namespace :employments do
       # Get degrees
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Grado', access_token
       jsons.each do |json|
-        obj = Employments::Degree.where(id: json[:idCorrelativo]).first_or_initialize
+        obj = Employments::PlazaDegree.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
         obj.gra_code = json[:GRA_CODIGO]
         obj.gra_name = json[:GRA_NOMBRE]
@@ -53,7 +53,7 @@ namespace :employments do
       # Get experiences
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Experiencia', access_token
       jsons.each do |json|
-        obj = Employments::Experience.where(id: json[:idCorrelativo]).first_or_initialize
+        obj = Employments::PlazaExperience.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
         obj.exp_code = json[:EXP_CODIGO]
         obj.exp_name = json[:EXP_NOMBRE]
@@ -63,7 +63,7 @@ namespace :employments do
       # Get languages
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Idioma', access_token
       jsons.each do |json|
-        obj = Employments::Language.where(id: json[:idCorrelativo]).first_or_initialize
+        obj = Employments::PlazaLanguage.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
         obj.idi_code = json[:IDI_CODIGO]
         obj.idi_name = json[:IDI_NOMBRE]
@@ -74,7 +74,7 @@ namespace :employments do
       # Get specialties
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Especialidad', access_token
       jsons.each do |json|
-        obj = Employments::Specialty.where(id: json[:idCorrelativo]).first_or_initialize
+        obj = Employments::PlazaSpecialty.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
         obj.esp_code = json[:ESP_CODIGO]
         obj.esp_name = json[:ESP_NOMBRE]
@@ -85,18 +85,18 @@ namespace :employments do
       # Get technical competences
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_CompTecnica', access_token
       jsons.each do |json|
-        obj = Employments::TechnicalCompetence.where(id: json[:idCorrelativo]).first_or_initialize
+        obj = Employments::PlazaSkill.where(id: json[:idCorrelativo]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
         obj.name = json[:TEC_NOMBRE]
         obj.req_code = json[:REQ_CODIGO]
         obj.req_name = json[:REQ_NOMBRE]
         obj.save
       end
-      # Get public competitions
-      Employments::PublicCompetition.update_all(active: false)
+      # Get plazas
+      Employments::Plaza.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaConcursosPublicos', access_token
       jsons.each do |json|
-        obj = Employments::PublicCompetition.where(identifier: json[:Identificador]).first_or_initialize
+        obj = Employments::Plaza.where(identifier: json[:Identificador]).first_or_initialize
         obj.post_name = json[:nombrePuesto]
         obj.convocation_id = json[:idConvocatoria]
         obj.convocation_name = json[:nombreConvocatoria]
@@ -136,15 +136,84 @@ namespace :employments do
       # Get contracts
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/Contratos', access_token
       jsons.each do |json|
-        obj = Employments::Contract.where(id: json[:idContrato]).first_or_initialize
+        obj = Employments::PlazaContract.where(id: json[:idContrato]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
         obj.name = json[:nombre]
         obj.last_name = json[:apellido]
         obj.save
       end
-      UserMailer.report_employments_import(Time.current.strftime('%d/%m/%Y %H:%M:%S'), false).deliver
+      # Get postulants
+      Employments::Postulant.update_all(active: false)
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/ConcursoPostulante', access_token
+      jsons.each do |json|
+        obj = Employments::Postulant.where(id: json[:idConcursoPostulante]).first_or_initialize
+        obj.sttp_id = json[:idUsuario]
+        obj.plaza_id = json[:idPlaza]
+        obj.identifier = json[:Identificador]
+        obj.postulant_code = json[:CodigoPostulante]
+        obj.postulant_state_competition = json[:idEstadoConcursoPostulante]
+        obj.qualified = json[:Calificado]
+        obj.vb_training = json[:vbFormacion]
+        obj.vb_skills = json[:vbConocimientos]
+        obj.vb_experiences = json[:vbExperiencia]
+        obj.created_user = json[:usuarioCreacion]
+        obj.created_date = json[:fechaCreacion]
+        obj.updated_user = json[:usuarioModificacion]
+        obj.updated_date = json[:fechaModificacion]
+        obj.postulant_evaluations = json[:PostulanteEvaluaciones]
+        obj.technical_comments = json[:TecnicoComentario]
+        obj.save
+      end
+      # Get especialties catalog
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaEspecialidades', access_token
+      jsons.each do |json|
+        obj = Employments::Specialty.where(esp_code: json[:ESP_CODIGO], gra_code: json[:GRA_CODIGO]).first_or_initialize
+        obj.esp_name = json[:ESP_NOMBRE]
+        obj.gra_name = json[:GRA_NOMBRE]
+        obj.save
+      end
+      # Get ContadorAplicarPlaza
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/ContadorAplicarPlaza', access_token
+      jsons.each do |json|
+        Employments::Plaza.where(plaza_id: json[:idPlaza]).update_all(stpp_apply_counter: json[:cont])
+      end
+      # Get api/TecnicoComentario
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/TecnicoComentario', access_token
+      Employments::PostulantComment.update_all(active: false)
+      jsons.each do |json|
+        obj = Employments::PostulantComment.where(id: json[:idTecnicoComentario]).first_or_initialize
+        obj.comment = json[:comentario]
+        obj.commented_at = json[:fecha]
+        obj.sttp_id = json[:usuario]
+        obj.postulant = json[:ConcursoPostulante]
+        obj.active = true
+        obj.save
+      end
+      # Get api/PostulanteEvaluaciones
+      jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/PostulanteEvaluaciones', access_token
+      Employments::PostulantEvaluation.update_all(active: false)
+      jsons.each do |json|
+        obj = Employments::PostulantEvaluation.where(id: json[:idPostulanteCompetencias]).first_or_initialize
+        obj.postulant_skill_id = json[:idPostulanteCompetencias]
+        obj.configuration_id = json[:idConfiguracionCalificacion]
+        obj.factor_id = json[:idFactor]
+        obj.name = json[:nombreEvaluacion]
+        obj.weight = json[:peso]
+        obj.calification = json[:calificacion]
+        obj.assigned_score = json[:puntajeAsignado]
+        obj.obtained_score = json[:puntajeObtenido]
+        obj.created_user = json[:usuarioCreacion]
+        obj.created_date = json[:fechaCreacion]
+        obj.updated_user = json[:usuarioModificacion]
+        obj.updated_date = json[:fechaModificacion]
+        obj.postulant = json[:ConcursoPostulante]
+        obj.active = true
+        obj.save
+      end
+      #UserMailer.report_employments_import(Time.current.strftime('%d/%m/%Y %H:%M:%S'), false).deliver
     rescue Exception => e
-      UserMailer.report_employments_import(e, true).deliver
+      #UserMailer.report_employments_import(e, true).deliver
+      puts e
     end
   end
 
@@ -155,6 +224,7 @@ namespace :employments do
     res = Net::HTTP.start(uri.hostname, uri.port) {|http|
       http.request(req)
     }
+    puts res.inspect
     jsons = JSON.parse(res.body, symbolize_names: true)
   end
 

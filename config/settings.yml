@@ -35,6 +35,6 @@ modules:
   - reports
 
 sapt:
-  username: 'test'
-  password: 'test'
-  grant_type: 'test'
+  username: ''
+  password: ''
+  grant_type: ''

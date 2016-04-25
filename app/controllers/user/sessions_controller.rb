@@ -8,6 +8,6 @@ class User::SessionsController < Devise::SessionsController
   end
 
   def prepare_search
-    @q = Employments::PublicCompetition.ransack(params[:q])
+    @q = Employments::Plaza.ransack(params[:q])
   end
 end

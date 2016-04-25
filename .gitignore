@@ -18,6 +18,7 @@
 /.git
 
 /config/config.yml
+/config/settings.yml
 /config/database.yml
 /config/social_keys.yml
 /config/deploy

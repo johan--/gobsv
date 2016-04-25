@@ -9,7 +9,7 @@
 
         .row
           .col-sm-12
-            = link_to omniauth_authorize_path('user', :facebook), class: 'btn btn-dark-blue' do
+            = link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-dark-blue' do
               %span.icon-facebook
               = t('.signin_with', provider: t('.facebook'))
           -#
@@ -40,7 +40,7 @@
         =# f.submit t('.signup'), class: 'center-block btn btn-blue btn-lg'
 
 
-    
+
 
   #password.animated.flipInX{ class: controller.controller_name == 'passwords' ? 'show' : 'hide' }
     %p

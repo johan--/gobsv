@@ -25,5 +25,5 @@ class Employments::UserSpecialty < ActiveRecord::Base
     15 => "ESPECIALISTA EN ODONTOLOGIA",
     16 => "ESPECIALISTA EN MEDICINA"
   }
-  
+
 end

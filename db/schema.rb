@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421162841) do
+ActiveRecord::Schema.define(version: 20160424033752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,33 +187,11 @@ ActiveRecord::Schema.define(version: 20160421162841) do
     t.datetime "updated_at"
   end
 
-  create_table "employments_contracts", force: :cascade do |t|
-    t.integer  "plaza_id"
-    t.string   "name",       limit: 255
-    t.string   "last_name",  limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "employments_contracts", ["plaza_id"], name: "index_employments_contracts_on_plaza_id", using: :btree
-
   create_table "employments_countries", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "employments_degrees", force: :cascade do |t|
-    t.integer  "plaza_id"
-    t.string   "gra_code",   limit: 255
-    t.string   "gra_name",   limit: 255
-    t.string   "req_code",   limit: 255
-    t.string   "req_name",   limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "employments_degrees", ["plaza_id"], name: "index_employments_degrees_on_plaza_id", using: :btree
 
   create_table "employments_disability_certifications", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -227,7 +205,29 @@ ActiveRecord::Schema.define(version: 20160421162841) do
     t.datetime "updated_at"
   end
 
-  create_table "employments_experiences", force: :cascade do |t|
+  create_table "employments_plaza_contracts", force: :cascade do |t|
+    t.integer  "plaza_id"
+    t.string   "name",       limit: 255
+    t.string   "last_name",  limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_plaza_contracts", ["plaza_id"], name: "index_employments_plaza_contracts_on_plaza_id", using: :btree
+
+  create_table "employments_plaza_degrees", force: :cascade do |t|
+    t.integer  "plaza_id"
+    t.string   "gra_code",   limit: 255
+    t.string   "gra_name",   limit: 255
+    t.string   "req_code",   limit: 255
+    t.string   "req_name",   limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_plaza_degrees", ["plaza_id"], name: "index_employments_plaza_degrees_on_plaza_id", using: :btree
+
+  create_table "employments_plaza_experiences", force: :cascade do |t|
     t.integer  "plaza_id"
     t.string   "exp_code",        limit: 255
     t.string   "exp_name",        limit: 255
@@ -236,9 +236,9 @@ ActiveRecord::Schema.define(version: 20160421162841) do
     t.datetime "updated_at"
   end
 
-  add_index "employments_experiences", ["plaza_id"], name: "index_employments_experiences_on_plaza_id", using: :btree
+  add_index "employments_plaza_experiences", ["plaza_id"], name: "index_employments_plaza_experiences_on_plaza_id", using: :btree
 
-  create_table "employments_factors", force: :cascade do |t|
+  create_table "employments_plaza_factors", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.integer  "factor_score_id"
     t.integer  "plaza_id"
@@ -250,9 +250,9 @@ ActiveRecord::Schema.define(version: 20160421162841) do
     t.integer  "factor_id"
   end
 
-  add_index "employments_factors", ["plaza_id"], name: "index_employments_factors_on_plaza_id", using: :btree
+  add_index "employments_plaza_factors", ["plaza_id"], name: "index_employments_plaza_factors_on_plaza_id", using: :btree
 
-  create_table "employments_languages", force: :cascade do |t|
+  create_table "employments_plaza_languages", force: :cascade do |t|
     t.integer  "plaza_id"
     t.string   "idi_code",   limit: 255
     t.string   "idi_name",   limit: 255
@@ -262,9 +262,32 @@ ActiveRecord::Schema.define(version: 20160421162841) do
     t.datetime "updated_at"
   end
 
-  add_index "employments_languages", ["plaza_id"], name: "index_employments_languages_on_plaza_id", using: :btree
+  add_index "employments_plaza_languages", ["plaza_id"], name: "index_employments_plaza_languages_on_plaza_id", using: :btree
 
-  create_table "employments_public_competitions", force: :cascade do |t|
+  create_table "employments_plaza_skills", force: :cascade do |t|
+    t.integer  "plaza_id"
+    t.text     "name"
+    t.string   "req_code",   limit: 255
+    t.string   "req_name",   limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_plaza_skills", ["plaza_id"], name: "index_employments_plaza_skills_on_plaza_id", using: :btree
+
+  create_table "employments_plaza_specialties", force: :cascade do |t|
+    t.integer  "plaza_id"
+    t.string   "esp_code",   limit: 255
+    t.string   "esp_name",   limit: 255
+    t.string   "req_code",   limit: 255
+    t.string   "req_name",   limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employments_plaza_specialties", ["plaza_id"], name: "index_employments_plaza_specialties_on_plaza_id", using: :btree
+
+  create_table "employments_plazas", force: :cascade do |t|
     t.string   "identifier",              limit: 255
     t.string   "post_name",               limit: 255
     t.string   "convocation_id",          limit: 255
@@ -302,32 +325,70 @@ ActiveRecord::Schema.define(version: 20160421162841) do
     t.string   "contract_type",           limit: 255
     t.integer  "participants_number"
     t.text     "closing_comment"
+    t.integer  "stpp_apply_counter",                                           default: 0
+    t.integer  "spta_apply_counter",                                           default: 0
   end
 
-  add_index "employments_public_competitions", ["plaza_id"], name: "index_employments_public_competitions_on_plaza_id", using: :btree
+  add_index "employments_plazas", ["plaza_id"], name: "index_employments_plazas_on_plaza_id", using: :btree
+
+  create_table "employments_postulant_comments", force: :cascade do |t|
+    t.boolean  "active",       default: true
+    t.text     "comment"
+    t.date     "commented_at"
+    t.integer  "stpp_id"
+    t.jsonb    "postulant"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "employments_postulant_evaluations", force: :cascade do |t|
+    t.boolean  "active",             default: true
+    t.integer  "postulant_skill_id"
+    t.integer  "configuration_id"
+    t.integer  "factor_id"
+    t.text     "name"
+    t.float    "weight"
+    t.float    "calification"
+    t.float    "assigned_score"
+    t.float    "obtained_score"
+    t.integer  "created_user"
+    t.datetime "created_date"
+    t.integer  "updated_user"
+    t.datetime "updated_date"
+    t.jsonb    "postulant"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  create_table "employments_postulants", force: :cascade do |t|
+    t.integer  "sttp_id"
+    t.integer  "plaza_id"
+    t.string   "identifier"
+    t.string   "postulant_code"
+    t.integer  "postulant_state_competition"
+    t.boolean  "qualified"
+    t.boolean  "vb_training"
+    t.boolean  "vb_skills"
+    t.boolean  "vb_experiences"
+    t.integer  "created_user"
+    t.date     "created_date"
+    t.integer  "updated_user"
+    t.date     "updated_date"
+    t.jsonb    "postulant_evaluations",       default: [],                array: true
+    t.jsonb    "technical_comments",          default: [],                array: true
+    t.boolean  "active",                      default: true
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
 
   create_table "employments_specialties", force: :cascade do |t|
-    t.integer  "plaza_id"
-    t.string   "esp_code",   limit: 255
-    t.string   "esp_name",   limit: 255
-    t.string   "req_code",   limit: 255
-    t.string   "req_name",   limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "esp_code"
+    t.string   "esp_name"
+    t.string   "gra_code"
+    t.string   "gra_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "employments_specialties", ["plaza_id"], name: "index_employments_specialties_on_plaza_id", using: :btree
-
-  create_table "employments_technical_competences", force: :cascade do |t|
-    t.integer  "plaza_id"
-    t.text     "name"
-    t.string   "req_code",   limit: 255
-    t.string   "req_name",   limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "employments_technical_competences", ["plaza_id"], name: "index_employments_technical_competences_on_plaza_id", using: :btree
 
   create_table "employments_user_disabilities", force: :cascade do |t|
     t.integer  "user_id"

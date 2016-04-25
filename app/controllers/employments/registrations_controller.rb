@@ -33,6 +33,6 @@ class Employments::RegistrationsController < Devise::RegistrationsController
   end
 
   def prepare_search
-    @q = Employments::PublicCompetition.ransack(params[:q])
+    @q = Employments::Plaza.ransack(params[:q])
   end
 end

@@ -23,16 +23,19 @@
 
       %ul.nav.navbar-nav.navbar-right
         %li
-          = mail_to 'info@gobiernoabierto.gob.sv' do
+          = mail_to 'info@gobiernoabierto.gob.sv', title: 'Contáctenos' do
             = icon('envelope')
-        -#
+        - if current_user.nil?
           %li
-            - if current_user.nil?
-              = link_to new_user_session_url do
-                = icon('user')
-            - else
-              = link_to destroy_user_session_url(current_user) do
-                = icon('user')
+            = link_to new_user_session_url, title: "Iniciar sesión" do
+              = icon('sign-in')
+        - else
+          %li
+            = link_to personal_employments_resumes_url, title: "Mi perfil" do
+              = icon('user')
+          %li
+            = link_to destroy_user_session_url, title: "Cerrar sesión" do
+              = icon('power-off')
         -#
           %li
             = link_to nil do

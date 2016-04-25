@@ -40,7 +40,7 @@ module Ta
 
       @audio    = Ta::Article.publish.audio_layout.newer.first
 
-      @jobs = Employments::PublicCompetition.active.available.order(created_date: :desc).limit(3)
+      @jobs = Employments::Plaza.active.available.order(created_date: :desc).limit(3)
 
       if @article.audio?
         client = Soundcloud.new(

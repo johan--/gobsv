@@ -27,7 +27,7 @@
             = "Todos los empleos públicos disponibles"
         .job-list
           - if @jobs.count > 0
-            = render collection: @jobs, partial: 'employments/public_competitions/list_public_competition'
+            = render collection: @jobs, partial: 'employments/plazas/list_plaza'
             %center
               = will_paginate @jobs, renderer: BootstrapPagination::Rails
           - else

@@ -31,8 +31,7 @@ class Employments::ResumesController < EmploymentsController
     params.require(:user).permit(
       :name,
       :last_name,
-      :password,
-      :password_confirmation,
+      :email,
       :gender,
       :birthday,
       :status,
@@ -47,8 +46,9 @@ class Employments::ResumesController < EmploymentsController
       :user_edited,
       :treatment,
       :address,
+      :country_id,
       references_attributes: [:id, :name, :charge, :address, :phone, :kind, :_destroy],
-      specialties_attributes: [:id, :country, :name, :esp_name, :gra_code, :institution_name, :certificate, :start_at, :end_at, :_destroy],
+      specialties_attributes: [:id, :country_id, :name, :esp_name, :gra_code, :institution_name, :certificate, :start_at, :end_at, :_destroy],
       trainings_attributes: [:id, :institution_name, :name, :description, :place, :duration, :year, :_destroy],
       work_experiences_attributes: [:id, :sector, :country_id, :institution_name, :charge, :description, :start_at, :end_at, :active, :_destroy],
       languages_attributes: [:id, :name, :read, :write, :speak, :_destroy],
@@ -59,7 +59,7 @@ class Employments::ResumesController < EmploymentsController
   protected
 
   def prepare_search
-    @q = Employments::PublicCompetition.ransack(params[:q])
+    @q = Employments::Plaza.ransack(params[:q])
   end
 
 end

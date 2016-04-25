@@ -1,0 +1,42 @@
+.job
+  .job-title
+    = list_plaza.post_name
+  .row
+    .col-xs-5
+      %p
+        = "Institución: "
+        = list_plaza.institution_name
+      - if list_plaza.location.present?
+        %p
+          = "Departamento: "
+          = list_plaza.location.split(',')[1].strip rescue ''
+      %p
+        = "Salario: "
+        = number_to_currency(list_plaza.salary)
+      %p
+        = "Vacantes: "
+        = list_plaza.vacancies
+      %p
+        = "Fecha limite de inscripción: "
+        = l(list_plaza.closing_registration, format: :date)
+      %p
+        .btn-toolbar{role: "toolbar"}
+          .row
+            .col-xs-12
+              .btn-group{role: "group"}
+                = link_to "Ver detalle", employments_job_url(list_plaza), remote: true, class: "btn btn-primary"
+    .col-xs-7
+      %div
+        = "Descripción: "
+        %br
+        = list_plaza.description.present? ? simple_format(list_plaza.description) : 'Ninguno'
+      %br
+      #shareButtonLabelCount{class: "list_plaza-#{list_plaza_counter}"}
+      :javascript
+        $('.list_plaza-#{list_plaza_counter}').jsSocials({
+          url: "#{employments_job_url(list_plaza)}",
+          text: "#{list_plaza.post_name}",
+          showCount: true,
+          showLabel: true,
+          shares: ["twitter", "facebook", "googleplus", "linkedin"]
+        })
