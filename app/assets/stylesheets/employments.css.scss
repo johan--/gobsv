@@ -241,7 +241,7 @@ h2.header-title{
   margin: 10px 0 40px;
   .item-progress, .item-progress-active{
     min-height: 370px;
-    background: url("./employments/bg-step.jpeg") no-repeat center center;
+    background: image-url("employments/bg-step.jpeg") no-repeat center center;
     width: 16.5%;
     float: left;
     text-align: center;
@@ -267,25 +267,25 @@ h2.header-title{
     }
     .description-selection-step1{
       color: #22B573;
-    } 
+    }
     .description-selection-step2{
       color: #0071BC;
-    } 
+    }
     .description-selection-step3{
       color: #D4145A;
-    } 
+    }
     .description-selection-step4{
       color: #E09721;
-    } 
+    }
     .description-selection-step5{
       color: #29AAE1;
-    } 
+    }
     .description-selection-step6{
       color: #603814;
-    } 
+    }
   }
   .item-progress-active{
-    background: url("./employments/bg-step-active.jpeg") no-repeat center center;
+    background: image-url("employments/bg-step-active.jpeg") no-repeat center center;
   }
 }
 
@@ -376,7 +376,7 @@ h2.header-title{
       float: left;
     }
     .item-progress-active{
-      background: url("./employments/bg-step-active.jpeg") no-repeat center center;
+      background: image-url("employments/bg-step-active.jpeg") no-repeat center center;
     }
   }
 }
@@ -385,11 +385,43 @@ h2.header-title{
   .progress-job{
     .item-progress, .item-progress-active{
       min-height: 360px;
-      background: url("./employments/bg-step.jpeg") no-repeat center center;
+      background: image-url("employments/bg-step.jpeg") no-repeat center center;
       width: 120px;
     }
     .item-progress-active{
-      background: url("./employments/bg-step-active.jpeg") no-repeat center center;
+      background: image-url("employments/bg-step-active.jpeg") no-repeat center center;
+    }
+  }
+}
+
+.updated-cv{
+  background: #9FE2FF;
+  padding: 40px 30px;
+  text-align: center;
+  min-height: 100px;
+  color: #333;
+  margin-bottom: 40px;
+  .updated-sheet{
+    background: image-url("employments/bg-sheets.jpeg") no-repeat left top #fff;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    padding: 50px 20px 20px;
+    min-height: 450px;
+    h2{
+      margin: 30px 0;
+      font-size: 26px;
+    }
+    .clip{
+      left: 50px;
+    }
+    .updated-area{
+      background: image-url("employments/bg-sheets-lines.png") no-repeat left center;
+      text-align: center;
+      padding: 30px 0px 20px;
+      max-width: 400px;
+      margin: 0 auto;
     }
   }
 }
