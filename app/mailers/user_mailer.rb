@@ -15,4 +15,12 @@ class UserMailer < ActionMailer::Base
       cc: @error ? 'mmchavez@presidencia.gob.sv' : ''
       )
   end
+
+  def confirm_postulation(postulation)
+    @postulation = postulation
+    mail(
+      subject: "Postulación #{@postulation.plaza.post_name} / empleospublicos.gob.sv",
+      to: "#{@postulation.user.email}"
+      )
+  end
 end

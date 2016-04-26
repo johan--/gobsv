@@ -21,6 +21,10 @@ class SynchronizePostulationJob < ActiveJob::Base
       },
       {:Authorization => access_token}
       postulation.update_column(:response_code, response.code)
+      # TODO Cambiar luego
+      if response.code == 200
+        UserMailer.confirm_postulation(postulation)
+      end
     rescue Exception => e
       postulation.update_column(:response_code, 500)
     end

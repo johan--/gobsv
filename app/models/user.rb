@@ -145,8 +145,11 @@ class User < ActiveRecord::Base
   end
 
   def can_apply?(plaza)
-    return false if specialties.blank? or personal_references.blank? or document_number.blank? or country_id.blank?
     @can_apply ||= (plaza.idi_codes.blank? || (plaza.idi_codes & idi_codes).any?) && (plaza.gra_codes.blank? || (plaza.gra_codes & gra_codes).any?) && (plaza.esp_codes.blank? || (plaza.esp_codes & esp_codes).any?)
+  end
+
+  def cv_valid?
+    specialties.any? && personal_references.any? && document_number.present? && country_id.present?
   end
 
   private

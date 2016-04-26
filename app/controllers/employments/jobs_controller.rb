@@ -4,6 +4,7 @@ class Employments::JobsController < EmploymentsController
   before_action :define_params
   before_action :get_job, except: [:index, :progress]
   before_action :prepare_breadcrumb
+  before_filter :verify_cv, only: [:apply]
 
   def index
     params[:q][:plaza_state_id_in] = ['2'] unless params[:q][:plaza_state_id_in].present?
@@ -70,5 +71,8 @@ class Employments::JobsController < EmploymentsController
       add_breadcrumb 'Inicio', employments_root_url
       add_breadcrumb 'Empleos disponibles', employments_jobs_url
       add_breadcrumb @job.post_name if @job
+    end
+    def verify_cv
+      redirect_to personal_employments_resumes_url, notice: 'Por favor llene su cv antes de aplicar a una plaza' and return unless current_user.cv_valid?
     end
 end
