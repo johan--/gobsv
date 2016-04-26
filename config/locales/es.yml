@@ -545,6 +545,10 @@ es:
       employments/user_disability:
         disability_type_id: Tipo de discapacidad
         disability_certification_id: Certificado por
+      employments/user_postulation:
+        user_id: Usuario
+        plaza_id: Plaza
+        terms: Estoy de acuerdo que a este concurso solo puedo aplicar una vez.
     enum:
       ta/article:
         status:

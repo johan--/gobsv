@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424033752) do
+ActiveRecord::Schema.define(version: 20160426021010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,6 +185,7 @@ ActiveRecord::Schema.define(version: 20160424033752) do
     t.decimal  "score",           precision: 18, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                                   default: true
   end
 
   create_table "employments_countries", force: :cascade do |t|
@@ -211,6 +212,7 @@ ActiveRecord::Schema.define(version: 20160424033752) do
     t.string   "last_name",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                 default: true
   end
 
   add_index "employments_plaza_contracts", ["plaza_id"], name: "index_employments_plaza_contracts_on_plaza_id", using: :btree
@@ -223,6 +225,7 @@ ActiveRecord::Schema.define(version: 20160424033752) do
     t.string   "req_name",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                 default: true
   end
 
   add_index "employments_plaza_degrees", ["plaza_id"], name: "index_employments_plaza_degrees_on_plaza_id", using: :btree
@@ -234,6 +237,7 @@ ActiveRecord::Schema.define(version: 20160424033752) do
     t.string   "exp_description", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                      default: true
   end
 
   add_index "employments_plaza_experiences", ["plaza_id"], name: "index_employments_plaza_experiences_on_plaza_id", using: :btree
@@ -248,6 +252,7 @@ ActiveRecord::Schema.define(version: 20160424033752) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "factor_id"
+    t.boolean  "active",                                               default: true
   end
 
   add_index "employments_plaza_factors", ["plaza_id"], name: "index_employments_plaza_factors_on_plaza_id", using: :btree
@@ -260,6 +265,7 @@ ActiveRecord::Schema.define(version: 20160424033752) do
     t.string   "req_name",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                 default: true
   end
 
   add_index "employments_plaza_languages", ["plaza_id"], name: "index_employments_plaza_languages_on_plaza_id", using: :btree
@@ -271,6 +277,7 @@ ActiveRecord::Schema.define(version: 20160424033752) do
     t.string   "req_name",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                 default: true
   end
 
   add_index "employments_plaza_skills", ["plaza_id"], name: "index_employments_plaza_skills_on_plaza_id", using: :btree
@@ -283,6 +290,7 @@ ActiveRecord::Schema.define(version: 20160424033752) do
     t.string   "req_name",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                 default: true
   end
 
   add_index "employments_plaza_specialties", ["plaza_id"], name: "index_employments_plaza_specialties_on_plaza_id", using: :btree
@@ -415,6 +423,14 @@ ActiveRecord::Schema.define(version: 20160424033752) do
   end
 
   add_index "employments_user_languages", ["user_id"], name: "index_employments_user_languages_on_user_id", using: :btree
+
+  create_table "employments_user_postulations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "plaza_id"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "employments_user_references", force: :cascade do |t|
     t.integer  "user_id"

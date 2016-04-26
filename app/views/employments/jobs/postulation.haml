@@ -1,0 +1,20 @@
+= render partial: 'layouts/employments/breadcrumb'
+.container.updated-cv
+  .row
+    .col-sm-12
+      .updated-sheet
+        .clip
+          = image_tag("employments/icon-clip.png")
+        .updated-area
+          = image_tag("employments/tags-01.png")
+        %center
+          %h2
+            ¡Felicidades!
+          %p
+            Ha aplicado al concurso
+            = @job.post_name
+            correctamente. Su código de postulación es:
+            %strong
+              = @postulation.code
+          %br
+          = link_to 'Ver más plazas disponibles', employments_jobs_url, class: 'btn btn-primary'

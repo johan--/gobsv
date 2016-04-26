@@ -5,7 +5,111 @@
       .updated-sheet
         .clip
           = image_tag("employments/icon-clip.png")
-        .updated-area
-          = image_tag("employments/tags-04.png")
-        %h2
-          Verifiquemos si aplica
+        - if @already_applied
+          .updated-area
+            = image_tag("employments/tags-01.png")
+          %center
+            %h2
+              ¡Felicidades!
+            %p
+              Ha aplicado al concurso
+              = @job.post_name
+              correctamente. Su código de postulación es:
+              %strong
+                = current_user.user_postulations.where(plaza_id: @job.id).first.try(:code)
+          %br
+        - else
+          .updated-area
+            - if current_user.can_apply?(@job)
+              = image_tag("employments/tags-03.png")
+            - else
+              = image_tag("employments/tags-02.png")
+          %p
+            Estimado/a
+            %strong
+              = "#{current_user.formal_name},"
+          %p
+            Muchas gracias por su interés en participar en el concurso:
+            %strong
+              = @job.formal_name.try(:capitalize)
+        - if @job.has_indispensable?
+          .panel.panel-default
+            .panel-heading
+              %h3.panel-title
+                Formación académica indispensable
+            .panel-body
+              %table.table.table-hover
+                - if @job_degrees.count > 0
+                  %tr{ class: (@job.gra_codes & current_user.gra_codes).any? ? 'success' : 'danger' }
+                    %th{colspan: 3}
+                      Grado académico:
+                  - @job_degrees.each do |degree|
+                    %tr
+                      %td
+                        = degree.gra_name.try(:capitalize)
+                      %td
+                        = degree.req_name
+                      %td
+                        - if current_user.gra_codes.include?(degree.gra_code)
+                          %span.glyphicon.glyphicon-ok-circle.text-success
+                        - else
+                          %span.glyphicon.glyphicon-ban-circle.text-danger
+                - if @job_specialties.count > 0
+                  %tr{ class: (@job.esp_codes & current_user.esp_codes).any? ? 'success' : 'danger' }
+                    %th{colspan: 3}
+                      Especialidad Académica:
+                  - @job_specialties.each do |specialty|
+                    %tr
+                      %td
+                        = specialty.esp_name.try(:capitalize)
+                      %td
+                        = specialty.req_name
+                      %td
+                        - if current_user.esp_codes.include?(specialty.esp_code)
+                          %span.glyphicon.glyphicon-ok-circle.text-success
+                        - else
+                          %span.glyphicon.glyphicon-ban-circle.text-danger
+                - if @job_languages.count > 0
+                  %tr{ class: (@job.idi_codes & current_user.idi_codes).any? ? 'success' : 'danger' }
+                    %th{colspan: 3}
+                      Idiomas:
+                  - @job_languages.each do |language|
+                    %tr
+                      %td
+                        = language.idi_name.try(:capitalize)
+                      %td
+                        = language.req_name
+                      %td
+                        - if current_user.idi_codes.include?(language.idi_code)
+                          %span.glyphicon.glyphicon-ok-circle.text-success
+                        - else
+                          %span.glyphicon.glyphicon-ban-circle.text-danger
+        - if @job_skills.any?
+          .panel.panel-default
+            .panel-heading
+              Recuerde que el concurso solicita que tenga los siguientes conocimientos específicos:
+              %strong
+                (favor mencionarlos en su CV)
+            .panel-body
+              - @job_skills.each do |skill|
+                %p
+                  = skill.name
+        - if @already_applied
+          %center
+            = link_to 'Ver más plazas disponibles', employments_jobs_url, class: 'btn btn-primary'
+        - else
+          - if current_user.can_apply?(@job)
+            %p
+              Si usted cumple con el perfil académico necesario para este concurso, favor presionar el botón Aplicar para que el sistema le asigne un código de postulante.
+            %br
+            = form_for @postulation, url: apply_employments_job_url, html: { method: :post } do |f|
+              .checkbox
+                %label
+                  = f.check_box :terms
+                  = t('activerecord.attributes.employments/user_postulation.terms')
+              = f.submit 'Aplicar', class: 'btn btn-primary'
+          - else
+            %p
+              Lo sentimos, pero usted no cumple los requisitos mínimos para aplicar a la plaza. Si considera que si los cumple, puede actualizar su cv dando clic en el siguiente enlace:
+            %center
+              = link_to 'Actualizar CV', personal_employments_resumes_url, class: 'btn btn-primary'

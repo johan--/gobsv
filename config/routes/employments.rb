@@ -29,6 +29,8 @@ constraints DomainConstraint.new(domain) do
       member do
         get :contact
         get :apply
+        get :postulation
+        post :apply
       end
       collection do
         get :progress

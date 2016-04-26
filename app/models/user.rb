@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
   has_many :disabilities, class_name: '::Employments::UserDisability', dependent: :destroy
   accepts_nested_attributes_for :disabilities, allow_destroy: true
 
+  has_many :user_postulations, class_name: '::Employments::UserPostulation', dependent: :destroy
+  has_many :plazas, class_name: '::Employments::Plaza', through: :user_postulations, dependent: :destroy
+
   # Validations
   validates :email, :presence => true, :uniqueness => { :case_sensitive => false }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   validates :name, :presence => true #:role_id
@@ -68,7 +71,7 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth, current_user)
-
+#
     user_authorization = UserAuthorization.where(provider: auth.provider, uid: auth.uid.to_s).first_or_initialize
     user_authorization.update_column(:token, auth.credentials.token)
     user_authorization.update_column(:secret, auth.credentials.secret)
@@ -122,6 +125,26 @@ class User < ActiveRecord::Base
         document_number.gsub(/[^0-9]/i, '') rescue ""
       end
     end
+  end
+
+  def formal_name
+    [Treatment[treatment], name, last_name].join(' ')
+  end
+
+  def gra_codes
+    specialties.pluck(:gra_code)
+  end
+
+  def esp_codes
+    specialties.pluck(:esp_code)
+  end
+
+  def idi_codes
+    languages.all.map(&:code)
+  end
+
+  def can_apply?(plaza)
+    @can_apply ||= (plaza.idi_codes.blank? || (plaza.idi_codes & idi_codes).any?) && (plaza.gra_codes.blank? || (plaza.gra_codes & gra_codes).any?) && (plaza.esp_codes.blank? || (plaza.esp_codes & esp_codes).any?)
   end
 
   private

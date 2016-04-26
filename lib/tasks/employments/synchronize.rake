@@ -19,6 +19,7 @@ namespace :employments do
       json = JSON.parse(res.body, symbolize_names: true)
       access_token = [json[:token_type], json[:access_token]].join(' ')
       # Get factors
+      Employments::PlazaFactor.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaFactores', access_token
       jsons.each do |json|
         obj = Employments::PlazaFactor.where(factor_id: json[:idFactor], plaza_id: json[:idPlaza]).first_or_initialize
@@ -27,9 +28,11 @@ namespace :employments do
         obj.minimum_score = json[:FactorPuntajeMinimo]
         obj.maximum_score = json[:FactorPuntajeMaximo]
         obj.order = json[:ordenFactor]
+        obj.active = true
         obj.save
       end
       # Get areas
+      Employments::Area.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/Area', access_token
       jsons.each do |json|
         obj = Employments::Area.where(id: json[:idArea]).first_or_initialize
@@ -37,9 +40,11 @@ namespace :employments do
         obj.name = json[:nombreArea]
         obj.order = json[:ordenArea]
         obj.score = json[:puntajeArea]
+        obj.active = true
         obj.save
       end
       # Get degrees
+      Employments::PlazaDegree.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Grado', access_token
       jsons.each do |json|
         obj = Employments::PlazaDegree.where(id: json[:idCorrelativo]).first_or_initialize
@@ -48,9 +53,11 @@ namespace :employments do
         obj.gra_name = json[:GRA_NOMBRE]
         obj.req_code = json[:REQ_CODIGO]
         obj.req_name = json[:REQ_NOMBRE]
+        obj.active = true
         obj.save
       end
       # Get experiences
+      Employments::PlazaExperience.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Experiencia', access_token
       jsons.each do |json|
         obj = Employments::PlazaExperience.where(id: json[:idCorrelativo]).first_or_initialize
@@ -58,9 +65,11 @@ namespace :employments do
         obj.exp_code = json[:EXP_CODIGO]
         obj.exp_name = json[:EXP_NOMBRE]
         obj.exp_description = json[:EXP_DESCRIPCION]
+        obj.active = true
         obj.save
       end
       # Get languages
+      Employments::PlazaLanguage.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Idioma', access_token
       jsons.each do |json|
         obj = Employments::PlazaLanguage.where(id: json[:idCorrelativo]).first_or_initialize
@@ -69,9 +78,11 @@ namespace :employments do
         obj.idi_name = json[:IDI_NOMBRE]
         obj.req_code = json[:REQ_CODIGO]
         obj.req_name = json[:REQ_NOMBRE]
+        obj.active = true
         obj.save
       end
       # Get specialties
+      Employments::PlazaSpecialty.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_Especialidad', access_token
       jsons.each do |json|
         obj = Employments::PlazaSpecialty.where(id: json[:idCorrelativo]).first_or_initialize
@@ -80,9 +91,11 @@ namespace :employments do
         obj.esp_name = json[:ESP_NOMBRE]
         obj.req_code = json[:REQ_CODIGO]
         obj.req_name = json[:REQ_NOMBRE]
+        obj.active = true
         obj.save
       end
       # Get technical competences
+      Employments::PlazaSkill.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/GOES_CompTecnica', access_token
       jsons.each do |json|
         obj = Employments::PlazaSkill.where(id: json[:idCorrelativo]).first_or_initialize
@@ -90,6 +103,7 @@ namespace :employments do
         obj.name = json[:TEC_NOMBRE]
         obj.req_code = json[:REQ_CODIGO]
         obj.req_name = json[:REQ_NOMBRE]
+        obj.active = true
         obj.save
       end
       # Get plazas
@@ -134,12 +148,14 @@ namespace :employments do
         obj.save
       end
       # Get contracts
+      Employments::PlazaContract.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/Contratos', access_token
       jsons.each do |json|
         obj = Employments::PlazaContract.where(id: json[:idContrato]).first_or_initialize
         obj.plaza_id = json[:idPlaza]
         obj.name = json[:nombre]
         obj.last_name = json[:apellido]
+        obj.active = true
         obj.save
       end
       # Get postulants

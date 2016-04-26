@@ -1,6 +1,6 @@
 class Employments::JobsController < EmploymentsController
   respond_to :html, :js
-  before_action :authenticate_user!, only: [:apply]
+  before_action :authenticate_user!, only: [:apply, :postulation]
   before_action :define_params
   before_action :get_job, except: [:index, :progress]
   before_action :prepare_breadcrumb
@@ -32,6 +32,30 @@ class Employments::JobsController < EmploymentsController
                       url: employments_job_url(@job),
                       image: 'http://www.empleospublicos.gob.sv' + view_context.image_path('employments/cv-girl.png')
                     }
+  end
+
+  def apply
+    @job_degrees = @job.plaza_degrees.indispensable
+    @job_specialties = @job.plaza_specialties.indispensable
+    @job_languages = @job.plaza_languages.indispensable
+    @job_skills = @job.plaza_skills.indispensable
+    @already_applied = current_user.plazas.pluck(:id).include?(@job.id)
+    if request.post?
+      @postulation = ::Employments::UserPostulation.new(params.require(:employments_user_postulation).permit(:terms))
+      @postulation.user_id = current_user.id
+      @postulation.plaza_id = @job.id
+      if @postulation.save
+        redirect_to postulation_employments_job_url(@job) and return
+      else
+        render :apply
+      end
+    else
+      @postulation = ::Employments::UserPostulation.new
+    end
+  end
+
+  def postulation
+    @postulation = ::Employments::UserPostulation.where(user_id: current_user.id, plaza_id: @job.id).first
   end
 
   private
