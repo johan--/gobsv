@@ -37,6 +37,7 @@ constraints DomainConstraint.new(domain) do
     resources :resumes, only: [:show] do
       collection do
         get :personal
+        get :postulations
       end
       member do
         post :save

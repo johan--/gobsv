@@ -1,0 +1,31 @@
+- if current_user.user_postulations.count > 0
+  %center
+    %h2
+      Mis postulaciones
+  %table.table.table-hover
+    %tr
+      %th
+        Fecha
+      %th
+        Código postulación
+      %th
+        Código plaza
+      %th
+        Estado
+      %th
+    - current_user.user_postulations.order(created_at: :desc).each do |postulation|
+      %tr
+        %td
+          = l(postulation.created_at, format: :default)
+        %td
+          = postulation.code
+        %td
+          = postulation.plaza.try(:identifier)
+        %td
+          = postulation.plaza.try(:plaza_state)
+        %td
+          = link_to 'Ver proceso', process_employments_job_url(postulation.plaza), class: 'btn btn-info'
+- else
+  .well
+    No tiene ninguna postulación de plazas con su perfil. Puede buscar plazas en el listado dando
+    = link_to "clic aca", employments_jobs_url
