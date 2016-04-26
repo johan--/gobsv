@@ -7,9 +7,14 @@ class Employments::UserPostulation < ActiveRecord::Base
   validates :plaza_id, uniqueness: { scope: :user_id }
 
   before_create :set_code
+  after_create :send_postulation
 
   def set_code
     self.code = "#{plaza.try(:identifier)}.#{user.try(:stpp_id)}"
+  end
+
+  def send_postulation
+    SynchronizePostulationJob.perform_later(self)
   end
 
 end

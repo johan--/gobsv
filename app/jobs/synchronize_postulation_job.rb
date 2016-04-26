@@ -1,7 +1,7 @@
 class SynchronizePostulationJob < ActiveJob::Base
   queue_as :default
 
-  def perform(user, plaza)
+  def perform(postulation)
     # First get a valid token
     uri = URI('http://www.funcionpublica.gob.sv/STPPplazas/token')
     params = {
@@ -12,12 +12,18 @@ class SynchronizePostulationJob < ActiveJob::Base
     res = Net::HTTP.post_form(uri, params)
     json = JSON.parse(res.body, symbolize_names: true)
     access_token = [json[:token_type], json[:access_token]].join(' ')
-    response = RestClient.post 'http://www.funcionpublica.gob.sv/STPPplazas/api/ConcursoPostulante',
-    {
-      idUsuario: user.stpp_id,
-      idPlaza: plaza.plaza_id
-    },
-    {:Authorization => access_token}
+    begin
+      #response = RestClient.post 'http://192.168.1.5:3000/resumes/save',
+      response = RestClient.post 'http://www.funcionpublica.gob.sv/STPPplazas/api/ConcursoPostulante',
+      {
+        idUsuario: postulation.user.try(:stpp_id),
+        idPlaza: postulation.plaza.try(:plaza_id)
+      },
+      {:Authorization => access_token}
+      postulation.update_column(:response_code, response.code)
+    rescue Exception => e
+      postulation.update_column(:response_code, 500)
+    end
 
   end
 end

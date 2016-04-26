@@ -11,6 +11,8 @@ class Employments::Plaza < ActiveRecord::Base
   has_many :plaza_specialties, -> { where active: true }, foreign_key: :plaza_id, primary_key: :plaza_id
   has_many :plaza_languages, -> { where active: true }, foreign_key: :plaza_id, primary_key: :plaza_id
   has_many :plaza_contracts, -> { where active: true }, foreign_key: :plaza_id, primary_key: :plaza_id
+  has_many :postulants, foreign_key: :plaza_id, primary_key: :plaza_id
+
 
   def formal_name
     [post_name, identifier].join(' | ')
@@ -30,5 +32,9 @@ class Employments::Plaza < ActiveRecord::Base
 
   def idi_codes
     plaza_languages.indispensable.pluck(:idi_code)
+  end
+
+  def applications_total
+      stpp_apply_counter + spta_apply_counter
   end
 end

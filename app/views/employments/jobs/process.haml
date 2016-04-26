@@ -1,5 +1,12 @@
 = render partial: 'layouts/employments/breadcrumb'
+
 .container
+  .row
+    .col-xs-12
+      .alert.alert-info
+        El proceso completo de postulaciones se inicio a finales del mes de abril 2016. Para plazas publicadas antes de esta fecha y que ya se encuentran cerradas, puede verse el "Resumen de cierre"
+        = link_to "dando clic aquí", employments_job_url(@job)
+
   .row
     .col-sm-12
       %h2
@@ -18,9 +25,10 @@
               %span
                 140
                 recibidos
-          .view-more
-            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step1' }}
-              Ver detalle
+          - if @job.plaza_state_id > 1
+            .view-more
+              %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step1' }}
+                Ver detalle
         .item-progress{ class: [3, 5].include?(@job.plaza_state_id) ? 'active' : nil }
           = image_tag("employments/step-2.jpeg", class: "img-responsive")
           .description-selection-step2
@@ -30,9 +38,10 @@
               %span
                 140
                 seleccionados
-          .view-more
-            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step2' }}
-              Ver detalle
+          - if @job.plaza_state_id > 2
+            .view-more
+              %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step2' }}
+                Ver detalle
         .item-progress{ class: @job.plaza_state_id == 6 ? 'active' : nil }
           = image_tag("employments/step-3.jpeg", class: "img-responsive")
           .description-selection-step3
@@ -42,9 +51,10 @@
               %span
                 Fecha estimada:
                 = "21 de agosto 2016"
-          .view-more
-            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step3' }}
-              Ver detalle
+          - if [4,6].include?(@job.plaza_state_id)
+            .view-more
+              %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step3' }}
+                Ver detalle
         .item-progress{ class: @job.plaza_state_id == 6 ? 'active' : nil }
           = image_tag("employments/step-4.jpeg", class: "img-responsive")
           .description-selection-step4
@@ -54,9 +64,10 @@
               %span
                 Fecha estimada:
                 = "25 de agosto 2016"
-          .view-more
-            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step4' }}
-              Ver detalle
+          - if [4,6].include?(@job.plaza_state_id)
+            .view-more
+              %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step4' }}
+                Ver detalle
         .item-progress{ class: @job.plaza_state_id == 6 ? 'active' : nil }
           = image_tag("employments/step-5.jpeg", class: "img-responsive")
           .description-selection-step5
@@ -66,9 +77,10 @@
               %span
                 Fecha estimada:
                 = "27 de agosto 2016"
-          .view-more
-            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step5' }}
-              Ver detalle
+          - if [4,6].include?(@job.plaza_state_id)
+            .view-more
+              %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step5' }}
+                Ver detalle
         .item-progress{ class: @job.plaza_state_id == 4 ? 'active' : nil }
           = image_tag("employments/step-6.jpeg", class: "img-responsive")
           .description-selection-step6
@@ -78,9 +90,10 @@
               %span
                 Fecha estimada:
                 = "31 de agosto 2016"
-          .view-more
-            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step6' }}
-              Ver detalle
+          - if @job.plaza_state_id == 4
+            .view-more
+              %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step6' }}
+                Ver detalle
 
         .clearfix
 
@@ -97,7 +110,24 @@
         %h4#myModalLabel.modal-title
           Recepción del CV
       .modal-body
-        &nbsp
+        %p
+          = "De un total de #{@job.applications_total} postulaciones, se recibieron #{@job.postulants.count} cvs que cumplian con los requisitos académicos de la plaza. A continuación el detalle:"
+        - if @job.postulants.count == 0
+          .well
+            No hay postulaciones a la plaza
+        - else
+          %table.table.table-hover
+            %tr.active
+              %th
+                Postulante
+              %th
+                Fecha postulación
+            - @job.postulants.each do |postulant|
+              %tr
+                %td
+                  = postulant.postulant_code
+                %td
+                  = postulant.created_date.try(:strftime, '%d/%m/%Y')
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step2.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -109,7 +139,26 @@
         %h4#myModalLabel.modal-title
           Revisión curricular
       .modal-body
-        &nbsp
+        - if @job.postulants.count == 0
+          .well
+            No hay postulaciones a la plaza
+        - else
+          %table.table.table-hover
+            %tr.active
+              %th
+                Postulante
+              %th
+                Fecha actualización
+              %th
+                Estado
+            - @job.postulants.each do |postulant|
+              %tr
+                %td
+                  = postulant.postulant_code
+                %td
+                  = postulant.updated_date.try(:strftime, '%d/%m/%Y')
+                %td
+                  = postulant.state
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step3.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -121,7 +170,8 @@
         %h4#myModalLabel.modal-title
           Pruebas técnicas
       .modal-body
-        &nbsp
+        .well
+          No hay información disponible
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step4.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -133,7 +183,8 @@
         %h4#myModalLabel.modal-title
           Pruebas conductuales
       .modal-body
-        &nbsp
+        .well
+          No hay información disponible
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step5.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -145,7 +196,8 @@
         %h4#myModalLabel.modal-title
           Entrevistas
       .modal-body
-        &nbsp
+        .well
+          No hay información disponible de momento
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step6.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -157,6 +209,17 @@
         %h4#myModalLabel.modal-title
           Selección Final
       .modal-body
-        &nbsp
+        .well
+          - if @job.closing_comment.present?
+            %p
+              = @job.closing_comment
+          - if @job.participants_number.to_i > 0
+            %p
+              Número de participantes:
+              = @job.participants_number
+          - @job.plaza_contracts.each do |contract|
+            %p
+              Persona contratada:
+              = contract.full_name
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar

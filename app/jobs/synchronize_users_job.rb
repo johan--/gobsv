@@ -53,11 +53,11 @@ class SynchronizeUsersJob < ActiveJob::Base
       }
       specialties = user.specialties.collect { |s|
         {
-          'ESP_CODIGO' => '057',
-          'ESP_NOMBRE' => 'Licenciatura en Economía',
-          'GRA_CODIGO' => '08',
+          'ESP_CODIGO' => s.esp_code,
+          'ESP_NOMBRE' => s.esp_name,
+          'GRA_CODIGO' => s.gra_code,
           'insNombre' => s.institution_name,
-          'idPais' => 65, # TODO meter el select de paises a especialidades
+          'idPais' => s.country_id,
           'inicioMes' => s.start_at.month,
           'inicioAnio' => s.start_at.year,
           'finMes' => s.end_at.month,
@@ -76,37 +76,41 @@ class SynchronizeUsersJob < ActiveJob::Base
       res = Net::HTTP.post_form(uri, params)
       json = JSON.parse(res.body, symbolize_names: true)
       access_token = [json[:token_type], json[:access_token]].join(' ')
-      #response = RestClient.post 'http://192.168.1.43/ServicioDotacion/api/usuario',
-      #response = RestClient.post 'http://192.168.1.225:3000/resumes/save',
-      response = RestClient.post 'http://www.funcionpublica.gob.sv/STPPplazas/api/Usuario',
-        {
-          login: user.document_number.gsub(/[^0-9]/i, ''),
-          clave: (0...20).map { (65 + rand(26)).chr }.join,
-          name: user.name,
-          lastname: user.last_name,
-          email: user.email,
-          idTratamiento: user.treatment,
-          telefonoContacto1: user.phone,
-          telefonoContacto2: user.alt_phone,
-          direccion: user.address,
-          sexo: user.gender_s,
-          nacionalidad: 65, # Pedir pais
-          fechanacimiento: user.birthday,
-          NIT: user.tax_id,
-          documento: user.document_code,
-          DUI: user.document_number_clean(true),
-          carneExtranjero: user.document_number_clean(false),
-          'USU_Idioma[]' => languages,
-          'USU_Referencias[]' => references,
-          'USU_Capacitaciones[]' => trainings,
-          'USU_Experiencia[]' => experiences,
-          'USU_Discapacidad[]' => disabilities,
-          'USU_Especialidad[]' => specialties
-        },
-        {:Authorization => access_token}
-      id = Hash.from_xml(response)['int'].to_i rescue 0
-      user.update_column(:stpp_id, id)
-      #puts "ID del usuario en Dotación = #{id}"
+      begin
+        #response = RestClient.post 'http://192.168.1.43/ServicioDotacion/api/usuario',
+        #response = RestClient.post 'http://192.168.1.5:3000/resumes/save',
+        response = RestClient.post 'http://www.funcionpublica.gob.sv/STPPplazas/api/Usuario',
+          {
+            login: user.document_number.gsub(/[^0-9]/i, ''),
+            clave: (0...20).map { (65 + rand(26)).chr }.join,
+            name: user.name,
+            lastname: user.last_name,
+            email: user.email,
+            idTratamiento: user.treatment,
+            telefonoContacto1: user.phone,
+            telefonoContacto2: user.alt_phone,
+            direccion: user.address,
+            sexo: user.gender_s,
+            nacionalidad: user.country_id,
+            fechanacimiento: user.birthday,
+            NIT: user.tax_id,
+            documento: user.document_code,
+            DUI: user.document_number_clean(true),
+            carneExtranjero: user.document_number_clean(false),
+            'USU_Idioma[]' => languages,
+            'USU_Referencias[]' => references,
+            'USU_Capacitaciones[]' => trainings,
+            'USU_Experiencia[]' => experiences,
+            'USU_Discapacidad[]' => disabilities,
+            'USU_Especialidad[]' => specialties
+          },
+          {:Authorization => access_token}
+        id = Hash.from_xml(response)['int'].to_i rescue 0
+        user.update_column(:stpp_id, id)
+        user.update_column(:response_code, response.code)
+      rescue Exception => e
+        user.update_column(:response_code, 500)
+      end
     end
   end
 end

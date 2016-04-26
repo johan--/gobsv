@@ -28,6 +28,9 @@
           = link_to 'Perfil de contratación', '#perfil', role: 'tab', data: {toggle: 'tab'}
         %li.presentation
           = link_to 'Criterios de evaluación', '#criteria', role: 'tab', data: {toggle: 'tab'}
+        - if plaza.plaza_state_id == 4
+          %li.presentation
+            = link_to 'Resumen de cierre', '#closed', role: 'tab', data: {toggle: 'tab'}
 
       .tab-content
         .tab-pane.active#general{role: 'tabpanel'}
@@ -72,25 +75,16 @@
                       Disponible
                   - when 3
                     %span.label.label-info
-                      En evaluación
+                      En evaluación (Pre-selección)
+                  - when 5
+                    %span.label.label-info
+                      En evaluación (Configuración)
+                  - when 6
+                    %span.label.label-info
+                      En evaluación (Competencias)
                   - when 4
                     %span.label.label-danger
                       Cerrado
-          - if plaza.plaza_state_id == 4
-            .well
-              %strong
-                Proceso cerrado
-              - if plaza.closing_comment.present?
-                %p
-                  = plaza.closing_comment
-              - if plaza.participants_number.to_i > 0
-                %p
-                  Número de participantes:
-                  = plaza.participants_number
-              - plaza.plaza_contracts.each do |contract|
-                %p
-                  Persona contratada:
-                  = contract.full_name
           - if plaza.mission.present?
             %br
             %div
@@ -249,3 +243,31 @@
                 - else
                   = link_to "Cerrar", employments_jobs_url, class: "btn btn-primary", data: { dismiss: 'modal' }
               %br
+        - if plaza.plaza_state_id == 4
+          .tab-pane#closed{role: 'tabpanel'}
+            %h4
+              Resumen de cierre
+            %div
+              %strong
+                Proceso cerrado
+              - if plaza.closing_comment.present?
+                %p
+                  = plaza.closing_comment
+              - if plaza.participants_number.to_i > 0
+                %p
+                  Número de participantes:
+                  = plaza.participants_number
+              - plaza.plaza_contracts.each do |contract|
+                %p
+                  Persona contratada:
+                  = contract.full_name
+            .row
+              .col-sm-12
+                .center-block.hidden-sm.hidden-xs
+                  .btn-toolbar{role: "toolbar"}
+                    .line.visible-lg-inline-block.visible-md-inline-block
+                    .btn-group{role: "group"}
+                      = link_to "Cerrar", employments_jobs_url, class: "btn btn-primary", data: { dismiss: 'modal' }
+                    .line.visible-lg-inline-block.visible-md-inline-block
+                .hidden-lg.hidden-md.text-centered
+                  = link_to "Cerrar", employments_jobs_url, class: "btn btn-primary", data: { dismiss: 'modal' }

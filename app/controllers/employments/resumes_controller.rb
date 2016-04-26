@@ -3,6 +3,7 @@ class Employments::ResumesController < EmploymentsController
   before_filter :prepare_search
   before_filter :authenticate_user!
   layout 'user/login'
+  #protect_from_forgery except: :save
 
   def personal
     @user = current_user
@@ -14,18 +15,21 @@ class Employments::ResumesController < EmploymentsController
   end
 
   def save
-    puts " ........... #{item_params.inspect}"
     @user = User.find current_user.id
     @user.assign_attributes item_params
     @success = @user.save
     params = {}
     item_params = {}
-    puts "------------params #{params.inspect}\n -----------item_params #{item_params.inspect}"
     unless @success
       flash[:notice] = 'No se pudo actualizar la información'
       @errors = @user.errors.messages.to_json.html_safe
       render :personal
+    else
+      ::SynchronizeUsersJob.perform_later(@user)
     end
+    add_breadcrumb 'Inicio', employments_root_url
+    add_breadcrumb "Curriculum", personal_employments_resumes_url
+    add_breadcrumb "Actualizado"
   end
 
   def item_params
