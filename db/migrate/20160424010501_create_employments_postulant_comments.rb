@@ -5,7 +5,6 @@ class CreateEmploymentsPostulantComments < ActiveRecord::Migration
       t.text :comment
       t.date :commented_at
       t.integer :stpp_id
-      t.jsonb :postulant
       t.timestamps null: false
     end
   end

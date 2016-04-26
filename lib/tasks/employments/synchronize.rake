@@ -176,8 +176,8 @@ namespace :employments do
         obj.created_date = json[:fechaCreacion]
         obj.updated_user = json[:usuarioModificacion]
         obj.updated_date = json[:fechaModificacion]
-        obj.postulant_evaluations = json[:PostulanteEvaluaciones]
-        obj.technical_comments = json[:TecnicoComentario]
+        #obj.postulant_evaluations = json[:PostulanteEvaluaciones]
+        #obj.technical_comments = json[:TecnicoComentario]
         obj.save
       end
       # Get especialties catalog
@@ -201,7 +201,7 @@ namespace :employments do
         obj.comment = json[:comentario]
         obj.commented_at = json[:fecha]
         obj.sttp_id = json[:usuario]
-        obj.postulant = json[:ConcursoPostulante]
+        #obj.postulant = json[:ConcursoPostulante]
         obj.active = true
         obj.save
       end
@@ -222,7 +222,7 @@ namespace :employments do
         obj.created_date = json[:fechaCreacion]
         obj.updated_user = json[:usuarioModificacion]
         obj.updated_date = json[:fechaModificacion]
-        obj.postulant = json[:ConcursoPostulante]
+        #obj.postulant = json[:ConcursoPostulante]
         obj.active = true
         obj.save
       end
