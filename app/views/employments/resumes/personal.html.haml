@@ -119,7 +119,7 @@
                     .row
                       .col-sm-11
                         .form-group
-                          = ff.select :gra_code, ::Employments::Specialty.order(:gra_name).uniq.pluck(:gra_name, :gra_code), {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true }
+                          = ff.select :gra_code, ::Employments::UserSpecialty::ACADEMIC_GRADE.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true }
                     .row
                       .col-sm-11
                         .form-group
