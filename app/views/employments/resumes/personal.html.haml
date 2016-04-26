@@ -34,10 +34,10 @@
               .row
                 .col-sm-6
                   .form-group
-                    = f.text_field :name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.user.name')
+                    = f.text_field :name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.user.name'), maxlength: "150"
                 .col-sm-6
                   .form-group
-                    = f.text_field :last_name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.user.last_name')
+                    = f.text_field :last_name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.user.last_name'), maxlength: "150"
               -#
                 .form-group
                   = f.email_field :email, class: 'form-control', hide_label: true, placeholder: t('user.login.email_placeholder'), autofocus: true
@@ -88,7 +88,7 @@
               .row
                 .col-sm-12
                   .form-group
-                    = f.text_area :address, placeholder: t('activerecord.attributes.user.address'), rows: 3, class: ""
+                    = f.text_area :address, placeholder: t('activerecord.attributes.user.address'), rows: 3, class: "", maxlength: "50"
               %fieldset
                 %h4
                   Discapacidad
@@ -131,7 +131,7 @@
                     .row
                       .col-sm-11
                         .form-group
-                          = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.institution_name')
+                          = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_specialty.institution_name'), maxlength: "250"
                     .row
                       .col-sm-11
                         .form-group
@@ -186,20 +186,20 @@
                   .row
                     .col-sm-6
                       .form-group
-                        = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.institution_name')
+                        = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.institution_name'), maxlength: "100"
                     .col-sm-5
                       .form-group
-                        = ff.text_field :name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.name')
+                        = ff.text_field :name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.name'), maxlength: "200"
                   .row
                     .col-sm-11
                       .form-group
-                        = ff.text_area :description, placeholder: t('activerecord.attributes.employments/user_training.description'), rows: 3, class: "required"
+                        = ff.text_area :description, placeholder: t('activerecord.attributes.employments/user_training.description'), rows: 3, class: "required", maxlength: "500"
                       .form-group
-                        = ff.text_field :place, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.place')
+                        = ff.text_field :place, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.place'), maxlength: "100"
                   .row
                     .col-sm-6
                       .form-group
-                        = ff.text_field :duration, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.duration')
+                        = ff.text_field :duration, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.duration'), maxlength: "50"
                     .col-sm-5
                       .form-group
                         = ff.text_field :year, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_training.year')
@@ -228,14 +228,14 @@
                   .row
                     .col-sm-5
                       .form-group
-                        = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_work_experience.institution_name')
+                        = ff.text_field :institution_name, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_work_experience.institution_name'), maxlength: "200"
                     .col-sm-5
                       .form-group
-                        = ff.text_field :charge, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_work_experience.charge')
+                        = ff.text_field :charge, class: 'form-control required', hide_label: true, placeholder: t('activerecord.attributes.employments/user_work_experience.charge'), maxlength: "200"
                   .row
                     .col-sm-10
                       .form-group
-                        = ff.text_area :description, rows: 3, placeholder: t('activerecord.attributes.employments/user_work_experience.description')
+                        = ff.text_area :description, rows: 3, placeholder: t('activerecord.attributes.employments/user_work_experience.description'), maxlength: "500"
                   .row
                     .col-sm-1
                       Periodo
@@ -261,21 +261,21 @@
                   .row
                     .col-sm-11
                       .form-group
-                        = ff.text_field :name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.name')
+                        = ff.text_field :name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.name'), maxlength: "150"
                   .row
                     .col-sm-4
                       .form-group
-                        = ff.text_field :charge, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.charge')
+                        = ff.text_field :charge, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.charge'), maxlength: "100"
                     .col-sm-4
                       .form-group
                         = ff.select :kind, ::Employments::UserReference::ReferenceType.invert, {include_blank: t('activerecord.attributes.employments/user_reference.kind'), hide_label: true}, { required: true }
                     .col-sm-3
                       .form-group
-                        = ff.text_field :phone, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.phone')
+                        = ff.text_field :phone, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.employments/user_reference.phone'), maxlength: "50"
                   .row
                     .col-sm-11
                       .form-group
-                        = ff.text_area :address, rows: 3, placeholder: t('activerecord.attributes.employments/user_reference.address')
+                        = ff.text_area :address, rows: 3, placeholder: t('activerecord.attributes.employments/user_reference.address'), maxlength: "200"
                     .col-sm-1
                       = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
                         %span.glyphicon.glyphicon-trash
