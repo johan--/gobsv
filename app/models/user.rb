@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :user_authorizations, dependent: :destroy
 
   has_many :references, class_name: '::Employments::UserReference', dependent: :destroy
+  has_many :personal_references, -> {where(kind: 2)}, class_name: '::Employments::UserReference', dependent: :destroy
   accepts_nested_attributes_for :references, allow_destroy: true
 
   has_many :specialties, class_name: '::Employments::UserSpecialty', dependent: :destroy
@@ -144,6 +145,7 @@ class User < ActiveRecord::Base
   end
 
   def can_apply?(plaza)
+    return false if specialties.blank? or personal_references.blank? or document_number.blank? or country_id.blank?
     @can_apply ||= (plaza.idi_codes.blank? || (plaza.idi_codes & idi_codes).any?) && (plaza.gra_codes.blank? || (plaza.gra_codes & gra_codes).any?) && (plaza.esp_codes.blank? || (plaza.esp_codes & esp_codes).any?)
   end
 

@@ -79,6 +79,32 @@ class SynchronizeUsersJob < ActiveJob::Base
       begin
         #response = RestClient.post 'http://192.168.1.43/ServicioDotacion/api/usuario',
         #response = RestClient.post 'http://192.168.1.5:3000/resumes/save',
+=begin
+        puts "\n login: #{user.document_number.gsub(/[^0-9]/i, '')}"
+        puts "\n clave: #{(0...20).map { (65 + rand(26)).chr }.join}"
+        puts "\n login: #{user.document_number.gsub(/[^0-9]/i, '')}"
+        puts "\n clave: #{(0...20).map { (65 + rand(26)).chr }.join}"
+        puts "\n name: #{user.name}"
+        puts "\n lastname: #{user.last_name}"
+        puts "\n email: #{user.email}"
+        puts "\n idTratamiento: #{user.treatment}"
+        puts "\n telefonoContacto1: #{user.phone}"
+        puts "\n telefonoContacto2: #{user.alt_phone}"
+        puts "\n direccion: #{user.address}"
+        puts "\n sexo: #{user.gender_s}"
+        puts "\n nacionalidad: #{user.country_id}"
+        puts "\n fechanacimiento: #{user.birthday}"
+        puts "\n NIT: #{user.tax_id}"
+        puts "\n documento: #{user.document_code}"
+        puts "\n DUI: #{user.document_number_clean(true)}"
+        puts "\n carneExtranjero: #{user.document_number_clean(false)}"
+        puts "\n 'USU_Idioma[]' => #{languages.inspect}"
+        puts "\n 'USU_Referencias[]' => #{references.inspect}"
+        puts "\n 'USU_Capacitaciones[]' => #{trainings.inspect}"
+        puts "\n 'USU_Experiencia[]' => #{experiences.inspect}"
+        puts "\n 'USU_Discapacidad[]' => #{disabilities.inspect}"
+        puts "\n 'USU_Especialidad[]' => #{specialties.inspect}\n"
+=end
         response = RestClient.post 'http://www.funcionpublica.gob.sv/STPPplazas/api/Usuario',
           {
             login: user.document_number.gsub(/[^0-9]/i, ''),
