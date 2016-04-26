@@ -428,8 +428,9 @@ ActiveRecord::Schema.define(version: 20160426021010) do
     t.integer  "user_id"
     t.integer  "plaza_id"
     t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "response_code"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "employments_user_references", force: :cascade do |t|

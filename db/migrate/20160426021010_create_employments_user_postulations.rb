@@ -4,6 +4,7 @@ class CreateEmploymentsUserPostulations < ActiveRecord::Migration
       t.references :user
       t.references :plaza
       t.string :code
+      t.string :response_code
       t.timestamps null: false
     end
   end
