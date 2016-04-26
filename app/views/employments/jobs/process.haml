@@ -1,0 +1,162 @@
+= render partial: 'layouts/employments/breadcrumb'
+.container
+  .row
+    .col-sm-12
+      %h2
+        Proceso de contratación
+      %p
+        Etapas del proceso de contratación, la flecha con color rojo, indica la etapa del proceso en que se encuentra la plaza actualmente.
+  .row
+    .col-sm-12
+      .progress-job
+        .item-progress{ class: @job.plaza_state_id == 2 ? 'active' : nil }
+          = image_tag("employments/step-1.jpeg", class: "img-responsive")
+          .description-selection-step1
+            %h4
+              Recepción del CV
+            -#
+              %span
+                140
+                recibidos
+          .view-more
+            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step1' }}
+              Ver detalle
+        .item-progress{ class: [3, 5].include?(@job.plaza_state_id) ? 'active' : nil }
+          = image_tag("employments/step-2.jpeg", class: "img-responsive")
+          .description-selection-step2
+            %h4
+              Revisión curricular
+            -#
+              %span
+                140
+                seleccionados
+          .view-more
+            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step2' }}
+              Ver detalle
+        .item-progress{ class: @job.plaza_state_id == 6 ? 'active' : nil }
+          = image_tag("employments/step-3.jpeg", class: "img-responsive")
+          .description-selection-step3
+            %h4
+              Pruebas técnicas
+            -#
+              %span
+                Fecha estimada:
+                = "21 de agosto 2016"
+          .view-more
+            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step3' }}
+              Ver detalle
+        .item-progress{ class: @job.plaza_state_id == 6 ? 'active' : nil }
+          = image_tag("employments/step-4.jpeg", class: "img-responsive")
+          .description-selection-step4
+            %h4
+              Pruebas conductuales
+            -#
+              %span
+                Fecha estimada:
+                = "25 de agosto 2016"
+          .view-more
+            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step4' }}
+              Ver detalle
+        .item-progress{ class: @job.plaza_state_id == 6 ? 'active' : nil }
+          = image_tag("employments/step-5.jpeg", class: "img-responsive")
+          .description-selection-step5
+            %h4
+              Entrevistas
+            -#
+              %span
+                Fecha estimada:
+                = "27 de agosto 2016"
+          .view-more
+            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step5' }}
+              Ver detalle
+        .item-progress{ class: @job.plaza_state_id == 4 ? 'active' : nil }
+          = image_tag("employments/step-6.jpeg", class: "img-responsive")
+          .description-selection-step6
+            %h4
+              Selección Final
+            -#
+              %span
+                Fecha estimada:
+                = "31 de agosto 2016"
+          .view-more
+            %button.btn.btn-default{type: 'button', data: { toggle: 'modal', target: '#step6' }}
+              Ver detalle
+
+        .clearfix
+
+
+
+
+/ Bootstrap modals
+#step1.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title
+          Recepción del CV
+      .modal-body
+        &nbsp
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
+#step2.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title
+          Revisión curricular
+      .modal-body
+        &nbsp
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
+#step3.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title
+          Pruebas técnicas
+      .modal-body
+        &nbsp
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
+#step4.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title
+          Pruebas conductuales
+      .modal-body
+        &nbsp
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
+#step5.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title
+          Entrevistas
+      .modal-body
+        &nbsp
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
+#step6.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title
+          Selección Final
+      .modal-body
+        &nbsp
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar

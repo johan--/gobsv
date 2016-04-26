@@ -22,9 +22,10 @@
       %p
         .btn-toolbar{role: "toolbar"}
           .row
-            .col-xs-12
-              .btn-group{role: "group"}
-                = link_to "Ver detalle", employments_job_url(list_plaza), remote: true, class: "btn btn-primary"
+            .col-xs-12.col-md-6
+              = link_to "Ver detalle", employments_job_url(list_plaza), remote: true, class: "btn btn-primary mtb10"
+            .col-xs-12.col-md-6
+              = link_to "Ver proceso", process_employments_job_url(id: list_plaza.id), class: 'btn btn-secondary mtb10'
     .col-xs-7
       %div
         = "Descripción: "

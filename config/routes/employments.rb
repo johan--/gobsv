@@ -31,9 +31,7 @@ constraints DomainConstraint.new(domain) do
         get :apply
         get :postulation
         post :apply
-      end
-      collection do
-        get :progress
+        get :process
       end
     end
     resources :resumes, only: [:show] do

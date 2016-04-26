@@ -1,6 +1,7 @@
 class Employments::ResumesController < EmploymentsController
   respond_to :html, :js
   before_filter :prepare_search
+  before_filter :authenticate_user!
   layout 'user/login'
 
   def personal
