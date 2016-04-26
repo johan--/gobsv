@@ -7,6 +7,8 @@
 #= require 'jquery_nested_form'
 #= require 'pwstrength-bootstrap'
 #= require 'jquery.validate.min'
+#= require 'select2'
+#= require 'select2_locale_es'
 
 
 $(document).ready ->
@@ -43,7 +45,7 @@ $(document).ready ->
   $("#user_phone").mask("9999-9999")
   $("#user_alt_phone").mask("9999-9999")
   $("#user_tax_id").mask("9999-999999-999-9")
-  
+
   $("select#user_document_type").on  "change", ->
     if $(this).find(":selected").val() == "dui"
       alert "something"
@@ -92,10 +94,21 @@ $(document).ready ->
     container: "#pwd-container"
     showErrors: true
     showProgressBar: true
-    showVerdictsInsideProgressBar: true 
+    showVerdictsInsideProgressBar: true
     viewports: {
       progress: ".pwstrength_viewport_progress"
       errors: ".pwstrength_viewport_errors"
     }
 
   $('#user_password').pwstrength(options)
+
+  $('.select2').select2
+    theme: 'bootstrap'
+    language: 'es'
+
+  ##
+  # Nested form callback
+  $(document).on "nested:fieldAdded", (event) ->
+    $('.select2').select2
+      theme: 'bootstrap'
+      language: 'es'

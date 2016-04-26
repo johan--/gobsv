@@ -9,6 +9,8 @@
 #= require 'jssocials.shares'
 #= require 'jquery.steps.min'
 #= require 'pwstrength-bootstrap'
+#= require 'select2'
+#= require 'select2_locale_es'
 
 $ ->
   $('[data-toggle="tooltip"]').tooltip()
@@ -33,10 +35,19 @@ $ ->
     container: "#pwd-container"
     showErrors: true
     showProgressBar: true
-    showVerdictsInsideProgressBar: true 
+    showVerdictsInsideProgressBar: true
     viewports: {
       progress: ".pwstrength_viewport_progress"
       errors: ".pwstrength_viewport_errors"
     }
 
   $('#password').pwstrength(options)
+
+  $('.select2').select2
+    theme: 'bootstrap'
+
+  ##
+  # Nested form callback
+  $(document).on "nested:fieldAdded", (event) ->
+    $('.select2').select2
+      theme: 'bootstrap'

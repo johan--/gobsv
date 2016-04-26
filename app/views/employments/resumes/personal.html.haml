@@ -105,7 +105,7 @@
               %span.glyphicon.glyphicon-plus
 
         %h3 Información Académica
-        %section
+        %section.academic-section
           %fieldset
             %h4
               Formacion académica
@@ -115,11 +115,11 @@
                 .row
                   .col-sm-11
                     .form-group
-                      = ff.select :gra_code, ::Employments::Specialty.order(:gra_name).uniq.pluck(:gra_name, :gra_code), {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true }
+                      = ff.select :gra_code, ::Employments::UserSpecialty::ACADEMIC_GRADE.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true, class: 'select2', style: 'width: 100%;' }
                 .row
                   .col-sm-11
                     .form-group
-                      = ff.select :esp_code, ::Employments::Specialty.order(:esp_name).uniq.pluck(:esp_name, :esp_code), {include_blank: t('activerecord.attributes.employments/user_specialty.esp_code'), hide_label: true}, { required: true }
+                      = ff.select :esp_code, ::Employments::Specialty.order(:esp_code).uniq.pluck(:esp_name, :esp_code), {include_blank: t('activerecord.attributes.employments/user_specialty.esp_code'), hide_label: true}, { required: true, class: 'select2', style: 'width: 100%;' }
                 .row
                   .col-sm-11
                     .form-group
