@@ -53,7 +53,7 @@ class Employments::ResumesController < EmploymentsController
       :address,
       :country_id,
       references_attributes: [:id, :name, :charge, :address, :phone, :kind, :_destroy],
-      specialties_attributes: [:id, :country_id, :esp_code, :gra_code, :institution_name, :certificate, :start_at, :end_at, :_destroy],
+      specialties_attributes: [:id, :country_id, :gra_code, :esp_code, :institution_name, :certificate, :start_at, :end_at, :_destroy],
       trainings_attributes: [:id, :institution_name, :name, :description, :place, :duration, :year, :_destroy],
       work_experiences_attributes: [:id, :sector, :country_id, :institution_name, :charge, :description, :start_at, :end_at, :active, :_destroy],
       languages_attributes: [:id, :name, :read, :write, :speak, :_destroy],
