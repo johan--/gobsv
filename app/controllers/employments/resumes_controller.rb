@@ -23,6 +23,9 @@ class Employments::ResumesController < EmploymentsController
     unless @success
       flash[:notice] = 'No se pudo actualizar la información'
       @errors = @user.errors.messages.to_json.html_safe
+      @disability_types = ::Employments::DisabilityType.all
+      @disability_certifications = ::Employments::DisabilityCertification.all
+      @countries = ::Employments::Country.all
       render :personal
     else
       ::SynchronizeUsersJob.perform_later(@user)
