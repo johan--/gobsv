@@ -510,7 +510,7 @@ es:
         charge: Cargo que desempeña
         address: Dirección
         phone: Teléfono
-        type: Tipo de referencia
+        kind: Tipo de referencia
       employments/user_specialty:
         name: Grado Académico
         gra_code: Grado Académico
