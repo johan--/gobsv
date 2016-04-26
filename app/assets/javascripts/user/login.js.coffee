@@ -14,6 +14,9 @@
 
 
 $ ->
+  
+  jQuery.extend jQuery.validator.messages,
+    maxlength: jQuery.validator.format(' Por favor ingresa no más de {0} caracteres.')
 
   $('[data-toggle="tooltip"]').tooltip()
 
