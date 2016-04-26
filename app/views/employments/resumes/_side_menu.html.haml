@@ -1,0 +1,26 @@
+.side-menu
+  %ul.nav.nav-pills.nav-stacked.nav-pills-stacked-example
+    %li{class: "hidden-xs #{f=='personal' ? 'active-item' : ''}"}
+      = link_to image_tag("#{f=='personal' ? 'employments/icon-cv-active.png' : 'employments/icon-cv.png'}") + "Mi CV", personal_employments_resumes_path
+    
+    %li{class: "hidden-xs #{f=='edit' ? 'active-item' : ''}"}
+      = link_to image_tag("#{f=='edit' ? 'employments/icon-user-job-active.png' : 'employments/icon-user-job.png'}") + "Mi Perfil", edit_user_registration_path
+    %li{class: "hidden-xs #{f=='' ? 'active-item' : ''}"}
+      = link_to image_tag("employments/icon-postulation.png") + "Postulaciones", personal_employments_resumes_path
+    %li{class: "hidden-xs #{f=='' ? 'active-item' : ''}"}
+      = link_to image_tag("employments/icon-jobs.png") + "Ver plazas", employments_jobs_path
+    %li.dropdown.visible-xs
+      = link_to "#", class: "dropdown-toggle", role: "button", data: {toggle: "dropdown"}, aria: {expanded: "true", haspopup: "true"} do 
+        MENU
+        %ul.dropdown-menu
+          %li{class: "hidden-xs #{f=='personal' ? 'active-item' : ''}"}
+            = link_to image_tag("#{f=='personal' ? 'employments/icon-cv-active.png' : 'employments/icon-cv.png'}") + "Mi CV", personal_employments_resumes_path
+          
+          %li{class: "hidden-xs #{f=='edit' ? 'active-item' : ''}"}
+            = link_to image_tag("#{f=='edit' ? 'employments/icon-user-job-active.png' : 'employments/icon-user-job.png'}") + "Mi Perfil", edit_user_registration_path
+          %li{class: "hidden-xs #{f=='personal' ? 'active-item' : ''}"}
+            = link_to image_tag("employments/icon-postulation.png") + "Postulaciones", personal_employments_resumes_path
+          %li{class: "hidden-xs #{f=='personal' ? 'active-item' : ''}"}
+            = link_to image_tag("employments/icon-jobs.png") + "Ver plazas", employments_jobs_path
+    .clearfix
+
