@@ -214,6 +214,39 @@ h2.header-title{
   }
 }
 
+#wrapper{
+  min-height:100%;
+}
+
+.side-menu{
+  background-color: #EEE;
+  height:100%;
+  min-height:100%;
+  padding: 10px 0;
+  ul{
+    li{
+      padding: 5px 10px;
+      list-style: none;
+      float: none;
+      a, a:hover, a:active, a:focus{
+        color: #333;
+        background: none;
+        img{
+          margin-right: 10px;
+        }
+      }
+      a:hover{
+        color: #29ABE2;
+      }
+    }
+    li.active-item{
+      a{
+        color: #29ABE2
+      }
+    }
+  }
+}
+
 /* Customize jsSocials */
 #shareButtonLabelCount{
   font-size: 12px;
@@ -395,6 +428,14 @@ h2.header-title{
       background: image-url("employments/bg-step-active.jpeg") no-repeat center center;
     }
   }
+  .side-menu{
+    ul{
+      li{
+        float: left;
+      }
+    }
+  }
+
 }
 
 .updated-cv{

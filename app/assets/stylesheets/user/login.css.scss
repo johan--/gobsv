@@ -2,8 +2,17 @@
 @import 'theme/bootstrap';
 @import 'theme/animate';
 */
+
+@import 'bootstrap-sprockets';
+@import 'employments/bootstrap-vars';
+@import 'employments/mixins';
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 @import 'employments';
 @import 'colors';
+@import 'employments/bootstrap-vars';
+@import 'employments/mixins';
 
 body {
   background: $white;
@@ -93,16 +102,6 @@ p {
   padding: 1em 0 2em;
 }
 
-.wizard > .content{
-  min-height: auto;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-}
-
-.wizard > .content > .body{
-  position: relative !important;
-}
-
 #resume-form{
   margin-bottom: 40px;
   .fields{
@@ -117,8 +116,33 @@ p {
   overflow: hidden;
 }
 
+.wizard > .content{
+  min-height: auto;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+}
+
+.wizard > .content > .body{
+  position: relative !important;
+}
+
+
 .wizard > .steps > ul > li{
-  width: 228px;
+  width: 168px;
+  heigth: 80px;
+  margin: 3px 0;
+}
+
+.wizard > .steps > ul > li, .wizard > .actions > ul > li{
+  height: 80px;
+}
+
+.wizard > .steps a, .wizard > .steps a:hover, .wizard > .steps a:active{
+  height: 100%;
+}
+
+.wizard > .steps .done a, .wizard > .steps .done a:hover, .wizard > .steps .done a:active{
+  height: 100%;
 }
 
 .wizard > .content > .body label.error{

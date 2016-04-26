@@ -11,6 +11,22 @@ class Employments::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+      # Sign in the user by passing validation in case their password changed
+      flash[:notice] = 'Se ha actualizado su contraseña'
+      sign_in @user, :bypass => true
+      redirect_to personal_employments_resumes_path
+    else
+      flash[:notice] = 'No se pudo actualizar la información'
+      render "edit"
+    end    
+  end
+
   private
 
   def draw_breadcrumb
@@ -19,6 +35,10 @@ class Employments::RegistrationsController < Devise::RegistrationsController
   end
 
   protected
+
+  def user_params
+     params.require(:user).permit(:password, :password_confirmation)
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:name, :last_name)

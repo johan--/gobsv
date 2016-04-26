@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_many :plazas, class_name: '::Employments::Plaza', through: :user_postulations, dependent: :destroy
 
   # Validations
-  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
+  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, :on => :create
   validates :name, :presence => true #:role_id
   validates :password, :presence => true, :confirmation => true, :on => :create
   validates :password, :presence => true, :confirmation => true, :if => Proc.new{|o| o.password.present?}

@@ -1,15 +1,23 @@
+
 #= require "jquery"
 #= require 'jquery_ujs'
 #= require 'jquery.remotipart'
 #= require 'jquery.steps.min'
 #= require 'jquery.mask.min'
+#= require 'bootstrap-sprockets'
 #= require 'bootstrap-datepicker.min'
 #= require 'jquery_nested_form'
 #= require 'pwstrength-bootstrap'
 #= require 'jquery.validate.min'
 
 
-$(document).ready ->
+$ ->
+
+  $('[data-toggle="tooltip"]').tooltip()
+
+  $(document).on 'click', '.btnNext', ->
+    $('.nav-tabs > .active').next('li').find('a').trigger 'click'
+
 
   SHOW_CLASS = "show"
   HIDE_CLASS = "hide"
