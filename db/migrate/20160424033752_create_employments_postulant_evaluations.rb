@@ -14,7 +14,6 @@ class CreateEmploymentsPostulantEvaluations < ActiveRecord::Migration
       t.timestamp :created_date
       t.integer :updated_user
       t.timestamp :updated_date
-      t.jsonb :postulant
       t.timestamps null: false
     end
   end

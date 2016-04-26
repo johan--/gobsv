@@ -344,7 +344,6 @@ ActiveRecord::Schema.define(version: 20160426144929) do
     t.text     "comment"
     t.date     "commented_at"
     t.integer  "stpp_id"
-    t.jsonb    "postulant"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
@@ -363,7 +362,6 @@ ActiveRecord::Schema.define(version: 20160426144929) do
     t.datetime "created_date"
     t.integer  "updated_user"
     t.datetime "updated_date"
-    t.jsonb    "postulant"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end
@@ -382,8 +380,6 @@ ActiveRecord::Schema.define(version: 20160426144929) do
     t.date     "created_date"
     t.integer  "updated_user"
     t.date     "updated_date"
-    t.jsonb    "postulant_evaluations",       default: [],                array: true
-    t.jsonb    "technical_comments",          default: [],                array: true
     t.boolean  "active",                      default: true
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false

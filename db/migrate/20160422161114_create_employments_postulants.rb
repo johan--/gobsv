@@ -14,8 +14,6 @@ class CreateEmploymentsPostulants < ActiveRecord::Migration
       t.date :created_date
       t.integer :updated_user
       t.date :updated_date
-      t.jsonb :postulant_evaluations, array: true, default: []
-      t.jsonb :technical_comments, array: true, default: []
       t.boolean :active, default: true
       t.timestamps null: false
     end
