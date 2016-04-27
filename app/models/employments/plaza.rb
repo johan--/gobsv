@@ -37,4 +37,8 @@ class Employments::Plaza < ActiveRecord::Base
   def applications_total
       stpp_apply_counter + spta_apply_counter
   end
+
+  def total_salary
+    (salary * vacancies) rescue 0
+  end
 end

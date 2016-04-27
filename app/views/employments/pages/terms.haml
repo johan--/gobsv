@@ -1,0 +1,30 @@
+= render partial: 'layouts/employments/breadcrumb'
+.container
+  .row
+    .col-sm-12
+      .updated-cv
+        .row
+          .col-sm-12
+            .updated-sheet
+              .clip
+                = image_tag("employments/icon-clip.png")
+              .updated-area
+                =# image_tag("employments/tags-04.png")
+              %center
+                %h2
+                  Términos y condiciones
+              %div
+                %p
+                  El postulante comprende que la incorporación de información falsa o documentación fraudulenta dará lugar a su descalificación del proceso de selección, así como también podría implicar  un aviso penal a la FGR, según el delito cometido.
+                %p
+                  En relación a los datos personales e información confidencial solicitada en este portal, el postulante acepta:
+                %ol{ type: 'a' }
+                  %li
+                    Que dichos datos serán protegidos, incorporados y tratados por las Unidades de Recursos Humanos de la institución contratante según lo estipulado por la Ley de Acceso a la Información Pública y demás normativa relacionada a la materia;
+                  %li
+                    Que de ser seleccionado en la terna final, los puntajes finales que haya obtenido en las pruebas serán publicados; y
+                  %li
+                    Que de ser seleccionado para contratación también será público su  curriculum según la normativa vigente.
+                %p
+                  Si tiene dudas o comentarios, envíe un correo electrónico a
+                  = mail_to "info@gobiernoabierto.gob.sv"

@@ -1,11 +1,16 @@
-.container.updated-cv
+.container
   .row
-    .col-sm-12
-      .updated-sheet
-        .clip
-          = image_tag("employments/icon-clip.png")
-        .updated-area
-          = image_tag("employments/tags-04.png")
-        %center
-          %h2
-            Se ha actualizado el curriculum correctamente
+    .col-sm-3
+      = render partial: "side_menu", locals: {f: action_name}
+    .col-sm-9
+      .updated-cv
+        .row
+          .col-sm-12
+            .updated-sheet
+              .clip
+                = image_tag("employments/icon-clip.png")
+              .updated-area
+                = image_tag("employments/tags-04.png")
+              %center
+                %h2
+                  Se ha actualizado el curriculum correctamente

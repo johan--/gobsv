@@ -18,6 +18,7 @@ namespace :employments do
       res = Net::HTTP.post_form(uri, params)
       json = JSON.parse(res.body, symbolize_names: true)
       access_token = [json[:token_type], json[:access_token]].join(' ')
+=begin
       # Get factors
       Employments::PlazaFactor.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaFactores', access_token
@@ -106,6 +107,7 @@ namespace :employments do
         obj.active = true
         obj.save
       end
+=end
       # Get plazas
       Employments::Plaza.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaConcursosPublicos', access_token
@@ -147,6 +149,7 @@ namespace :employments do
         obj.active = true
         obj.save
       end
+=begin
       # Get contracts
       Employments::PlazaContract.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/Contratos', access_token
@@ -161,6 +164,7 @@ namespace :employments do
       # Get postulants
       Employments::Postulant.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/ConcursoPostulante', access_token
+      puts jsons.inspect
       jsons.each do |json|
         obj = Employments::Postulant.where(id: json[:idConcursoPostulante]).first_or_initialize
         obj.sttp_id = json[:idUsuario]
@@ -226,10 +230,11 @@ namespace :employments do
         obj.active = true
         obj.save
       end
+=end
       #UserMailer.report_employments_import(Time.current.strftime('%d/%m/%Y %H:%M:%S'), false).deliver
     rescue Exception => e
-      #UserMailer.report_employments_import(e, true).deliver
-      puts e
+      UserMailer.report_employments_import(e, true).deliver
+      #puts e
     end
   end
 

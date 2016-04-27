@@ -10,12 +10,17 @@
           %p
             Sus datos personales no seran utilizados en la primera fase de Selección. No se publicará su información personal.
         .col-sm-4
-          .well
-            %h5
-              Documentos que ocupará para la edición del currículum
-            %ul
-              %li DUI
-              %li NIT
+          %br
+          .alert.alert-warning.m0
+            -#
+              %h5
+                Documentos que ocupará para la edición del currículum
+              %ul
+                %li DUI
+                %li NIT
+            Asegúrese de brindar datos
+            %strong verídicos y comprobables,
+            porque se utilizarán para la evaluación de sus postulaciones.
       .clearfix
       %br
       .row
@@ -119,11 +124,11 @@
                     .row
                       .col-sm-11
                         .form-group
-                          = ff.select :gra_code, ::Employments::UserSpecialty::ACADEMIC_GRADE.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true }
+                          = ff.select :gra_code, ::Employments::UserSpecialty::ACADEMIC_GRADE.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true, class: 'select2', style: 'width: 100%' }
                     .row
                       .col-sm-11
                         .form-group
-                          = ff.select :esp_code, ::Employments::Specialty.order(:esp_name).uniq.pluck(:esp_name, :esp_code), {include_blank: t('activerecord.attributes.employments/user_specialty.esp_code'), hide_label: true}, { required: true }
+                          = ff.select :esp_code, ::Employments::Specialty.order(:esp_name).uniq.pluck(:esp_name, :esp_code), {include_blank: t('activerecord.attributes.employments/user_specialty.esp_code'), hide_label: true}, { required: true, class: 'select2', style: 'width: 100%' }
                     .row
                       .col-sm-11
                         .form-group
@@ -138,7 +143,7 @@
                           %label.control-label
                             = t('activerecord.attributes.employments/user_specialty.certificate')
                           = ff.file_field_without_bootstrap :certificate
-                          = link_to "Certificado", ff.object.certificate.url if ff.object.certificate.present?
+                          = link_to "Certificado", ff.object.certificate.url, target: '_blank' if ff.object.certificate.present?
 
                     .row
                       .col-sm-1

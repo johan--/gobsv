@@ -73,6 +73,6 @@ class Employments::JobsController < EmploymentsController
       add_breadcrumb @job.post_name if @job
     end
     def verify_cv
-      redirect_to personal_employments_resumes_url, notice: 'Por favor llene su cv antes de aplicar a una plaza' and return unless current_user.cv_valid?
+      redirect_to personal_employments_resumes_url, notice: 'Por favor verique que tenga información académica, referencias personales y datos personales en su cv' and return unless current_user.cv_valid?
     end
 end

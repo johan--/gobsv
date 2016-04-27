@@ -38,7 +38,7 @@
           = image_tag 'employments/icon-money.png'
           %span
             %strong
-              = number_to_currency(@publish_plazas.pluck(:salary).sum) # TODO multiplicar por vacantes
+              = number_to_currency(@publish_plazas.map(&:total_salary).sum)
             %br
             Total en salarios
       .col-xs-12.col-sm-6.col-md-4

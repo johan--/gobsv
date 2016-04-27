@@ -43,5 +43,10 @@ constraints DomainConstraint.new(domain) do
         post :save
       end
     end
+    resources :pages, only: [] do
+      collection do
+        get :terms
+      end
+    end
   end
 end
