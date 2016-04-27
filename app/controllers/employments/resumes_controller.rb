@@ -22,7 +22,7 @@ class Employments::ResumesController < EmploymentsController
     item_params = {}
     unless @success
       flash[:notice] = 'No se pudo actualizar la información'
-      @errors = @user.errors.messages.to_json.html_safe
+      @errors = @user.errors.full_messages
       @disability_types = ::Employments::DisabilityType.all
       @disability_certifications = ::Employments::DisabilityCertification.all
       @countries = ::Employments::Country.all

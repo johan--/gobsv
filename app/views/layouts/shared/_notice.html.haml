@@ -3,11 +3,11 @@
     = flash[:notice]
     = button_tag class: 'close', data: { dismiss: 'alert' } do
       &times;
-- if @errors
+- if @errors.any?
   .alert.alert-danger.alert-dismissable{ role: 'alert'}
+    = button_tag class: 'close', data: { dismiss: 'alert' } do
+      &times;
     %ul
       - @errors.each do |msg|
         %li
           = msg
-    = button_tag class: 'close', data: { dismiss: 'alert' } do
-      &times;
