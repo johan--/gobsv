@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   validates :name, :presence => true #:role_id
   validates :password, :presence => true, :confirmation => true, :on => :create
   validates :password, :presence => true, :confirmation => true, :if => Proc.new{|o| o.password.present?}
+  validates :document_number, uniqueness: true
 
   #validates :tax_id, :presence => true, length: { is: 17 }, :unless => :create
 
