@@ -18,15 +18,16 @@ h2{
 
 h2.problem-description{
   color: #fff;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.5;
+  padding: 0 30px;
 }
 
 p.pensions-calc{
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
-  padding: 35px 25px;
+  padding: 48px 30px;
 }
 
 p.subject{
@@ -438,8 +439,15 @@ p.analysis{
       width: 190px;
     }
   }
+  h2.problem-description{
+    font-size: 16px;
+    padding: 0;
+    span{
+      font-size: 22px;
+    }
+  }
   p.pensions-calc{
-    padding: 22px 25px;
+    padding: 37px 25px;
   }
 }
 
