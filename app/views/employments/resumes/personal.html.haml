@@ -142,8 +142,16 @@
                         .form-group
                           %label.control-label
                             = t('activerecord.attributes.employments/user_specialty.certificate')
-                          = ff.file_field_without_bootstrap :certificate
-                          = link_to "Certificado", ff.object.certificate.url, target: '_blank' if ff.object.certificate.present?
+                          .input-group
+                            %span.input-group-btn
+                              %span.btn.btn-info.btn-file
+                                Seleccionar...
+                                = ff.file_field_without_bootstrap :certificate
+                            = text_field_tag '', '', class: 'form-control', readonly: true
+                          - if ff.object.certificate.present?
+                            = link_to ff.object.certificate.url, target: '_blank' do
+                              %span.glyphicon.glyphicon-save
+                              = ff.object.certificate_file_name
 
                     .row
                       .col-sm-1
