@@ -505,6 +505,7 @@ es:
         country_id: País de nacimiento
         treatment: Trato
         address: Dirección
+        humanizer_answer: Pregunta de seguridad
       employments/user_reference:
         name: Nombre
         charge: Cargo que desempeña

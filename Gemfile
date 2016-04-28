@@ -180,7 +180,10 @@ gem 'rack-cors', '~> 0.4.0', require: 'rack/cors'
 gem 'devise_token_auth', '~> 0.1.30'
 
 # ambethia/recaptcha
-gem "recaptcha", require: "recaptcha/rails"
+#gem "recaptcha", require: "recaptcha/rails"
+
+# Very simple captcha with Rails 3 & 4 support http://kiskolabs.github.io/humanizer
+gem 'humanizer'
 
 # Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions. http://rubydoc.info/projects/rest-client/rest-client
 gem 'rest-client'

@@ -1,7 +1,9 @@
 %h2
   Acceder a tu cuenta
-%p 
+%p
   Accede a tu cuenta para poder aplicar a plazas, empleos, pasantías en las instituciones del gobierno, sin cuello ni favores, procesos transparentes. Si no tienes una cuenta puedes crear una.
+%p.text-warning
+  * Todos los campos son requeridos, por favor asegurese de llenarlos
 
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   .form-group
@@ -22,8 +24,14 @@
       .pwstrength_viewport_progress
       .pwstrength_viewport_errors
   .row
-    .col-xs-12
-      = recaptcha_tags
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :humanizer_answer, resource.humanizer_question
+        = f.text_field :humanizer_answer, class: 'form-control', placeholder: 'Ingrese su respuesta'
+        = f.hidden_field :humanizer_question_id
+
+
+
   %br
   .row
     .col-xs-12

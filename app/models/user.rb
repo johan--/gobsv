@@ -36,12 +36,15 @@ class User < ActiveRecord::Base
   validates :name, :presence => true #:role_id
   validates :password, :presence => true, :confirmation => true, :on => :create
   validates :password, :presence => true, :confirmation => true, :if => Proc.new{|o| o.password.present?}
-  validates :document_number, uniqueness: true
+  validates :document_number, uniqueness: true, on: :update
 
   #validates :tax_id, :presence => true, length: { is: 17 }, :unless => :create
 
   # Callbacks
   # after_save :send_user_info_to_api
+
+  include Humanizer
+  require_human_on :create
 
   #User::Gender
   Gender = {
