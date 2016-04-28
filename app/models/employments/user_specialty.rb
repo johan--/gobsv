@@ -6,7 +6,7 @@ class Employments::UserSpecialty < ActiveRecord::Base
   has_attached_file :certificate
   #do_not_validate_attachment_file_type :certificate
   validates_attachment_presence :certificate
-  validates_attachment_content_type :certificate, content_type: ['application/pdf']
+  validates_attachment_content_type :certificate, content_type: ['application/pdf'], message: 'por favor adjunte un archivo en formato PDF'
 
   before_save :set_missing_data
 

@@ -3,7 +3,7 @@
     = flash[:notice]
     = button_tag class: 'close', data: { dismiss: 'alert' } do
       &times;
-- if @errors.any?
+- if @errors.present?
   .alert.alert-danger.alert-dismissable{ role: 'alert'}
     = button_tag class: 'close', data: { dismiss: 'alert' } do
       &times;

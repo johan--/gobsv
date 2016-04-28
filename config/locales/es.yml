@@ -518,9 +518,12 @@ es:
         esp_name: Especialidad Académica
         country_id: País
         institution_name: Institución
-        certificate: Certificado (adjunto)
+        certificate: Certificado (adjunto en formato PDF)
         start_at: Inicio de especialización
         end_at: Finalización de especialización
+      specialties:
+        certificate: Certificado
+        certificate_content_type: Tipo de certificado
       employments/user_training:
         institution_name: Institución educativa
         name: Area de estudio
