@@ -12,6 +12,8 @@
 #= require 'forums/jquery-queryParser.min'
 #= require 'chart.min'
 #= require 'jquery.validate.min'
+#= require 'jssocials'
+#= require 'jssocials.shares'
 
 $(document).ready ->
   $('#calculator-form').validate

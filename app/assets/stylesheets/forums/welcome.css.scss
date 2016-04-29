@@ -7,6 +7,8 @@ h1.problem-title{
   font-size: 6em;
   text-align: center;
   color: #fff;
+  margin: 0;
+  padding: 20px 0 5px;
 }
 
 h2{
@@ -17,10 +19,11 @@ h2{
 }
 
 h2.problem-description{
-  color: #fff;
+  color: #000;
   font-size: 20px;
   line-height: 1.5;
   padding: 0 30px;
+  margin-bottom: 20px;
 }
 
 p.pensions-calc{
@@ -28,6 +31,16 @@ p.pensions-calc{
   font-size: 20px;
   line-height: 1.5;
   padding: 48px 30px;
+}
+
+.reform-container{
+  background: #eee;
+  opacity: 0.7;
+  padding: 20px 20px 30px;
+  opacity: 0.6;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
 }
 
 p.subject{
@@ -60,7 +73,7 @@ p.description-topic{
 .play-video{
   display: block;
   text-align: center;
-  margin: 30px 0 50px;
+  margin: 0px 0 75px;
 }
 .go-to-positions{
   display: block;
@@ -194,7 +207,7 @@ p.calc-description{
   font-size: 16px;
   color: #333;
   text-align: center;
-  padding: 30px 0 10px;
+  padding: 55px 0 10px;
 }
 
 .col-centered{
@@ -208,11 +221,11 @@ p.calc-description{
 }
 
 .header-calc-bg{
-  background: #88C100;
+  background: #2D3E50;
   padding: 10px 10px 20px;
   text-align: center;
   margin: 0px;
-  border-bottom: 7px solid #82B800;
+  border-bottom: 7px solid #243140;
   h1{
     font-family: 'Dosis', sans-serif;
     font-size: 32px;
@@ -228,9 +241,24 @@ p.calc-description{
   }
 }
 
+#wrapper-calculator{
+  margin: 0 15px;
+  position: relative;
+}
+
+.social-share-inline{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .btn-calculate {
   border: 1px solid white;
   width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  max-width: 200px;
 }
 
 #results{
@@ -439,6 +467,16 @@ p.analysis{
       width: 190px;
     }
   }
+
+  .wrapper-wage-video{
+    height: 550px;
+  }
+
+  .row{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
   h2.problem-description{
     font-size: 16px;
     padding: 0;
@@ -449,8 +487,41 @@ p.analysis{
   p.pensions-calc{
     padding: 37px 25px;
   }
+  .play-video{
+    margin: 0 0 50px;
+  }
+  .btn-custom-reply{
+    font-size: 1.5em;
+  }
 }
 
+@media (max-width: 767px) {
+  .wrapper-wage-video{
+    height: 700px;
+  }
+
+  .play-video{
+    margin: 0 0 30px;
+  }
+
+  p.subject{
+    padding-top: 15px;
+  }
+  h1.problem-title{
+    font-size: 4em;
+  }
+  h2.problem-description{
+    font-size: 16px;
+    padding: 0;
+    span{
+      font-size: 20px;
+    }
+  }
+  p.pensions-calc{
+    padding: 15px 25px;
+    font-size: 16px;
+  }
+}
 
 @media (max-width: 720px) {
   h1.problem-title{
@@ -469,14 +540,13 @@ p.analysis{
     font-size: 20px;
   }
 
-  .wrapper-wage-video{
-    height: 700px;
-  }
-
-
 }
 
 @media (max-width: 480px) {
+  .wrapper-wage-video{
+    height: 450px;
+  }
+
   .wrapper-wage-video{
     height: 770px;
   }
