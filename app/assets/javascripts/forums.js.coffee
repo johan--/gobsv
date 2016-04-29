@@ -46,15 +46,15 @@ $(document).ready ->
       # Prevent opening of external page
       e.preventDefault()
       # Variables for iFrame code. Width and height from data attributes, else use default.
-      vidWidth = 760
+      #vidWidth = 100%
       # default
-      vidHeight = 428
+      #vidHeight = 428
       # default
       if $(this).attr('data-width')
         vidWidth = parseInt($(this).attr('data-width'))
       if $(this).attr('data-height')
         vidHeight = parseInt($(this).attr('data-height'))
-      iFrameCode = '<iframe width="' + vidWidth + '" height="' + vidHeight + '" scrolling="no" allowtransparency="true" allowfullscreen="true" src="http://www.youtube.com/embed/' + queryVars['v'] + '?rel=0&wmode=transparent&showinfo=0" frameborder="0"></iframe>'
+      iFrameCode = '<iframe width="100%" height="100%" scrolling="no" allowtransparency="true" allowfullscreen="true" src="http://www.youtube.com/embed/' + queryVars['v'] + '?rel=0&wmode=transparent&showinfo=0" frameborder="0"></iframe>'
       # Replace Modal HTML with iFrame Embed
       $('#mediaModal .modal-body').html iFrameCode
       # Replace Modal title with link title

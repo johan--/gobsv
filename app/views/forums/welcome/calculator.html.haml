@@ -9,46 +9,47 @@
       shares: ["twitter", "facebook"]
     })
   .container
-    .row
-      .col-sm-12
-        %p.calc-description
-          = "Compará cómo será tu pensión con el sistema actual y cómo sería si se aprueba la reforma impulsada por el Gobierno."
-    .row
-      .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
-        .login-container
-          .flat-form
-            #login.form-action.show.animated.bounceInDown
-              %center
-                =# image_tag('forums/logo_GA-01.png')
-              %br
-              = form_tag forums_calculator_path, method: :get, class: "form-horizontal", id: "calculator-form" do
-                .form-group
-                  .input-group
-                    .input-group-addon
-                      %span.glyphicon.glyphicon-usd
-                    = number_field_tag :wage, "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", placeholder: t('.enter_wage'), class: 'form-control'
-                .form-group
-                  .input-group
-                    .input-group-addon
-                      %span.glyphicon.glyphicon-user
-                    = select_tag "gender", options_for_select([["Hombre", :male], ["Mujer", :female]]), {prompt: t('.enter_gender'), class: "selectpicker form-control"}
-                   
-                .form-group
-                  = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
-              -# bootstrap_form_tag url: forums_calculator_path, method: :get, html: {id: "calculator-sform"} do |f|
-                .form-group
-                  .input-group
-                    .input-group-addon
-                      %span.glyphicon.glyphicon-usd
-                    = f.number_field :wage, placeholder: t('.enter_wage'), autofocus: true, class: 'form-control', hide_label: true, value: "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", required: true, data: {:"fv-numeric-message"=>"Ingresa un número"}
-                .form-group
-                  .input-group
-                    .input-group-addon
-                      %span.glyphicon.glyphicon-user
-                    = f.select :gender, [["Hombre", :male], ["Mujer", :female]], {include_blank: t('.enter_gender'), hide_label: true, selected: params[:gender]}, { class: "selectpicker" }
+    .wrapper-margin
+      .row
+        .col-sm-12
+          %p.calc-description
+            = "Compará cómo será tu pensión con el sistema actual y cómo sería si se aprueba la reforma impulsada por el Gobierno."
+      .row
+        .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+          .login-container
+            .flat-form
+              #login.form-action.show.animated.bounceInDown
+                %center
+                  =# image_tag('forums/logo_GA-01.png')
+                %br
+                = form_tag forums_calculator_path, method: :get, class: "form-horizontal", id: "calculator-form" do
+                  .form-group
+                    .input-group
+                      .input-group-addon
+                        %span.glyphicon.glyphicon-usd
+                      = number_field_tag :wage, "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", placeholder: t('.enter_wage'), class: 'form-control'
+                  .form-group
+                    .input-group
+                      .input-group-addon
+                        %span.glyphicon.glyphicon-user
+                      = select_tag "gender", options_for_select([["Hombre", :male], ["Mujer", :female]]), {prompt: t('.enter_gender'), class: "selectpicker form-control"}
+                     
+                  .form-group
+                    = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
+                -# bootstrap_form_tag url: forums_calculator_path, method: :get, html: {id: "calculator-sform"} do |f|
+                  .form-group
+                    .input-group
+                      .input-group-addon
+                        %span.glyphicon.glyphicon-usd
+                      = f.number_field :wage, placeholder: t('.enter_wage'), autofocus: true, class: 'form-control', hide_label: true, value: "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", required: true, data: {:"fv-numeric-message"=>"Ingresa un número"}
+                  .form-group
+                    .input-group
+                      .input-group-addon
+                        %span.glyphicon.glyphicon-user
+                      = f.select :gender, [["Hombre", :male], ["Mujer", :female]], {include_blank: t('.enter_gender'), hide_label: true, selected: params[:gender]}, { class: "selectpicker" }
 
-                .form-group
-                  = f.submit 'Calcular', class: 'btn btn-success btn-calculate'
+                  .form-group
+                    = f.submit 'Calcular', class: 'btn btn-success btn-calculate'
   - unless @salario.nil? || @salario <= 0
     #results
       .container
