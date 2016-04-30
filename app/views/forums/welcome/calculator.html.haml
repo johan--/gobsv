@@ -33,9 +33,12 @@
                       .input-group-addon
                         %span.glyphicon.glyphicon-user
                       = select_tag "gender", options_for_select([["Hombre", :male], ["Mujer", :female]]), {prompt: t('.enter_gender'), class: "selectpicker form-control"}
-                     
+                  
                   .form-group
                     = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
+                    .text-center
+                      %p
+                        *Valores aproximados
                 -# bootstrap_form_tag url: forums_calculator_path, method: :get, html: {id: "calculator-sform"} do |f|
                   .form-group
                     .input-group
