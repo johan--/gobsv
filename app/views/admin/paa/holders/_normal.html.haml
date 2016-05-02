@@ -1,0 +1,190 @@
+= field_set_tag 'General' do
+  = f.select :state, options_for_select(Paa::Saving::STATE.invert, f.object.state), { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil}
+  = f.select :institution_id, @institutions.map{ |institution| [institution.name, institution.id] }, { include_blank: true }, { class: @institutions.count > 1 ? 'select2' : nil}
+  = f.select :financial_source_id, @financial_sources.map{ |financial_source| [financial_source.name, financial_source.id] }, { include_blank: true}, { class: 'select2'}
+
+  = f.select :trimester, options_for_select(Paa::Saving::TRIMESTER.invert, f.object.get_trimester[1]), { include_blank: true }, { class: 'select2'}
+
+  = f.select :year, options_for_select(2005..2025, f.object.get_trimester[0]), { include_blank: true }, { class: 'select2' }
+
+  -#= f.text_field :auditor_id
+  -#= f.text_field :audited_at
+= field_set_tag 'Cuantificación de Ahorro a Nivel de Medida de Gasto Implementada' do
+  %ul.nav.nav-tabs{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "remuneration", "data-toggle" => "tab", :href => "#remuneration", :role => "tab"} Remuneraciones
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "acquisitions1", "data-toggle" => "tab", :href => "#acquisitions1", :role => "tab"} Bienes
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "acquisitions2", "data-toggle" => "tab", :href => "#acquisitions2", :role => "tab"} Servicios
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "expenses", "data-toggle" => "tab", :href => "#expenses", :role => "tab"} Gastos
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "transfers", "data-toggle" => "tab", :href => "#transfers", :role => "tab"} Transferencias
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "investments", "data-toggle" => "tab", :href => "#investments", :role => "tab"} Inversiones
+  .tab-content
+    %br
+    #remuneration.tab-pane.active{:role => "tabpanel"}
+      / Remuneraciones
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_remuneration_total')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_remuneration_total, precision: 2)
+      = f.text_field :cat_remuneration_frozen
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_remuneration_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_remuneration_rescheduled, precision: 2) 
+      %hr
+      %h4
+        = t('.remuneration')
+      = f.text_field :remuneration
+      = f.text_area  :remuneration_actions
+      = f.text_area  :remuneration_explanation
+    #acquisitions1.tab-pane{:role => "tabpanel"}
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_procurement_of_goods_total')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_procurement_of_goods_total, precision: 2)   
+      = f.text_field :cat_procurement_of_goods_frozen
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_procurement_of_goods_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_procurement_of_goods_rescheduled , precision: 2) 
+      %hr
+      %h4
+        = t('.food_products')
+      = f.text_field :food_products
+      = f.text_area  :food_products_actions
+      = f.text_area  :food_products_explanation
+      %hr
+      %h4
+      = t('.textile_products')
+      = f.text_field :textile_products
+      = f.text_area  :textile_products_actions
+      = f.text_area  :textile_products_explanation
+      %hr
+      %h4
+        = t('.fuels_products')
+      = f.text_field :fuels_products
+      = f.text_area  :fuels_products_actions
+      = f.text_area  :fuels_products_explanation
+      %hr
+      %h4
+        = t('.paper_products')
+      = f.text_field :paper_products
+      = f.text_area  :paper_products_actions
+      = f.text_area  :paper_products_explanation
+    #acquisitions2.tab-pane{:role => "tabpanel"}
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_procurement_of_services_total')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_procurement_of_services_total, precision: 2)
+      = f.text_field :cat_procurement_of_services_frozen
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_procurement_of_services_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_procurement_of_services_rescheduled, precision: 2)  
+      %hr
+      %h4
+        = t('.basic_services')
+      = f.text_field :basic_services
+      = f.text_area  :basic_services_actions
+      = f.text_area  :basic_services_explanation
+      %hr
+      %h4
+      = t('.social_services')
+      = f.text_field :social_services
+      = f.text_area  :social_services_actions
+      = f.text_area  :social_services_explanation
+      %hr
+      %h4
+        = t('.passages')
+      = f.text_field :passages
+      = f.text_area  :passages_actions
+      = f.text_area  :passages_explanation
+      %hr
+      %h4
+        = t('.training_services')
+      = f.text_field :training_services
+      = f.text_area  :training_services_actions
+      = f.text_area  :training_services_explanation
+      %hr
+      %h4
+        = t('.ad_services')
+      = f.text_field :ad_services
+      = f.text_area :ad_services_actions
+      = f.text_area :ad_services_explanation
+    #expenses.tab-pane{:role => "tabpanel"}
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_financial_expenses_and_other_total')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_financial_expenses_and_other_total, precision: 2)
+      = f.text_field :cat_financial_expenses_and_other_frozen
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_financial_expenses_and_other_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_financial_expenses_and_other_rescheduled, precision: 2)   
+      %hr
+      %h4
+        = t('.financial_expenses')
+      = f.text_field :financial_expenses
+      = f.text_area :financial_expenses_actions
+      = f.text_area :financial_expenses_explanation
+    #transfers.tab-pane{:role => "tabpanel"}
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_current_transfers_total')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_current_transfers_total, precision: 2)
+      = f.text_field :cat_current_transfers_frozen
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_current_transfers_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_current_transfers_rescheduled, precision: 2)  
+      %hr
+      %h4
+        = t('.transfers')
+      = f.text_field :transfers
+      = f.text_area :transfers_actions
+      = f.text_area :transfers_explanation
+    #investments.tab-pane{:role => "tabpanel"}
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_investment_in_fixed_assets_total')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_investment_in_fixed_assets_total, precision: 2)
+      = f.text_field :cat_investment_in_fixed_assets_frozen
+      .form-group
+        %label.control-label.col-sm-2
+          = t('activerecord.attributes.paa/saving.cat_investment_in_fixed_assets_rescheduled')
+        .col-sm-9.text_form
+          %span
+            = number_to_currency(f.object.cat_investment_in_fixed_assets_rescheduled, precision: 2)  
+      %hr
+      %h4
+        = t('.investments')
+      = f.text_field :investments
+      = f.text_area :investments_actions
+      = f.text_area :investments_explanation

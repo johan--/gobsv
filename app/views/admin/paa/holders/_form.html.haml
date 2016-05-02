@@ -1,0 +1,6 @@
+= params[:ids]
+
+-# if is_auditor?
+  = render partial: 'auditor', locals: { f: f }
+- else
+  = render partial: 'normal', locals: { f: f }

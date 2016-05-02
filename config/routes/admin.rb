@@ -36,7 +36,9 @@ constraints subdomain: 'panel' do
         paa: [
           :financial_sources,
           :savings,
-          :reports
+          :reports,
+          :holders
+          
         ]
       }
 

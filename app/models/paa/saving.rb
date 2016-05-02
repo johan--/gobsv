@@ -3,8 +3,13 @@ class DupTrimesterValidator < ActiveModel::EachValidator
 
     object.send :set_start_at, object.year.to_i, value.to_i
     object.send :set_end_at, object.year.to_i, value.to_i
+    id = object.id
     
-    q = Paa::Saving.where("institution_id = ? and financial_source_id = ? and start_at = ? and end_at = ? and id <> ?", object.institution_id, object.financial_source_id, object.start_at, object.end_at, object.id).count 
+    if id.nil?
+      q = Paa::Saving.where("institution_id = ? and financial_source_id = ? and start_at = ? and end_at = ?", object.institution_id, object.financial_source_id, object.start_at, object.end_at).count
+    else
+      q = Paa::Saving.where("institution_id = ? and financial_source_id = ? and start_at = ? and end_at = ? and id <> ?", object.institution_id, object.financial_source_id, object.start_at, object.end_at, id).count
+    end
     
     if q > 0
 
@@ -59,6 +64,7 @@ class Paa::Saving < ActiveRecord::Base
   
   belongs_to :institution
   belongs_to :financial_source, class_name: '::Paa::FinancialSource'
+  belongs_to :holder, class_name: '::Paa::Holder'
 
   #ufi
   validates_numericality_of :remuneration, :food_products, :textile_products, :fuels_products, :paper_products, :basic_services, :social_services, :passages, :training_services, :ad_services, :financial_expenses, :transfers, :investments, :cat_procurement_of_services_frozen, :cat_procurement_of_services_rescheduled, :cat_procurement_of_goods_frozen, :cat_procurement_of_goods_rescheduled, :cat_remuneration_frozen, :cat_procurement_of_goods_and_services_frozen, :cat_financial_expenses_and_other_frozen, :cat_current_transfers_frozen, :cat_investment_in_fixed_assets_frozen, :cat_remuneration_rescheduled, :cat_procurement_of_goods_and_services_rescheduled, :cat_financial_expenses_and_other_rescheduled, :cat_current_transfers_rescheduled, :cat_investment_in_fixed_assets_rescheduled, :greater_than_or_equal_to => 0
