@@ -41,4 +41,23 @@ class Employments::Plaza < ActiveRecord::Base
   def total_salary
     (salary * vacancies) rescue 0
   end
+
+  def self.random_id
+    ids.sort_by{rand}.first
+  end
+  
+  def self.twt_job
+    r   = "#EmpleosSV http://www.empleospublicos.gob.sv #GobSV"
+    job = find(self.random_id)
+    
+    if (job.nil?) or (job.post_name.blank?) or (job.post_name.blank?)
+      self.twt_job
+    else
+      job_name = job.post_name.truncate(80)
+      job_code = job.institution_code
+      job_url  = "empleospublicos.gob.sv/jobs/#{job.id}"
+      r        = job_name + " " + job_url +  " " + job_code + " #EmpleosSV"
+    end
+    r
+  end
 end
