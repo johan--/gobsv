@@ -43,7 +43,7 @@ class Employments::Plaza < ActiveRecord::Base
   end
 
   def self.random_id
-    ids.sort_by{rand}.first
+    active.where(:plaza_state_id => 2).ids.sort_by{rand}.first
   end
   
   def self.twt_job
