@@ -45,7 +45,7 @@
     .row
       .col-xs-12
         %h4
-          Otras noticias
+          Más noticias
     - @other_articles.each_slice(2) do |slice|
       .row
         - slice.each do |article|
@@ -69,36 +69,36 @@
 
 %br
 
+-#
+  - unless gallery_articles.empty? && audio_articles.empty? && video_articles.empty?
+    #media.container.toggable-container
+      .row.tabs
+        - unless gallery_articles.empty?
+          .col-xs-4.col-sm-3
+            = link_to '#pct', class: 'btn btn-success' do
+              = image_tag 'ta/icon-pictures.png', class: 'hidden-xs'
+              Fotografías
 
-- unless gallery_articles.empty? && audio_articles.empty? && video_articles.empty?
-  #media.container.toggable-container
-    .row.tabs
+        - unless audio_articles.empty?
+          .col-xs-4.col-sm-3
+            = link_to '#aud', class: 'btn btn-warning' do
+              = image_tag 'ta/icon-audios.png', class: 'hidden-xs'
+              Audios
+
+        - unless video_articles.empty?
+          .col-xs-4.col-sm-3
+            = link_to '#vdo', class: 'btn btn-info' do
+              = image_tag 'ta/icon-videos.png', class: 'hidden-xs'
+              Videos
+
       - unless gallery_articles.empty?
-        .col-xs-4.col-sm-3
-          = link_to '#pct', class: 'btn btn-success' do
-            = image_tag 'ta/icon-pictures.png', class: 'hidden-xs'
-            Fotografías
+        = render partial: 'layouts/ta/gallery'
 
       - unless audio_articles.empty?
-        .col-xs-4.col-sm-3
-          = link_to '#aud', class: 'btn btn-warning' do
-            = image_tag 'ta/icon-audios.png', class: 'hidden-xs'
-            Audios
+        = render partial: 'layouts/ta/audios'
 
       - unless video_articles.empty?
-        .col-xs-4.col-sm-3
-          = link_to '#vdo', class: 'btn btn-info' do
-            = image_tag 'ta/icon-videos.png', class: 'hidden-xs'
-            Videos
-
-    - unless gallery_articles.empty?
-      = render partial: 'layouts/ta/gallery'
-
-    - unless audio_articles.empty?
-      = render partial: 'layouts/ta/audios'
-
-    - unless video_articles.empty?
-      = render partial: 'layouts/ta/videos'
+        = render partial: 'layouts/ta/videos'
 
 .hidden-xs
   %br
@@ -108,7 +108,9 @@
       .col-xs-12
         = render partial: 'layouts/ta/slider'
 
-%hr
+%br
+%br
+-# %hr
 
 -#
   #releases.container
@@ -153,44 +155,45 @@
                 Ratificación de convenio 189 permitirá beneficios laborales a trabajadoras del hogar
     %hr
 
-.container
-  .row
-    .col-xs-12.col-sm-6
-      .well
-        .row
-          .col-xs-12.col-sm-10
-            %h4
-              Subscríbete a nuestro boletín
-            %p
-              Recibe en tu correo electrónico las noticias de Transparencia Activa todos los días
+-#
+  .container
+    .row
+      .col-xs-12.col-sm-6
+        .well
+          .row
+            .col-xs-12.col-sm-10
+              %h4
+                Subscríbete a nuestro boletín
+              %p
+                Recibe en tu correo electrónico las noticias de Transparencia Activa todos los días
 
-            = form_tag '//gob.us4.list-manage.com/subscribe/post?u=842a2979e525425004e0dc51b&amp;id=50d05e5605' do
-              .form-group
-                .input-group
-                  .input-group-addon
-                    %span.glyphicon.glyphicon-envelope
-                  = text_field_tag 'EMAIL', '', class: 'form-control', placeholder: 'usuario@dominio.com'
-                  = hidden_field_tag 'b_842a2979e525425004e0dc51b_50d05e5605', ''
+              = form_tag '//gob.us4.list-manage.com/subscribe/post?u=842a2979e525425004e0dc51b&amp;id=50d05e5605' do
+                .form-group
+                  .input-group
+                    .input-group-addon
+                      %span.glyphicon.glyphicon-envelope
+                    = text_field_tag 'EMAIL', '', class: 'form-control', placeholder: 'usuario@dominio.com'
+                    = hidden_field_tag 'b_842a2979e525425004e0dc51b_50d05e5605', ''
 
-              = submit_tag 'Subscribirme', class: 'btn btn-inverse'
-          .col-xs-4
-            / Link to TA app will be here
-    .col-xs-12.col-sm-6
-      - unless newer_tweets.empty?
-        .media
-          .media-left
-            = image_tag 'ta/icon-twitter-blue.png', class: 'media-object'
-          .media-body
-            %h3
-              = link_to 'http://twitter.com/TransparenciaSV', target: '_blank' do
-                @TransparenciaSV
-        - newer_tweets.each do |tweet|
+                = submit_tag 'Subscribirme', class: 'btn btn-inverse'
+            .col-xs-4
+              / Link to TA app will be here
+      .col-xs-12.col-sm-6
+        - unless newer_tweets.empty?
           .media
             .media-left
-              = image_tag tweet.user.profile_image_url, class: 'media-object'
+              = image_tag 'ta/icon-twitter-blue.png', class: 'media-object'
             .media-body
-              %p.text-muted
-                = tweet.user.name
-                = "@#{tweet.user.screen_name}"
-              %p
-                = raw auto_link(tweet.text)
+              %h3
+                = link_to 'http://twitter.com/TransparenciaSV', target: '_blank' do
+                  @TransparenciaSV
+          - newer_tweets.each do |tweet|
+            .media
+              .media-left
+                = image_tag tweet.user.profile_image_url, class: 'media-object'
+              .media-body
+                %p.text-muted
+                  = tweet.user.name
+                  = "@#{tweet.user.screen_name}"
+                %p
+                  = raw auto_link(tweet.text)

@@ -46,60 +46,56 @@
 
       %br
       %br
-      - if @comments.any?
-        #comments.row
-          - @comments.each do |comment|
+      -#
+        - if @comments.any?
+          #comments.row
+            - @comments.each do |comment|
+              .col-xs-12
+                .media
+                  .media-left.media-top
+                    .avatar{ style: "background: ##{random_rgb_color(80..230)}" }
+                      = comment.avatar_letter
+                  .media-body
+                    %h5.media-heading
+                      = comment.name
+                    %p
+                      = comment.message
+                    -#
+                      %small
+                        = l(comment.created_at)
+                        |
+                        = link_to nil do
+                          Reportar
+                        |
+                        = link_to nil do
+                          Responder
+              %br
+          .row
             .col-xs-12
-              .media
-                .media-left.media-top
-                  .avatar{ style: "background: ##{random_rgb_color(80..230)}" }
-                    = comment.avatar_letter
-                .media-body
-                  %h5.media-heading
-                    = comment.name
-                  %p
-                    = comment.message
-                  -#
-                    %small
-                      = l(comment.created_at)
-                      |
-                      = link_to nil do
-                        Reportar
-                      |
-                      = link_to nil do
-                        Responder
-            %br
-        .row
+              .jpages-holder
+                / Pagination will be append here by jpages plugin
+
+        #new-comment.row
           .col-xs-12
-            .jpages-holder
-              / Pagination will be append here by jpages plugin
+            .well
+              %h4
+                Escribir un comentario
+              = form_for @comment, url: ta_article_comments_url(@article, @comment), html: { remote: true, class: 'form-horizontal' } do |f|
 
-      #new-comment.row
-        .col-xs-12
-          .well
-            %h4
-              Escribir un comentario
-            = form_for @comment, url: ta_article_comments_url(@article, @comment), html: { remote: true, class: 'form-horizontal' } do |f|
+                .form-group
+                  .col-xs-6
+                    = f.text_field :name, class: 'form-control', placeholder: 'Nombre'
 
-              .form-group
-                .col-xs-6
-                  = f.text_field :name, class: 'form-control', placeholder: 'Nombre'
+                  .col-xs-6
+                    = f.email_field :email, class: 'form-control', placeholder: 'Correo electrónico (No será publicado)'
 
-                .col-xs-6
-                  = f.email_field :email, class: 'form-control', placeholder: 'Correo electrónico (No será publicado)'
+                .form-group
+                  .col-xs-12
+                    = f.text_area :message, class: 'form-control', rows: 5, placeholder: 'Escribe tu comentario'
 
-              .form-group
-                .col-xs-12
-                  = f.text_area :message, class: 'form-control', rows: 5, placeholder: 'Escribe tu comentario'
+                .form-inline
+                  = f.submit 'Publicar', class: 'btn btn-info btn-lg'
 
-              .form-inline
-                = f.submit 'Publicar', class: 'btn btn-info btn-lg'
-
-                -#
-                  .checkbox
-                    = label_tag nil, nil do
-                      = check_box_tag nil, nil
-                      Notificarme cuando alguien responda a mi comentario
 
 
     .col-xs-12.col-sm-4.col-md-3
