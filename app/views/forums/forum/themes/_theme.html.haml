@@ -1,34 +1,40 @@
 .wrapper-wage-video{ style: theme.cover.present? ? "background-image: url('#{asset_url(theme.cover.url)}');" : nil }
-  %p.subject
-    Tema
+
   %h1.problem-title
     = theme.name
+  - if theme.video_url
+    = link_to image_tag("forums/play-icon.png"), theme.video_url, class: "play-video", title: theme.name
   .row
     .col-sm-6
-      - if theme.description?
-        %h2.problem-description
-          = simple_format theme.description
-      - if theme.video_url
-        = link_to image_tag("forums/play-icon.png"), theme.video_url, class: "play-video", title: theme.name
-      - if theme.asset.present?
+      .reform-container
+        %h2.problem-description  
+          Calculadora de pensiones
         .text-center
-          = link_to forums_download_url, class: 'btn btn-primary btn-lg', target: '_blank' do
-            %i.glyphicon.glyphicon-download-alt
+          %p.pensions-calc
+            Compará cómo sería tu pensión en los dos sistemas
+        -#
+          .text-center
+            %p.pensions-calc
+              Compará cómo será tu pensión con el sistema actual y cómo sería si se aprueba la reforma impulsada por el Gobierno.
+        .text-center
+          = link_to forums_calculator_url, class: 'btn btn-success btn-lg', target: '_blank' do
+            %i.glyphicon.glyphicon-circle-arrow-right
             &nbsp
-            = theme.asset_title
+            Calcular
     .col-sm-6
-      %h2.problem-description
-        %span
-          Calculá tu pensión
-      .text-center
-        %p.pensions-calc
-          Compará cómo será tu pensión con el sistema actual y cómo sería si se aprueba la reforma impulsada por el Gobierno.
-      %br
-      .text-center
-        = link_to forums_calculator_url, class: 'btn btn-success btn-lg', target: '_blank' do
-          %i.glyphicon.glyphicon-circle-arrow-right
-          &nbsp
-          Calcular
+      .reform-container
+        - if theme.description?
+          %h2.problem-description
+            = simple_format theme.description
+          .text-center
+            %p.pensions-calc
+              Consultá la propuesta de reforma impulsada por el gobierno
+        - if theme.asset.present?
+          .text-center
+            = link_to forums_download_url, class: 'btn btn-primary btn-lg', target: '_blank' do
+              %i.glyphicon.glyphicon-download-alt
+              &nbsp
+              = theme.asset_title
 
   .clearfix
   = link_to image_tag("forums/goto.png"), "#wrapper-positions", class: "go-to-positions"

@@ -9,7 +9,7 @@ module Ta
                   .where.not(id: @article.try(:id))
                   .limit(3)
 
-      @other_articles = Ta::Article.publish.newer.where.not(id: (@articles.map(&:id) + [@article.try(:id)])).limit(4)
+      @other_articles = Ta::Article.publish.newer.where.not(id: (@articles.map(&:id) + [@article.try(:id)])).limit(10)
 
       set_meta_tags(
         title: 'Noticias sobre transparencia, acceso a la Información y

@@ -1,3 +1,14 @@
+%section#subscribe
+  .container
+    .row
+      .col-md-7
+        %p= "Suscríbete y recibe en tu correo electrónico las últimas noticias que acontecen en el portal de Gobierno Abierto"
+      .col-md-5
+        = form_tag("//gob.us4.list-manage.com/subscribe/post?u=842a2979e525425004e0dc51b&amp;id=50d05e5605", {class: "navbar-form navbar-left form-inline"}) do
+          .form-group.has-feedback
+            %input.form-control{ type: "text", name: "EMAIL", placeholder: "Correo electrónico" }
+          = hidden_field_tag 'b_842a2979e525425004e0dc51b_50d05e5605', ''
+          %button{ type: "submit", class: "btn btn-primary" } Enviar
 %footer
   .container
     .row
@@ -13,9 +24,9 @@
           ="Gobierno Abierto por Secretaría de Participación, Transparencia y Anticorrupción está bajo una licencia de Creative Commons.<br>Reconocimiento-CompartirIgual 4.0 Internacional License.".html_safe
       .col-sm-1
         .footer-social-media
-          = link_to "https://www.facebook.com/GobiernoAbiertoSV" do
+          = link_to "https://www.facebook.com/GobiernoAbiertoSV", target: '_blank' do
             = image_tag('shared/icon-facebook.png')
-          = link_to "https://twitter.com/GobAbiertoSV" do
+          = link_to "https://twitter.com/GobAbiertoSV", target: '_blank' do
             = image_tag('shared/icon-twitter.png')
-          = link_to nil do
+          = mail_to 'info@gobiernoabierto.gob.sv' do
             = image_tag('shared/icon-mail.png')
