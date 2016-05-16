@@ -196,7 +196,6 @@ namespace :employments do
       # Get api/TecnicoComentario
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/TecnicoComentario', access_token
       Employments::PostulantComment.update_all(active: false)
-      puts jsons.inspect
       jsons.each do |json|
         obj = Employments::PostulantComment.where(id: json[:idTecnicoComentario]).first_or_initialize
         obj.comment = json[:comentario]

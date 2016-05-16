@@ -16,6 +16,7 @@ class Employments::UserSpecialty < ActiveRecord::Base
     '03' => "BACHILLER GENERAL",
     '04' => "BACHILLER TECNICO VOCACIONAL",
     '05' => "TECNICO",
+    '65' => "ESTUDIANTE UNIVERSITARIO (1° ANO - 3° ANO)",
     '06' => "ESTUDIANTE UNIVERSITARIO (4° ANO O MAS)",
     '07' => "EGRESADO UNIVERSITARIO",
     '08' => "GRADUADO UNIVERSITARIO",

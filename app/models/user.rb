@@ -149,6 +149,7 @@ class User < ActiveRecord::Base
   end
 
   def can_apply?(plaza)
+    return false if stpp_id.nil?
     @can_apply ||= (plaza.idi_codes.blank? || (plaza.idi_codes & idi_codes).any?) && (plaza.gra_codes.blank? || (plaza.gra_codes & gra_codes).any?) && (plaza.esp_codes.blank? || (plaza.esp_codes & esp_codes).any?)
   end
 
