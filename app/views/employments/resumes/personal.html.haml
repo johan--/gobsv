@@ -124,11 +124,11 @@
                     .row
                       .col-sm-11
                         .form-group
-                          = ff.select :gra_code, ::Employments::UserSpecialty::ACADEMIC_GRADE.invert, {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true, class: 'select2', style: 'width: 100%' }
+                          = ff.select :gra_code, ::Employments::Specialty.select(:gra_name, :gra_code, :priority).order(:priority).uniq.collect{|obj| [obj.gra_name, obj.gra_code]}, {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true, class: 'select2 load_specialties', style: 'width: 100%' }
                     .row
                       .col-sm-11
                         .form-group
-                          = ff.select :esp_code, ::Employments::Specialty.order(:esp_name).uniq.pluck(:esp_name, :esp_code), {include_blank: t('activerecord.attributes.employments/user_specialty.esp_code'), hide_label: true}, { required: true, class: 'select2', style: 'width: 100%' }
+                          = ff.select :esp_code, ff.object.gra_specialties.collect{|obj| [obj.esp_name, obj.esp_code]}, {include_blank: t('activerecord.attributes.employments/user_specialty.esp_code'), hide_label: true}, { required: true, class: 'select2 gra_specialties', style: 'width: 100%' }
                     .row
                       .col-sm-11
                         .form-group
@@ -157,9 +157,9 @@
                       .col-sm-1
                         Período
                       .col-sm-5
-                        = ff.date_select :start_at, { :discard_day => true, :start_year=>1960 }, { hide_label: true, class: 'form-control datetime-select required', required: true }
+                        = ff.date_select :start_at, { :discard_day => true, :start_year=>1960, :end_year=>Date.current.year }, { hide_label: true, class: 'form-control datetime-select required', required: true }
                       .col-sm-5
-                        = ff.date_select :end_at, { :discard_day => true, :start_year=>1960 }, { hide_label: true, class: 'form-control datetime-select required', required: true }
+                        = ff.date_select :end_at, { :discard_day => true, :start_year=>1960, :end_year=>Date.current.year }, { hide_label: true, class: 'form-control datetime-select required', required: true }
                       .col-sm-1
                         = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
                           %span.glyphicon.glyphicon-trash

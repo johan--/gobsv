@@ -82,8 +82,6 @@ class SynchronizeUsersJob < ActiveJob::Base
 =begin
         puts "\n login: #{user.document_number.gsub(/[^0-9]/i, '')}"
         puts "\n clave: #{(0...20).map { (65 + rand(26)).chr }.join}"
-        puts "\n login: #{user.document_number.gsub(/[^0-9]/i, '')}"
-        puts "\n clave: #{(0...20).map { (65 + rand(26)).chr }.join}"
         puts "\n name: #{user.name}"
         puts "\n lastname: #{user.last_name}"
         puts "\n email: #{user.email}"
@@ -131,8 +129,12 @@ class SynchronizeUsersJob < ActiveJob::Base
             'USU_Especialidad[]' => specialties
           },
           {:Authorization => access_token}
-        id = Hash.from_xml(response)['int'].to_i rescue 0
-        user.update_column(:stpp_id, id)
+        unless response.code == 500
+          id = Hash.from_xml(response)['int'].to_i rescue 0
+          if id > 0
+            user.update_column(:stpp_id, id)
+          end
+        end
         user.update_column(:response_code, response.code)
       rescue Exception => e
         user.update_column(:response_code, 500)

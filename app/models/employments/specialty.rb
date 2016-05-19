@@ -4,7 +4,7 @@ class Employments::Specialty < ActiveRecord::Base
 
 
   def gra_specialties
-    Employments::Specialty.where(gra_code: gra_code).order(:esp_code)
+    Employments::Specialty.where(gra_code: gra_code).order(:priority, :esp_name)
   end
 
   def self.grouped_box

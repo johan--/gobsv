@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426144929) do
+ActiveRecord::Schema.define(version: 20160518161636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
 
   create_table "admin_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id",   null: false
@@ -42,10 +41,10 @@ ActiveRecord::Schema.define(version: 20160426144929) do
     t.string   "name",                   limit: 255
     t.integer  "parent_id"
     t.integer  "role_id"
+    t.boolean  "is_active",                          default: true
     t.string   "provider",               limit: 255, default: "email", null: false
     t.string   "uid",                    limit: 255, default: "",      null: false
     t.text     "tokens"
-    t.boolean  "is_active",                          default: true
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -190,19 +189,19 @@ ActiveRecord::Schema.define(version: 20160426144929) do
   end
 
   create_table "employments_countries", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "employments_disability_certifications", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "employments_disability_types", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -391,8 +390,9 @@ ActiveRecord::Schema.define(version: 20160426144929) do
     t.string   "esp_name"
     t.string   "gra_code"
     t.string   "gra_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "priority",   default: 0
   end
 
   create_table "employments_user_disabilities", force: :cascade do |t|
@@ -409,8 +409,8 @@ ActiveRecord::Schema.define(version: 20160426144929) do
 
   create_table "employments_user_languages", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "read"
+    t.string   "name",         limit: 255
+    t.string   "read",         limit: 255
     t.integer  "write"
     t.integer  "speak"
     t.integer  "user_created"
@@ -432,10 +432,10 @@ ActiveRecord::Schema.define(version: 20160426144929) do
 
   create_table "employments_user_references", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "charge"
-    t.string   "address"
-    t.string   "phone"
+    t.string   "name",         limit: 255
+    t.string   "charge",       limit: 255
+    t.string   "address",      limit: 255
+    t.string   "phone",        limit: 255
     t.integer  "kind"
     t.integer  "user_created"
     t.integer  "user_edited"
@@ -448,13 +448,13 @@ ActiveRecord::Schema.define(version: 20160426144929) do
   create_table "employments_user_specialties", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "country_id"
-    t.string   "name"
-    t.string   "esp_code"
-    t.string   "esp_name"
-    t.string   "gra_code"
-    t.string   "institution_name"
-    t.string   "certificate_file_name"
-    t.string   "certificate_content_type"
+    t.string   "name",                     limit: 255
+    t.string   "esp_code",                 limit: 255
+    t.string   "esp_name",                 limit: 255
+    t.string   "gra_code",                 limit: 255
+    t.string   "institution_name",         limit: 255
+    t.string   "certificate_file_name",    limit: 255
+    t.string   "certificate_content_type", limit: 255
     t.integer  "certificate_file_size"
     t.datetime "certificate_updated_at"
     t.date     "start_at"
@@ -469,11 +469,11 @@ ActiveRecord::Schema.define(version: 20160426144929) do
 
   create_table "employments_user_trainings", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "institution_name"
-    t.string   "name"
+    t.string   "institution_name", limit: 255
+    t.string   "name",             limit: 255
     t.text     "description"
-    t.string   "place"
-    t.string   "duration"
+    t.string   "place",            limit: 255
+    t.string   "duration",         limit: 255
     t.integer  "year"
     t.integer  "user_created"
     t.integer  "user_edited"
@@ -485,10 +485,10 @@ ActiveRecord::Schema.define(version: 20160426144929) do
 
   create_table "employments_user_work_experiences", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "sector"
+    t.string   "sector",           limit: 255
     t.integer  "country_id"
-    t.string   "institution_name"
-    t.string   "charge"
+    t.string   "institution_name", limit: 255
+    t.string   "charge",           limit: 255
     t.text     "description"
     t.date     "start_at"
     t.date     "end_at"
@@ -978,21 +978,21 @@ ActiveRecord::Schema.define(version: 20160426144929) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "country_id"
-    t.string   "last_name"
-    t.string   "phone"
-    t.string   "alt_phone"
-    t.string   "document_type"
-    t.string   "document_number"
-    t.string   "tax_id"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
+    t.string   "last_name",              limit: 255
+    t.string   "phone",                  limit: 255
+    t.string   "alt_phone",              limit: 255
+    t.string   "document_type",          limit: 255
+    t.string   "document_number",        limit: 255
+    t.string   "tax_id",                 limit: 255
+    t.string   "photo_file_name",        limit: 255
+    t.string   "photo_content_type",     limit: 255
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "user_created"
     t.integer  "user_edited"
-    t.string   "unknown_code"
-    t.string   "username"
-    t.string   "treatment"
+    t.string   "unknown_code",           limit: 255
+    t.string   "username",               limit: 255
+    t.string   "treatment",              limit: 255
     t.text     "address"
     t.integer  "stpp_id"
     t.integer  "response_code"

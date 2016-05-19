@@ -35,6 +35,11 @@ class Employments::ResumesController < EmploymentsController
     add_breadcrumb "Actualizado"
   end
 
+  def specialties
+    @specialties = ::Employments::Specialty.order(:esp_name)
+    @specialties = @specialties.where(gra_code: params[:gra_code]) if params[:gra_code].present?
+  end
+
   def item_params
     params.require(:user).permit(
       :name,

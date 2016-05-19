@@ -12,6 +12,29 @@
 #= require 'select2'
 #= require 'select2_locale_es'
 
+# Actions for select grades and specialties
+set_select2 = ->
+  $('.select2').select2
+    theme: 'bootstrap'
+    language: 'es'
+  $('.load_specialties').off 'select2:select'
+  $('.load_specialties').on 'select2:select', (evt) ->
+    gra_code = $(@).val()
+    parent = $(@).closest('div.fields')
+    target = $('.gra_specialties', parent)
+    # Query the responses for this specialties
+    $.get '/resumes/specialties.json', { gra_code: gra_code }, (data) ->
+      # Remove the existing options in the responses drop down:
+      target.html ''
+      # Loop over the json and populate the Responses options:
+      $.each data, (index, value) ->
+        target.append '<option value="' + value.id + '" ' + (if index == 0 then 'selected=selected' else '') + '>' + value.text + '</option>'
+      target.trigger('change.select2')
+    return
+  return
+
+
+
 
 $ ->
 
@@ -113,16 +136,12 @@ $ ->
 
   $('#user_password').pwstrength(options)
 
-  $('.select2').select2
-    theme: 'bootstrap'
-    language: 'es'
+  set_select2()
 
   ##
   # Nested form callback
   $(document).on "nested:fieldAdded", (event) ->
-    $('.select2').select2
-      theme: 'bootstrap'
-      language: 'es'
+    set_select2()
 
 
   $(document).on 'change', '.btn-file :file', ->

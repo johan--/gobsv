@@ -37,4 +37,8 @@ class Employments::UserSpecialty < ActiveRecord::Base
     self.name = ACADEMIC_GRADE[self.gra_code]
   end
 
+  def gra_specialties
+    Employments::Specialty.where(gra_code: gra_code).order(:priority, :esp_name)
+  end
+
 end

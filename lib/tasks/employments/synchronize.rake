@@ -186,6 +186,7 @@ namespace :employments do
         obj = Employments::Specialty.where(esp_code: json[:ESP_CODIGO], gra_code: json[:GRA_CODIGO]).first_or_initialize
         obj.esp_name = json[:ESP_NOMBRE]
         obj.gra_name = json[:GRA_NOMBRE]
+        obj.priority = json[:ORDEN]
         obj.save
       end
       # Get ContadorAplicarPlaza

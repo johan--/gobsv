@@ -1,6 +1,6 @@
 domain = 'empleospublicos.gob.sv'    if Rails.env.production?
 domain = 'empleos.localhost.com'     if Rails.env.development?
-domain = 'employments.localhost.com' if Rails.env.development?
+domain = 'localhost.com' if Rails.env.development?
 # domain = 'localhost.com'          if Rails.env.development?
 
 #post 'resumes/save', to: 'employments/resumes#save'
@@ -38,6 +38,7 @@ constraints DomainConstraint.new(domain) do
       collection do
         get :personal
         get :postulations
+        get :specialties
       end
       member do
         post :save
