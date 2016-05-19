@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2'
 # Use postgresql as the database for Active Record
@@ -187,3 +186,6 @@ gem 'humanizer'
 
 # Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions. http://rubydoc.info/projects/rest-client/rest-client
 gem 'rest-client'
+
+gem 'savon', '~> 2.0'
+gem 'httpclient'
