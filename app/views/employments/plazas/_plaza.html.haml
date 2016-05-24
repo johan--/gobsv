@@ -215,9 +215,9 @@
               &nbsp
               %span.text-blue
                 = "#{factor.minimum_score.to_i} Mín"
-            - if factor.areas.count > 0
+            - if factor.areas.active.count > 0
               %table.table.borderless.table-striped.table-hover
-                - factor.areas.each do |area|
+                - factor.areas.active.each do |area|
                   %tr
                     %td
                       = area.name
