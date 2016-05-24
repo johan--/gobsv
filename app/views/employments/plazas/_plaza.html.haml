@@ -204,7 +204,7 @@
         .tab-pane#criteria{role: 'tabpanel'}
           %h4
             Criterios de evaluación
-          - plaza.plaza_factors.order(:order).each_with_index do |factor, i|
+          - plaza.plaza_factors.active.order(:order).each_with_index do |factor, i|
             - unless i == 0
               %br
             %strong

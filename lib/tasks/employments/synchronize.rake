@@ -22,9 +22,10 @@ namespace :employments do
       Employments::PlazaFactor.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaFactores', access_token
       jsons.each do |json|
-        obj = Employments::PlazaFactor.where(factor_id: json[:idFactor], plaza_id: json[:idPlaza]).first_or_initialize
+        obj = Employments::PlazaFactor.where(factor_score_id: json[:idFactorPuntaje]).first_or_initialize
+        obj.factor_id = json[:idFactor]
+        obj.plaza_id = json[:idPlaza]
         obj.name = json[:nombreFactor]
-        obj.factor_score_id = json[:idFactorPuntaje]
         obj.minimum_score = json[:FactorPuntajeMinimo]
         obj.maximum_score = json[:FactorPuntajeMaximo]
         obj.order = json[:ordenFactor]
