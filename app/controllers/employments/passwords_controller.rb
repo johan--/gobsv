@@ -10,17 +10,26 @@ class Employments::PasswordsController < Devise::PasswordsController
 
   # GET /resource/password/new
   def new
-    super
+    self.resource = resource_class.new
   end
 
   # POST /resource/password
   def create
-    super
+    self.resource = resource_class.send_reset_password_instructions(resource_params)
+    yield resource if block_given?
+    puts "========================== #{resource_params}"
+    if successfully_sent?(resource)
+      respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
+    else
+      respond_with(resource)
+    end
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef
   def edit
-    super
+    self.resource = resource_class.new
+    set_minimum_password_length
+    resource.reset_password_token = params[:reset_password_token]
   end
 
   # PUT /resource/password
