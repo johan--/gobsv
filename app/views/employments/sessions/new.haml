@@ -27,6 +27,7 @@
             %span{class: "glyphicon glyphicon-lock form-control-feedback", :"aria-hidden"=>true}
 
           = f.submit t('.login'), class: 'center-block btn btn-blue btn-lg'
+        = link_to "Olvidó su contraseña?", new_password_path(resource_name)
 
     .col-sm-5.col-sm-offset-2
       #register
@@ -39,15 +40,4 @@
           .col-xs-12.text-center
             = link_to t('.signup'), new_user_registration_url, class: 'btn btn-success btn-lg'
         =# f.submit t('.signup'), class: 'center-block btn btn-blue btn-lg'
-  = render "devise/shared/links" 
-
-
-
-  #password.animated.flipInX{ class: controller.controller_name == 'passwords' ? 'show' : 'hide' }
-    %p
-      = t '.forgot_password_explanation'
-    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-      .form-group
-        = f.email_field :email, class: 'form-control', autofocus: true, placeholder: t('.email_placeholder')
-
-      = f.submit t('.send_instructions'), class: 'btn btn-blue'
+  
