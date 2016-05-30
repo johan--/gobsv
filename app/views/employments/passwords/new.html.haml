@@ -1,0 +1,14 @@
+%h2 Olvidó su contraseña
+%br
+.login-container
+  .row
+    .col-sm-6
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| 
+        = devise_error_messages!
+        .form-group.has-feedback
+          = f.email_field :email, class: 'input-lg form-control', placeholder: "Correo electrónico", autofocus: true
+          %span{class: "glyphicon glyphicon-envelope form-control-feedback", :"aria-hidden"=>true}
+        .field
+        
+        = f.submit "Enviarme instrucciones al correo", class: 'center-block btn btn-blue btn-lg'
+      = link_to "Iniciar sesión", new_session_path(resource_name)

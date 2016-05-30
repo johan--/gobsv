@@ -80,6 +80,29 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Attempt to find a user by its reset_password_token to reset its
+  # password. If a user is found and token is still valid, reset its password and automatically
+  # try saving the record. If not user is found, returns a new user
+  # containing an error in reset_password_token attribute.
+  # Attributes must contain reset_password_token, password and confirmation
+  def self.reset_password_by_token(attributes={})
+    original_token       = attributes[:reset_password_token]
+    reset_password_token = Devise.token_generator.digest(self, :reset_password_token, original_token)
+    puts "============#{reset_password_token}"
+    recoverable = find_or_initialize_with_error_by(:reset_password_token, reset_password_token)
+
+    if recoverable.persisted?
+      if recoverable.reset_password_period_valid?
+        recoverable.reset_password(attributes[:password], attributes[:password_confirmation])
+      else
+        recoverable.errors.add(:reset_password_token, :expired)
+      end
+    end
+
+    recoverable.reset_password_token = original_token if recoverable.reset_password_token.present?
+    recoverable
+  end
+
   def self.from_omniauth(auth, current_user)
 #
     user_authorization = UserAuthorization.where(provider: auth.provider, uid: auth.uid.to_s).first_or_initialize
