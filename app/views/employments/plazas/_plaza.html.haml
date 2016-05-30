@@ -85,6 +85,12 @@
                   - when 4
                     %span.label.label-danger
                       Cerrado
+          - if plaza.comment.present?
+            %br
+            %div
+              %strong= "Comentario: "
+              %br
+              = simple_format plaza.comment
           - if plaza.mission.present?
             %br
             %div

@@ -186,11 +186,11 @@
                             %td
                               = t.name
                             %td
-                              = '%.2f' % t.weight
+                              = '%.2f' % t.weight rescue ''
                             %td
-                              = '%.2f' % t.calification
+                              = '%.2f' % t.calification rescue ''
                             %td
-                              = '%.2f' % t.obtained_score
+                              = '%.2f' % t.obtained_score rescue ''
                         %tr
                           %td
                             %strong
@@ -235,11 +235,11 @@
                           %td
                             = t.name
                           %td
-                            = '%.2f' % t.weight
+                            = '%.2f' % t.weight rescue ''
                           %td
-                            = '%.2f' % t.calification
+                            = '%.2f' % t.calification rescue ''
                           %td
-                            = '%.2f' % t.obtained_score
+                            = '%.2f' % t.obtained_score rescue ''
                       %tr
                         %td
                           %strong

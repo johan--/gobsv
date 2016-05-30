@@ -28,9 +28,9 @@
               = link_to "Ver proceso", process_employments_job_url(id: list_plaza.id), class: 'btn btn-secondary mtb10'
     .col-xs-7
       %div
-        = "Descripción: "
+        = "Comentario: "
         %br
-        = list_plaza.description.present? ? simple_format(list_plaza.description) : 'Ninguno'
+        = list_plaza.comment.present? ? simple_format(list_plaza.comment) : 'Ninguno'
       %br
       #shareButtonLabelCount{class: "list_plaza-#{list_plaza_counter}"}
       :javascript
