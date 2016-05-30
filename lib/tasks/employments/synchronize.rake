@@ -18,6 +18,7 @@ namespace :employments do
       res = Net::HTTP.post_form(uri, params)
       json = JSON.parse(res.body, symbolize_names: true)
       access_token = [json[:token_type], json[:access_token]].join(' ')
+
       # Get factors
       Employments::PlazaFactor.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaFactores', access_token
@@ -164,7 +165,7 @@ namespace :employments do
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/ConcursoPostulante', access_token
       jsons.each do |json|
         obj = Employments::Postulant.where(id: json[:idConcursoPostulante]).first_or_initialize
-        obj.sttp_id = json[:idUsuario]
+        obj.stpp_id = json[:idUsuario]
         obj.plaza_id = json[:idPlaza]
         obj.identifier = json[:Identificador]
         obj.postulant_code = json[:CodigoPostulante]
@@ -177,8 +178,6 @@ namespace :employments do
         obj.created_date = json[:fechaCreacion]
         obj.updated_user = json[:usuarioModificacion]
         obj.updated_date = json[:fechaModificacion]
-        #obj.postulant_evaluations = json[:PostulanteEvaluaciones]
-        #obj.technical_comments = json[:TecnicoComentario]
         obj.save
       end
       # Get especialties catalog
@@ -202,16 +201,19 @@ namespace :employments do
         obj = Employments::PostulantComment.where(id: json[:idTecnicoComentario]).first_or_initialize
         obj.comment = json[:comentario]
         obj.commented_at = json[:fecha]
-        obj.stpp_id = json[:usuario]
-        #obj.postulant = json[:ConcursoPostulante]
+        obj.postulant_id = json[:idConcursoPostulante]
+        obj.technical_id = json[:usuario]
         obj.active = true
         obj.save
       end
       # Get api/PostulanteEvaluaciones
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/PostulanteEvaluaciones', access_token
+
       Employments::PostulantEvaluation.update_all(active: false)
+      puts jsons
       jsons.each do |json|
         obj = Employments::PostulantEvaluation.where(id: json[:idPostulanteCompetencias]).first_or_initialize
+        obj.postulant_id = json[:idConcursoPostulante]
         obj.postulant_skill_id = json[:idPostulanteCompetencias]
         obj.configuration_id = json[:idConfiguracionCalificacion]
         obj.factor_id = json[:idFactor]
@@ -224,10 +226,10 @@ namespace :employments do
         obj.created_date = json[:fechaCreacion]
         obj.updated_user = json[:usuarioModificacion]
         obj.updated_date = json[:fechaModificacion]
-        #obj.postulant = json[:ConcursoPostulante]
         obj.active = true
         obj.save
       end
+
       #UserMailer.report_employments_import(Time.current.strftime('%d/%m/%Y %H:%M:%S'), false).deliver
     rescue Exception => e
       #UserMailer.report_employments_import(e, true).deliver

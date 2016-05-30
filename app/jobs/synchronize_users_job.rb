@@ -129,6 +129,9 @@ class SynchronizeUsersJob < ActiveJob::Base
             'USU_Especialidad[]' => specialties
           },
           {:Authorization => access_token}
+        #puts "===================================\n"
+      	#puts response.inspect
+      	#puts "===================================\n"
         unless response.code == 500
           id = Hash.from_xml(response)['int'].to_i rescue 0
           if id > 0
@@ -137,6 +140,7 @@ class SynchronizeUsersJob < ActiveJob::Base
         end
         user.update_column(:response_code, response.code)
       rescue Exception => e
+        puts e.inspect
         user.update_column(:response_code, 500)
       end
     end

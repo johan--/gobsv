@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518161636) do
+ActiveRecord::Schema.define(version: 20160525205200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -343,10 +343,13 @@ ActiveRecord::Schema.define(version: 20160518161636) do
     t.boolean  "active",       default: true
     t.text     "comment"
     t.date     "commented_at"
-    t.integer  "stpp_id"
+    t.integer  "technical_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "postulant_id"
   end
+
+  add_index "employments_postulant_comments", ["postulant_id"], name: "index_employments_postulant_comments_on_postulant_id", using: :btree
 
   create_table "employments_postulant_evaluations", force: :cascade do |t|
     t.boolean  "active",             default: true
@@ -364,10 +367,13 @@ ActiveRecord::Schema.define(version: 20160518161636) do
     t.datetime "updated_date"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.integer  "postulant_id"
   end
 
+  add_index "employments_postulant_evaluations", ["postulant_id"], name: "index_employments_postulant_evaluations_on_postulant_id", using: :btree
+
   create_table "employments_postulants", force: :cascade do |t|
-    t.integer  "sttp_id"
+    t.integer  "stpp_id"
     t.integer  "plaza_id"
     t.string   "identifier"
     t.string   "postulant_code"

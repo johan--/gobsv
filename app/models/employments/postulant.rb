@@ -9,6 +9,11 @@ idEstadoConcursoPostulante    nombreEstado
 5             APROBADO (1a. Etapa)
 =end
 
+  has_many :postulant_comments
+  has_many :postulant_evaluations
+
+  scope :approved, -> { where(postulant_state_competition: 5) }
+
   STATE = [
     'N/D',
     'Ingresado',

@@ -13,6 +13,8 @@
         Proceso de contratación
       %p
         Etapas del proceso de contratación, la flecha con color rojo, indica la etapa del proceso en que se encuentra la plaza actualmente.
+      %p
+        Cada etapa de evaluación tiene una ponderación asignada, si esta ya fue definida por la institución, aparecera entre parentesis en forma de porcentaje. La suma de estas ponderaciones dará la nota final del postulante (100%).
   .row
     .col-sm-12
       .progress-job
@@ -34,6 +36,8 @@
           .description-selection-step2
             %h4
               Revisión curricular
+              - if @job.assigned_score_academic
+                = "(#{@job.assigned_score_academic.round(0)}%)"
             -#
               %span
                 140
@@ -47,6 +51,8 @@
           .description-selection-step3
             %h4
               Pruebas técnicas
+              - if @job.assigned_score_technique
+                = "(#{@job.assigned_score_technique.round(0)}%)"
             -#
               %span
                 Fecha estimada:
@@ -60,6 +66,8 @@
           .description-selection-step4
             %h4
               Pruebas conductuales
+              - if @job.assigned_score_behavior
+                = "(#{@job.assigned_score_behavior.round(0)}%)"
             -#
               %span
                 Fecha estimada:
@@ -73,6 +81,8 @@
           .description-selection-step5
             %h4
               Entrevistas
+              - if @job.assigned_score_interview
+                = "(#{@job.assigned_score_interview.round(0)}%)"
             -#
               %span
                 Fecha estimada:
@@ -139,26 +149,57 @@
         %h4#myModalLabel.modal-title
           Revisión curricular
       .modal-body
-        - if @job.postulants.count == 0
-          .well
-            No hay postulaciones a la plaza
-        - else
-          %table.table.table-hover
-            %tr.active
-              %th
-                Postulante
-              %th
-                Fecha actualización
-              %th
-                Estado
-            - @job.postulants.each do |postulant|
-              %tr
-                %td
-                  = postulant.postulant_code
-                %td
-                  = postulant.updated_date.try(:strftime, '%d/%m/%Y')
-                %td
-                  = postulant.state
+        #accordion-1.panel-group{ role: 'tablist', 'aria-multiselectable' => 'true' }
+          - if @job.postulants.count == 0
+            .well
+              No hay postulaciones a la plaza
+          - else
+            - @job.postulants.order(:stpp_id).each do |postulant|
+              .panel.panel-default
+                .panel-heading{ role: 'tab', id: "heading-1-#{postulant.id}" }
+                  %h4.panel-title
+                    = link_to "#collapse-1-#{postulant.id}", role: 'button', data: { toggle: 'collapse', parent: '#accordion-1' }, aria: { expanded: 'true', controls: "collapse-1-#{postulant.id}" } do
+                      = postulant.postulant_code
+                      %small
+                        = "(#{postulant.state})"
+                .panel-collapse.collapse{id: "collapse-1-#{postulant.id}", role: 'tabpanel', 'aria-labelledby' => "heading-1-#{postulant.id}"}
+                  .panel-body
+                    - if postulant.postulant_comments.any?
+                      %ul.list-unstyled
+                        - postulant.postulant_comments.uniq.each do |c|
+                          %li
+                            %span.glyphicon.glyphicon-comment
+                            = c.comment
+                    - if postulant.postulant_evaluations.academic.any?
+                      %table.table.table-hover.table-striped
+                        %tr
+                          %th
+                            Nombre
+                          %th
+                            Porcentaje
+                          %th
+                            Nota
+                          %th
+                            Nota global
+                        - postulant.postulant_evaluations.academic.each do |t|
+                          %tr
+                            %td
+                              = t.name
+                            %td
+                              = '%.2f' % t.weight
+                            %td
+                              = '%.2f' % t.calification
+                            %td
+                              = '%.2f' % t.obtained_score
+                        %tr
+                          %td
+                            %strong
+                              Total obtenido
+                            %th
+                            %th
+                            %th
+                              %strong
+                                = '%.2f' % postulant.postulant_evaluations.academic.pluck(:obtained_score).sum rescue ''
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step3.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -170,8 +211,47 @@
         %h4#myModalLabel.modal-title
           Pruebas técnicas
       .modal-body
-        .well
-          No hay información disponible
+        #accordion-3.panel-group{ role: 'tablist', 'aria-multiselectable' => 'true' }
+          - @job.postulants.approved.order(:stpp_id).each do |postulant|
+            .panel.panel-default
+              .panel-heading{ role: 'tab', id: "heading-3-#{postulant.id}" }
+                %h4.panel-title
+                  = link_to postulant.postulant_code, "#collapse-3-#{postulant.id}", role: 'button', data: { toggle: 'collapse', parent: '#accordion-3' }, aria: { expanded: 'true', controls: "collapse-3-#{postulant.id}" }
+              .panel-collapse.collapse{id: "collapse-3-#{postulant.id}", role: 'tabpanel', 'aria-labelledby' => "heading-3-#{postulant.id}"}
+                .panel-body
+                  - if postulant.postulant_evaluations.technique.any?
+                    %table.table.table-hover.table-striped
+                      %tr
+                        %th
+                          Nombre
+                        %th
+                          Porcentaje
+                        %th
+                          Nota
+                        %th
+                          Nota global
+                      - postulant.postulant_evaluations.technique.each do |t|
+                        %tr
+                          %td
+                            = t.name
+                          %td
+                            = '%.2f' % t.weight
+                          %td
+                            = '%.2f' % t.calification
+                          %td
+                            = '%.2f' % t.obtained_score
+                      %tr
+                        %td
+                          %strong
+                            Total obtenido
+                          %th
+                          %th
+                          %th
+                            %strong
+                              = '%.2f' % postulant.postulant_evaluations.technique.pluck(:obtained_score).sum rescue ''
+                  - else
+                    .well
+                      No se realizaron pruebas técnicas
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step4.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -183,8 +263,47 @@
         %h4#myModalLabel.modal-title
           Pruebas conductuales
       .modal-body
-        .well
-          No hay información disponible
+        #accordion-4.panel-group{ role: 'tablist', 'aria-multiselectable' => 'true' }
+          - @job.postulants.approved.order(:stpp_id).each do |postulant|
+            .panel.panel-default
+              .panel-heading{ role: 'tab', id: "heading-4-#{postulant.id}" }
+                %h4.panel-title
+                  = link_to postulant.postulant_code, "#collapse-4-#{postulant.id}", role: 'button', data: { toggle: 'collapse', parent: '#accordion-4' }, aria: { expanded: 'true', controls: "collapse-4-#{postulant.id}" }
+              .panel-collapse.collapse{id: "collapse-4-#{postulant.id}", role: 'tabpanel', 'aria-labelledby' => "heading-4-#{postulant.id}"}
+                .panel-body
+                  - if postulant.postulant_evaluations.behavior.any?
+                    %table.table.table-hover.table-striped
+                      %tr
+                        %th
+                          Nombre
+                        %th
+                          Porcentaje
+                        %th
+                          Nota
+                        %th
+                          Nota global
+                      - postulant.postulant_evaluations.behavior.each do |t|
+                        %tr
+                          %td
+                            = t.name
+                          %td
+                            = '%.2f' % t.weight rescue ''
+                          %td
+                            = '%.2f' % t.calification rescue ''
+                          %td
+                            = '%.2f' % t.obtained_score rescue ''
+                      %tr
+                        %td
+                          %strong
+                            Total obtenido
+                          %th
+                          %th
+                          %th
+                            %strong
+                              = '%.2f' % postulant.postulant_evaluations.behavior.pluck(:obtained_score).sum rescue ''
+                  - else
+                    .well
+                      No se realizaron pruebas conductuales
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step5.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -196,8 +315,47 @@
         %h4#myModalLabel.modal-title
           Entrevistas
       .modal-body
-        .well
-          No hay información disponible de momento
+        #accordion-5.panel-group{ role: 'tablist', 'aria-multiselectable' => 'true' }
+          - @job.postulants.approved.order(:stpp_id).each do |postulant|
+            .panel.panel-default
+              .panel-heading{ role: 'tab', id: "heading-5-#{postulant.id}" }
+                %h4.panel-title
+                  = link_to postulant.postulant_code, "#collapse-5-#{postulant.id}", role: 'button', data: { toggle: 'collapse', parent: '#accordion-5' }, aria: { expanded: 'true', controls: "collapse-5-#{postulant.id}" }
+              .panel-collapse.collapse{id: "collapse-5-#{postulant.id}", role: 'tabpanel', 'aria-labelledby' => "heading-5-#{postulant.id}"}
+                .panel-body
+                  - if postulant.postulant_evaluations.interview.any?
+                    %table.table.table-hover.table-striped
+                      %tr
+                        %th
+                          Nombre
+                        %th
+                          Porcentaje
+                        %th
+                          Nota
+                        %th
+                          Nota global
+                      - postulant.postulant_evaluations.interview.each do |t|
+                        %tr
+                          %td
+                            = t.name
+                          %td
+                            = '%.2f' % t.weight rescue ''
+                          %td
+                            = '%.2f' % t.calification rescue ''
+                          %td
+                            = '%.2f' % t.obtained_score rescue ''
+                      %tr
+                        %td
+                          %strong
+                            Total obtenido
+                          %th
+                          %th
+                          %th
+                            %strong
+                              = '%.2f' % postulant.postulant_evaluations.interview.pluck(:obtained_score).sum rescue ''
+                  - else
+                    .well
+                      No se realizaron entrevistas
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 #step6.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

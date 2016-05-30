@@ -13,7 +13,8 @@
 #= require 'select2_locale_es'
 
 $ ->
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip
+    html: true
 
   $(document).on 'click', '.btnNext', ->
     $('.nav-tabs > .active').next('li').find('a').trigger 'click'

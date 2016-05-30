@@ -45,11 +45,11 @@ class Employments::Plaza < ActiveRecord::Base
   def self.random_id
     active.where(:plaza_state_id => 2).ids.sort_by{rand}.first
   end
-  
+
   def self.twt_job
     r   = "#EmpleosSV http://www.empleospublicos.gob.sv #GobSV"
     job = find(self.random_id)
-    
+
     if (job.nil?) or (job.post_name.blank?) or (job.post_name.blank?)
       self.twt_job
     else
@@ -60,4 +60,22 @@ class Employments::Plaza < ActiveRecord::Base
     end
     r
   end
+
+  def assigned_score_academic
+    @assigned_score_academic ||= ::Employments::PostulantEvaluation.where(postulant_id: postulant_ids).where(factor_id: 1).first.try(:assigned_score)
+  end
+  def assigned_score_technique
+    @assigned_score_technique ||= ::Employments::PostulantEvaluation.where(postulant_id: postulant_ids).where(factor_id: 5).first.try(:assigned_score)
+  end
+  def assigned_score_behavior
+    @assigned_score_behavior ||= ::Employments::PostulantEvaluation.where(postulant_id: postulant_ids).where(factor_id: 6).first.try(:assigned_score)
+  end
+  def assigned_score_interview
+    @assigned_score_interview ||= ::Employments::PostulantEvaluation.where(postulant_id: postulant_ids).where(factor_id: 7).first.try(:assigned_score)
+  end
+
+  def postulant_ids
+    @postulant_ids ||= postulants.pluck(:id)
+  end
+
 end
