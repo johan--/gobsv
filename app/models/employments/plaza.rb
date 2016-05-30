@@ -35,7 +35,7 @@ class Employments::Plaza < ActiveRecord::Base
   end
 
   def applications_total
-      stpp_apply_counter + spta_apply_counter
+    stpp_apply_counter + spta_apply_counter + postulants.count
   end
 
   def total_salary
