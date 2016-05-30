@@ -41,6 +41,7 @@ class Employments::JobsController < EmploymentsController
     @job_languages = @job.plaza_languages.indispensable
     @job_skills = @job.plaza_skills.indispensable
     @already_applied = current_user.plazas.pluck(:id).include?(@job.id)
+    @job.update_column(:spta_apply_counter, @job.spta_apply_counter + 1)
     if request.post?
       @postulation = ::Employments::UserPostulation.new(params.require(:employments_user_postulation).permit(:terms))
       @postulation.user_id = current_user.id
