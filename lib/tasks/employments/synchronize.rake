@@ -181,12 +181,14 @@ namespace :employments do
         obj.save
       end
       # Get especialties catalog
+      Employments::Specialty.update_all(active: false)
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/VistaEspecialidades', access_token
       jsons.each do |json|
         obj = Employments::Specialty.where(esp_code: json[:ESP_CODIGO], gra_code: json[:GRA_CODIGO]).first_or_initialize
         obj.esp_name = json[:ESP_NOMBRE]
         obj.gra_name = json[:GRA_NOMBRE]
         obj.priority = json[:ORDEN]
+        obj.active = true
         obj.save
       end
       # Get ContadorAplicarPlaza
@@ -208,9 +210,8 @@ namespace :employments do
       end
       # Get api/PostulanteEvaluaciones
       jsons = get_json_data 'http://www.funcionpublica.gob.sv/STPPplazas/api/PostulanteEvaluaciones', access_token
-
       Employments::PostulantEvaluation.update_all(active: false)
-      puts jsons
+      #puts jsons
       jsons.each do |json|
         obj = Employments::PostulantEvaluation.where(id: json[:idPostulanteCompetencias]).first_or_initialize
         obj.postulant_id = json[:idConcursoPostulante]

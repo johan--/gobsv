@@ -33,12 +33,12 @@ class Employments::UserSpecialty < ActiveRecord::Base
   }
 
   def set_missing_data
-    self.esp_name = ::Employments::Specialty.where(esp_code: self.esp_code).limit(1).first.try(:esp_name)
-    self.name = ACADEMIC_GRADE[self.gra_code]
+    self.esp_name = ::Employments::Specialty.active.where(esp_code: self.esp_code).limit(1).first.try(:esp_name)
+    self.name = ::Employments::Specialty.active.where(gra_code: self.gra_code).limit(1).first.try(:gra_name)
   end
 
   def gra_specialties
-    Employments::Specialty.where(gra_code: gra_code).order(:priority, :esp_name)
+    Employments::Specialty.active.where(gra_code: gra_code).order(:priority, :esp_name)
   end
 
 end

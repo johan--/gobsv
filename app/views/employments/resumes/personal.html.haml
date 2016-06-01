@@ -124,7 +124,7 @@
                     .row
                       .col-sm-11
                         .form-group
-                          = ff.select :gra_code, ::Employments::Specialty.select(:gra_name, :gra_code, :priority).order(:priority).uniq.collect{|obj| [obj.gra_name, obj.gra_code]}, {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true, class: 'select2 load_specialties', style: 'width: 100%' }
+                          = ff.select :gra_code, ::Employments::Specialty.active.select(:gra_name, :gra_code, :priority).order(:priority).uniq.collect{|obj| [obj.gra_name, obj.gra_code]}, {include_blank: t('activerecord.attributes.employments/user_specialty.gra_code'), hide_label: true}, { required: true, class: 'select2 load_specialties', style: 'width: 100%' }
                     .row
                       .col-sm-11
                         .form-group
