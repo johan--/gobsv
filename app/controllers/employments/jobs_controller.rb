@@ -43,13 +43,17 @@ class Employments::JobsController < EmploymentsController
     @already_applied = current_user.plazas.pluck(:id).include?(@job.id)
     @job.update_column(:spta_apply_counter, @job.spta_apply_counter + 1)
     if request.post?
-      @postulation = ::Employments::UserPostulation.new(params.require(:employments_user_postulation).permit(:terms))
-      @postulation.user_id = current_user.id
-      @postulation.plaza_id = @job.id
-      if @postulation.save
-        redirect_to postulation_employments_job_url(@job) and return
+      if current_user.can_apply?(@job)
+        @postulation = ::Employments::UserPostulation.new(params.require(:employments_user_postulation).permit(:terms))
+        @postulation.user_id = current_user.id
+        @postulation.plaza_id = @job.id
+        if @postulation.save
+          redirect_to postulation_employments_job_url(@job) and return
+        else
+          render :apply
+        end
       else
-        render :apply
+        redirect_to postulation_employments_job_url(@job), alert: 'Lo sentimos, no puede aplicar a la plaza' and return
       end
     else
       @postulation = ::Employments::UserPostulation.new
