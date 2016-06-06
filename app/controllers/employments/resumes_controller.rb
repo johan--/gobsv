@@ -65,7 +65,8 @@ class Employments::ResumesController < EmploymentsController
       trainings_attributes: [:id, :institution_name, :name, :description, :place, :duration, :year, :_destroy],
       work_experiences_attributes: [:id, :sector, :country_id, :institution_name, :charge, :description, :start_at, :end_at, :active, :_destroy],
       languages_attributes: [:id, :name, :read, :write, :speak, :_destroy],
-      disabilities_attributes: [:id, :disability_type_id, :disability_certification_id, :_destroy]
+      disabilities_attributes: [:id, :disability_type_id, :disability_certification_id, :_destroy],
+      skills_attributes: [:id, :name, :_destroy]
     )
   end
 
