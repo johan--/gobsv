@@ -17,7 +17,6 @@ class Employments::PasswordsController < Devise::PasswordsController
   def create
     self.resource = resource_class.send_reset_password_instructions(resource_params)
     yield resource if block_given?
-    puts "========================== #{resource_params}"
     if successfully_sent?(resource)
       respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
@@ -36,6 +35,7 @@ class Employments::PasswordsController < Devise::PasswordsController
   def update
     self.resource = resource_class.reset_password_by_token(resource_params)
     yield resource if block_given?
+    resource.recovering_password = true
 
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
@@ -48,8 +48,6 @@ class Employments::PasswordsController < Devise::PasswordsController
       end
       respond_with resource, location: after_resetting_password_path_for(resource)
     else
-      puts "===========#{resource_params}"
-      puts "===========#{resource.errors.full_messages}"
       set_minimum_password_length
       respond_with resource
     end

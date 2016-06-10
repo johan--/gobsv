@@ -11,7 +11,7 @@
   .form-group
     = f.text_field :last_name, class: 'form-control', placeholder: t('activerecord.attributes.user.last_name')
   .form-group
-    = f.email_field :email, class: 'form-control', placeholder: t('user.login.email_placeholder'), autofocus: true
+    = f.email_field :email, class: 'form-control', placeholder: 'Correo electrónico. Ejemplo: juan@gmail.com', autofocus: true
   .row#pwd-container
     .col-xs-6
       .form-group

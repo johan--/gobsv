@@ -20,7 +20,7 @@
         %br
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .form-group.has-feedback
-            = f.email_field :email, class: 'input-lg form-control', placeholder: t('.email_placeholder'), autofocus: true
+            = f.email_field :email, class: 'input-lg form-control', placeholder: 'Correo electrónico', autofocus: true
             %span{class: "glyphicon glyphicon-envelope form-control-feedback", :"aria-hidden"=>true}
           .form-group.has-feedback
             = f.password_field :password, class: 'input-lg form-control', autocomplete: 'off', placeholder: t('.password_placeholder')

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
 
+  attr_accessor :recovering_password
+
   has_many :user_authorizations, dependent: :destroy
 
   has_many :references, class_name: '::Employments::UserReference', dependent: :destroy
@@ -36,12 +38,12 @@ class User < ActiveRecord::Base
   validates :name, :presence => true
   validates :password, :presence => true, :confirmation => true, :on => :create
   validates :password, :presence => true, :confirmation => true, :if => Proc.new{|o| o.password.present?}
-  validates :document_number, uniqueness: true, on: :update
-  validates :name, :last_name, :email, length: { maximum: 150 }
-  validates :phone, :alt_phone, length: { maximum: 20 }
-  validates :address, length: { maximum: 300 }
-  validates :tax_id, length: { maximum: 17 }
-  validates :document_number, length: { maximum: 17 }
+  validates :document_number, uniqueness: true, on: :update, unless: :recovering_password?
+  validates :name, :last_name, :email, length: { maximum: 150 }, unless: :recovering_password?
+  validates :phone, :alt_phone, length: { maximum: 20 }, unless: :recovering_password?
+  validates :address, length: { maximum: 300 }, unless: :recovering_password?
+  validates :tax_id, length: { maximum: 17 }, unless: :recovering_password?
+  validates :document_number, length: { maximum: 17 }, unless: :recovering_password?
 
   #validates :tax_id, :presence => true, length: { is: 17 }, :unless => :create
 
@@ -50,6 +52,10 @@ class User < ActiveRecord::Base
 
   include Humanizer
   require_human_on :create
+
+  def recovering_password?
+    recovering_password == true
+  end
 
   #User::Gender
   Gender = {
