@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
   has_many :disabilities, class_name: '::Employments::UserDisability', dependent: :destroy
   accepts_nested_attributes_for :disabilities, allow_destroy: true
 
+  has_many :skills, class_name: '::Employments::UserSkill', dependent: :destroy
+  accepts_nested_attributes_for :skills, limit: 20, allow_destroy: true
+
+
   has_many :user_postulations, class_name: '::Employments::UserPostulation', dependent: :destroy
   has_many :plazas, class_name: '::Employments::Plaza', through: :user_postulations, dependent: :destroy
 

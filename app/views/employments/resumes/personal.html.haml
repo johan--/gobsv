@@ -223,6 +223,45 @@
                 = f.link_to_add :trainings, class: 'btn btn-sm btn-success pull-right' do
                   Agregar capacitación
                   %span.glyphicon.glyphicon-plus
+              %fieldset
+                %h4
+                  Agregar habilidades 
+                = f.fields_for :skills do |ff|
+                  .row
+                    .col-sm-11
+                      .form-group
+                        = ff.text_area :name, placeholder: t('activerecord.attributes.employments/user_skill.name'), rows: 1, class: "required", maxlength: "300"
+                    .col-sm-1
+                      = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                        %span.glyphicon.glyphicon-trash
+                = f.link_to_add :skills, class: 'btn btn-sm btn-success pull-right' do
+                  Agregar habilidad
+                  %span.glyphicon.glyphicon-plus
+                :javascript
+                  $(function() {
+                    var fieldsCount,
+                      maxFieldsCount = 20,
+                      $addLink = $('a.add_nested_fields');
+
+                    function toggleAddLink() {
+                      $addLink.toggle(fieldsCount <= maxFieldsCount)
+                    }
+
+                    $(document).on('nested:fieldAdded', function() {
+                      fieldsCount += 1;
+                      toggleAddLink();
+                    });
+
+                    $(document).on('nested:fieldRemoved', function() {
+                      fieldsCount -= 1;
+                      toggleAddLink();
+                    });  
+
+                    // count existing nested fields after page was loaded
+                    fieldsCount = $('form .fields').length;
+                    toggleAddLink();
+                  })
+
 
             %h3 Información Experiencia
             %section
