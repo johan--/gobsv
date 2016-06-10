@@ -66,6 +66,11 @@ class SynchronizeUsersJob < ActiveJob::Base
           'certificado_url' => "http://www.empleospublicos.gob.sv#{s.certificate.url(:original, timestamp: false)}"
         }
       }
+      knowledge = user.skills.collect { |s|
+        {
+          'nombreConocimiento' => s.name
+        }
+      }
       # First get a valid token
       uri = URI('http://www.funcionpublica.gob.sv/STPPplazas/token')
       params = {
@@ -79,7 +84,7 @@ class SynchronizeUsersJob < ActiveJob::Base
       begin
         #response = RestClient.post 'http://192.168.1.43/ServicioDotacion/api/usuario',
         #response = RestClient.post 'http://192.168.1.5:3000/resumes/save',
-=begin
+#=begin
         puts "\n login: #{user.document_number.gsub(/[^0-9]/i, '')}"
         puts "\n clave: #{(0...20).map { (65 + rand(26)).chr }.join}"
         puts "\n name: #{user.name}"
@@ -102,7 +107,8 @@ class SynchronizeUsersJob < ActiveJob::Base
         puts "\n 'USU_Experiencia[]' => #{experiences.inspect}"
         puts "\n 'USU_Discapacidad[]' => #{disabilities.inspect}"
         puts "\n 'USU_Especialidad[]' => #{specialties.inspect}\n"
-=end
+        puts "\n 'USU_Conocimientos[]' => #{knowledge.inspect}\n"
+#=end
         response = RestClient.post 'http://www.funcionpublica.gob.sv/STPPplazas/api/Usuario',
           {
             login: user.document_number.gsub(/[^0-9]/i, ''),
@@ -126,7 +132,8 @@ class SynchronizeUsersJob < ActiveJob::Base
             'USU_Capacitaciones[]' => trainings,
             'USU_Experiencia[]' => experiences,
             'USU_Discapacidad[]' => disabilities,
-            'USU_Especialidad[]' => specialties
+            'USU_Especialidad[]' => specialties,
+            'USU_Conocimientos[]' => knowledge
           },
           {:Authorization => access_token}
         #puts "===================================\n"

@@ -225,12 +225,12 @@
                   %span.glyphicon.glyphicon-plus
               %fieldset
                 %h4
-                  Agregar habilidades 
+                  Agregar habilidades
                 = f.fields_for :skills do |ff|
                   .row
                     .col-sm-11
                       .form-group
-                        = ff.text_area :name, placeholder: t('activerecord.attributes.employments/user_skill.name'), rows: 1, class: "required", maxlength: "300"
+                        = ff.text_field :name, placeholder: t('activerecord.attributes.employments/user_skill.name'), class: "required", maxlength: "300"
                     .col-sm-1
                       = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
                         %span.glyphicon.glyphicon-trash
@@ -255,7 +255,7 @@
                     $(document).on('nested:fieldRemoved', function() {
                       fieldsCount -= 1;
                       toggleAddLink();
-                    });  
+                    });
 
                     // count existing nested fields after page was loaded
                     fieldsCount = $('form .fields').length;
