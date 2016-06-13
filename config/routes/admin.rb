@@ -38,7 +38,9 @@ constraints subdomain: 'panel' do
           :savings,
           :reports,
           :holders
-          
+        ],
+        ofcia: [
+          :payrolls
         ]
       }
 
