@@ -24,7 +24,7 @@ every :day, :at => '11:00am' do
   rake "employments:import"
 end
 
-every :day, :at => '08:00pm' do
+every :day, :at => '03:00pm' do
   rake "employments:import"
 end
 
