@@ -232,7 +232,7 @@ es:
         one: Movimiento
         other: Movimientos
       ofcia/payroll:
-        on: Planilla
+        one: Planilla
         other: Planillas
       req/product_requirement:
         one: Producto
