@@ -34,6 +34,7 @@ es:
       default: ! '%d/%m/%Y'
       long: ! '%d de %B de %Y'
       short: ! '%d de %b'
+      sortable: ! '%Y-%m-%d'
       tiny: ! '%d/%b'
     month_names:
     -
@@ -230,6 +231,9 @@ es:
       inv/product_movement:
         one: Movimiento
         other: Movimientos
+      ofcia/payroll:
+        one: Planilla
+        other: Planillas
       req/product_requirement:
         one: Producto
         other: Productos
@@ -335,6 +339,54 @@ es:
         warehouse_from: Se transfiere desde la bodega
         warehouse_from_name: Transferido desde
         admin_name: Usuario
+      ofcia/payroll:
+        periodo: Período
+        id_causa_complemento: ID causa complemento
+        tasa_cotiz_lab_ivm: Tasa cotiz. Lab. IVM
+        impresa: Impresa
+        tipo_mora: Tipo mora
+        maximo_cotizable_fsv: Máx. cotizable FSV
+        correlativo_centro_trabajo: Correlativo centro de tabajo
+        cambio_nota_detalle: Cambio nota detalle
+        id_usuario: ID usuario
+        correlativo_original_migracion: Correlativo original migración
+        id_codigo_observacion: ID código observación
+        id_sucursal: ID sucursal
+        aporte_pat_ivm: Aporte pat IVM
+        horas: Horas
+        tasa_cotiz_pat_ivm: Tasa cotiz. Pat. IVM
+        tasa_cotiz_pat_fsv: Tasa cotiz. Pat. FSV
+        maximo_cotizable: Máximo cotizable
+        aporte_patronal: Aporte patronal
+        monto_vacacion: Monto vacación
+        monto_salario: Monto salario
+        id_tipo_pago_planilla: ID tipo pago planilla
+        aporte_total_ivm: Aporte total IVM
+        aporte_total: Aporte total
+        id_estado_planilla: ID estado planilla
+        tasa_cotiz_laboral: Tasa cotiz. Laboral
+        monto_pago_adicional: Monto pago adicional
+        id_tipo_planilla: ID tipo planilla
+        aporte_total_fsv: Aporte total FSV
+        aporte_lab_fsv: Aporte lab FSV
+        cambio_nota: Cambio nota
+        aporte_laboral: Aporte laboral
+        tasa_cotiz_patronal: Tasa cotiz. Patronal
+        no_afiliacion_trabajador: No. Afiliación trabajador
+        mecanizada: Mecanizada
+        tasa_cotiz_lab_fsv: Tasa cotiz. Lab FSV
+        dias: Días
+        no_patronal: No. Patronal
+        maximo_cotizable_ivm: Máximo cotizable IVM
+        fecha_presentacion_planilla: Fecha presentación planilla
+        id_procesamiento: ID procesamiento
+        aporte_lab_ivm: Aporte lab IVM
+        grupo_recepcion: Grupo recepción
+        aporte_pat_fsv: Aporte pat. FSV
+        complementaria: Complementaria
+        correlativo_empleado: Correlativo empleado
+        dias_vacacion: Días vacación
+        tipo_procesamiento: Tipo procesamiento
       req/requirement:
         code: Código
         status: Estado
@@ -597,6 +649,7 @@ es:
     req: Requerimientos
     forum: Foros públicos
     paa: Política de ahorro y austeridad
+    ofcia: OFCIA
 
   recaptcha:
     errors:
