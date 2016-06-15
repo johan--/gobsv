@@ -189,11 +189,11 @@
                 = f.link_to_add :languages, class: 'btn btn-sm btn-success pull-right' do
                   Agregar idioma
                   %span.glyphicon.glyphicon-plus
-            %h3 Capacitaciones / Diplomas
+            %h3 Capacitaciones / Conocimientos
             %section
               %fieldset
                 %h4
-                  Agregar capacitaciones o diplomas recibidos
+                  Agregar capacitaciones
 
                 = f.fields_for :trainings do |ff|
                   .row
@@ -225,7 +225,7 @@
                   %span.glyphicon.glyphicon-plus
               %fieldset
                 %h4
-                  Agregar habilidades
+                  Agregar otros conocimientos
                 = f.fields_for :skills do |ff|
                   .row
                     .col-sm-11
@@ -235,7 +235,7 @@
                       = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
                         %span.glyphicon.glyphicon-trash
                 = f.link_to_add :skills, class: 'btn btn-sm btn-success pull-right' do
-                  Agregar habilidad
+                  Agregar otro conocimiento
                   %span.glyphicon.glyphicon-plus
                 :javascript
                   $(function() {

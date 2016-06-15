@@ -554,7 +554,7 @@ es:
         plaza_id: Plaza
         terms: Estoy de acuerdo que a este concurso solo puedo aplicar una vez.
       employments/user_skill:
-        name: Habilidad
+        name: Conocimiento
 
     enum:
       ta/article:
