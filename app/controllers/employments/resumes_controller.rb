@@ -17,6 +17,7 @@ class Employments::ResumesController < EmploymentsController
   def save
     @user = User.find current_user.id
     @user.assign_attributes item_params
+    @user.update_cv = true
     @success = @user.save
     params = {}
     item_params = {}

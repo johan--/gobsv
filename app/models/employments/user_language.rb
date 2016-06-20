@@ -2,6 +2,7 @@ class Employments::UserLanguage < ActiveRecord::Base
   belongs_to :user
 
   validates :name, :read, :write, :speak, presence: true
+  validates :name, uniqueness: { scope: :user_id }
 
 
   # Según catalogos de la técnica

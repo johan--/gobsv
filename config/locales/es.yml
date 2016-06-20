@@ -558,6 +558,8 @@ es:
         treatment: Trato
         address: Dirección
         humanizer_answer: Pregunta de seguridad
+      languages:
+        name: Idioma
       employments/user_reference:
         name: Nombre
         charge: Cargo que desempeña
