@@ -234,14 +234,14 @@
                     .col-sm-1
                       = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
                         %span.glyphicon.glyphicon-trash
-                = f.link_to_add :skills, class: 'btn btn-sm btn-success pull-right' do
+                = f.link_to_add :skills, class: 'btn btn-sm btn-success pull-right', id: "restricted-fields" do
                   Agregar otro conocimiento
                   %span.glyphicon.glyphicon-plus
                 :javascript
                   $(function() {
                     var fieldsCount,
                       maxFieldsCount = 20,
-                      $addLink = $('a.add_nested_fields');
+                      $addLink = $('a#restricted-fields');
 
                     function toggleAddLink() {
                       $addLink.toggle(fieldsCount <= maxFieldsCount)
