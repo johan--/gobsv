@@ -16,21 +16,30 @@ class Employments::ResumesController < EmploymentsController
 
   def save
     @user = User.find current_user.id
-    @user.assign_attributes item_params
-    @user.update_cv = true
-    @success = @user.save
-    params = {}
-    item_params = {}
-    unless @success
-      flash[:notice] = 'No se pudo actualizar la información'
-      @errors = @user.errors.full_messages
+    begin
+      @user.assign_attributes item_params
+      @user.update_cv = true
+      @success = @user.save
+      params = {}
+      item_params = {}
+      unless @success
+        flash[:notice] = 'No se pudo actualizar la información'
+        @errors = @user.errors.full_messages
+        @disability_types = ::Employments::DisabilityType.all
+        @disability_certifications = ::Employments::DisabilityCertification.all
+        @countries = ::Employments::Country.all
+        render :personal
+      else
+        ::SynchronizeUsersJob.perform_later(@user)
+      end
+    rescue ActiveRecord::NestedAttributes::TooManyRecords
+      flash[:alert] = 'Demasiados registros, por favor verifique que solo tenga 20 conocimientos ingresados'
       @disability_types = ::Employments::DisabilityType.all
       @disability_certifications = ::Employments::DisabilityCertification.all
       @countries = ::Employments::Country.all
       render :personal
-    else
-      ::SynchronizeUsersJob.perform_later(@user)
     end
+
     add_breadcrumb 'Inicio', employments_root_url
     add_breadcrumb "Curriculum", personal_employments_resumes_url
     add_breadcrumb "Actualizado"
