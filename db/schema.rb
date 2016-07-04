@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704162848) do
+ActiveRecord::Schema.define(version: 20160704172912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -676,6 +676,18 @@ ActiveRecord::Schema.define(version: 20160704162848) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "ofcia_payroll_patrons", force: :cascade do |t|
+    t.string   "employer_id"
+    t.string   "name"
+    t.string   "nit"
+    t.integer  "sector_id"
+    t.integer  "economic_activity_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "ofcia_payroll_patrons", ["employer_id"], name: "index_ofcia_payroll_patrons_on_employer_id", using: :btree
 
   create_table "ofcia_payroll_sectors", force: :cascade do |t|
     t.string   "name"
