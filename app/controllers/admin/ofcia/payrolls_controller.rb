@@ -9,6 +9,9 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
   end
 
   def init_form
+    @payroll_observation_codes = ::Ofcia::PayrollObservationCode.order(:name)
+    @payroll_statuses = ::Ofcia::PayrollStatus.order(:name)
+    @payroll_types = ::Ofcia::PayrollType.order(:name)
   end
 
   def item_params
