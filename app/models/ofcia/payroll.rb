@@ -11,4 +11,9 @@ class Ofcia::Payroll < ActiveRecord::Base
   belongs_to :payroll_type,
              class_name: 'Ofcia::PayrollType',
              foreign_key: :id_tipo_planilla
+
+  belongs_to :payroll_patron,
+             class_name: 'Ofcia::PayrollPatron',
+             foreign_key: :no_patronal,
+             primary_key: :employer_id
 end

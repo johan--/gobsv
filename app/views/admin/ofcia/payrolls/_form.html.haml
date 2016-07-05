@@ -1,3 +1,11 @@
+- unless f.object.new_record?
+  %h3
+    = f.object.payroll_patron.name
+  %h4
+    = f.object.payroll_patron.payroll_sector.name
+  %h4
+    = f.object.payroll_patron.payroll_economic_activity.name
+  %hr
 = f.text_field :periodo, class: 'form-control'
 = f.text_field :id_causa_complemento, class: 'form-control'
 = f.text_field :tasa_cotiz_lab_ivm, class: 'form-control'

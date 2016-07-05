@@ -11,8 +11,8 @@ namespace :ofcia do
       # Ofcia::PayrollType
 
       response = client.call(:obtener_tipo_planilla)
-      json_s = response.body[:obtener_tipo_planilla_response][:return].to_s
-      items = JSON.parse(json_s)
+      jsons = response.body[:obtener_tipo_planilla_response][:return].to_s
+      items = JSON.parse(jsons)
       settings = {
         id: 'idTipoPlanilla',
         name: 'nombreTipoPlanilla'
@@ -23,8 +23,8 @@ namespace :ofcia do
       # Ofcia::PayrollStatus
 
       response = client.call(:obtener_estado_planilla)
-      json_s = response.body[:obtener_estado_planilla_response][:return].to_s
-      items = JSON.parse(json_s)
+      jsons = response.body[:obtener_estado_planilla_response][:return].to_s
+      items = JSON.parse(jsons)
       settings = {
         id: 'codEstadoPlanilla',
         name: 'nombreEstadoPlanilla',
@@ -36,8 +36,8 @@ namespace :ofcia do
       # Ofcia::PayrollSector
 
       response = client.call(:obtener_sectores)
-      json_s = response.body[:obtener_sectores_response][:return].to_s
-      items = JSON.parse(json_s)
+      jsons = response.body[:obtener_sectores_response][:return].to_s
+      items = JSON.parse(jsons)
       settings = {
         id: 'codSector',
         name: 'nombreSector'
@@ -48,14 +48,27 @@ namespace :ofcia do
       # Ofcia::PayrollObservationCode
 
       response = client.call(:obtener_codigo_observacion)
-      json_s = response.body[:obtener_codigo_observacion_response][:return].to_s
-      items = JSON.parse(json_s)
+      jsons = response.body[:obtener_codigo_observacion_response][:return].to_s
+      items = JSON.parse(jsons)
       settings = {
         id: 'idCodigoObservacion',
         name: 'nombreCodigoObservacion',
         description: 'descCodigoObservacion'
       }
       create_records(Ofcia::PayrollObservationCode, settings, items)
+
+      ###
+      # Ofcia::EconomicActivity
+
+      response = client.call(:obtener_actividad_economica)
+      jsons = response.body[:obtener_actividad_economica_response][:return].to_s
+      items = JSON.parse(jsons)
+      settings = {
+        id: 'codActividadEconomica',
+        name: 'nombreActividadEconomica',
+        economic_activity_group: 'codGrupoActividadEconomica'
+      }
+      create_records(Ofcia::PayrollEconomicActivity, settings, items)
     end
 
     def create_records(model, settings, items)
