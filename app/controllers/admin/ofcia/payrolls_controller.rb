@@ -1,5 +1,4 @@
 class Admin::Ofcia::PayrollsController < Admin::OfciaController
-
   def model
     ::Ofcia::Payroll
   end
@@ -12,6 +11,10 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
     @payroll_observation_codes = ::Ofcia::PayrollObservationCode.order(:name)
     @payroll_statuses = ::Ofcia::PayrollStatus.order(:name)
     @payroll_types = ::Ofcia::PayrollType.order(:name)
+  end
+
+  def reports
+    @sectors = ::Ofcia::PayrollSector.has_payrolls.order(:name)
   end
 
   def item_params

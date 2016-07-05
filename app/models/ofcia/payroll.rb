@@ -16,4 +16,30 @@ class Ofcia::Payroll < ActiveRecord::Base
              class_name: 'Ofcia::PayrollPatron',
              foreign_key: :no_patronal,
              primary_key: :employer_id
+
+  scope :economic_activity, lambda { |economic_activity_id|
+    joins(:payroll_patron)
+      .where(
+        ofcia_payroll_patrons: {
+          economic_activity_id: economic_activity_id
+        }
+      )
+  }
+
+  scope :sector, lambda { |sector_id|
+    joins(:payroll_patron)
+      .where(
+        ofcia_payroll_patrons: {
+          sector_id: sector_id
+        }
+      )
+  }
+
+  scope :year, lambda { |year|
+    where ['SUBSTRING(periodo, 1, 4)::INTEGER = ?', year]
+  }
+
+  scope :month, lambda { |month|
+    where ['SUBSTRING(periodo, 5, 2)::INTEGER = ?', month]
+  }
 end

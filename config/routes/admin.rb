@@ -47,11 +47,15 @@ constraints subdomain: 'panel' do
       namespaces.each do |ns, controllers|
         namespace ns do
           controllers.each do |controller|
-            if ns == :paa and controller == :reports
+            if ns == :paa && controller == :reports
               resources controller, only: [:index] do |c|
                 get 'savings_by_financial_source_unaudited',                      :on => :collection
                 get 'savings_by_financial_source_audited',                        :on => :collection
                 get 'funds_generated_by_the_institutions_of_the_executive_organ', :on => :collection
+              end
+            elsif ns == :ofcia && controller == :payrolls
+              resources controller do
+                get 'reports', on: :collection
               end
             else
               resources controller

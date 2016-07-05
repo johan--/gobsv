@@ -1,0 +1,21 @@
+- @sectors.each do |sector|
+  - eactivities = Ofcia::PayrollEconomicActivity.sector(sector).order(:name)
+  .panel.panel-default
+    .panel-heading
+      %h4
+        = sector.name
+    .panel-body
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Actividad económica
+            %th Periodo 1
+            %th Periodo 2
+            %th
+        %tbody
+          - eactivities.each do |eactivity|
+            %tr
+              %td= eactivity.name
+              %td= Ofcia::Payroll.economic_activity(eactivity.id).sector(sector.id).year(2015).count
+              %td= Ofcia::Payroll.economic_activity(eactivity.id).sector(sector.id).year(2016).count
+              %td
