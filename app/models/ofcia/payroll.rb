@@ -42,4 +42,12 @@ class Ofcia::Payroll < ActiveRecord::Base
   scope :month, lambda { |month|
     where ['SUBSTRING(periodo, 5, 2)::INTEGER = ?', month]
   }
+
+  def self.first_year
+    minimum 'SUBSTRING(periodo, 1, 4)::INTEGER'
+  end
+
+  def self.last_year
+    maximum 'SUBSTRING(periodo, 1, 4)::INTEGER'
+  end
 end

@@ -1,3 +1,26 @@
+= form_tag reports_admin_ofcia_payrolls_url, { method: :get, class: 'form-inline' } do
+  -#
+    .form-group
+      = label_tag :sector, 'Sector'
+      = select_tag :sector, options_for_select(@sectors.map{ |sector| [sector.name, sector.id] }, nil), include_blank: '-- Todos --', class: 'form-control'
+
+  .form-group
+    =# label_tag :period1, 'Comparar'
+    = date_select :period1, nil, { prompt: true, discard_day: true, start_year: ::Ofcia::Payroll.first_year, end_year: ::Ofcia::Payroll.last_year }, { class: 'form-control' }
+
+  .form-group
+    = label_tag :period2, '- -'
+    = date_select :period2, nil, { prompt: true, discard_day: true, start_year: ::Ofcia::Payroll.first_year, end_year: ::Ofcia::Payroll.last_year }, { class: 'form-control' }
+
+  = button_tag type: :submit, name: nil, class: 'btn btn-default' do
+    Filtrar / Comparar
+
+%br
+%br
+
+%h1
+  = @month1
+
 - @sectors.each do |sector|
   - eactivities = Ofcia::PayrollEconomicActivity.sector(sector).order(:name)
   .panel.panel-default
@@ -9,13 +32,16 @@
         %thead
           %tr
             %th Actividad económica
-            %th Periodo 1
-            %th Periodo 2
+            %th= period2string(@period_1)
+            %th= period2string(@period_2)
+            %th Diferencia
             %th
         %tbody
           - eactivities.each do |eactivity|
+            - p1 = @scope1.economic_activity(eactivity.id).sector(sector.id).count
+            - p2 = @scope2.economic_activity(eactivity.id).sector(sector.id).count
             %tr
               %td= eactivity.name
-              %td= Ofcia::Payroll.economic_activity(eactivity.id).sector(sector.id).year(2015).count
-              %td= Ofcia::Payroll.economic_activity(eactivity.id).sector(sector.id).year(2016).count
-              %td
+              %td= p1
+              %td= p2
+              %td= p2 - p1
