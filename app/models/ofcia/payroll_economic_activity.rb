@@ -1,4 +1,8 @@
 class Ofcia::PayrollEconomicActivity < ActiveRecord::Base
+  belongs_to :payroll_economic_activity_group,
+             class_name: 'Ofcia::PayrollEconomicActivityGroup',
+             foreign_key: :economic_activity_group
+
   has_many :payroll_patrons,
            class_name: 'Ofcia::PayrollPatron',
            foreign_key: :economic_activity_id

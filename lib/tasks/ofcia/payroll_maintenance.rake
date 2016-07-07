@@ -58,7 +58,7 @@ namespace :ofcia do
       create_records(Ofcia::PayrollObservationCode, settings, items)
 
       ###
-      # Ofcia::EconomicActivity
+      # Ofcia::PayrollEconomicActivity
 
       response = client.call(:obtener_actividad_economica)
       jsons = response.body[:obtener_actividad_economica_response][:return].to_s
@@ -69,6 +69,18 @@ namespace :ofcia do
         economic_activity_group: 'codGrupoActividadEconomica'
       }
       create_records(Ofcia::PayrollEconomicActivity, settings, items)
+
+      ###
+      # Ofcia::PayrollEconomicActivityGroup
+
+      response = client.call(:obtener_grupo_actividad_economica)
+      jsons = response.body[:obtener_grupo_actividad_economica_response][:return].to_s
+      items = JSON.parse(jsons)
+      settings = {
+        id: 'codGrupoActividadEconomica',
+        name: 'nombreGrupoActividadEconomica'
+      }
+      create_records(Ofcia::PayrollEconomicActivityGroup, settings, items)
     end
 
     def create_records(model, settings, items)
