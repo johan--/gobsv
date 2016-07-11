@@ -512,3 +512,10 @@ audio {
     margin: 0;
   }
 }
+
+@media (max-width: 460px) {
+  article.media .media-body {
+    display: block;
+    width: auto;
+  }
+}
