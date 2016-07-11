@@ -1,5 +1,4 @@
 class Admin::Ofcia::PayrollsController < Admin::OfciaController
-
   def model
     ::Ofcia::Payroll
   end
@@ -9,6 +8,27 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
   end
 
   def init_form
+    @payroll_observation_codes = ::Ofcia::PayrollObservationCode.order(:name)
+    @payroll_statuses = ::Ofcia::PayrollStatus.order(:name)
+    @payroll_types = ::Ofcia::PayrollType.order(:name)
+  end
+
+  def reports
+    @scope1 = ::Ofcia::Payroll
+    if params.key?(:period1)
+      @period_1 = params2period(params[:period1])
+      @scope1   = @scope1.year(@period_1[:year])   unless @period_1[:year].nil?
+      @scope1   = @scope1.month(@period_1[:month]) unless @period_1[:month].nil?
+    end
+
+    @scope2 = ::Ofcia::Payroll
+    if params.key?(:period2)
+      @period_2 = params2period(params[:period2])
+      @scope2   = @scope2.year(@period_2[:year])   unless @period_2[:year].nil?
+      @scope2   = @scope2.month(@period_2[:month]) unless @period_2[:month].nil?
+    end
+
+    @sectors = ::Ofcia::PayrollSector.has_payrolls.order(:name)
   end
 
   def item_params
@@ -61,5 +81,24 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
       :dias_vacacion,
       :tipo_procesamiento
     )
+  end
+
+  def flatten_date(hash)
+    hash.sort.map(&:last).map { |v| v.to_i.zero? ? nil : v.to_i }
+  end
+
+  def params2period(hash)
+    v = flatten_date hash
+    { year: v.first, month: v.second, day: v.last }
+  end
+
+  helper_method :period2string
+  def period2string(period)
+    return '- -' if period.nil?
+    a = []
+    a << period[:month] unless period[:month].nil?
+    a << period[:year]  unless period[:year].nil?
+    return '- -' if a.empty?
+    a.join(' / ')
   end
 end

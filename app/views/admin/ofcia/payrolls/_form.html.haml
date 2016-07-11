@@ -1,3 +1,11 @@
+- unless f.object.new_record?
+  %h3
+    = f.object.payroll_patron.name
+  %h4
+    = f.object.payroll_patron.payroll_sector.name
+  %h4
+    = f.object.payroll_patron.payroll_economic_activity.name
+  %hr
 = f.text_field :periodo, class: 'form-control'
 = f.text_field :id_causa_complemento, class: 'form-control'
 = f.text_field :tasa_cotiz_lab_ivm, class: 'form-control'
@@ -8,7 +16,7 @@
 = f.text_field :cambio_nota_detalle, class: 'form-control'
 = f.text_field :id_usuario, class: 'form-control'
 = f.text_field :correlativo_original_migracion, class: 'form-control'
-= f.text_field :id_codigo_observacion, class: 'form-control'
+= f.select :id_codigo_observacion, @payroll_observation_codes.map { |i| [i.name, i.id] }
 = f.text_field :id_sucursal, class: 'form-control'
 = f.text_field :aporte_pat_ivm, class: 'form-control'
 = f.text_field :horas, class: 'form-control'
@@ -21,10 +29,10 @@
 = f.text_field :id_tipo_pago_planilla, class: 'form-control'
 = f.text_field :aporte_total_ivm, class: 'form-control'
 = f.text_field :aporte_total, class: 'form-control'
-= f.text_field :id_estado_planilla, class: 'form-control'
+= f.select :id_estado_planilla, @payroll_statuses.map { |i| [i.name, i.id] }
 = f.text_field :tasa_cotiz_laboral, class: 'form-control'
 = f.text_field :monto_pago_adicional, class: 'form-control'
-= f.text_field :id_tipo_planilla, class: 'form-control'
+= f.select :id_tipo_planilla, @payroll_types.map { |i| [i.name, i.id] }
 = f.text_field :aporte_total_fsv, class: 'form-control'
 = f.text_field :aporte_lab_fsv, class: 'form-control'
 = f.text_field :cambio_nota, class: 'form-control'
