@@ -32,7 +32,7 @@ es:
     confirmations:
       send_instructions: "Recibirá instrucciones para confirmar su cuenta en su email en unos minutos."
       send_paranoid_instructions: "Si tu email existe en el sistema, recibirás instrucciones para confirmar tu cuenta en tu email en unos minutos."
-      confirmed: "Su cuenta fue confirmada. Ha iniciado sesión."
+      confirmed: "Su cuenta fue confirmada. Por favor inicie sesión."
     registrations:
       signed_up: "Bienvenid@! Se ha registrado correctamente."
       signed_up_but_unconfirmed: "Le hemos enviado un email con instrucciones para que confirme su cuenta."

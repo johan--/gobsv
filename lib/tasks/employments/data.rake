@@ -285,4 +285,9 @@ namespace :employments do
 
   end
 
+  desc 'Confirm all users'
+  task :confirm_users => [:environment] do
+    User.all.each{|u| u.update_column(:confirmed_at, u.created_at)}
+  end
+
 end

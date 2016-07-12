@@ -67,7 +67,7 @@ class Employments::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_inactive_sign_up_path_for(resource)
-    employments_jobs_url
+    verify_email_employments_pages_url
   end
 
   def prepare_search

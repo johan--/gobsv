@@ -10,4 +10,8 @@ class Employments::SessionsController < Devise::SessionsController
   def prepare_search
     @q = Employments::Plaza.ransack(params[:q])
   end
+
+  def after_sign_in_path_for(resource)
+    personal_employments_resumes_path
+  end
 end
