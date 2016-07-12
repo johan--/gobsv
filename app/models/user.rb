@@ -5,15 +5,15 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable
+         :omniauthable, :confirmable
 
   attr_accessor :update_cv
 
   has_many :user_authorizations, dependent: :destroy
 
   has_many :references, class_name: '::Employments::UserReference', dependent: :destroy
-  has_many :personal_references, -> {where(kind: 2)}, class_name: '::Employments::UserReference', dependent: :destroy
   accepts_nested_attributes_for :references, allow_destroy: true
+  has_many :personal_references, -> {where(kind: 2)}, class_name: '::Employments::UserReference'
 
   has_many :specialties, class_name: '::Employments::UserSpecialty', dependent: :destroy
   accepts_nested_attributes_for :specialties, allow_destroy: true
@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
   has_many :skills, class_name: '::Employments::UserSkill', dependent: :destroy
   accepts_nested_attributes_for :skills, limit: 20, allow_destroy: true
 
-
   has_many :user_postulations, class_name: '::Employments::UserPostulation', dependent: :destroy
   has_many :plazas, class_name: '::Employments::Plaza', through: :user_postulations, dependent: :destroy
 
@@ -48,6 +47,7 @@ class User < ActiveRecord::Base
   validates :address, length: { maximum: 300 }, if: :update_cv?
   validates :tax_id, length: { maximum: 17 }, if: :update_cv?
   validates :document_number, length: { maximum: 17 }, if: :update_cv?
+  validate :must_have_personal_reference, if: :update_cv?
 
   #validates :tax_id, :presence => true, length: { is: 17 }, :unless => :create
 
@@ -201,6 +201,10 @@ class User < ActiveRecord::Base
 
   def send_user_info_to_api
     SynchronizeUsersJob.perform_later self
+  end
+
+  def must_have_personal_reference
+    errors.add(:base, 'Ingrese al menos una referencia personal') if references.select{|r| r.kind == 2}.all?(&:marked_for_destruction?)
   end
 
 end

@@ -1,0 +1,22 @@
+= render partial: 'layouts/employments/breadcrumb'
+.container
+  .row
+    .col-sm-12
+      .updated-cv
+        .row
+          .col-sm-12
+            .updated-sheet
+              .clip
+                = image_tag("employments/icon-clip.png")
+              .updated-area
+              %center
+                %h2
+                  Gracias por ingresar al Sistema de Empleos Públicos
+              %div
+                %p
+                  Le solicitamos, por favor, confirme su correo electrónico, revisando su bandeja de entrada y dando clic en el enlace que se le ha enviado.
+                %p
+                  No olvide revisar la bandeja de SPAM o correos no deseados.
+                %p
+                  Si tiene dudas o comentarios, envíe un correo electrónico a
+                  = mail_to "mmchavez@presidencia.gob.sv"

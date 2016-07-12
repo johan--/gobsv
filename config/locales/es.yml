@@ -558,6 +558,7 @@ es:
         treatment: Trato
         address: Dirección
         humanizer_answer: Pregunta de seguridad
+        personal_references: Referencia personal
       languages:
         name: Idioma
       employments/user_reference:

@@ -19,9 +19,7 @@ constraints DomainConstraint.new(domain) do
       sign_out: 'logout',
       registration: 'register',
       sign_up: 'signup'
-    }#,
-    #constraints: { subdomain: 'employments' },
-    #defaults: { subdomain: 'employments' }
+    }
 
   scope module: 'employments', as: 'employments' do
     root to: 'dashboard#index'
@@ -47,6 +45,7 @@ constraints DomainConstraint.new(domain) do
     resources :pages, only: [] do
       collection do
         get :terms
+        get :verify_email
       end
     end
   end

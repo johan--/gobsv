@@ -62,7 +62,7 @@ class SynchronizeUsersJob < ActiveJob::Base
           'inicioAnio' => s.start_at.year,
           'finMes' => s.end_at.month,
           'finAnio' => s.end_at.year,
-          'certificado' => "#{Time.current.to_i}_#{s.certificate_file_name}",
+          'certificado' => "#{s.created_at.to_i}#{rand(1..999)}_#{s.certificate_file_name}",
           'certificado_url' => "http://www.empleospublicos.gob.sv#{s.certificate.url(:original, timestamp: false)}"
         }
       }
