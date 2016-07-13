@@ -79,3 +79,19 @@ body {
 .text_form {
   padding-top: 7px;
 }
+
+#payroll-views {
+  .level-0 td {
+    background: #ddd;
+    font-weight: bold;
+  }
+
+  .level-1 td:first-child {
+    font-weight: bold;
+    padding-left: 3em;
+  }
+
+  .level-2 td:first-child {
+    padding-left: 6em;
+  }
+}

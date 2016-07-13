@@ -41,7 +41,13 @@ module Ofcia
 
     def self.grouped(attr)
       group(attr, id2name(attr)).count.to_a.map(&:flatten).map do |z|
-        o = { row: [z.second, z.last], conditions: { attr => z.first } }
+        o = {
+          row: {
+            level: filter_attrs.find_index(attr),
+            name: z.second, count: z.last
+          },
+          conditions: { attr => z.first }
+        }
         o
       end
     end
@@ -50,10 +56,8 @@ module Ofcia
       conditions = conds if conditions.empty?
       self.class.where(conditions).grouped(attr).each do |group|
         rows << group[:row]
-
-        cond      = conditions.merge(group[:conditions])
+        cond = conditions.merge(group[:conditions])
         next_attr = self.class.next_attr(attr)
-
         rows!(cond, next_attr) unless next_attr.nil?
       end
     end
