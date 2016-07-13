@@ -32,21 +32,22 @@
             = link_to ta_article_url(article) do
               = article.title
 
-  - unless false # @audio.nil?
-    %hr
-    .row
-      .col-xs-12
-        %h4
-          Último audio
-    .row
-      .col-xs-12
-        %article
-          - unless @audio.pretitle.blank?
-            %small
-              = @audio.pretitle
-          %h3
-            = link_to ta_article_url(@audio) do
-              = @audio.title
+  -#
+    - unless @audio.nil?
+      %hr
+      .row
+        .col-xs-12
+          %h4
+            Último audio
+      .row
+        .col-xs-12
+          %article
+            - unless @audio.pretitle.blank?
+              %small
+                = @audio.pretitle
+            %h3
+              = link_to ta_article_url(@audio) do
+                = @audio.title
 
   %hr
   .row
