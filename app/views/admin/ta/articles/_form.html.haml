@@ -24,7 +24,7 @@
 %br
 %br
 
-= f.text_field :tag_list, class: 'tags', required: true
+= f.text_field :tag_list, value: f.object.tag_list.to_s, class: 'tags', required: true
 
 = field_set_tag 'Galería' do
 

@@ -12,6 +12,7 @@
 #= require 'admin/tables'
 #= require 'admin/forms'
 #= require 'admin/inv/product_movements'
+#= require 'admin/ofcia/payrolls'
 #= require 'ckeditor/init'
 #= require 'jquery.tagsinput'
 #= require 'select2'

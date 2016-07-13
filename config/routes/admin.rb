@@ -40,7 +40,8 @@ constraints subdomain: 'panel' do
           :holders
         ],
         ofcia: [
-          :payrolls
+          :payrolls,
+          :payroll_views
         ]
       }
 
@@ -52,10 +53,6 @@ constraints subdomain: 'panel' do
                 get 'savings_by_financial_source_unaudited',                      :on => :collection
                 get 'savings_by_financial_source_audited',                        :on => :collection
                 get 'funds_generated_by_the_institutions_of_the_executive_organ', :on => :collection
-              end
-            elsif ns == :ofcia && controller == :payrolls
-              resources controller do
-                get 'reports', on: :collection
               end
             else
               resources controller
