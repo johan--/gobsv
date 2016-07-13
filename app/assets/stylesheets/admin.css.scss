@@ -80,6 +80,18 @@ body {
   padding-top: 7px;
 }
 
+#new_ofcia_payroll_view {
+  label {
+    display: block;
+  }
+  select {
+    max-width: 220px;
+  }
+  input {
+    vertical-align: bottom;
+  }
+}
+
 #payroll-views {
   .level-0 td {
     background: #ddd;
@@ -93,5 +105,9 @@ body {
 
   .level-2 td:first-child {
     padding-left: 6em;
+  }
+
+  .template {
+    padding-bottom: 4em;
   }
 }

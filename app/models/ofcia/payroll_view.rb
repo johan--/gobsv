@@ -64,7 +64,8 @@ module Ofcia
 
     def conds
       w = {}
-      self.class.filter_attrs.each do |attr|
+      fields = self.class.filter_attrs + [:year, :month]
+      fields.each do |attr|
         w[attr] = send(attr) unless send(attr).blank?
       end
       w

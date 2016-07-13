@@ -7,6 +7,20 @@ class Admin::Ofcia::PayrollViewsController < Admin::OfciaController
 
     @economic_activity_groups = ::Ofcia::PayrollEconomicActivityGroup
                                 .order(:name)
+
+    @economic_activities = ::Ofcia::PayrollView
+                           .select(:economic_activity_id)
+                           .select(:economic_activity_name)
+                           .distinct
+                           .order(:economic_activity_name)
+
+    @years = ::Ofcia::PayrollView
+             .select(:year)
+             .distinct
+             .order(:year)
+             .pluck(:year)
+
+    @months = (1..12).to_a
   end
 
   def create
