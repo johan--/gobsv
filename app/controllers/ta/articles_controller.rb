@@ -36,7 +36,7 @@ module Ta
                   .order(:created_at)
 
       @lastest  = Ta::Article.publish.newer.where.not(id: @article.id).limit(2)
-      @related  = @article.find_related_tags.limit(2)
+      @related  = @article.find_related_tags.limit(4)
 
       @audio    = Ta::Article.publish.audio_layout.newer.first
 
