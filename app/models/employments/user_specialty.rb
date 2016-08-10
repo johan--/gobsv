@@ -53,4 +53,11 @@ class Employments::UserSpecialty < ActiveRecord::Base
     end
   end
 
+  before_post_process on: :create do
+    if certificate_content_type == 'application/octet-stream'
+      mime_type = MIME::Types.type_for(certificate_file_name)
+      self.certificate_content_type = mime_type.first.to_s if mime_type.first
+    end
+  end
+
 end
