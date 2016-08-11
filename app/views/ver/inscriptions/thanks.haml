@@ -1,0 +1,36 @@
+.thanks
+  .container
+    .thanks-container
+      %strong
+        Registro completo
+      %p.white
+        Gracias por registrarte
+        %br
+        en
+        %strong
+          Conéctate
+      %p
+        Pronto recibiras un correo de
+        %br
+        confirmación a la dirección
+        %br
+        %strong
+          = inscription.try(:email)
+      %br
+      %br
+      = link_to 'Ver video de convocatoria', '#', class: 'btn btn-success'
+      %br
+      %br
+      %br
+      Compartir en redes sociales
+      .social-accounts
+        = link_to '#' do
+          = image_tag 'ver/sm_ico-04.png'
+        = link_to '#' do
+          = image_tag 'ver/sm_ico-05.png'
+        = link_to '#' do
+          = image_tag 'ver/sm_ico-07.png'
+        = link_to '#' do
+          = image_tag 'ver/sm_ico-08.png'
+        = link_to '#' do
+          = image_tag 'ver/sm_ico-09.png'

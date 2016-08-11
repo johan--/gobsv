@@ -265,6 +265,9 @@ es:
         one: Reporte
         other: Reportes
       user: Usuario
+      ver/inscription:
+        one: Registro
+        other: Registros
     attributes:
       id: ID
       created_at: Creado el
@@ -610,6 +613,12 @@ es:
         terms: Estoy de acuerdo que a este concurso solo puedo aplicar una vez.
       employments/user_skill:
         name: Conocimiento
+      ver/inscription:
+        email: Correo electrónico
+        firstname: Nombre
+        lastname: Apellido
+        age: Edad
+        location: Lugar
 
     enum:
       ta/article:

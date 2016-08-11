@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   draw :forums
   draw :ta
   #draw :services
+  draw :ver
   draw :user
 end

@@ -1,0 +1,101 @@
+= render partial: 'layouts/ver/header'
+.container
+  = form_for @inscription, html: { class: 'form-horizontal' } do |f|
+    .row
+      .col-xs-12
+        %p.first-bullet
+          Selecciona la ciudad que te queda más cerca
+        .row
+          .col-xs-12.col-sm-6.col-md-4
+            .item
+              %h2
+                Mejicanos
+              %p.calendar
+                12 al 30 de agosto
+                %br
+                8:00 a.m. a 4:00 p.m.
+              %p.location
+                Casa de la cultura de Mejicanos
+                %br
+                = link_to 'Ver mapa', '#'
+              %br
+              %center
+                = radio_button_tag 'ver_inscription[location]', 'mejicanos'
+                %button.btn
+                  = image_tag('ver/check-11.png')
+                  Seleccionar
+                %br
+                %br
+                Quedan 30 cupos
+          .col-xs-12.col-sm-6.col-md-4
+            .item
+              %h2
+                Ciudad Delgado
+              %p.calendar
+                12 al 30 de agosto
+                %br
+                8:00 a.m. a 4:00 p.m.
+              %p.location
+                Casa de la cultura de Ciudad Delgado
+                %br
+                = link_to 'Ver mapa', '#'
+              %br
+              %center
+                = radio_button_tag 'ver_inscription[location]', 'ciudad_delgado'
+                %button.btn
+                  = image_tag('ver/check-11.png')
+                  Seleccionar
+                %br
+                %br
+                Quedan 30 cupos
+          .col-xs-12.col-sm-4
+            .item
+              %h2
+                Soyapango
+              %p.calendar
+                12 al 30 de agosto
+                %br
+                8:00 a.m. a 4:00 p.m.
+              %p.location
+                Casa de la cultura de Soyapango
+                %br
+                = link_to 'Ver mapa', '#'
+              %br
+              %center
+                = radio_button_tag 'ver_inscription[location]', 'soyapango'
+                %button.btn
+                  = image_tag('ver/check-11.png')
+                  Seleccionar
+                %br
+                %br
+                Quedan 30 cupos
+
+    .row
+      .col-xs-12
+        %p.second-bullet
+          Llena el formulario con tus datos (todos los campos son obligatorios)
+        .form-group
+          = f.label :email, class: 'col-sm-2 control-label'
+          .col-sm-6
+            = f.email_field :email, class: 'form-control', required: true
+        .form-group
+          = f.label :firstname, class: 'col-sm-2 control-label'
+          .col-sm-6
+            = f.text_field :firstname, class: 'form-control', required: true
+        .form-group
+          = f.label :lastname, class: 'col-sm-2 control-label'
+          .col-sm-6
+            = f.text_field :lastname, class: 'form-control', required: true
+        .form-group
+          = f.label :age, class: 'col-sm-2 control-label'
+          .col-sm-6
+            = f.number_field :age, class: 'form-control', required: true
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            = f.submit 'Registrarme', class: 'btn btn-lg btn-success'
+            al dar clic acepto los
+            = link_to 'términos y condiciones', nil
+            del curso.
+
+  %br
+  %br

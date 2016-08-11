@@ -1,0 +1,2 @@
+class VerController < ApplicationController
+end

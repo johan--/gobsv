@@ -65,5 +65,35 @@ namespace :ofcia do
         payroll.save
       end
     end
+
+    desc 'Carga las tablas payrolls desde el csv'
+    task load_csv: [:environment] do
+      require 'csv'
+
+      Ofcia::Payroll.destroy_all
+
+      csv_path = "#{Rails.root.to_s}/db/data-isss.csv"
+      CSV.foreach(csv_path, headers: false, encoding:'iso-8859-1:utf-8') do |row|
+
+        nit_with_zeros = row[2].rjust(14, "0")
+
+        activity = Ofcia::PayrollEconomicActivity.where(name: row[1].try(:strip)).first_or_create
+        patron = activity.payroll_patrons.where(nit: nit_with_zeros).first_or_create(name: row[3].try(:strip))
+
+        payroll = patron.payrolls.create(
+          period: row[0],
+          period_date: Date.new(row[0][0..3].to_i,row[0][4..5].to_i,1),
+          total_up: row[4],
+          amount_up: row[5].gsub(',', '.').to_f,
+          total_down: row[6],
+          amount_down: row[7].gsub(',', '.').to_f,
+          total_pensioned: row[8],
+          total_contributors: row[9],
+          total: row[10],
+          amount_total: row[11].gsub(',', '.').to_f
+        )
+      end
+    end
+
   end
 end

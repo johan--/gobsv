@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707163615) do
+ActiveRecord::Schema.define(version: 20160811165026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -671,106 +671,36 @@ ActiveRecord::Schema.define(version: 20160707163615) do
 
   create_table "ofcia_payroll_economic_activities", force: :cascade do |t|
     t.string   "name"
-    t.integer  "economic_activity_group"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "ofcia_payroll_economic_activity_groups", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ofcia_payroll_observation_codes", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "sector",     default: 0
   end
 
   create_table "ofcia_payroll_patrons", force: :cascade do |t|
-    t.string   "employer_id"
     t.string   "name"
     t.string   "nit"
-    t.integer  "sector_id"
-    t.integer  "economic_activity_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "ofcia_payroll_patrons", ["employer_id"], name: "index_ofcia_payroll_patrons_on_employer_id", using: :btree
-
-  create_table "ofcia_payroll_sectors", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ofcia_payroll_statuses", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "ofcia_payroll_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "payroll_economic_activity_id"
   end
 
   create_table "ofcia_payrolls", force: :cascade do |t|
-    t.string   "periodo"
-    t.integer  "id_causa_complemento"
-    t.decimal  "tasa_cotiz_lab_ivm",             precision: 9, scale: 3
-    t.integer  "impresa"
-    t.integer  "tipo_mora"
-    t.decimal  "maximo_cotizable_fsv",           precision: 9, scale: 3
-    t.integer  "correlativo_centro_trabajo"
-    t.integer  "cambio_nota_detalle"
-    t.string   "id_usuario"
-    t.integer  "correlativo_original_migracion"
-    t.integer  "id_codigo_observacion"
-    t.integer  "id_sucursal"
-    t.decimal  "aporte_pat_ivm",                 precision: 9, scale: 3
-    t.integer  "horas"
-    t.decimal  "tasa_cotiz_pat_ivm",             precision: 9, scale: 3
-    t.decimal  "tasa_cotiz_pat_fsv",             precision: 9, scale: 3
-    t.decimal  "maximo_cotizable",               precision: 9, scale: 3
-    t.decimal  "aporte_patronal",                precision: 9, scale: 3
-    t.decimal  "monto_vacacion",                 precision: 9, scale: 3
-    t.decimal  "monto_salario",                  precision: 9, scale: 3
-    t.integer  "id_tipo_pago_planilla"
-    t.decimal  "aporte_total_ivm",               precision: 9, scale: 3
-    t.decimal  "aporte_total",                   precision: 9, scale: 3
-    t.integer  "id_estado_planilla"
-    t.decimal  "tasa_cotiz_laboral",             precision: 9, scale: 3
-    t.decimal  "monto_pago_adicional",           precision: 9, scale: 3
-    t.integer  "id_tipo_planilla"
-    t.decimal  "aporte_total_fsv",               precision: 9, scale: 3
-    t.decimal  "aporte_lab_fsv",                 precision: 9, scale: 3
-    t.integer  "cambio_nota"
-    t.decimal  "aporte_laboral",                 precision: 9, scale: 3
-    t.decimal  "tasa_cotiz_patronal",            precision: 9, scale: 3
-    t.string   "no_afiliacion_trabajador"
-    t.integer  "mecanizada"
-    t.decimal  "tasa_cotiz_lab_fsv",             precision: 9, scale: 3
-    t.integer  "dias"
-    t.string   "no_patronal"
-    t.decimal  "maximo_cotizable_ivm",           precision: 9, scale: 3
-    t.date     "fecha_presentacion_planilla"
-    t.string   "id_procesamiento"
-    t.decimal  "aporte_lab_ivm",                 precision: 9, scale: 3
-    t.integer  "grupo_recepcion"
-    t.decimal  "aporte_pat_fsv",                 precision: 9, scale: 3
-    t.integer  "complementaria"
-    t.integer  "correlativo_empleado"
-    t.integer  "dias_vacacion"
-    t.integer  "tipo_procesamiento"
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.string   "period"
+    t.date     "period_date"
+    t.integer  "payroll_patron_id"
+    t.integer  "total_up",                                    default: 0
+    t.decimal  "amount_up",          precision: 12, scale: 2, default: 0.0
+    t.integer  "total_down",                                  default: 0
+    t.decimal  "amount_down",        precision: 12, scale: 2
+    t.integer  "total_pensioned",                             default: 0
+    t.integer  "total_contributors",                          default: 0
+    t.integer  "total",                                       default: 0
+    t.decimal  "amount_total",       precision: 12, scale: 2
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
+
+  add_index "ofcia_payrolls", ["payroll_patron_id"], name: "index_ofcia_payrolls_on_payroll_patron_id", using: :btree
 
   create_table "paa_financial_sources", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -1122,6 +1052,16 @@ ActiveRecord::Schema.define(version: 20160707163615) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "ver_inscriptions", force: :cascade do |t|
+    t.string   "location"
+    t.string   "email"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.integer  "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  limit: 255, null: false

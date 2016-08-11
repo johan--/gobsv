@@ -1,7 +1,7 @@
 domain = 'empleospublicos.gob.sv'    if Rails.env.production?
 domain = 'empleos.localhost.com'     if Rails.env.development?
+#domain = 'localhost.com' if Rails.env.development?
 domain = 'localhost.com' if Rails.env.development?
-# domain = 'localhost.com'          if Rails.env.development?
 
 #post 'resumes/save', to: 'employments/resumes#save'
 

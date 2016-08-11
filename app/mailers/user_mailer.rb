@@ -23,4 +23,12 @@ class UserMailer < ActionMailer::Base
       to: "#{@postulation.user.email}"
       )
   end
+
+  def ver_inscription_mail(inscription)
+    @inscription = inscription
+    mail(
+      subject: "Inscripción VoS en Red",
+      to: "#{@inscription.email}"
+      )
+  end
 end

@@ -14,6 +14,7 @@ Rails.application.config.assets.precompile += %w( www.css www.js )
 Rails.application.config.assets.precompile += %w( ta.css ta.js ta/*.js )
 Rails.application.config.assets.precompile += %w( employments.css employments.js )
 Rails.application.config.assets.precompile += %w( forums.css forums.js )
+Rails.application.config.assets.precompile += %w( ver.css ver.js )
 Rails.application.config.assets.precompile += %w( user/login.css user/login.js )
 
 Rails.application.config.assets.precompile += %w( *.eot *.woff *.ttf *.svg )
