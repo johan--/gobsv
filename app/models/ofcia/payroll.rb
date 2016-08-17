@@ -5,19 +5,20 @@ module Ofcia
     attr_accessor :start_date
     attr_accessor :end_date
     attr_accessor :economic_activity_ids
+    attr_accessor :field
 
     belongs_to :payroll_patron
 
-    scope :matrix_select, lambda { |counter|
-      select("SUM(s#{counter}.total) AS total_#{counter}")
+    scope :matrix_select, lambda { |field, counter|
+      select("SUM(s#{counter}.#{field}) AS total_#{counter}")
     }
 
-    scope :matrix_joins, lambda { |enconomic_activity, counter|
+    scope :matrix_joins, lambda { |field, enconomic_activity, counter|
       joins("
         LEFT JOIN (
         	SELECT
         		ss1.id,
-        		ss1.total
+        		ss1.#{field}
         	FROM ofcia_payrolls ss1
         	LEFT JOIN ofcia_payroll_patrons ss2
           ON (ss1.payroll_patron_id = ss2.id)
@@ -27,12 +28,12 @@ module Ofcia
       ")
     }
 
-    scope :matrix, lambda { |enconomic_activity_ids|
+    scope :matrix, lambda { |field, enconomic_activity_ids|
       scp = select('t1.period_date')
       scp = scp.from('ofcia_payrolls t1')
       enconomic_activity_ids.each_with_index do |enconomic_activity_id, index|
-        scp = scp.matrix_select(index)
-        scp = scp.matrix_joins(enconomic_activity_id, index)
+        scp = scp.matrix_select(field, index)
+        scp = scp.matrix_joins(field, enconomic_activity_id, index)
       end
       scp = scp.group('t1.period_date')
       scp.order('t1.period_date')

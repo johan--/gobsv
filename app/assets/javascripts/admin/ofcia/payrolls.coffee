@@ -36,7 +36,7 @@ $ ->
           if i == 0
             return new Date(item)
           else
-            return item
+            return parseFloat(item)
       ]
 
     data.addRows(matrix)

@@ -15,7 +15,10 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
     @header = @enconomic_activities.map(&:name)
 
     @matrix = build_matrix(
-      @payroll.start_date, @payroll.end_date, @enconomic_activities.map(&:id)
+      @payroll.field,
+      @payroll.start_date,
+      @payroll.end_date,
+      @enconomic_activities.map(&:id)
     )
 
     render json: { header: @header, matrix: @matrix }
@@ -26,16 +29,17 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
       .require(:ofcia_payroll)
       .permit(
         :dates,
+        :field,
         economic_activity_ids: []
       )
   end
 
   private
 
-  def build_matrix(start_date, end_date, economic_activity_ids)
+  def build_matrix(field, start_date, end_date, economic_activity_ids)
     matrix = ::Ofcia::Payroll
              .matrix_dates(start_date, end_date)
-             .matrix(economic_activity_ids)
+             .matrix(field, economic_activity_ids)
              .to_a
              .map(&:attributes)
              .map(&:values)
