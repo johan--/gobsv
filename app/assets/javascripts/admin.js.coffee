@@ -17,6 +17,9 @@
 #= require 'jquery.tagsinput'
 #= require 'select2'
 #= require 'select2_locale_es'
+#= require 'moment'
+#= require 'moment.es'
+#= require 'daterangepicker'
 
 $ ->
   $('.select2').select2

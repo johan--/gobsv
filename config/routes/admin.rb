@@ -40,8 +40,7 @@ constraints subdomain: 'panel' do
           :holders
         ],
         ofcia: [
-          :payrolls,
-          :payroll_views
+          :payrolls
         ]
       }
 

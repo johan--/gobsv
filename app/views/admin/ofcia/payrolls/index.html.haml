@@ -1,0 +1,14 @@
+= form_for [:admin, @payroll], remote: true, html: { class: 'form-inline' } do |f|
+  .form-group
+    = f.select :economic_activity_ids, @enconomic_activities.map { |e| [e.name, e.id] }, {}, { multiple: true, class: 'form-control select2' }
+  .form-group
+    = f.text_field :dates, class: 'form-control daterange', data: { min: ::Ofcia::Payroll.min_period, max: ::Ofcia::Payroll.max_period, start: ::Ofcia::Payroll.max_period }
+  = button_tag type: :submit, name: nil, class: 'btn btn-primary' do
+    Consultar
+
+%br
+%br
+#matrix-chart
+%br
+%br
+#matrix-data

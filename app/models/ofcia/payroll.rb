@@ -1,53 +1,59 @@
-# Ofcia::Payroll
-class Ofcia::Payroll < ActiveRecord::Base
-  # belongs_to :payroll_observation_code,
-  #            class_name: 'Ofcia::PayrollObservationCode',
-  #            foreign_key: :id_codigo_observacion
-  #
-  # belongs_to :payroll_status,
-  #            class_name: 'Ofcia::PayrollStatus',
-  #            foreign_key: :id_estado_planilla
+module Ofcia
+  # Ofcia::Payroll
+  class Payroll < ActiveRecord::Base
+    attr_accessor :dates
+    attr_accessor :start_date
+    attr_accessor :end_date
+    attr_accessor :economic_activity_ids
 
-  # belongs_to :payroll_type,
-  #            class_name: 'Ofcia::PayrollType',
-  #            foreign_key: :id_tipo_planilla
+    belongs_to :payroll_patron
 
-  belongs_to :payroll_patron
-            #  class_name: 'Ofcia::PayrollPatron',
-            #  foreign_key: :no_patronal,
-            #  primary_key: :employer_id
+    scope :matrix_select, lambda { |counter|
+      select("SUM(s#{counter}.total) AS total_#{counter}")
+    }
 
-  # scope :economic_activity, lambda { |economic_activity_id|
-  #   joins(:payroll_patron)
-  #     .where(
-  #       ofcia_payroll_patrons: {
-  #         economic_activity_id: economic_activity_id
-  #       }
-  #     )
-  # }
+    scope :matrix_joins, lambda { |enconomic_activity, counter|
+      joins("
+        LEFT JOIN (
+        	SELECT
+        		ss1.id,
+        		ss1.total
+        	FROM ofcia_payrolls ss1
+        	LEFT JOIN ofcia_payroll_patrons ss2
+          ON (ss1.payroll_patron_id = ss2.id)
+        	WHERE
+        		ss2.payroll_economic_activity_id = #{enconomic_activity}
+        ) s#{counter} ON (t1.id = s#{counter}.id)
+      ")
+    }
 
-  # scope :sector, lambda { |sector_id|
-  #   joins(:payroll_patron)
-  #     .where(
-  #       ofcia_payroll_patrons: {
-  #         sector_id: sector_id
-  #       }
-  #     )
-  # }
+    scope :matrix, lambda { |enconomic_activity_ids|
+      scp = select('t1.period_date')
+      scp = scp.from('ofcia_payrolls t1')
+      enconomic_activity_ids.each_with_index do |enconomic_activity_id, index|
+        scp = scp.matrix_select(index)
+        scp = scp.matrix_joins(enconomic_activity_id, index)
+      end
+      scp = scp.group('t1.period_date')
+      scp.order('t1.period_date')
+    }
 
-  # scope :year, lambda { |year|
-  #   where ['SUBSTRING(periodo, 1, 4)::INTEGER = ?', year]
-  # }
-  #
-  # scope :month, lambda { |month|
-  #   where ['SUBSTRING(periodo, 5, 2)::INTEGER = ?', month]
-  # }
+    scope :matrix_dates, lambda { |start_date, end_date|
+      where("t1.period_date BETWEEN '#{start_date}' AND '#{end_date}'")
+    }
 
-  # def self.first_year
-  #   minimum 'SUBSTRING(periodo, 1, 4)::INTEGER'
-  # end
-  
-  # def self.last_year
-  #   maximum 'SUBSTRING(periodo, 1, 4)::INTEGER'
-  # end
+    def self.min_period
+      minimum(:period_date)
+    end
+
+    def self.max_period
+      maximum(:period_date)
+    end
+
+    def dates_from_range!
+      batches = dates.split(' - ')
+      self.start_date = Date.parse(batches.first)
+      self.end_date   = Date.parse(batches.last)
+    end
+  end
 end
