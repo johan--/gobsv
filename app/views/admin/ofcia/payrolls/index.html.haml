@@ -1,3 +1,5 @@
+.overlay
+  = image_tag 'admin/working.gif'
 = form_for [:admin, @payroll], remote: true, html: { class: 'form-inline' } do |f|
   .form-group
     = f.select :economic_activity_ids, @enconomic_activities.map { |e| [e.name, e.id] }, {}, { multiple: true, class: 'form-control select2' }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816170402) do
+ActiveRecord::Schema.define(version: 20160818173912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1076,4 +1076,6 @@ ActiveRecord::Schema.define(version: 20160816170402) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "ofcia_payroll_patrons", "ofcia_payroll_economic_activities", column: "payroll_economic_activity_id"
+  add_foreign_key "ofcia_payrolls", "ofcia_payroll_patrons", column: "payroll_patron_id"
 end

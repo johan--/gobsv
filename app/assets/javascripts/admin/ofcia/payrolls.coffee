@@ -22,6 +22,9 @@ $ ->
 
   google.charts.load('current', { 'packages': ['table', 'corechart'] })
 
+  $('#new_ofcia_payroll').on 'ajax:send', (xhr) ->
+    $('.overlay').show()
+
   $('#new_ofcia_payroll').on 'ajax:success', (e, response, status, xhr) ->
     data  = new google.visualization.DataTable()
     table = new google.visualization.Table(document.getElementById('matrix-data'))
@@ -58,3 +61,5 @@ $ ->
         }
       }
     )
+
+    $('.overlay').hide()
