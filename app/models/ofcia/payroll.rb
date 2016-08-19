@@ -13,12 +13,16 @@ module Ofcia
       select("SUM(s#{counter}.#{field}) AS total_#{counter}")
     }
 
+    scope :matrix_select_avg, lambda { |field, counter|
+      select("SUM(s#{counter}.#{field.gsub('_avg', '')}) / 12 AS total_#{counter}")
+    }
+
     scope :matrix_joins, lambda { |field, enconomic_activity, counter|
       joins("
         LEFT JOIN (
         	SELECT
         		ss1.id,
-        		ss1.#{field}
+        		ss1.#{field.gsub('_avg', '')}
         	FROM ofcia_payrolls ss1
         	LEFT JOIN ofcia_payroll_patrons ss2
           ON (ss1.payroll_patron_id = ss2.id)
@@ -26,6 +30,17 @@ module Ofcia
         		ss2.payroll_economic_activity_id = #{enconomic_activity}
         ) s#{counter} ON (t1.id = s#{counter}.id)
       ")
+    }
+
+    scope :matrix_avg, lambda { |field, enconomic_activity_ids|
+      scp = select('DATE_TRUNC(\'year\', t1.period_date)')
+      scp = scp.from('ofcia_payrolls t1')
+      enconomic_activity_ids.each_with_index do |enconomic_activity_id, index|
+        scp = scp.matrix_select_avg(field, index)
+        scp = scp.matrix_joins(field, enconomic_activity_id, index)
+      end
+      scp = scp.group('DATE_TRUNC(\'year\', t1.period_date)')
+      scp.order('1')
     }
 
     scope :matrix, lambda { |field, enconomic_activity_ids|
