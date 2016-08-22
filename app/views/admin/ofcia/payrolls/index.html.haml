@@ -2,11 +2,11 @@
   = image_tag 'admin/working.gif'
 = form_for [:admin, @payroll], remote: true, html: { class: 'form-inline' } do |f|
   .form-group
-    = f.select :economic_activity_ids, @enconomic_activities.map { |e| [e.name, e.id] }, {}, { multiple: true, class: 'form-control select2' }
+    = f.select :economic_activity_ids, @enconomic_activities.map { |e| [e.name, e.id] }, {}, { multiple: true, class: 'form-control select2', required: true }
   .form-group
-    = f.select :field, [['Empleos', :total], ['Salario', :amount_total], ['Empleos (Promedio anual)', :total_avg], ['Salario (Promedio anual)', :amount_total_avg]], {}, { class: 'form-control' }
+    = f.select :field, [['Empleos', :total], ['Salario', :amount_total], ['Empleos (Promedio anual)', :total_avg], ['Salario (Promedio anual)', :amount_total_avg]], {}, { class: 'form-control', required: true }
   .form-group
-    = f.text_field :dates, class: 'form-control daterange', data: { min: ::Ofcia::Payroll.min_period, max: ::Ofcia::Payroll.max_period, start: ::Ofcia::Payroll.max_period }
+    = f.text_field :dates, class: 'form-control daterange', required: true, data: { min: ::Ofcia::Payroll.min_period, max: ::Ofcia::Payroll.max_period, start: ::Ofcia::Payroll.max_period }
   = button_tag type: :submit, name: nil, class: 'btn btn-primary' do
     Consultar
 
