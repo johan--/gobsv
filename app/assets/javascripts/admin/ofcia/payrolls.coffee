@@ -25,7 +25,7 @@ $ ->
 
   $('#new_ofcia_payroll').on 'ajax:send', (xhr) ->
     $('.overlay').show()
-    if $('#ofcia_payroll_field').val() == 'total_avg' || $('#ofcia_payroll_field').val() == 'amount_total_avg'
+    if $('#ofcia_payroll_field').val() == 'total_avg' || $('#ofcia_payroll_field').val() == 'amount_total_avg' || $('#ofcia_payroll_field').val() == 'percapita_year'
       format = 'yyyy'
     else
       format = 'MM/yyyy'

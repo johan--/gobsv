@@ -21,8 +21,15 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
         @payroll.end_date,
         @enconomic_activities.map(&:id)
       )
-    else
+    elsif %w(total_avg amount_total_avg).include?(@payroll.field)
       @matrix = build_matrix_avg(
+        @payroll.field,
+        @payroll.start_date,
+        @payroll.end_date,
+        @enconomic_activities.map(&:id)
+      )
+    else
+      @matrix = build_matrix_pc(
         @payroll.field,
         @payroll.start_date,
         @payroll.end_date,
@@ -41,6 +48,18 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
         :field,
         economic_activity_ids: []
       )
+  end
+
+  helper_method :filters
+  def filters
+    [
+      ['Empleos (Mensual)', :total],
+      ['Empleos (Promedio anual)', :total_avg],
+      ['Salario (Mensual)', :amount_total],
+      ['Salario (Promedio anual)', :amount_total_avg],
+      ['Per cápita (Mensual)', :percapita_month],
+      ['Per cápita (Anual)', :percapita_year]
+    ]
   end
 
   private
@@ -64,6 +83,21 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
     matrix = ::Ofcia::Payroll
              .matrix_dates(start_date, end_date)
              .matrix_avg(field, economic_activity_ids)
+             .to_a
+             .map(&:attributes)
+             .map(&:values)
+             .map { |i| i.map { |v| v.nil? ? 0 : v } }
+
+    ##
+    # Rails returns id as first attribute
+    matrix.map(&:shift)
+    matrix
+  end
+
+  def build_matrix_pc(grouped_by, start_date, end_date, economic_activity_ids)
+    matrix = ::Ofcia::Payroll
+             .matrix_dates(start_date, end_date)
+             .matrix_pc(grouped_by, economic_activity_ids)
              .to_a
              .map(&:attributes)
              .map(&:values)
