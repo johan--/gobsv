@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818173912) do
+ActiveRecord::Schema.define(version: 20160824161842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -683,7 +683,10 @@ ActiveRecord::Schema.define(version: 20160818173912) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "payroll_economic_activity_id"
+    t.integer  "payroll_patron_id"
   end
+
+  add_index "ofcia_payroll_patrons", ["payroll_patron_id"], name: "index_ofcia_payroll_patrons_on_payroll_patron_id", using: :btree
 
   create_table "ofcia_payrolls", force: :cascade do |t|
     t.string   "period"
