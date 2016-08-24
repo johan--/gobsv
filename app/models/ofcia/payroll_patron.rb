@@ -11,4 +11,5 @@ class Ofcia::PayrollPatron < ActiveRecord::Base
   #          class_name: 'Ofcia::Payroll',
   #          foreign_key: :no_patronal,
   #          primary_key: :employer_id
+  has_many :payroll_patrons
 end
