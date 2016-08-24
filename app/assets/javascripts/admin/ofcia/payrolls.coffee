@@ -1,28 +1,65 @@
 $ ->
-  form = null
-  $(".add-payroll-view").on "click", (e) ->
-    e.preventDefault()
-    source   = $("#report-form-tpl").html()
-    template = Handlebars.compile(source)
-    context  = {}
-    html     = $(template(context))
-    $("#payroll-views").append(html)
+  pickers = $('.daterange')
 
-    datatable = html.find("table").DataTable {
-      columns: [{ data: "name", title: "" }, { data: "count", title: "" }],
-      paging: false,
-      ordering: false,
-      searching: false,
-      info: false,
-      loadingRecords: "Cargando ...",
-      emptyTable: "No se encontraron resultados",
-      createdRow: (row, data, dataIndex) ->
-        $(row).addClass("level-#{data.level}")
-    }
+  $.each pickers, (i, picker) ->
+    $(picker).daterangepicker(
+      minViewMode: 'month',
+      format: 'YYYY-MM-DD',
+      minDate: $(picker).data('min'),
+      maxDate: $(picker).data('max'),
+      startDate: $(picker).data('start'),
+      locale: {
+        separator: ' - ',
+        applyLabel: 'Aplicar',
+        cancelLabel: 'Cancelar',
+        fromLabel: 'Desde',
+        toLabel: 'Hasta',
+        customRangeLabel: 'Personalizado',
+        weekLabel: 'W',
+        firstDay: 1
+      }
+    )
 
-    html.find("form").data("datatable", datatable)
-    html.find("form").on "ajax:success", (e, data, status, xhr) ->
-      d = $(this).data("datatable")
-      d.clear()
-      d.rows.add(data)
-      d.draw()
+  google.charts.load('current', { 'packages': ['table', 'corechart'] })
+
+  $('#new_ofcia_payroll').on 'ajax:send', (xhr) ->
+    $('.overlay').show()
+
+  $('#new_ofcia_payroll').on 'ajax:success', (e, response, status, xhr) ->
+    data  = new google.visualization.DataTable()
+    table = new google.visualization.Table(document.getElementById('matrix-data'))
+    chart = new google.visualization.LineChart(document.getElementById('matrix-chart'))
+    data.addColumn('date', 'Período')
+    $.each response.header, (i, header) ->
+      data.addColumn('number', header)
+
+    matrix = $.map response.matrix, (row) ->
+      [
+        $.map row, (item, i) ->
+          if i == 0
+            return new Date(item)
+          else
+            return parseFloat(item)
+      ]
+
+    data.addRows(matrix)
+
+    chart.draw(data, {
+      height: 450,
+      hAxis: {
+        format: 'MM/yyyy'
+      }
+    })
+
+    table.draw(
+      data,
+      {
+        width: '100%',
+        height: '100%',
+        hAxis: {
+          format: 'MM/yyyy'
+        }
+      }
+    )
+
+    $('.overlay').hide()
