@@ -31,6 +31,9 @@ $ ->
       format = 'MM/yyyy'
 
   $('#new_ofcia_payroll').on 'ajax:success', (e, response, status, xhr) ->
+
+    ## DATA FOR GRAPHIC
+
     data  = new google.visualization.DataTable()
     table = new google.visualization.Table(document.getElementById('matrix-data'))
     chart = new google.visualization.LineChart(document.getElementById('matrix-chart'))
@@ -61,6 +64,39 @@ $ ->
         format: format
       }
     })
+
+
+    ## DATA FOR TABLE
+    data  = new google.visualization.DataTable()
+
+    temporal_header = []
+    $.each response.matrix, (i, m) ->
+      temporal_header.push(m[0])
+
+    temporal_matrix = []
+    temporal_row = []
+    $.each response.header, (i, h) ->
+      temporal_row.push(h)
+      $.each response.matrix, (j, m) ->
+        temporal_row.push(m[i+1])
+      temporal_matrix.push(temporal_row)
+      temporal_row = []
+
+    data.addColumn('string', 'Clasificación')
+    $.each temporal_header, (i, header) ->
+      data.addColumn('number', header)
+
+    matrix = $.map temporal_matrix, (row) ->
+      [
+        $.map row, (item, i) ->
+          if i == 0
+            return item
+          else
+            return parseFloat(item)
+      ]
+
+    data.addRows(matrix)
+    forma.format(data, 0)
 
     table.draw(
       data,
