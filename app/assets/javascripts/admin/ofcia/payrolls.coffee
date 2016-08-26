@@ -1,4 +1,13 @@
 $ ->
+  format_date = (date, format) ->
+    date = new Date(date)
+    date.setMinutes(date.getTimezoneOffset())
+    if format == 'yyyy'
+      date.getFullYear()
+    else
+      "#{date.getMonth() + 1}/#{date.getFullYear()}"
+
+
   format  = null
   pickers = $('.daterange')
 
@@ -84,7 +93,7 @@ $ ->
 
     data.addColumn('string', 'Clasificación')
     $.each temporal_header, (i, header) ->
-      data.addColumn('number', header)
+      data.addColumn('number', format_date(header, format))
 
     matrix = $.map temporal_matrix, (row) ->
       [
