@@ -117,5 +117,31 @@ namespace :ofcia do
 
     end
 
+
+    desc 'Carga de bienestar magisterial'
+    task load_isbm: [:environment] do
+      require 'csv'
+      i = 0
+      csv_path = "#{Rails.root.to_s}/db/bienestar.csv"
+      CSV.foreach(csv_path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
+        i = i + 1
+        begin
+          nit_with_zeros = row[2].rjust(14, "0")
+
+          activity = Ofcia::PayrollEconomicActivity.where(name: 'Bienestar Magisterial').first_or_create
+          patron = activity.payroll_patrons.where(nit: '00000000000000').first_or_create(name: 'Bienestar Magisterial')
+
+          payroll = patron.payrolls.create(
+            period: "#{row[1]}#{row[0].to_s.rjust(2, '0')}",
+            period_date: Date.new(row[1].to_i,row[0].to_i,1),
+            total: row[2],
+            amount_total: row[3].gsub(',', '.').to_f
+          )
+        rescue
+          puts "Error en la línea #{i}"
+        end
+      end
+    end
+
   end
 end
