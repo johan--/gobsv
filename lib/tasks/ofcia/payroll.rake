@@ -117,7 +117,6 @@ namespace :ofcia do
 
     end
 
-
     desc 'Carga de bienestar magisterial'
     task load_isbm: [:environment] do
       require 'csv'
@@ -139,6 +138,21 @@ namespace :ofcia do
           )
         rescue
           puts "Error en la línea #{i}"
+        end
+      end
+    end
+
+    desc 'Carga de indicadores digestic'
+    task load_indicators: [:environment] do
+      require 'csv'
+      csv_path = "#{Rails.root.to_s}/db/indicators.csv"
+      CSV.foreach(csv_path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
+        begin
+          i = Ofcia::PayrollEmploymentIndicator.where(year: row[0].strip).first_or_create
+          i[row[1].strip.to_sym] = row[2]
+          i.save
+        rescue
+          puts "Error en la carga"
         end
       end
     end
