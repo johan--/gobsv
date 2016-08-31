@@ -48,7 +48,7 @@ module Ofcia
     }
 
     def self.matrix_grouped_by(grouped_by)
-      if grouped_by == 'percapita_year'
+      if %w(percapita_year all_year).include?(grouped_by)
         return 'DATE_TRUNC(\'year\', t1.period_date)'
       end
       't1.period_date'
@@ -90,6 +90,23 @@ module Ofcia
       end
       scp = scp.group('t1.period_date')
       scp.order('t1.period_date')
+    }
+
+    scope :matrix_select_all, lambda { |c|
+      select("SUM(s#{c}.total) AS jobs_#{c}")
+        .select("SUM(s#{c}.amount_total) AS salary_#{c}")
+        .select("SUM(s#{c}.amount_total) / SUM(s#{c}.total) AS percapita_#{c}")
+    }
+
+    scope :matrix_all, lambda { |grouped_by, enconomic_activity_ids|
+      scp = select(matrix_grouped_by(grouped_by))
+      scp = scp.from('ofcia_payrolls t1')
+      enconomic_activity_ids.each_with_index do |enconomic_activity_id, index|
+        scp = scp.matrix_select_all(index)
+        scp = scp.matrix_joins_pc(enconomic_activity_id, index)
+      end
+      scp = scp.group(matrix_grouped_by(grouped_by))
+      scp.order('1')
     }
 
     scope :matrix_dates, lambda { |start_date, end_date|
