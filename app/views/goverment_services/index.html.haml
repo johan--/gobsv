@@ -1,0 +1,109 @@
+%section.cover-page
+  .container
+    %h1
+      Servicios y trámites del Gobierno de El Salvador
+    .row
+      .col-md-12
+        = search_form_for @q, url: goverment_services_institution_services_url(), html: { class: 'navbar-form' } do |f|
+          .input-group
+            .input-group-addon
+              = icon('search')
+            = f.search_field :title_cont, class: 'form-control', placeholder: 'Buscar'
+    .row
+      .col-md-4.col-sm-4.col-xs-12
+        .item-cover-info
+          = image_tag("goverment_services/icon-services.png")
+          %br
+          300+
+          Servicios y Trámites
+      .col-md-4.col-sm-4.col-xs-12
+        .item-cover-info
+          = image_tag("goverment_services/icon-institutions.png")
+          %br
+          82
+          Instituciones
+      .col-md-4.col-sm-4.col-xs-12
+        .item-cover-info
+          = image_tag("goverment_services/icon-pointer.png")
+          %br
+          Servicios en linea
+
+%section.category-services
+  .container
+    %h2
+      Servicios y trámites por categorías
+    .row
+      .col-md-2.col-sm-4.col-xs-6
+        .item-service-kind
+          .item-service-image
+            = link_to image_tag("goverment_services/icon-heart.png"), goverment_services_institution_services_url
+          .item-service-text
+            = link_to "Salud", goverment_services_institution_services_url
+      .col-md-2.col-sm-4.col-xs-6
+        .item-service-kind
+          .item-service-image
+            = link_to image_tag("goverment_services/icon-fx.png"), goverment_services_institution_services_url
+          .item-service-text
+            = link_to "Educación", goverment_services_institution_services_url
+      .col-md-2.col-sm-4.col-xs-6
+        .item-service-kind
+          .item-service-image
+            = link_to image_tag("goverment_services/icon-graphic.png"), goverment_services_institution_services_url
+          .item-service-text
+            = link_to "Finanzas", goverment_services_institution_services_url
+      .col-md-2.col-sm-4.col-xs-6
+        .item-service-kind
+          .item-service-image
+            = link_to image_tag("goverment_services/icon-truck.png"), goverment_services_institution_services_url
+          .item-service-text
+            = link_to "Aduana", goverment_services_institution_services_url
+      .col-md-2.col-sm-4.col-xs-6
+        .item-service-kind
+          .item-service-image
+            = link_to image_tag("goverment_services/icon-construction.png"), goverment_services_institution_services_url
+          .item-service-text
+            = link_to "Construcción", goverment_services_institution_services_url
+      .col-md-2.col-sm-4.col-xs-6
+        .item-service-kind
+          .item-service-image
+            = link_to image_tag("goverment_services/icon-id.png"), goverment_services_institution_services_url
+          .item-service-text
+            = link_to "Identidad", goverment_services_institution_services_url
+    .clearfix
+%section.most-used-services
+  .container
+    %h2
+      Servicios y trámites más utilizados
+    .row
+      .col-md-3.col-sm-6.col-xs-6
+        .most-used-service
+          .most-used-item-image
+            = link_to image_tag("goverment_services/icon-services.png"), goverment_services_institution_services_url
+          .most-used-item-text
+            = link_to "Renovación del DUI", goverment_services_institution_services_url
+      .col-md-3.col-sm-6.col-xs-6
+        .most-used-service
+          .most-used-item-alt-image
+            = link_to image_tag("goverment_services/icon-document.png"), goverment_services_institution_services_url
+          .most-used-item-text
+            = link_to "Partida de nacimiento", goverment_services_institution_services_url 
+      .col-md-3.col-sm-6.col-xs-6
+        .most-used-service
+          .most-used-item-image
+            = link_to image_tag("goverment_services/icon-cop.png"), goverment_services_institution_services_url
+          .most-used-item-text
+            = link_to "Solvencia de la PNC", goverment_services_institution_services_url
+      .col-md-3.col-sm-6.col-xs-6
+        .most-used-service
+          .most-used-item-alt-image
+            = link_to image_tag("goverment_services/icon-uniq-doc.png"), goverment_services_institution_services_url
+          .most-used-item-text
+            = link_to "Solicitud de NIT", goverment_services_institution_services_url
+%section.about
+  .container
+    %h2
+      ¿De qué se trata este portal?
+    .row
+      .col-md-12.col-center-block.placeholder
+        .cover-video-wrapper.embed-responsive.embed-responsive-16by9
+          %iframe{class: "embed-responsive-item", src: "//www.youtube.com/embed/ePbKGoIGAXY"}

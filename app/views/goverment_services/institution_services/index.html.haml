@@ -1,0 +1,11 @@
+%section.cover-page
+  .container
+    %h1
+      Servicios y trámites del Gobierno de El Salvador
+    .row
+      .col-md-12
+        -# search_form_for @q, url: ta_articles_url, html: { class: 'navbar-form' } do |f|
+          .input-group
+            = f.search_field :title_or_summary_cont, class: 'form-control', placeholder: 'Buscar'
+            .input-group-addon
+              = icon('search')

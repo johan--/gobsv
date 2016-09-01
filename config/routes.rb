@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   #draw :services
   draw :ver
   draw :user
+  draw :goverment_services
+  
 end
