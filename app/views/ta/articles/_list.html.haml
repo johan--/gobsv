@@ -7,7 +7,10 @@
             = link_to ta_article_url(article) do
               = article.title
           %p
-            = article.summary
+            - if @keyword.present? && @keyword.is_a?(Hash) && @keyword.key?(:title_or_summary_cont)
+              = raw article.summary.gsub(@keyword[:title_or_summary_cont], "<span>#{@keyword[:title_or_summary_cont]}</span>")
+            - else
+              = article.summary
         .col-xs-12.col-sm-6
           = link_to ta_article_url(article) do
             = image_tag article.image.url(:medium), class: 'img-responsive'
