@@ -4,9 +4,9 @@ constraints subdomain: 'servicios' do
   scope module: 'goverment_services', as: 'goverment_services' do
     defaults subdomain: 'servicios' do
 
-        root to: 'welcome#index'
+      root to: 'welcome#index'
 
-        resources :institution_services, only: [:index, :show]      
+      resources :institution_services, only: [:index, :show]      
     end
   end
 end

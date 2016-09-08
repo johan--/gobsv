@@ -61,6 +61,7 @@ body{
     text-align: center;
   }
   .item-cover-info{
+    font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -198,7 +199,7 @@ body{
   width: 100%;
   max-width: 800px;
   margin: 0px auto 10px;
-  padding: 30px 20px;
+  padding: 45px 20px 30px;
   background-color: #F2F2F2;
   border-bottom: 8px solid #DAEBF2;
 }
@@ -212,6 +213,19 @@ body{
   a{
     margin: 10px 20px;
   }
+}
+
+.institutions-search{
+  padding: 40px 0;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.institution-services-categories{
+  margin: 10px 0 30px;
 }
 
 footer{

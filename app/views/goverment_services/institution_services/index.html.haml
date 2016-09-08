@@ -2,10 +2,29 @@
   .container
     %h1
       Servicios y trámites del Gobierno de El Salvador
+%section.institutions-search
+  .container
     .row
-      .col-md-12
-        -# search_form_for @q, url: ta_articles_url, html: { class: 'navbar-form' } do |f|
-          .input-group
-            = f.search_field :title_or_summary_cont, class: 'form-control', placeholder: 'Buscar'
-            .input-group-addon
-              = icon('search')
+      .col-md-8.col-centered
+        = form_tag goverment_services_institution_services_url, method: :get do |f|
+          = label_tag :institution_id, "Institución"
+          = select_tag :institution_id, options_for_select(@institutions.invert), {class: "form-control", :prompt => "-- Seleccione una opción --"}
+          = submit_tag "Buscar", class: "btn btn-primary"
+%section.institution-services-categories
+  .container
+    - if @service_categories.uniq.size > 0
+      .row
+        .col-md-12
+          %h2 
+            Listado de servicios
+          #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+            - @service_categories.uniq.each_with_index do |category, i|
+              .panel.panel-default
+                .panel-heading{id: "heading"+"#{i+1}" ,:role => "tab"}
+                  %h4.panel-title
+                    %a{"aria-controls" => "#collapse"+"#{i+1}", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse"+"#{i+1}", :role => "button"}
+                      = category["name"]
+                .panel-collapse.collapse{id: "collapse"+"#{i+1}", "aria-labelledby" => "heading"+"#{i+1}", :role => "tabpanel", class: "#{i == 0 ? 'in' : ''}"}
+                  .panel-body
+                    - category["institution_services"].each do |institution_service|                    
+                      = link_to institution_service["name"], goverment_services_institution_service_url(institution_service["id"]), class: "list-group-item"
