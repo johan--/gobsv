@@ -1,5 +1,7 @@
 - if action_name == "edit"
-  = link_to "Nuevo tweet", new_admin_ind_note_sn_note_url(@item), class: "btn btn-primary"
+  %h4
+    Twitter
+  = link_to "Nuevo tweet", new_admin_ind_note_sn_note_url(@item), class: "btn btn-primary" if @twitter_notes.size == 0
   %br
   - if @twitter_notes.size > 0
     %table.table.table-hover.table-striped.table-small.data-table
@@ -20,8 +22,8 @@
         %td
           = tweet.created_at
         %td
-          = link_to t('.edit'), nil, class: "btn btn-success btn-sm white"
-          = link_to nil, data: { method: :delete, confirm: '¿Realmente desea eliminar este documento?' }, class: 'btn btn-danger btn-sm white' do
+          = link_to t('.edit'), edit_admin_ind_note_sn_note_url(@item, tweet), class: "btn btn-success btn-sm white"
+          = link_to admin_ind_note_sn_note_url(@item, tweet), data: { method: :delete, confirm: '¿Realmente desea eliminar este documento?' }, class: 'btn btn-danger btn-sm white' do
             %span.glyphicon.glyphicon-remove
             %span.hidden-xs.hidden-sm
               Eliminar

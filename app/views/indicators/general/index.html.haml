@@ -1,9 +1,23 @@
-.container
-  .row
-    .col-xs-7.col-sm-4.col-md-3
-      = image_tag("indicators/sabias-que.png", class: "img-responsive")
-    .col-xs-12.col-sm-8.col-md-9
-      %h1.general-indicator
-        = @indicator.title
-      %p.content-indicator
-        = @indicator.content.html_safe
+%section.cover-page
+  .container
+    %h1
+      Portal de indicadores
+
+%section.institution-services-categories
+  .container
+    - if @indicator_categories.uniq.size > 0
+      .row
+        .col-md-12
+          %h2 
+            Listado de rubros
+          #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+            -  @indicator_categories.each_with_index do |category, i|
+              .panel.panel-default
+                .panel-heading{id: "heading"+"#{i+1}" ,:role => "tab"}
+                  %h4.panel-title
+                    %a{"aria-controls" => "#collapse"+"#{i+1}", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse"+"#{i+1}", :role => "button"}
+                      = category.name
+                .panel-collapse.collapse{id: "collapse"+"#{i+1}", "aria-labelledby" => "heading"+"#{i+1}", :role => "tabpanel", class: "#{i == 0 ? 'in' : ''}"}
+                  .panel-body
+                    - category.notes.each do |note|
+                      = link_to note.title, indicators_general_url(note), class: "list-group-item"

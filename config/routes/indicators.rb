@@ -1,4 +1,4 @@
-domain = 'www.sabesquesv.gob.sv' if Rails.env.production?
+domain = 'sabesque.gob.sv' if Rails.env.production?
 domain = 'localhost.com'          if Rails.env.development?
 
 constraints DomainConstraint.new(domain) do

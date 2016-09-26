@@ -32,7 +32,6 @@ class Admin::Ind::SnNotesController < Admin::IndController
     add_breadcrumb @note.title, edit_admin_ind_note_url(@note)
     add_breadcrumb t('layouts.admin.breadcrumb.edit')
 
-    render template: 'concerns/tabled/edit'
   end
 
   def update
