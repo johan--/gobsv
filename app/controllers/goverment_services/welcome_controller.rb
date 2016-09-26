@@ -5,7 +5,6 @@ class GovermentServices::WelcomeController < GovermentServicesController
   def index
 
     @q = Ta::Article.search(params[:q])
-    @test = 
     respond_to do |format|
       format.html
       format.js

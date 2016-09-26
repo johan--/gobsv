@@ -8,11 +8,13 @@
       .col-md-8.col-centered
         = form_tag goverment_services_institution_services_url, method: :get do |f|
           = label_tag :institution_id, "Institución"
-          = select_tag :institution_id, options_for_select(@institutions.invert), {class: "form-control", :prompt => "-- Seleccione una opción --"}
+          = select_tag :institution_id, options_for_select(@institutions.invert, params[:institution_id]), {class: "form-control", :prompt => "-- Seleccione una opción --"}
           = submit_tag "Buscar", class: "btn btn-primary"
 %section.institution-services-categories
   .container
     - if @service_categories.uniq.size > 0
+      %h2
+        = @service_categories.first.institution.name rescue "---------"
       .row
         .col-md-12
           %h2 

@@ -1,0 +1,3 @@
+= f.text_field :name, required: true
+= f.text_field :color, required: true, class: "color", value: "#{f.object.color.nil? ? '#FFFFFF' : f.object.color}" 
+= f.text_area :description, rows: 3, class: 'form-control'

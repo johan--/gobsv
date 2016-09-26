@@ -268,6 +268,15 @@ es:
       ver/inscription:
         one: Registro
         other: Registros
+      ind/category:
+        one: Categoría
+        other: Categorías
+      ind/note:
+        one: Indicador
+        other: Indicadores
+      ind/sn_note:
+        one: Indicador para Twitter
+        other: Indicadores para Twitter
     attributes:
       id: ID
       created_at: Creado el
@@ -619,7 +628,24 @@ es:
         lastname: Apellido
         age: Edad
         location: Lugar
-
+      ind/category:
+        name: Rubro
+        color: Color
+        description: Descripción
+      ind/note:
+        category_id: Rubro
+        title: Título
+        content: Contenido
+      ind/sn_note:
+        note_id: Indicador
+        description: Descripción
+        day: Día
+        hour: Hora
+        minute: Minutos
+        active: Activo
+      ind/sn_note_image:
+        sn_note_id: Indicador de redes
+        file: Imagen
     enum:
       ta/article:
         status:
@@ -662,6 +688,7 @@ es:
     forum: Foros públicos
     paa: Política de ahorro y austeridad
     ofcia: OFCIA
+    ind: Indicadores DTI
 
   recaptcha:
     errors:

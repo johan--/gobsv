@@ -1,4 +1,4 @@
-domain = 'localhost.com'          if Rails.env.development?
+#domain = 'localhost.com'          if Rails.env.development?
 
 constraints subdomain: 'servicios' do
   scope module: 'goverment_services', as: 'goverment_services' do

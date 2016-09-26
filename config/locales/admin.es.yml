@@ -82,3 +82,8 @@ es:
         footer: 2014 - Gobierno Abierto El Salvador
       sidebar:
         qa: Sistema de quejas y avisos
+  general:
+    save: Guardar
+    new: Nuevo
+    edit: Editar
+    delete: Eliminar

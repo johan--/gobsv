@@ -1,0 +1,32 @@
+- if action_name == "edit"
+  = link_to "Nuevo tweet", new_admin_ind_note_sn_note_url(@item), class: "btn btn-primary"
+  %br
+  - if @twitter_notes.size > 0
+    %table.table.table-hover.table-striped.table-small.data-table
+      %tr
+        %th
+          Descripcion
+        %th
+          Fecha
+        %th{colspan: 2}
+  - else
+    %h4
+      No hay mensajes para este indicador
+  %table
+    - @twitter_notes.each do |tweet|
+      %tr
+        %td
+          = tweet.description
+        %td
+          = tweet.created_at
+        %td
+          = link_to t('.edit'), nil, class: "btn btn-success btn-sm white"
+          = link_to nil, data: { method: :delete, confirm: '¿Realmente desea eliminar este documento?' }, class: 'btn btn-danger btn-sm white' do
+            %span.glyphicon.glyphicon-remove
+            %span.hidden-xs.hidden-sm
+              Eliminar
+  %br
+= f.select :category_id, @categories.map{ |category| [category.name, category.id] }, { include_blank: true }, { class: 'select2' }
+= f.text_field :title, required: true
+= f.label :content
+= f.cktext_area :content, required: true, ckeditor: { height: 500 }
