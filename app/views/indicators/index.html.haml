@@ -9,7 +9,7 @@
             - @indicator_categories.each_with_index do |category, i|
               %li.slide{ style: "background: #{category.color.nil? ? '#005F9E' : category.color}" }
                 .slide-content
-                  %h3.institution
+                  %h3.title-indicator
                     = link_to category.name, indicators_general_index_url
                   %p.quote
                     = category.description

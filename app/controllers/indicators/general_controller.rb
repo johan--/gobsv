@@ -9,4 +9,8 @@ class Indicators::GeneralController < IndicatorsController
     @indicator = ::Ind::Note.find params[:id]
   end
 
+  def about
+  	
+  end
+
 end
