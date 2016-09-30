@@ -1,7 +1,7 @@
 .container
   .row
     .col-xs-7.col-sm-4.col-md-3
-      = image_tag(@indicator.sn_note.first.sn_note_images.first.file.url) rescue image_tag("indicators/sabias-que.png", class: "img-responsive")
+      = image_tag(@indicator.sn_note.first.sn_note_images.first.file.url, class: "img-responsive") rescue image_tag("indicators/sabias-que.png", class: "img-responsive")
     .col-xs-12.col-sm-8.col-md-9
       %h1.general-indicator
         = @indicator.title
