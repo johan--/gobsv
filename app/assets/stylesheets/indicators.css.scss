@@ -119,6 +119,15 @@ p.content-indicator{
   }
 }
 
+#lightSliderSA{
+  width: 100% !important;
+  height: auto;
+  li{
+    width: inherit !important;
+    height: 100%;
+    margin: 0 auto;
+  }
+}
 
 footer{
   padding-top: 25px;
