@@ -20,4 +20,4 @@ $(document).ready ->
   $("#lightSlider").lightSlider
     item:4,
     controls:false,
-    responsive : [{ breakpoint:1024, settings: { item:3, slideMove:1, slideMargin:2, } }, { breakpoint:480, settings: { item:2, slideMove:1, slideMargin:2 } }],
+    responsive : [{ breakpoint:1024, settings: { item:4, slideMove:1, slideMargin:2, } }, { breakpoint:480, settings: { item:2, slideMove:1, slideMargin:2 } }],
