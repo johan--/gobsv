@@ -76,8 +76,12 @@ h1.general-indicator{
 }
 
 .col-centered{
-  float: none;
-  margin: 0 auto;
+  display:inline-block;
+  float:none;
+  /* reset the text-align */
+  text-align:left;
+  /* inline-block space fix */
+  margin-right:-4px;
 }
 
 p.content-indicator{
@@ -119,15 +123,6 @@ p.content-indicator{
   }
 }
 
-#lightSliderSA{
-  width: 100% !important;
-  height: auto;
-  li{
-    width: inherit !important;
-    height: 100%;
-    margin: 0 auto;
-  }
-}
 
 footer{
   padding-top: 25px;

@@ -23,7 +23,7 @@ $(document).ready ->
     responsive : [{ breakpoint:1024, settings: { item:4, slideMove:1, slideMargin:2, } }, { breakpoint:480, settings: { item:2, slideMove:1, slideMargin:2 } }],
 
   $("#lightSliderSA").lightSlider
-    item:4,
+    item:1,
     controls:false,
     responsive : [{ breakpoint:1024, settings: { item:1, slideMove:1, slideMargin:2, } }, { breakpoint:480, settings: { item:1, slideMove:1, slideMargin:2 } }],
 
