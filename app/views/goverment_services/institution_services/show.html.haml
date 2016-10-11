@@ -1,17 +1,17 @@
-%br
 .container
   .row
     = render partial: 'layouts/goverment_services/breadcrumb'
     .col-xs-5
-      %div{id: "shareButtonLabelCount"}
-      :javascript
-        $("#shareButtonLabelCount").jsSocials({
-          url: "#{goverment_services_institution_service_url(#{@service['id']})}",
-          text: "Servicio publico",
-          showCount: true,
-          showLabel: false,
-          shares: ["facebook", "twitter", "linkedin", "googleplus"]
-        })
+      - unless @service.blank?
+        %div{id: "shareButtonLabelCount"}
+        :javascript
+          $("#shareButtonLabelCount").jsSocials({
+            url: "#{goverment_services_institution_service_url(@service['id'])}",
+            text: "Servicio publico",
+            showCount: true,
+            showLabel: false,
+            shares: ["facebook", "twitter", "linkedin", "googleplus"]
+          });
 %section.service-content
   .container
     - unless @service.nil? && @service_steps.nil?

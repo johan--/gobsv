@@ -36,7 +36,7 @@ class GovermentServices::InstitutionServicesController < GovermentServicesContro
     def prepare_breadcrumb
       add_breadcrumb 'Servicios Públicos', goverment_services_root_url
       add_breadcrumb 'Instituciones', goverment_services_institution_services_url
-      add_breadcrumb "Servicio"
+      add_breadcrumb "Servicio" if @service
     end
 
 end
