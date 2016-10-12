@@ -24,26 +24,27 @@
       .col-md-8.col-centered
         = form_tag goverment_services_institution_services_url, method: :get do |f|
           = select_tag :institution_id, options_for_select(@institutions.invert, params[:institution_id]), {class: "form-control select2", :prompt => "-- Seleccione una opción --"}
-          .centered-div
-            = submit_tag "Buscar", class: "btn btn-primary"
-
 %section.institution-services-categories
   .container
     - if @service_categories.uniq.size > 0
       .row
         - @service_categories.uniq.each_with_index do |category, i|
           .col-md-6
-            .service-wrapper
-              .service-panel-header
-                = category["name"]
-              .list 
-                =#.list-group-item
-                - category["institution_services"].each do |institution_service|
-                  .service-item
-                    = link_to goverment_services_institution_service_url(institution_service["id"]), class: "list-group-item" do 
-                      %span{class: "glyphicon glyphicon-triangle-right", :"aria-hidden" => true}
-                      = institution_service["name"]
-                      %br
-                      %span
-                        = "Última fecha de actualización: #{l(Date.parse institution_service['updated_at'], format: :long)}"
-                  
+            #accordion.panel-group.service-wrapper{"aria-multiselectable" => "true", :role => "tablist"}
+
+          
+              .panel.panel-default
+                .panel-heading{class: "service-panel-header", id: "heading"+"#{i+1}" ,:role => "tab"}
+                  %h4.panel-title
+                    %a{"aria-controls" => "#collapse"+"#{i+1}", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse"+"#{i+1}", :role => "button"}
+                      = category["name"]
+                .list.panel-collapse.collapse{id: "collapse"+"#{i+1}", "aria-labelledby" => "heading"+"#{i+1}", :role => "tabpanel", class: "#{i == 0 ? 'in' : ''}"}
+                  .panel-body
+                    - category["institution_services"].each do |institution_service|        
+                      .service-item            
+                        = link_to goverment_services_institution_service_url(institution_service["id"]), class: "" do 
+                          %span{class: "glyphicon glyphicon-triangle-right", :"aria-hidden" => true}
+                          = institution_service["name"]
+                          %br
+                          %span.date-item
+                            = "Última fecha de actualización: #{l(Date.parse institution_service['updated_at'], format: :long)}"
