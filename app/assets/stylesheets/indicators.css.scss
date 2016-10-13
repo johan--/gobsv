@@ -17,17 +17,23 @@ body{
 
 .header-bg{
   background: image-url('indicators/glorius-header.jpg') no-repeat left top #E6E6E6; 
-  background-size:contain;
-  -webkit-background-size:contain;
-  -moz-background-size:contain;
-  -o-background-size:contain;
-
+  background-size:cover;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  position: relative;
   padding: 5px;
   text-align: center;
   border: none;
   margin: 0;
   border-radius: 0;
   min-height: 300px;
+  .line-header{
+    background: #799DB5;
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+  }
   h1{
     font-size: 14px;
     color: #fff;
@@ -36,11 +42,12 @@ body{
 }
 
 .inner-items{
-  margin: 8% 0;
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #000 !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #fff !important;
 }
 
 .navbar-default .navbar-toggle .icon-bar{
@@ -72,7 +79,7 @@ body{
 }
 
 h1.general-indicator{
-  font-size: 26px;
+  font-size: 24px;
 }
 
 .col-centered{
@@ -123,6 +130,9 @@ p.content-indicator{
   }
 }
 
+.content-wrapper-indicator{
+  padding: 10px 0 50px;
+}
 
 footer{
   padding-top: 25px;
@@ -233,6 +243,10 @@ ul#lightSlider {
   font-size: 16px;
 }
 
+span.indicator-mark{
+  color: #2672A4;
+}
+
 @media (max-width: 1280px) {
   .header-bg{
     min-height: 250px;
@@ -252,7 +266,7 @@ ul#lightSlider {
   }
 
   .inner-items{
-    margin: 10% 0 2%;
+    //margin: 10% 0 2%;
   }
   .lSSlideWrapper.usingCss{
     ul#lightSlider{
@@ -269,7 +283,7 @@ ul#lightSlider {
   }
 
   .inner-items{
-    margin: 10% 0 2%;
+    //margin: 10% 0 2%;
   }
   .lSSlideWrapper.usingCss{
     ul#lightSlider{
@@ -278,6 +292,23 @@ ul#lightSlider {
       max-height: 420px !important;
     }
   }
+}
+
+@media (max-width: 767px) {
+  .header-bg{
+    .line-header{
+      background: none;
+      position: relative;
+      .inner-items{
+        background: #eee;
+        opacity: 0.9;
+        a{
+          color: #000 !important; 
+        }
+      }
+    }
+  }
+
 }
 
 @media (max-width: 480px) {

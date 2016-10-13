@@ -1,6 +1,6 @@
 .container
   .row
-    .col-xs-8.col-sm-4.col-md-3.col-centered
+    .col-xs-10.col-sm-4.col-md-3
       .images-wrapper
         - unless @indicator.sn_note.first.sn_note_images.first.file.url.blank? 
           %ul#lightSliderSA
@@ -9,7 +9,7 @@
                 = image_tag(pic.file.url, class: "img-responsive")
         - else
           = image_tag("indicators/sabias-que.png", class: "img-responsive")
-    .col-xs-12.col-sm-8.col-md-9.col-centered
+    .col-xs-12.col-sm-8.col-md-9.col-centered.content-wrapper-indicator
       %h1.general-indicator
         = @indicator.title
       %p.content-indicator

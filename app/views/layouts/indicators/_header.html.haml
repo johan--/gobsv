@@ -1,23 +1,24 @@
 .navbar.navbar-default.header-bg
-  .container
-    .navbar-header
-      %button.navbar-toggle{ type: 'button', data: { target: '.navbar-responsive-collapse', toggle: 'collapse' }}
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
+  .line-header
+    .container
+      .navbar-header
+        %button.navbar-toggle{ type: 'button', data: { target: '.navbar-responsive-collapse', toggle: 'collapse' }}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
 
-      -# link_to goverment_services_root_url, class: 'navbar-brand' do
-        = image_tag 'goverment_services/services-ga-logo.png', alt: 'Gobierno Abierto', class: 'img-reponsive'
+        -# link_to goverment_services_root_url, class: 'navbar-brand' do
+          = image_tag 'goverment_services/services-ga-logo.png', alt: 'Gobierno Abierto', class: 'img-reponsive'
 
-    .navbar-collapse.collapse.navbar-responsive-collapse.inner-items
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          = link_to "INICIO", indicators_root_url
-        %li
-          = link_to "INDICADORES", indicators_general_index_url
-        %li
-          = link_to "ACERCA DE", about_indicators_general_index_url
-        %li
-          = link_to "INFOUTIL", "http://infoutil.gobiernoabierto.gob.sv", target: "_blank"
+      .navbar-collapse.collapse.navbar-responsive-collapse.inner-items
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            = link_to "INICIO", indicators_root_url
+          %li
+            = link_to "INDICADORES", indicators_general_index_url
+          %li
+            = link_to "ACERCA DE", about_indicators_general_index_url
+          %li
+            = link_to "INFOUTIL", "http://infoutil.gobiernoabierto.gob.sv", target: "_blank"
 
   .clearfix
