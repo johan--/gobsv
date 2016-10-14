@@ -44,6 +44,12 @@ body{
 .inner-items{
 }
 
+.img-centered{
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .navbar-default .navbar-nav > li > a {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -295,6 +301,14 @@ span.indicator-mark{
 }
 
 @media (max-width: 767px) {
+  .navbar-default .navbar-toggle{
+    background: #999 !important;
+  }
+
+  .images-wrapper{
+    padding: 20px 60px;
+  }
+
   .header-bg{
     .line-header{
       background: none;

@@ -24,6 +24,8 @@
       .col-md-8.col-centered
         = form_tag goverment_services_institution_services_url, method: :get do |f|
           = select_tag :institution_id, options_for_select(@institutions.invert, params[:institution_id]), {class: "form-control select2", :prompt => "-- Seleccione una opción --"}
+          .centered-div
+            = submit_tag "Buscar", class: "btn btn-primary"          
 %section.institution-services-categories
   .container
     - if @service_categories.uniq.size > 0
