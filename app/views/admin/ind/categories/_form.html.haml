@@ -1,3 +1,6 @@
 = f.text_field :name, required: true
 = f.text_field :color, required: true, class: "color", value: "#{f.object.color.nil? ? '#FFFFFF' : f.object.color}" 
 = f.text_area :description, rows: 3, class: 'form-control'
+= f.form_group :picture do
+  = f.file_field_without_bootstrap :picture, data: { preview: true }
+  = image_tag((f.object.picture.present? ? f.object.picture.url(:small) : nil), height: 31)

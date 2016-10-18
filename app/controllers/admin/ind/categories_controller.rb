@@ -31,7 +31,8 @@ class Admin::Ind::CategoriesController < Admin::IndController
     params.require(:ind_category).permit(
       :name,
       :color,
-      :description
+      :description,
+      :picture
     )
   end
 end

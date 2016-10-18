@@ -632,6 +632,7 @@ es:
         name: Rubro
         color: Color
         description: Descripción
+        picture: Imagen
       ind/note:
         category_id: Rubro
         title: Título

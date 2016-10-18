@@ -5,11 +5,11 @@
         = image_tag("indicators/sabias-que.png", class: "img-responsive")
       .col-xs-12.col-sm-8.col-md-9
         #wrapper-indicators
-          %ul#lightSlider
+          .row
             - @indicator_categories.each_with_index do |category, i|
-              %li.slide{ style: "background: #{category.color.nil? ? '#005F9E' : category.color}" }
-                .slide-content
-                  %h3.title-indicator
-                    = link_to category.name, indicators_general_index_url
-                  %p.quote
-                    = category.description
+              .col-xs-6.col-md-4
+                .indicator
+                  = link_to indicators_general_index_url(category: category.id) do 
+                    = image_tag(category.picture.url(:small), class: "img-responsive") rescue image_tag("indicators/sabesqueazul.png", class: "img-responsive img-centered")
+                    %p{ style: "background: #{category.color.nil? ? '#005F9E' : category.color}" }
+                      = category.name

@@ -101,6 +101,13 @@ p.content-indicator{
   padding: 10px 0;
 }
 
+.selection-indicator{
+  margin: 10px 0;
+  padding: 10px 40px;
+  color: #fff;
+  width: 100%;
+}
+
 .breadcrumb{
   background: none;
   line-height: 2;
@@ -134,7 +141,33 @@ p.content-indicator{
   .title-indicator{
     text-align: center;
   }
+  .indicator{
+    width: 100%;
+    max-width: 300px;
+    height: 210px;
+    overflow: hidden;
+    display: inline-block;
+    text-align: center;
+    margin: 15px auto;
+    padding: 5px;
+    a{
+      text-decoration: none;
+      text-align: center;
+      img.img-responsive{
+        margin: 0 auto 10px;
+        max-width: 160px;
+        max-heigth: 160px;
+      }
+      p{
+        padding: 10px;
+        width: 100%;
+        color: #fff;
+      }
+    }
+  }
 }
+
+
 
 .content-wrapper-indicator{
   padding: 10px 0 50px;
@@ -208,6 +241,10 @@ footer{
 
 .blue-slide-bg{
   background: #8AC4F4;
+}
+
+.images-wrapper{
+  padding: 20px;
 }
 
 ul#lightSlider {

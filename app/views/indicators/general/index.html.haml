@@ -1,23 +1,18 @@
-%section.cover-page
-  .container
-    %h1
-      Portal de indicadores
-
-%section.institution-services-categories
-  .container
-    - if @indicator_categories.uniq.size > 0
+.container
+  .row
+    .col-xs-12.col-sm-4.col-md-3
+      .images-wrapper
+        = image_tag("indicators/sabesque-transparency.png", class: "img-responsive", style: "background: #{@indicator_category.color.nil? ? '#005F9E' : @indicator_category.color}; margin: 10px 15px;")
+    .col-xs-12.col-sm-8.col-md-9.col-centered.content-wrapper-indicator
+      %h1.general-indicator{ style: "color: #{@indicator_category.color.nil? ? '#005F9E' : @indicator_category.color}"}
+        = image_tag(@indicator_category.picture.url(:icon))
+        = @indicator_category.name
+      %p.content-indicator
+        = @indicator_category.description
+      %p.selection-indicator{ style: "background: #{@indicator_category.color.nil? ? '#005F9E' : @indicator_category.color}"}
+        = "Seleccioná el tema de tu interés y conocé más sobre los indicadores de desarrollo de país"
       .row
-        .col-md-12
-          %h2 
-            Listado de rubros
-          #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-            -  @indicator_categories.each_with_index do |category, i|
-              .panel.panel-default
-                .panel-heading{id: "heading"+"#{i+1}" ,:role => "tab"}
-                  %h4.panel-title
-                    %a{"aria-controls" => "#collapse"+"#{i+1}", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse"+"#{i+1}", :role => "button"}
-                      = category.name
-                .panel-collapse.collapse{id: "collapse"+"#{i+1}", "aria-labelledby" => "heading"+"#{i+1}", :role => "tabpanel", class: "#{i == 0 ? 'in' : ''}"}
-                  .panel-body
-                    - category.notes.each do |note|
-                      = link_to note.title, indicators_general_url(note), class: "list-group-item"
+        - @indicator_category.notes.each do |note|
+          .col-xs-6.col-sm-4.col-md-3
+            = link_to  indicators_general_url(note) do
+              = image_tag(note.sn_note.first.sn_note_images.first.file.url, class: "img-responsive") rescue image_tag("indicators/sabesqueazul.png", class: "img-responsive img-centered") 
