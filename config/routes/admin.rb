@@ -33,11 +33,11 @@ constraints subdomain: 'panel' do
           :entries,
           :postures
         ],
-        paa: [
-          :financial_sources,
-          :savings,
+        paa: [ 
+          :financial_sources, 
+          :savings, 
           :reports,
-          :holders
+          :holders 
         ],
         ofcia: [
           :payrolls
@@ -45,6 +45,11 @@ constraints subdomain: 'panel' do
         ind: [
           :categories,
           :notes
+        ],
+        tracker: [
+          :authors,
+          :articles,
+          :statuses,
         ]
       }
 
