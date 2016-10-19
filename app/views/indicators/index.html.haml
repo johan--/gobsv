@@ -7,7 +7,7 @@
         #wrapper-indicators
           .row
             - @indicator_categories.each_with_index do |category, i|
-              .col-xs-6.col-md-4
+              .col-xs-6.col-sm-4.col-md-3
                 .indicator
                   = link_to indicators_general_index_url(category: category.id) do 
                     = image_tag(category.picture.url(:small), class: "img-responsive") rescue image_tag("indicators/sabesqueazul.png", class: "img-responsive img-centered")

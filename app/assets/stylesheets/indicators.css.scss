@@ -64,6 +64,9 @@ body{
   background: #E6E6E6;
   padding: 0 0 30px;
 }
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+  background: #999 !important;
+}
 
 #subscribe{
   padding: 30px 0;
@@ -102,10 +105,14 @@ p.content-indicator{
 }
 
 .selection-indicator{
-  margin: 10px 0;
+  margin: 10px 0 30px;
   padding: 10px 40px;
   color: #fff;
   width: 100%;
+}
+
+.bottom-margin{
+  margin-bottom: 15px;
 }
 
 .breadcrumb{

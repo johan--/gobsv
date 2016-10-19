@@ -3,7 +3,7 @@ class IndicatorsController < ApplicationController
   before_action :pages
   
   def categories
-    @categories = Ta::Category.order(:name)
+    @indicator_categories = ::Ind::Category.order :name
   end
 
   def pages

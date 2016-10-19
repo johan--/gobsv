@@ -14,8 +14,15 @@
         %ul.nav.navbar-nav.navbar-right
           %li
             = link_to "INICIO", indicators_root_url
-          %li
-            = link_to "INDICADORES", indicators_general_index_url
+          %li.dropdown
+            = link_to "#", class: "dropdown-toggle", role: "button", :"aria-haspopup"=>"true", :"aria-expanded"=>"false", :"data-toggle"=>"dropdown" do
+              = "INDICADORES"
+              %span.caret
+              %ul.dropdown-menu
+                - @indicator_categories.each do |category|
+                  %li
+                    = link_to category.name, indicators_general_index_url(category: category.id)
+          
           %li
             = link_to "ACERCA DE", about_indicators_general_index_url
           %li
