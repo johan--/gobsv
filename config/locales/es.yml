@@ -277,6 +277,15 @@ es:
       ind/sn_note:
         one: Indicador para Twitter
         other: Indicadores para Twitter
+      tracker/author:
+        one: Autor
+        other: Autores
+      tracker/article:
+        one: Nota
+        other: Notas
+      tracker/status:
+        one: Estado
+        other: Estados
     attributes:
       id: ID
       created_at: Creado el
@@ -647,6 +656,18 @@ es:
       ind/sn_note_image:
         sn_note_id: Indicador de redes
         file: Imagen
+      tracker/author:
+        name: Nombre
+        email: Correo electrónico
+      tracker/status:
+        name: Nombre
+        status_id: Estado
+      tracker/article:
+        name: Nombre
+        status_id: Estado
+        author_id: Autor
+        publish_date: Fecha de publicación
+        description: Descripción
     enum:
       ta/article:
         status:

@@ -19,6 +19,7 @@ class Admin::Tracker::ArticlesController < Admin::TrackerController
       :name,
       :description,
       :author_id,
+      :status_id,
       :publish_date,
     )
   end

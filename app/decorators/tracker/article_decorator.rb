@@ -2,20 +2,26 @@ class Tracker::ArticleDecorator < Draper::Decorator
   delegate_all
 
   def created_at
-    h.l object.created_at, format: :sortable
+    unless object.created_at.nil?
+      h.l object.created_at, format: :sortable
+    end
   end
   
   def publish_date
-    h.l object.publish_date, format: :sortable
+    unless object.publish_date.nil?
+      h.l object.publish_date, format: :sortable
+    end
   end
 
   def author_id
-    object.author.name
+    unless object.author.nil?
+      object.author.name
+    end
   end
   
   def status_id
     unless object.status.nil?
-      object.status.name
+      "#{object.status.status.name} / #{object.status.name}"
     end
   end
 
