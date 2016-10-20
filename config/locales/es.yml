@@ -711,6 +711,7 @@ es:
     paa: Política de ahorro y austeridad
     ofcia: OFCIA
     ind: Indicadores DTI
+    tracker: Registro
 
   recaptcha:
     errors:
