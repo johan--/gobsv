@@ -11,8 +11,23 @@
         = @indicator_category.description
       %p.selection-indicator{ style: "background: #{@indicator_category.color.nil? ? '#005F9E' : @indicator_category.color}"}
         = "Seleccioná el tema de tu interés y conocé más sobre los indicadores de desarrollo de país"
+      - unless @note_kinds.size == 0
+        .form-group
+          = label_tag "indicators", "Seleccionar tipo de indicador", class: "control-label col-sm-4 col-sm-offset-4"
+          .col-sm-4
+            = select_tag "indicators", options_for_select(::Ind::NoteKind.joins(:notes).uniq.map{ |s| [s.name.mb_chars.to_s, s.id] }), :prompt => 'Ver Todos', class: "select2 col-sm-12"
+        
+        - @note_kinds.each do |note_kind|
+          .row{class: "indicator-type", id: "indicator-type#{note_kind.id}"}
+            %h2.general-indicator{ style: "color: #{@indicator_category.color.nil? ? '#005F9E' : @indicator_category.color}" }
+              = note_kind.name
+            - @indicator_category.notes.where("ind_notes.note_kind_id = ?", note_kind.id).each do |note|
+              .col-xs-6.col-sm-4.col-md-3.bottom-margin
+                = link_to  indicators_general_url(note) do
+                  = image_tag(note.sn_note.first.sn_note_images.first.file.url, class: "img-responsive") rescue image_tag("indicators/sabesqueazul.png", class: "img-responsive img-centered") 
       .row
-        - @indicator_category.notes.reorder("ind_notes.updated_at DESC").each do |note|
+        %hr
+        - @indicator_category.notes.where("ind_notes.note_kind_id is NULL").each do |note|
           .col-xs-6.col-sm-4.col-md-3.bottom-margin
-            = link_to  indicators_general_url(note) do
+            = link_to indicators_general_url(note) do
               = image_tag(note.sn_note.first.sn_note_images.first.file.url, class: "img-responsive") rescue image_tag("indicators/sabesqueazul.png", class: "img-responsive img-centered") 

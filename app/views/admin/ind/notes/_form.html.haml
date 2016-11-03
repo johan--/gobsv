@@ -30,5 +30,6 @@
   %br
 = f.select :category_id, @categories.map{ |category| [category.name, category.id] }, { include_blank: true }, { class: 'select2' }
 = f.text_field :title, required: true
+= f.select :note_kind_id, @note_kinds.map{ |kind| [kind.name, kind.id] }, { include_blank: true }, { class: 'select2' }
 = f.label :content
 = f.cktext_area :content, required: true, ckeditor: { height: 500 }

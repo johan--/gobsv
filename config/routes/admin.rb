@@ -44,6 +44,7 @@ constraints subdomain: 'panel' do
         ],
         ind: [
           :categories,
+          :note_kinds,
           :notes
         ],
         tracker: [

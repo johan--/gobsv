@@ -1,7 +1,7 @@
-class Admin::Ind::NotesController < Admin::IndController
+class Admin::Ind::NoteKindsController < Admin::IndController
 
   def model
-    ::Ind::Note
+    ::Ind::NoteKind
   end
 
   def create
@@ -11,7 +11,7 @@ class Admin::Ind::NotesController < Admin::IndController
     if @item.save
       redirect_to url_for(action: :index), notice: t('layouts.admin.notice.created')
     else
-      init_form
+
       add_breadcrumb model.model_name.human(count: :many), index_url
       add_breadcrumb t('layouts.admin.breadcrumb.new')
 
@@ -21,8 +21,7 @@ class Admin::Ind::NotesController < Admin::IndController
 
   def edit
     @item = model.find params[:id]
-    init_form
-    init_sn_notes
+
     add_breadcrumb model.model_name.human(count: :many), index_url
     add_breadcrumb t('layouts.admin.breadcrumb.edit')
 
@@ -30,24 +29,12 @@ class Admin::Ind::NotesController < Admin::IndController
   end
 
   def table_columns
-    %w(category_id title created_at)
-  end
-
-  def init_form
-    @categories  = ::Ind::Category.order :name
-    @note_kinds = ::Ind::NoteKind.order :name
-  end
-
-  def init_sn_notes
-    @twitter_notes = ::Ind::SnNote.where(note_id: @item.id).order :description
+    %w(name created_at)
   end
 
   def item_params
-    params.require(:ind_note).permit(
-      :category_id,
-      :note_kind_id,
-      :title,
-      :content,
+    params.require(:ind_note_kind).permit(
+      :name,
     )
   end
 end

@@ -277,15 +277,9 @@ es:
       ind/sn_note:
         one: Indicador para Twitter
         other: Indicadores para Twitter
-      tracker/author:
-        one: Autor
-        other: Autores
-      tracker/article:
-        one: Nota
-        other: Notas
-      tracker/status:
-        one: Estado
-        other: Estados
+      ind/note_kind:
+        one: Tipo de indicador
+        other: Tipo de indicador
     attributes:
       id: ID
       created_at: Creado el
@@ -646,6 +640,7 @@ es:
         category_id: Rubro
         title: Título
         content: Contenido
+        note_kind_id: Tipo de indicador
       ind/sn_note:
         note_id: Indicador
         description: Descripción
@@ -656,6 +651,8 @@ es:
       ind/sn_note_image:
         sn_note_id: Indicador de redes
         file: Imagen
+      ind/sn_note_kind:
+        name: Nombre
       tracker/author:
         name: Nombre
         email: Correo electrónico

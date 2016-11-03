@@ -12,10 +12,15 @@
 #= require 'jssocials'
 #= require 'jssocials.shares'
 #= require 'jquery.slick'
+#= require 'select2'
+#= require 'select2_locale_es'
 
 $(document).ready ->
 
   @mobileWeb = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i.test(navigator.userAgent)
+
+  $('.select2').select2
+    theme: 'bootstrap'
 
   $("#lightSlider").lightSlider
     item:4,
@@ -27,3 +32,10 @@ $(document).ready ->
     controls:false,
     responsive : [{ breakpoint:1024, settings: { item:1, slideMove:1, slideMargin:2, } }, { breakpoint:480, settings: { item:1, slideMove:1, slideMargin:2 } }],
 
+
+  $('#indicators').change ->
+    if ($(this).val() != '')
+      $('.indicator-type').hide()
+      $('#indicator-type'+$(this).val()).show()
+    else
+      $('.indicator-type').show()
