@@ -1,0 +1,14 @@
+= field_set_tag 'General' do
+  = f.collection_select :group_id, Msg::Group.order(:name), :id, :full_name
+  = f.text_field :name, placeholder: 'Campo utilizado únicamente para identificar el mensaje'
+  = f.text_area :content, placeholder: 'Contenido del sms a enviar, carácteres recomendados: 60'
+  .col-sm-9.col-sm-offset-2.countdown
+    Carácteres: 0
+  :javascript
+    $("#msg_message_content").keyup(function(){
+      $(".countdown").text("Carácteres: " + $(this).val().length);
+    });
+
+%br
+.well.well-sm
+  Al guardar el mensaje, este se enviara automáticamente a los destinatarios del grupo.

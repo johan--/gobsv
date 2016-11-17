@@ -1,20 +1,35 @@
 .overlay
   = image_tag 'admin/working.gif'
-= form_for [:admin, @payroll], remote: true, html: { class: 'form-inline' } do |f|
+-# = form_for [:admin, @payroll], remote: true, html: { class: 'form-inline' } do |f|
+-#   .form-group
+-#     = f.select :economic_activity_ids, @enconomic_activities.map { |e| [e.name, e.id] }, {}, { multiple: true, class: 'form-control select2', required: true }
+-#   .form-group
+-#     = f.select :field, filters, {}, { class: 'form-control', required: true }
+-#   .form-group
+-#     = f.text_field :dates, class: 'form-control daterange', required: true, data: { min: ::Ofcia::Payroll.min_period, max: ::Ofcia::Payroll.max_period, start: ::Ofcia::Payroll.max_period }
+-#   = button_tag type: :submit, name: nil, class: 'btn btn-primary' do
+-#     Consultar
+
+-# %br
+-# %br
+-# #matrix-chart
+-# %br
+-# %br
+-# #matrix-data
+-# %br
+-# %br
+
+= search_form_for @q, url: admin_ofcia_payrolls_url, html: { class: 'form-inline', remote: true } do |f|
   .form-group
-    = f.select :economic_activity_ids, @enconomic_activities.map { |e| [e.name, e.id] }, {}, { multiple: true, class: 'form-control select2', required: true }
+  = f.select :payroll_patron_payroll_economic_activity_sector_eq, options_for_select([['Todos los sectores', ''],['Publicos', 0], ['Privados', 1]]), {}, { class: 'form-control' }
   .form-group
-    = f.select :field, filters, {}, { class: 'form-control', required: true }
+    = f.select :payroll_patron_payroll_economic_activity_id_in, @enconomic_activities.map { |e| [e.name, e.id] }, {}, { multiple: true, class: 'form-control select2'}
   .form-group
-    = f.text_field :dates, class: 'form-control daterange', required: true, data: { min: ::Ofcia::Payroll.min_period, max: ::Ofcia::Payroll.max_period, start: ::Ofcia::Payroll.max_period }
+    = select_tag 'filter', options_for_select(filters), { class: 'form-control', required: true }
+  .form-group
+    = text_field_tag :dates, params[:dates], class: 'form-control daterange', required: true, data: { min: ::Ofcia::Payroll.min_period, max: ::Ofcia::Payroll.max_period, start: ::Ofcia::Payroll.max_period }
   = button_tag type: :submit, name: nil, class: 'btn btn-primary' do
     Consultar
 
-%br
-%br
-#matrix-chart
-%br
-%br
-#matrix-data
-%br
-%br
+=# render 'index'
+#payrolls-results

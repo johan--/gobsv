@@ -1,0 +1,26 @@
+= field_set_tag 'General' do
+  = f.text_field :name
+  = f.file_field :asset
+  - if f.object.asset.present?
+    .form-group
+      .col-sm-9.col-sm-offset-2
+        = link_to f.object.asset.url do
+          %i.glyphicon.glyphicon-download-alt
+          = f.object.asset_file_name
+= field_set_tag 'Contactos' do
+  .well.well-sm
+    = link_to "#{admin_root_url}ejemplo_grupos.csv" do
+      %i.glyphicon.glyphicon-download-alt
+      Descargar archivo CSV
+    de ejemplo para los teléfonos, recuerde mantener siempre el formato del archivo para cargarlo en el grupo.
+  .row
+    - if f.object.contacts.any?
+      - f.object.contacts.each_slice((f.object.contacts.size / 2.to_f).ceil) do |slice|
+        .col-sm-12.col-md-6
+          %ul.list-group
+            - slice.each do |c|
+              %li.list-group-item
+                %strong
+                  = c[:phone].scan(/.{4}/).join('-')
+                %br
+                = c[:name]

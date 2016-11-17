@@ -1,0 +1,7 @@
+<% puts "<% @expedient.present? ? 'Expediente publicado' : 'No existe un expediente' %>" %>
+
+<% if @expedient.present? %>
+  $('#info-here').html('<div class="row"><div class="small-12 medium-8 columns"><strong>Caso</strong><br /><%= @expedient.correlative %></div><div class="small-12 medium-8 columns"><strong>Estado</strong><br /><%= @expedient.status_s %></div><div class="small-24 medium-8 columns"><strong>Información de contacto</strong><br /><%= @expedient.institution.try(:name) %><br /><%= @expedient.institution.try(:name) %><br /><%= @expedient.institution.try(:name) %></div></div>'.html_safe);
+<% else %>
+  $('#info-here').html('<div data-alert class="alert-box warning radius">Lo sentimos, no se encontro un caso con este código.</div>');
+<% end %>

@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829135235) do
+ActiveRecord::Schema.define(version: 20161117025049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
 
   create_table "admin_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id",   null: false
@@ -42,10 +41,10 @@ ActiveRecord::Schema.define(version: 20160829135235) do
     t.string   "name",                   limit: 255
     t.integer  "parent_id"
     t.integer  "role_id"
+    t.boolean  "is_active",                          default: true
     t.string   "provider",               limit: 255, default: "email", null: false
     t.string   "uid",                    limit: 255, default: "",      null: false
     t.text     "tokens"
-    t.boolean  "is_active",                          default: true
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -170,6 +169,7 @@ ActiveRecord::Schema.define(version: 20160829135235) do
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.integer  "expedient_id"
+    t.string   "reference_code",                 default: ""
   end
 
   add_index "complaints_expedients", ["contact"], name: "index_complaints_expedients_on_contact", using: :btree
@@ -190,19 +190,19 @@ ActiveRecord::Schema.define(version: 20160829135235) do
   end
 
   create_table "employments_countries", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "employments_disability_certifications", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "employments_disability_types", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -417,8 +417,8 @@ ActiveRecord::Schema.define(version: 20160829135235) do
 
   create_table "employments_user_languages", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "read"
+    t.string   "name",         limit: 255
+    t.string   "read",         limit: 255
     t.integer  "write"
     t.integer  "speak"
     t.integer  "user_created"
@@ -440,10 +440,10 @@ ActiveRecord::Schema.define(version: 20160829135235) do
 
   create_table "employments_user_references", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "charge"
-    t.string   "address"
-    t.string   "phone"
+    t.string   "name",         limit: 255
+    t.string   "charge",       limit: 255
+    t.string   "address",      limit: 255
+    t.string   "phone",        limit: 255
     t.integer  "kind"
     t.integer  "user_created"
     t.integer  "user_edited"
@@ -465,13 +465,13 @@ ActiveRecord::Schema.define(version: 20160829135235) do
   create_table "employments_user_specialties", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "country_id"
-    t.string   "name"
-    t.string   "esp_code"
-    t.string   "esp_name"
-    t.string   "gra_code"
-    t.string   "institution_name"
-    t.string   "certificate_file_name"
-    t.string   "certificate_content_type"
+    t.string   "name",                     limit: 255
+    t.string   "esp_code",                 limit: 255
+    t.string   "esp_name",                 limit: 255
+    t.string   "gra_code",                 limit: 255
+    t.string   "institution_name",         limit: 255
+    t.string   "certificate_file_name",    limit: 255
+    t.string   "certificate_content_type", limit: 255
     t.integer  "certificate_file_size"
     t.datetime "certificate_updated_at"
     t.date     "start_at"
@@ -486,11 +486,11 @@ ActiveRecord::Schema.define(version: 20160829135235) do
 
   create_table "employments_user_trainings", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "institution_name"
-    t.string   "name"
+    t.string   "institution_name", limit: 255
+    t.string   "name",             limit: 255
     t.text     "description"
-    t.string   "place"
-    t.string   "duration"
+    t.string   "place",            limit: 255
+    t.string   "duration",         limit: 255
     t.integer  "year"
     t.integer  "user_created"
     t.integer  "user_edited"
@@ -502,10 +502,10 @@ ActiveRecord::Schema.define(version: 20160829135235) do
 
   create_table "employments_user_work_experiences", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "sector"
+    t.string   "sector",           limit: 255
     t.integer  "country_id"
-    t.string   "institution_name"
-    t.string   "charge"
+    t.string   "institution_name", limit: 255
+    t.string   "charge",           limit: 255
     t.text     "description"
     t.date     "start_at"
     t.date     "end_at"
@@ -608,6 +608,54 @@ ActiveRecord::Schema.define(version: 20160829135235) do
     t.string   "hashtag",                limit: 255
   end
 
+  create_table "ind_categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "color"
+    t.string   "description"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
+  create_table "ind_notes", force: :cascade do |t|
+    t.integer  "category_id"
+    t.string   "title"
+    t.string   "slug"
+    t.text     "content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "ind_notes", ["category_id"], name: "index_ind_notes_on_category_id", using: :btree
+
+  create_table "ind_sn_note_images", force: :cascade do |t|
+    t.integer  "sn_note_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "ind_sn_note_images", ["sn_note_id"], name: "index_ind_sn_note_images_on_sn_note_id", using: :btree
+
+  create_table "ind_sn_notes", force: :cascade do |t|
+    t.integer  "note_id"
+    t.string   "description"
+    t.integer  "day"
+    t.integer  "hour"
+    t.integer  "minute"
+    t.integer  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "ind_sn_notes", ["note_id"], name: "index_ind_sn_notes_on_note_id", using: :btree
+
   create_table "institutions", force: :cascade do |t|
     t.string   "name",                                limit: 255
     t.integer  "institution_type_id"
@@ -668,6 +716,29 @@ ActiveRecord::Schema.define(version: 20160829135235) do
     t.string   "name",       limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "msg_groups", force: :cascade do |t|
+    t.string   "name"
+    t.text     "contacts"
+    t.integer  "admin_id"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "msg_groups", ["admin_id"], name: "index_msg_groups_on_admin_id", using: :btree
+  add_index "msg_groups", ["name"], name: "index_msg_groups_on_name", using: :btree
+
+  create_table "msg_messages", force: :cascade do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ofcia_payroll_economic_activities", force: :cascade do |t|
@@ -1008,6 +1079,38 @@ ActiveRecord::Schema.define(version: 20160829135235) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  create_table "tracker_articles", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.text     "description",  default: "", null: false
+    t.datetime "publish_date",              null: false
+    t.integer  "author_id"
+    t.integer  "status_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "tracker_articles", ["author_id"], name: "index_tracker_articles_on_author_id", using: :btree
+  add_index "tracker_articles", ["status_id"], name: "index_tracker_articles_on_status_id", using: :btree
+
+  create_table "tracker_authors", force: :cascade do |t|
+    t.string   "name",       default: "", null: false
+    t.string   "email",      default: "", null: false
+    t.integer  "user_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "tracker_authors", ["user_id"], name: "index_tracker_authors_on_user_id", using: :btree
+
+  create_table "tracker_statuses", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tracker_statuses", ["status_id"], name: "index_tracker_statuses_on_status_id", using: :btree
+
   create_table "user_authorizations", force: :cascade do |t|
     t.string   "provider",   limit: 255
     t.string   "uid",        limit: 255
@@ -1043,21 +1146,21 @@ ActiveRecord::Schema.define(version: 20160829135235) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "country_id"
-    t.string   "last_name"
-    t.string   "phone"
-    t.string   "alt_phone"
-    t.string   "document_type"
-    t.string   "document_number"
-    t.string   "tax_id"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
+    t.string   "last_name",              limit: 255
+    t.string   "phone",                  limit: 255
+    t.string   "alt_phone",              limit: 255
+    t.string   "document_type",          limit: 255
+    t.string   "document_number",        limit: 255
+    t.string   "tax_id",                 limit: 255
+    t.string   "photo_file_name",        limit: 255
+    t.string   "photo_content_type",     limit: 255
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "user_created"
     t.integer  "user_edited"
-    t.string   "unknown_code"
-    t.string   "username"
-    t.string   "treatment"
+    t.string   "unknown_code",           limit: 255
+    t.string   "username",               limit: 255
+    t.string   "treatment",              limit: 255
     t.text     "address"
     t.integer  "stpp_id"
     t.integer  "response_code"

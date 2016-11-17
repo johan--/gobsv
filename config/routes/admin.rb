@@ -41,6 +41,10 @@ constraints subdomain: 'panel' do
         ],
         ofcia: [
           :payrolls
+        ],
+        msg: [
+          :groups,
+          :messages
         ]
       }
 

@@ -1,4 +1,4 @@
-#domain = 'localhost.com'          if Rails.env.development?
+domain = 'localhost.com'          if Rails.env.development?
 
 constraints subdomain: 'quejas' do
   scope module: 'complaints', as: 'complaints' do
@@ -8,6 +8,10 @@ constraints subdomain: 'quejas' do
       resources :expedients do
         member do
           post 'redirect'
+        end
+        collection do
+          post 'external'
+          get 'consult'
         end
         resources :expedient_events, only: [:create]
         resources :expedient_managements, only: [:create]

@@ -189,3 +189,7 @@ gem 'rest-client'
 
 gem 'savon', '~> 2.0'
 gem 'httpclient'
+
+# A Ruby gem for communicating with the Twilio API and generating TwiML http://twilio-ruby.readthedocs.org/en/latest/
+gem 'twilio-ruby'
+# +12107141396

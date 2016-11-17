@@ -33,6 +33,17 @@ module Complaints
       KIND[self.kind]
     end
 
+    def status_s
+      case status
+      when 'new'
+        'Nuevo'
+      when 'process'
+        'Proceso'
+      else
+        'Cerrado'
+      end
+    end
+
     def new?
       status == 'new'
     end
@@ -59,6 +70,19 @@ module Complaints
 
     def institution_name
       institution.name
+    end
+
+    def generate_reference_code(length = 6)
+      generated_code = (0..length).map{ rand(36).to_s(36) }.join
+      return generated_code unless self.class.exists?(reference_code: generated_code)
+
+      generate_reference_code
+    end
+
+    def set_reference_code
+      if self.reference_code.blank?
+        self.reference_code = generate_reference_code.upcase
+      end
     end
 
   end

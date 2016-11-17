@@ -1,4 +1,8 @@
 class Complaints::ExpedientsController < ComplaintsController
+  skip_before_action :authenticate_admin!, :only => [:consult]
+  skip_before_action :prepare_search, :only => [:consult]
+  skip_before_action :verify_authenticity_token, only: [:consult]
+
 
   def index
     @expedients = @search.result(distinct: true).paginate(page: params[:page], per_page: 10)
@@ -20,6 +24,7 @@ class Complaints::ExpedientsController < ComplaintsController
     expedient.admitted_at = Time.current
     if expedient.valid?
       expedient.set_correlative
+      expedient.set_reference_code
       expedient.save
       redirect_to complaints_expedients_url(state: 'new') and return
     else
@@ -67,5 +72,14 @@ class Complaints::ExpedientsController < ComplaintsController
       :institution_id,
       :asset
     )
+  end
+
+  def external
+    head :ok, content_type: "text/html"
+  end
+
+  def consult
+    @expedient = Complaints::Expedient.where(reference_code: params[:code]).first
+    #head :ok, content_type: "text/html"
   end
 end
