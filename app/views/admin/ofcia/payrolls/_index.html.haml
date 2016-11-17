@@ -1,0 +1,50 @@
+#payrolls-results
+  - @payrolls.group_by{ |p| p.payroll_patron.payroll_economic_activity.sector }.each do |sector, activities|
+    %h2
+      = sector == 0 ? "Sector público" : "Sector privado"
+    %table.table.table-condensed{ style: 'border-collapse: collapse;' }
+      / THEAD
+      %thead
+        %tr
+          %th{ rowspan: 2 }
+            Actividad económica
+          - if (params[:filter].to_s || 'anual') == 'anual'
+            - (@start_date .. @end_date).group_by(&:year).keys.each do |k|
+              %th{ colspan: 3, style: 'text-align: center;' }
+                = k
+        %tr
+          - if (params[:filter].to_s || 'anual') == 'anual'
+            - (@start_date .. @end_date).group_by(&:year).keys.each do |k|
+              %th
+                Total
+              %th
+                Salario
+              %th
+                Per capita
+      / FOOTER
+      %tfoot
+        %tr
+          %td
+            = sector == 0 ? "Subtotal sector público" : "Subtotal sector privado"
+          - if (params[:filter].to_s || 'anual') == 'anual'
+            - activities.group_by{ |p| p.period_date.year }.each do |year, payrolls|
+              %td
+                = payrolls.map(&:total).sum
+              %td
+                = number_to_currency payrolls.map(&:amount_total).sum
+              %td
+                = number_to_currency(payrolls.map(&:amount_total).sum / payrolls.map(&:total).sum) rescue 0
+      / TBODY
+      %tbody
+        - activities.group_by{ |p| p.payroll_patron.payroll_economic_activity }.each do |activity, patrons|
+          %tr
+            %td
+              = activity.name
+            - if (params[:filter].to_s || 'anual') == 'anual'
+              - patrons.group_by{ |p| p.period_date.year }.each do |year, payrolls|
+                %td
+                  = payrolls.map(&:total).sum
+                %td
+                  = number_to_currency payrolls.map(&:amount_total).sum
+                %td
+                  = number_to_currency(payrolls.map(&:amount_total).sum / payrolls.map(&:total).sum) rescue 0

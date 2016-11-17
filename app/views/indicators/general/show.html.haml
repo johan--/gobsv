@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-xs-12.col-sm-4.col-md-3
+      .images-wrapper
+        - unless @indicator.sn_note.first.sn_note_images.first.file.url.blank? 
+          %ul#lightSliderSA
+            - @indicator.sn_note.first.sn_note_images.each do |pic|
+              %li.slide
+                = image_tag(pic.file.url, class: "img-responsive")
+        - else
+          = image_tag("indicators/sabias-que.png", class: "img-responsive")
+    .col-xs-12.col-sm-8.col-md-9.col-centered.content-wrapper-indicator
+      %h1.general-indicator
+        = @indicator.title
+      %p.content-indicator
+        = @indicator.content.html_safe

@@ -264,10 +264,28 @@ es:
       paa/report:
         one: Reporte
         other: Reportes
+      msg/group:
+        one: Grupo
+        other: Grupos
+      msg/message:
+        one: Mensaje
+        other: Mensajes
       user: Usuario
       ver/inscription:
         one: Registro
         other: Registros
+      ind/category:
+        one: Categoría
+        other: Categorías
+      ind/note:
+        one: Indicador
+        other: Indicadores
+      ind/sn_note:
+        one: Indicador para Twitter
+        other: Indicadores para Twitter
+      ind/note_kind:
+        one: Tipo de indicador
+        other: Tipo de indicador
     attributes:
       id: ID
       created_at: Creado el
@@ -613,6 +631,15 @@ es:
         terms: Estoy de acuerdo que a este concurso solo puedo aplicar una vez.
       employments/user_skill:
         name: Conocimiento
+      msg/group:
+        name: Nombre
+        contacts: Contactos
+        asset: Archivo CSV
+      msg/message:
+        name: Nombre
+        content: Contenido
+        group_id: Grupo meta
+        created_at: Fecha de envío
       ver/inscription:
         email: Correo electrónico
         firstname: Nombre
@@ -662,6 +689,9 @@ es:
     forum: Foros públicos
     paa: Política de ahorro y austeridad
     ofcia: OFCIA
+    ind: Indicadores DTI
+    tracker: Registro
+    msg: Mensajitos
 
   recaptcha:
     errors:

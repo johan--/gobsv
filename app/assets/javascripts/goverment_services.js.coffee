@@ -9,12 +9,19 @@
 #= require 'modernizr'
 #= require 'main'
 #= require 'jquery.validate.min'
+#= require 'admin/forms'
+
+#= require 'select2'
+#= require 'select2_locale_es'
 #= require 'jssocials'
 #= require 'jssocials.shares'
 #= require 'jquery.slick'
 
 
 $(document).ready ->
+  $('.select2').select2
+    theme: 'bootstrap'
+
   $('#calculator-form').validate
     rules:
       wage: 

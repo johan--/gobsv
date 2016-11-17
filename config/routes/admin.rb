@@ -41,6 +41,20 @@ constraints subdomain: 'panel' do
         ],
         ofcia: [
           :payrolls
+        ],
+        ind: [
+          :categories,
+          :note_kinds,
+          :notes
+        ],
+        tracker: [
+          :authors,
+          :articles,
+          :statuses,
+        ],
+        msg: [
+          :groups,
+          :messages
         ]
       }
 
@@ -52,6 +66,10 @@ constraints subdomain: 'panel' do
                 get 'savings_by_financial_source_unaudited',                      :on => :collection
                 get 'savings_by_financial_source_audited',                        :on => :collection
                 get 'funds_generated_by_the_institutions_of_the_executive_organ', :on => :collection
+              end
+            elsif ns == :ind && controller == :notes
+              resources controller do |c|
+                resources :sn_notes, except: [:index]
               end
             else
               resources controller

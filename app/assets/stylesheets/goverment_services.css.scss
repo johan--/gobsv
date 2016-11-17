@@ -5,6 +5,8 @@
 @import 'font-awesome';
 @import 'fullsizable';
 @import 'fullsizable/theme';
+@import 'select2';
+@import 'select2-bootstrap';
 @import 'jssocials';
 @import 'jssocials-theme-classic';
 @import 'lightslider';
@@ -61,6 +63,7 @@ body{
     text-align: center;
   }
   .item-cover-info{
+    font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -155,6 +158,10 @@ body{
     text-align: center;
     font-size: 28px;
   }
+  h2{
+    text-align: center;
+    font-size: 20px;
+  }
 }
 
 .center-object{
@@ -196,9 +203,9 @@ body{
 
 .institution-services{
   width: 100%;
-  max-width: 800px;
+  max-width: 960px;
   margin: 0px auto 10px;
-  padding: 30px 20px;
+  padding: 45px 20px 30px;
   background-color: #F2F2F2;
   border-bottom: 8px solid #DAEBF2;
 }
@@ -212,6 +219,44 @@ body{
   a{
     margin: 10px 20px;
   }
+}
+
+.institutions-search{
+  padding: 20px 0 40px;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.institution-services-categories{
+  margin: 10px 0 30px;
+}
+
+.service-wrapper{
+  .service-panel-header{
+    padding: 15px 10px; 
+    background: #4EB5DB;
+    text-align: center;
+    color: #343637;
+  }
+  .list{
+    .service-item{
+      margin: 8px 0 12px;
+      a{
+        color: #35B0E4;
+        span.date-item{
+          color: #393939;
+        }
+      }
+    }
+  }
+}
+
+.centered-div{
+  margin: 10px auto;
+  text-align: center;
 }
 
 footer{
@@ -245,7 +290,6 @@ footer{
       display: flex;
     }
   }
-
 }
 
 .cd-timeline-content {

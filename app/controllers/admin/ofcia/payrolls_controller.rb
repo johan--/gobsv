@@ -2,7 +2,32 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
   def index
     @payroll = ::Ofcia::Payroll.new
     @enconomic_activities = ::Ofcia::PayrollEconomicActivity.order(:name)
+    ### Prepare params[:q] vars
+    if params[:q]
+      # if economic activity is present, we clear the params
+      if params[:q][:payroll_patron_payroll_economic_activity_id_in].present?
+        params[:q][:payroll_patron_payroll_economic_activity_id_in].reject!{|v| v.blank?}
+      end
+    end
+    if params[:dates].present?
+      batches    = params[:dates].split(' - ')
+      @start_date = Date.parse batches.first
+      @end_date   = Date.parse batches.last
+      params[:q].merge!(period_date_gteq: @start_date)
+      params[:q].merge!(period_date_lteq: @end_date)
+    end
+    ### Do the search
+    @q = ::Ofcia::Payroll.includes(payroll_patron: :payroll_economic_activity)
+    ### grouping
+    if (params[:filter].to_s || 'anual') == 'anual'
+      #@q = @q.select("to_char(period_date, 'YYYY'), payroll_patron_id, SUM(total), SUM(amount_total)").group("to_char(period_date, 'YYYY'), payroll_patron_id")
+    else
+      #@q = @q.select("to_char(period_date, 'YYYY'), payroll_patron_id, SUM(total), SUM(amount_total)").group("to_char(period_date, 'YYYY'), payroll_patron_id")
+    end
+    @q = @q.ransack(params[:q])
+    @payrolls = @q.result
   end
+
 
   def create
     @payroll = ::Ofcia::Payroll.new item_params
@@ -60,14 +85,16 @@ class Admin::Ofcia::PayrollsController < Admin::OfciaController
   helper_method :filters
   def filters
     [
-      ['Empleos (Mensual)', :total],
-      ['Empleos (Promedio anual)', :total_avg],
-      ['Salario (Mensual)', :amount_total],
-      ['Salario (Promedio anual)', :amount_total_avg],
-      ['Per cápita (Mensual)', :percapita_month],
-      ['Per cápita (Anual)', :percapita_year],
-      ['Todos los campos (Mensual)', :all_month],
-      ['Todos los campos (Anual)', :all_year]
+      # ['Empleos (Mensual)', :total],
+      # ['Empleos (Promedio anual)', :total_avg],
+      # ['Salario (Mensual)', :amount_total],
+      # ['Salario (Promedio anual)', :amount_total_avg],
+      # ['Per cápita (Mensual)', :percapita_month],
+      # ['Per cápita (Anual)', :percapita_year],
+      # ['Todos los campos (Mensual)', :all_month],
+      # ['Todos los campos (Anual)', :all_year]
+      ['Promedio anual', :anual],
+      ['Promedio mensual', :mensual]
     ]
   end
 

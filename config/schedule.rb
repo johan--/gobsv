@@ -28,9 +28,9 @@ every :day, :at => '03:00pm' do
   rake "employments:import"
 end
 
-every 30.minutes do
-  rake "employments:jobs"
-end
+#every 30.minutes do
+  #rake "employments:jobs"
+#end
 
 #every 30.minutes do
 #  rake "forums:articles"

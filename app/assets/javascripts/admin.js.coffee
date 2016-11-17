@@ -20,11 +20,17 @@
 #= require 'moment'
 #= require 'moment.es'
 #= require 'daterangepicker'
+#= require 'jqColorPicker.min'
 
 $ ->
   $('.select2').select2
     theme: 'bootstrap'
 
+  window.myColorPicker = $('input.color').colorPicker(
+    renderCallback: ($elm, toggled) ->
+      $elm.val '#' + @color.colors.HEX
+      return
+  )
   ##
   # Tags
   $(".tags").tagsInput
