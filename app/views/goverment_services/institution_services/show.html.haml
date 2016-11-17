@@ -1,0 +1,109 @@
+.container
+  .row
+    = render partial: 'layouts/goverment_services/breadcrumb'
+    .col-xs-5
+      - unless @service.blank?
+        %div{id: "shareButtonLabelCount"}
+        :javascript
+          $("#shareButtonLabelCount").jsSocials({
+            url: "#{goverment_services_institution_service_url(@service['id'])}",
+            text: "Servicio publico",
+            showCount: true,
+            showLabel: false,
+            shares: ["facebook", "twitter", "linkedin", "googleplus"]
+          });
+%section.service-content
+  .container
+    - unless @service.nil? && @service_steps.nil?
+      %h1
+        = @service["name"]
+      .row
+        .col-md-12
+          .center-object
+            %ul.nav.nav-tabs.custom-tabs
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#home"} 
+                  %span.glyphicon.glyphicon-home{"aria-hidden" => "true"} 
+              - @service_steps.each_with_index do |step, i|
+                %li
+                  %a{"data-toggle"=>"tab", :href=>"#menu"+"#{i+1}"} 
+                    = i.to_i + 1
+          .institution-services       
+            .tab-content
+              #home.tab-pane.fade.in.active
+                .row
+                  .col-sm-6.col-xs-12
+                    %h2
+                      Generalidades
+                    %p
+                      = @service["description"]
+                  .col-sm-6.col-xs-12
+                    = image_tag("goverment_services/service_test_img.jpg", class: "img-responsive")
+                .row
+                  .col-sm-6.col-xs-12
+                    %h3
+                      Requerimientos generales
+                    %p
+                      = @service["general_requirements"]
+                  .col-sm-6.col-xs-12
+                    - unless @service_steps.size == 0
+                      .action-buttons
+                        = link_to "Ver primer paso", "#menu1", class: "btn btn-success btn-lg", "data-toggle"=>"tab"
+                .row
+                  .col-sm-6.col-xs-12
+                    %h3
+                      Tiempo de respuesta
+                    %p
+                      = @service["response_times"]
+              - @service_steps.each_with_index do |step, i|
+                %div{id: "menu"+"#{i+1}", class: "tab-pane fade"}
+                  %h2
+                    = step["name"]
+                  %p
+                    = step["description"]
+                  %br
+                  %table.table.table-stripped
+                    %tr
+                      %td
+                        Requisitos: 
+                      %td
+                        = step["requirements"]
+                    %tr
+                      %td
+                        Costo: 
+                      %td
+                        = number_to_currency step["cost"]
+                    %tr
+                      %td
+                        Observaciones:
+                      %td
+                        = step["observations"]
+                    %tr
+                      %td
+                        Duración:
+                      %td
+                        = step["duration"]
+                    %tr
+                      %td
+                        Tiempo de respuesta:
+                      %td
+                        = step["response_time"]
+                    %tr
+                      %td
+                        Documentación:
+                      %td
+                        = step["documents"]
+
+          
+          -# search_form_for @q, url: ta_articles_url, html: { class: 'navbar-form' } do |f|
+            .input-group
+              = f.search_field :title_or_summary_cont, class: 'form-control', placeholder: 'Buscar'
+              .input-group-addon
+                = icon('search')
+          .clearfix
+          .action-buttons
+            = link_to "Quiero este servicio en linea", nil, class: "btn btn-primary btn-lg"
+            = link_to "Este servicio no funciona así", nil, class: "btn btn-danger btn-lg"
+    - else
+      %h1
+        No se ha podido encontrar informacion

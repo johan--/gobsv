@@ -274,6 +274,18 @@ es:
       ver/inscription:
         one: Registro
         other: Registros
+      ind/category:
+        one: Categoría
+        other: Categorías
+      ind/note:
+        one: Indicador
+        other: Indicadores
+      ind/sn_note:
+        one: Indicador para Twitter
+        other: Indicadores para Twitter
+      ind/note_kind:
+        one: Tipo de indicador
+        other: Tipo de indicador
     attributes:
       id: ID
       created_at: Creado el
@@ -677,7 +689,8 @@ es:
     forum: Foros públicos
     paa: Política de ahorro y austeridad
     ofcia: OFCIA
-    msg: Mensajitos
+    ind: Indicadores DTI
+    tracker: Registro
 
   recaptcha:
     errors:

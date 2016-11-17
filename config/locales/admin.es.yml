@@ -59,6 +59,10 @@ es:
         financial_expenses: Primas y Gastos de Seguros de Bienes y Personas
         transfers: Transferencias Corrientes y de Capital
         investments: Inversiones en Activos Fijos
+    tracker:
+      authors:
+      articles:
+      statuses:
 
   layouts:
     admin:
@@ -82,3 +86,8 @@ es:
         footer: 2014 - Gobierno Abierto El Salvador
       sidebar:
         qa: Sistema de quejas y avisos
+  general:
+    save: Guardar
+    new: Nuevo
+    edit: Editar
+    delete: Eliminar

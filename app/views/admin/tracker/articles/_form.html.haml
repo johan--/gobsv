@@ -1,0 +1,6 @@
+= field_set_tag 'General' do
+  = f.text_field :name
+  = f.select :status_id, @statuses, { prompt: true }, class: 'form-control', required: true
+  = f.select :author_id, @authors, { prompt: true }, class: 'form-control', required: true
+  = f.datetime_select :publish_date, {}, { class: 'form-control datetime-select', required: true }
+  = f.text_area :description

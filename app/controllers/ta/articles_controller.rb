@@ -5,7 +5,8 @@ module Ta
     ##
     # GET ta/articles
     def index
-      @q        = Ta::Article.ransack(params[:q])
+      @keyword  = params[:q]
+      @q        = Ta::Article.ransack(@keyword)
       @articles = @q.result.publish.newer.paginate(page: params[:page])
 
       add_breadcrumb 'Inicio', ta_root_url

@@ -1,0 +1,27 @@
+= f.hidden_field :note_id, value: @note.id
+= f.text_field :description, required: true
+
+.form-gallery.row
+  = field_set_tag 'Imagenes' do
+    .row
+      = f.fields_for :sn_note_images do |ff|
+        .col-xs-6
+          .well.well-sm
+            .row
+              .col-xs-12
+                .form-group
+                  .col-xs-8
+                    = ff.file_field :file, data: { preview: true }
+                    = image_tag((ff.object.file.present? ? ff.object.file.url(:small) : nil), height: 31)
+                = ff.link_to_remove class: 'btn btn-sm btn-danger pull-right' do
+                  %span.glyphicon.glyphicon-trash
+  .fields#restricted-fields
+    .col-xs-2
+      = f.link_to_add :sn_note_images, class: 'btn btn-sm btn-default pull-right' do
+        %span.glyphicon.glyphicon-plus
+
+= f.text_field :day, required: true
+= f.text_field :hour, required: true
+= f.text_field :minute, required: true
+= f.form_group :active do
+  = f.check_box :active

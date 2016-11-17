@@ -1,0 +1,40 @@
+!!! 5
+%html{ language: I18n.locale }
+  %head
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' }
+    %meta{ name: 'robots', content: 'noindex' }
+    %meta{ name: 'title', content: 'Ser' }
+    %meta{ name: 'description', content: 'Encuentra los servicios públicos que brindan las instituciones públicas de El Salvador' }
+    %title
+      Servicios y trámites del Gobierno de El Salvador
+    = display_meta_tags
+
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'shortcut icon' }
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'apple-touch-icon' }
+    %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'apple-touch-icon-precomposed' }
+    %link{:href => "https://fonts.googleapis.com/css?family=Dosis", :rel => "stylesheet", :type => "text/css"}
+
+    = stylesheet_link_tag :goverment_services
+    = javascript_include_tag :goverment_services
+    %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
+    %script{:async => "", :src => "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.2"}
+    = csrf_meta_tags
+  %body
+
+    = render partial: 'layouts/goverment_services/navbar'
+    #wrapper
+      = yield
+    = render partial: 'layouts/forums/footer'
+    / Modal
+    #mediaModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "aria-hidden"=>"true"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h4
+              #myModalLabel.modal-title
+          .modal-body
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar

@@ -1,0 +1,15 @@
+%section.main-indicators
+  .container
+    .row
+      .col-xs-12.col-sm-4.col-md-3.did-you-know
+        = image_tag("indicators/sabias-que.png", class: "img-responsive")
+      .col-xs-12.col-sm-8.col-md-9
+        #wrapper-indicators
+          .row
+            - @indicator_categories.each_with_index do |category, i|
+              .col-xs-6.col-sm-4.col-md-3
+                .indicator
+                  = link_to indicators_general_index_url(category: category.id) do 
+                    = image_tag(category.picture.url(:small), class: "img-responsive") rescue image_tag("indicators/sabesqueazul.png", class: "img-responsive img-centered")
+                    %p{ style: "background: #{category.color.nil? ? '#005F9E' : category.color}" }
+                      = category.name

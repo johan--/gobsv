@@ -1,0 +1,15 @@
+.row
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    .panel.panel-default
+      .panel-heading
+        = model.model_name.human
+      .panel-body
+        = bootstrap_nested_form_for @item, url: admin_ind_note_sn_notes_url(@note, @item), layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-9', method: :post do |f|
+          = render partial: 'form', locals: { f: f }
+
+          .text-center
+            = f.submit t('general.save'), class: 'btn btn-primary btn-lg'
+
+      .panel-footer
+        = link_to edit_admin_ind_note_url(@note), class: 'btn btn-default btn-sm' do
+          %span.glyphicon.glyphicon-arrow-left
