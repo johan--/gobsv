@@ -620,13 +620,20 @@ ActiveRecord::Schema.define(version: 20161117025049) do
     t.datetime "picture_updated_at"
   end
 
+  create_table "ind_note_kinds", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ind_notes", force: :cascade do |t|
     t.integer  "category_id"
     t.string   "title"
     t.string   "slug"
     t.text     "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "note_kind_id"
   end
 
   add_index "ind_notes", ["category_id"], name: "index_ind_notes_on_category_id", using: :btree

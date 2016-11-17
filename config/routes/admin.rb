@@ -51,6 +51,10 @@ constraints subdomain: 'panel' do
           :authors,
           :articles,
           :statuses,
+        ],
+        msg: [
+          :groups,
+          :messages
         ]
       }
 

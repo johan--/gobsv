@@ -691,6 +691,7 @@ es:
     ofcia: OFCIA
     ind: Indicadores DTI
     tracker: Registro
+    msg: Mensajitos
 
   recaptcha:
     errors:
