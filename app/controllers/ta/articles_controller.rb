@@ -86,5 +86,12 @@ module Ta
         format.rss { render :layout => false }
       end
     end
+
+    def instant
+      @articles = Ta::Article.publish.newer.limit(10)
+      respond_to do |format|
+        format.rss { render layout: false }
+      end
+    end
   end
 end
