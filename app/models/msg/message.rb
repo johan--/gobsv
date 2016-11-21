@@ -15,8 +15,8 @@ class Msg::Message < ActiveRecord::Base
     def send_sms
       require 'twilio-ruby'
       # put your own credentials here
-      account_sid = 'AC74e95600708da6a1ced2643103d24bad'
-      auth_token = '16f8bc4f85581b264c92ee1fde0a216d'
+      account_sid = 'AC08b4ed8589463370ed71aabf89d230c6'
+      auth_token = '8cdd1d83da7e22a8a4c9cfa92bf96dd1'
 
       # set up a client to talk to the Twilio REST API
       @client = Twilio::REST::Client.new account_sid, auth_token
@@ -24,7 +24,7 @@ class Msg::Message < ActiveRecord::Base
       phones = group.contacts.collect{|g| g[:phone]}
       phones.each do |phone|
         @client.account.messages.create(
-          from: '+12107141396',
+          from: '+14153736504',
           to: "+503#{phone}",
           body: self.content
         )
