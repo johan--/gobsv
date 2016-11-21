@@ -30,7 +30,7 @@ class Msg::Group < ActiveRecord::Base
         # Hay un nuevo csv, lo leemos e insertamos los valores en contactos
         require 'csv'
         arr = []
-        CSV.foreach(asset.path, headers: true) do |row|
+        CSV.foreach(asset.path, headers: true, encoding:'iso-8859-1:utf-8', col_sep: ";") do |row|
           begin
             arr << {name: row[0], phone: row[1].try(:gsub, /[^\d]/, '')}
           rescue
