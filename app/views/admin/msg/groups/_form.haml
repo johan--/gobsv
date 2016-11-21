@@ -21,6 +21,6 @@
             - slice.each do |c|
               %li.list-group-item
                 %strong
-                  = c[:phone].scan(/.{4}/).join('-')
+                  = c[:phone].scan(/.{4}/).join('-') rescue ''
                 %br
                 = c[:name]
