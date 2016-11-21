@@ -86,5 +86,56 @@ module Ta
         format.rss { render :layout => false }
       end
     end
+
+    def instant
+      @articles = Ta::Article
+                  .publish
+                  .newer
+                  .limit(10)
+                  # .where([
+                  #          'published_at > :diff OR updated_at > :diff',
+                  #          { diff: Time.zone.now - 10.minutes }
+                  #        ])
+
+      respond_to do |format|
+        format.rss { render layout: false }
+      end
+    end
+
+    helper_method :absolutes_url!
+    #
+    def absolutes_url!(html)
+      doc = Nokogiri::HTML(html)
+      replace_relatives_hrefs!(doc)
+      replace_relatives_srcs!(doc)
+      doc.to_html
+    end
+
+    def replace_relatives_srcs!(doc)
+      doc.css('img').each do |img|
+        unless absolute_url?(img.attributes['src'].value)
+          absolute = replace_relatives_url(img.attributes['src'].value)
+          img.attributes['src'].value = absolute
+        end
+      end
+    end
+
+    def replace_relatives_hrefs!(doc)
+      doc.css('a').each do |link|
+        unless absolute_url?(link.attributes['href'].value)
+          absolute = replace_relatives_url(link.attributes['href'].value)
+          link.attributes['href'].value = absolute
+        end
+      end
+    end
+
+    def absolute_url?(url)
+      url.match(%r{https?:\/\/})
+    end
+
+    def replace_relatives_url(path)
+      separator = path.start_with?('/') ? '' : '/'
+      'http://' + [request.host, path].join(separator)
+    end
   end
 end
