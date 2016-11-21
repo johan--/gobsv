@@ -108,6 +108,8 @@ module Ta
       doc = Nokogiri::HTML(html)
       replace_relatives_hrefs!(doc)
       replace_relatives_srcs!(doc)
+      unwrap_images!(doc)
+      clear_empty_paragraphs!(doc)
       doc.to_html
     end
 
@@ -131,6 +133,16 @@ module Ta
 
     def absolute_url?(url)
       url.match(%r{https?:\/\/})
+    end
+
+    def unwrap_images!(doc)
+      doc.css('img').each do |img|
+        img.parent.replace(img) while img.parent.name == 'p'
+      end
+    end
+
+    def clear_empty_paragraphs!(doc)
+      doc.css('p').each { |p| p.remove if p.text.blank? }
     end
 
     def replace_relatives_url(path)
