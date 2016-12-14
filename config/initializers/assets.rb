@@ -18,6 +18,7 @@ Rails.application.config.assets.precompile += %w( ver.css ver.js )
 Rails.application.config.assets.precompile += %w( user/login.css user/login.js )
 Rails.application.config.assets.precompile += %w( goverment_services.css goverment_services.js )
 Rails.application.config.assets.precompile += %w( indicators.css indicators.js )
+Rails.application.config.assets.precompile += %w( agreements.css agreements.js )
 
 Rails.application.config.assets.precompile += %w( *.eot *.woff *.ttf *.svg )
 Rails.application.config.assets.precompile += %w( *.png *.jpeg *.jpg *.gif )

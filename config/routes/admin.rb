@@ -55,6 +55,9 @@ constraints subdomain: 'panel' do
         msg: [
           :groups,
           :messages
+        ],
+        agreements: [
+          :user_peace_signatures
         ]
       }
 

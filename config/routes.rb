@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   draw :user
   draw :goverment_services
   draw :indicators
+  draw :agreements
 
 end

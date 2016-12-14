@@ -286,6 +286,9 @@ es:
       ind/note_kind:
         one: Tipo de indicador
         other: Tipo de indicador
+      agreements/user_peace_signature:
+        one: Firma de paz de usuario
+        other: Firma de paz de usuarios
     attributes:
       id: ID
       created_at: Creado el
@@ -646,7 +649,45 @@ es:
         lastname: Apellido
         age: Edad
         location: Lugar
-
+      ind/category:
+        name: Rubro
+        color: Color
+        description: Descripción
+        picture: Imagen
+      ind/note:
+        category_id: Rubro
+        title: Título
+        content: Contenido
+        note_kind_id: Tipo de indicador
+      ind/sn_note:
+        note_id: Indicador
+        description: Descripción
+        day: Día
+        hour: Hora
+        minute: Minutos
+        active: Activo
+      ind/sn_note_image:
+        sn_note_id: Indicador de redes
+        file: Imagen
+      ind/sn_note_kind:
+        name: Nombre
+      tracker/author:
+        name: Nombre
+        email: Correo electrónico
+      tracker/status:
+        name: Nombre
+        status_id: Estado
+      tracker/article:
+        name: Nombre
+        status_id: Estado
+        author_id: Autor
+        publish_date: Fecha de publicación
+        description: Descripción
+      agreements/user_peace_signature:
+        name: Nombre
+        place: Lugar
+        email: Correo electrónico
+        phone: Teléfono
     enum:
       ta/article:
         status:
@@ -692,6 +733,7 @@ es:
     ind: Indicadores DTI
     tracker: Registro
     msg: Mensajitos
+    agreements: Acuerdos de paz
 
   recaptcha:
     errors:

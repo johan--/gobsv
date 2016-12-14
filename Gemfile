@@ -179,7 +179,7 @@ gem 'rack-cors', '~> 0.4.0', require: 'rack/cors'
 gem 'devise_token_auth', '~> 0.1.30'
 
 # ambethia/recaptcha
-#gem "recaptcha", require: "recaptcha/rails"
+gem "recaptcha", '~> 4.0.0', require: "recaptcha/rails"
 
 # Very simple captcha with Rails 3 & 4 support http://kiskolabs.github.io/humanizer
 gem 'humanizer'

@@ -22,18 +22,6 @@ $(document).ready ->
   $('.select2').select2
     theme: 'bootstrap'
 
-  $('#calculator-form').validate
-    rules:
-      wage: 
-        required: true
-      gender: 
-        required: true
-    errorPlacement: (error, element) ->
-      error.insertAfter element.parents('.input-group')
-    messages:
-      wage:
-        number: "Ingrese un número válido"
-
   @mobileWeb = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i.test(navigator.userAgent)
 
   $("#lightSlider").lightSlider

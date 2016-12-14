@@ -314,6 +314,8 @@ GEM
       polyamorous (~> 1.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    recaptcha (4.0.0)
+      json
     ref (1.0.5)
     remotipart (1.2.1)
     request_store (1.1.0)
@@ -507,6 +509,7 @@ DEPENDENCIES
   rails (~> 4.2)
   rails_config (~> 0.4.2)
   ransack (~> 1.6.6)
+  recaptcha (~> 4.0.0)
   remotipart
   rest-client
   rspec-rails (~> 3.1.0)
@@ -534,4 +537,4 @@ DEPENDENCIES
   yt (~> 0.25.0)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

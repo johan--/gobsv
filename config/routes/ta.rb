@@ -1,6 +1,6 @@
 domain = 'transparenciaactiva.gob.sv' if Rails.env.production?
 domain = 'ta.localhost.com'           if Rails.env.development?
-domain = 'localhost.com' if Rails.env.development?
+#domain = 'localhost.com' if Rails.env.development?
 
 constraints DomainConstraint.new(domain) do
   scope module: 'ta', as: 'ta' do
