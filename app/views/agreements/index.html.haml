@@ -1,4 +1,4 @@
-= link_to image_tag("agreements/calendario.png"), "#peace-events", id: "event-handler", class: "hidden-xs"
+=# link_to image_tag("agreements/calendario.png"), "#peace-events", id: "event-handler", class: "hidden-xs"
 #wrapper-header
   .container
     .visible-xs-block.visible-sm-block
@@ -115,6 +115,11 @@
         = "¡Comparte para que otras personas, reafirmen su compromiso por la <span>PAZ</span> !".html_safe
       .col-xs-12
         .sharer
+  .container
+    .col-md-8.col-md-offset-2
+      %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :height => "415", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%"}
+  %br
+  %br
 
 -#
   %section#peace-events
