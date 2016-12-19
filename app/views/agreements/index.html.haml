@@ -1,14 +1,37 @@
 = link_to image_tag("agreements/calendario.png"), "#peace-events", id: "event-handler", class: "hidden-xs"
-#wrapper-header  
+#wrapper-header
   .container
     .visible-xs-block.visible-sm-block
-      .row
-        .col-sm-12.col-xs-12
+      .row.row-no-padding
+        .col-xs-12.col-sm-6
           = link_to image_tag("agreements/logo-paz.png", class: "img-responsive logo-image"), nil
-        .col-sm-12.col-xs-12
+
+        .col-xs-12.col-sm-6
+          %p.title-description
+            El 16 de enero de 2017 se celebrará en El Salvador el XXV aniversario de la firma de los Acuerdos de Paz,
+            fecha en que se conmemora una nueva etapa que puso fin al conflicto armando y que generó importantes cambios
+            políticos e institucionales que marcaron el camino para el fortalecimiento de la democracia y el respeto de
+            los derechos humanos.
+
+    =# Vertical aligned
+    .row.vertical-align.hidden-xs.hidden-sm
+      .col-md-3.col-md-offset-1
+        = link_to image_tag("agreements/logo-paz.png", class: "img-responsive logo-image"), nil
+      .col-md-7
+        %p.title-description
+          El 16 de enero de 2017 se celebrará en El Salvador el XXV aniversario de la firma de los Acuerdos de Paz,
+          fecha en que se conmemora una nueva etapa que puso fin al conflicto armando y que generó importantes cambios
+          políticos e institucionales que marcaron el camino para el fortalecimiento de la democracia y el respeto de
+          los derechos humanos.
+    .row
+      .col-md-12
+        .issuuembed{"data-configid" => "7426582/42027427", :style => "width:100%; height:440px;"}
+        %script{:async => "true", :src => "//e.issuu.com/embed.js", :type => "text/javascript"}
+
+        -#
           .t
             .tc.rel
-              #book2.book
+              #book.book
                 .hard
                   = image_tag("agreements/book.png")
                 .page
@@ -43,52 +66,6 @@
                   = image_tag("agreements/15.jpeg")
                 .page
                   = image_tag("agreements/16.jpeg")
-        .col-sm-12.col-xs-12
-          TEST
-    =# Vertical aligned
-    .row.vertical-align.hidden-xs.hidden-sm
-      .col-md-2
-        = link_to image_tag("agreements/logo-paz.png", class: "img-responsive logo-image"), nil
-      .col-md-8
-        .t
-          .tc.rel
-            #book.book
-              .hard
-                = image_tag("agreements/book.png")
-              .page
-                = image_tag("agreements/1.jpeg")
-              .page
-                = image_tag("agreements/2.jpeg")
-              .page
-                = image_tag("agreements/3.jpeg")
-              .page
-                = image_tag("agreements/4.jpeg")
-              .page
-                = image_tag("agreements/5.jpeg")
-              .page
-                = image_tag("agreements/6.jpeg")
-              .page
-                = image_tag("agreements/7.jpeg")
-              .page
-                = image_tag("agreements/8.jpeg")
-              .page
-                = image_tag("agreements/9.jpeg")
-              .page
-                = image_tag("agreements/10.jpeg")
-              .page
-                = image_tag("agreements/11.jpeg")
-              .page
-                = image_tag("agreements/12.jpeg")
-              .page
-                = image_tag("agreements/13.jpeg")
-              .page
-                = image_tag("agreements/14.jpeg")
-              .page
-                = image_tag("agreements/15.jpeg")
-              .page
-                = image_tag("agreements/16.jpeg")
-      .col-md-2
-        TEST
     %br
     .row
       .col-md-12.text-center
@@ -103,25 +80,31 @@
             %span.label.label-default
               = num
         %h2.counter-title
-          Personas quieren paz
+          Personas que quieren paz
   #form
     .container
       .row
-        .col-xs-12.col-sm-5.col-md-offset-1
+        .col-xs-12.col-sm-6.col-md-5.col-md-offset-1
           .peace-space
             = image_tag("agreements/reafirma.png", class: "img-responsive")
-            %p
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        .col-xs-12.col-sm-4.col-md-offset-1
+            %p.form-description
+              Después de 25 años tenemos la oportunidad de reafirmar nuestro compromiso por la Paz y el diálogo democrático.
+              Hoy más que nunca es necesario que todas las fuerzas políticas y sociales busquen un nuevo Acuerdo de Nación
+              que permita edificar una sociedad progresista, justa, solidaria y respetuosa del Estado de derecho.
+
+        .col-xs-12.col-sm-6.col-md-5.col-md-offset-1
           .peace-space
-            %h3 Completa el formulario para firmar
-            = bootstrap_nested_form_for @user_signature, url: agreements_dashboard_index_path(@user_signature), method: :post, html: {id: "peace-form", remote: true} do |f|    
+            %h3.form-title
+              Completa el formulario para firmar por la paz
+            = bootstrap_nested_form_for @user_signature, url: agreements_dashboard_index_path(@user_signature), method: :post, html: {id: "peace-form", remote: true} do |f|
               = f.text_field :name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.name')
-              = f.select :place, ::Agreements::UserPeaceSignature::DEPARTMENTS.invert, {include_blank: 'Lugar', hide_label: true}, {class: 'form-control'}
+              = f.select :country, Country.all.map{|country| [country.name, country.id]}, {include_blank: '-- País --', hide_label: true}, {class: 'form-control'}
+              =# f.collection_select(:country, Country.all, :id, :name, {}, {:data => {  :remote => true, :url => url_for(:controller => "dashboard", :action => "display_states") }, { :type=>"json" } })
+              = f.select :state, {}, {include_blank: '-- Estado (Departamento) --', hide_label: true}, {class: 'form-control hidden-state'}
               .form-group
                 = f.email_field :email, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.email')
               = f.text_field :phone, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.phone') + " (opcional)"
-              =# recaptcha_tags
+              = recaptcha_tags
               .text-center
                 = f.submit "Firmar", class: 'btn btn-sign'
   #you-signed
@@ -133,88 +116,89 @@
       .col-xs-12
         .sharer
 
-
-%section#peace-events
-  .container
-    .event-list
-      %h2.events Eventos
-      .row.row-no-padding
-        .col-md-6
-          .event
-            .row
-              .col-xs-4.col-sm-4.col-md-4.event-date
-                06
-                %br
-                %span
-                  Ene
-              .col-xs-8.col-sm-8.col-md-8
-                %h3
-                  Firmas en Chalatenango
-                %p
-                  Lugar: Avenida Miguel Cortéz N156
-                  Alcaldia de Chalatenango
-                  Hora: 2:00pm a 3:00pm
-        .col-md-6
-          .event
-            .row
-              .col-xs-4.col-sm-4.col-md-4.event-date
-                06
-                %br
-                %span
-                  Ene
-              .col-xs-8.col-sm-8.col-md-8
-                %h3
-                  Firmas en Chalatenango
-                %p
-                  Lugar: Avenida Miguel Cortéz N156
-                  Alcaldia de Chalatenango
-                  Hora: 2:00pm a 3:00pm
-        .col-md-6
-          .event
-            .row
-              .col-xs-4.col-sm-4.col-md-4.event-date
-                06
-                %br
-                %span
-                  Ene
-              .col-xs-8.col-sm-8.col-md-8
-                %h3
-                  Firmas en Chalatenango
-                %p
-                  Lugar: Avenida Miguel Cortéz N156
-                  Alcaldia de Chalatenango
-                  Hora: 2:00pm a 3:00pm
-        .col-md-6
-          .event
-            .row
-              .col-xs-4.col-sm-4.col-md-4.event-date
-                06
-                %br
-                %span
-                  Ene
-              .col-xs-8.col-sm-8.col-md-8
-                %h3
-                  Firmas en Chalatenango
-                %p
-                  Lugar: Avenida Miguel Cortéz N156
-                  Alcaldia de Chalatenango
-                  Hora: 2:00pm a 3:00pm
+-#
+  %section#peace-events
+    .container
+      .event-list
+        %h2.events Eventos
+        .row.row-no-padding
+          .col-md-6
+            .event
+              .row
+                .col-xs-4.col-sm-4.col-md-4.event-date
+                  06
+                  %br
+                  %span
+                    Ene
+                .col-xs-8.col-sm-8.col-md-8
+                  %h3
+                    Firmas en Chalatenango
+                  %p
+                    Lugar: Avenida Miguel Cortéz N156
+                    Alcaldia de Chalatenango
+                    Hora: 2:00pm a 3:00pm
+          .col-md-6
+            .event
+              .row
+                .col-xs-4.col-sm-4.col-md-4.event-date
+                  06
+                  %br
+                  %span
+                    Ene
+                .col-xs-8.col-sm-8.col-md-8
+                  %h3
+                    Firmas en Chalatenango
+                  %p
+                    Lugar: Avenida Miguel Cortéz N156
+                    Alcaldia de Chalatenango
+                    Hora: 2:00pm a 3:00pm
+          .col-md-6
+            .event
+              .row
+                .col-xs-4.col-sm-4.col-md-4.event-date
+                  06
+                  %br
+                  %span
+                    Ene
+                .col-xs-8.col-sm-8.col-md-8
+                  %h3
+                    Firmas en Chalatenango
+                  %p
+                    Lugar: Avenida Miguel Cortéz N156
+                    Alcaldia de Chalatenango
+                    Hora: 2:00pm a 3:00pm
+          .col-md-6
+            .event
+              .row
+                .col-xs-4.col-sm-4.col-md-4.event-date
+                  06
+                  %br
+                  %span
+                    Ene
+                .col-xs-8.col-sm-8.col-md-8
+                  %h3
+                    Firmas en Chalatenango
+                  %p
+                    Lugar: Avenida Miguel Cortéz N156
+                    Alcaldia de Chalatenango
+                    Hora: 2:00pm a 3:00pm
 
 %section#peace-photos
   .container
     .row.row-no-padding
-      .col-md-6.col-sm-6.hidden-xs.peace-hashtag
-      
-        .col-md-5
-          = image_tag("agreements/soypaztweet.png", class: "peace")
-        .col-md-7
-          = image_tag("agreements/photo1.jpeg", class: "img-responsive")
-          = image_tag("agreements/photo2.jpeg", class: "img-responsive")
-        = image_tag("agreements/photo5.jpeg", class: "img-responsive")
-        = image_tag("agreements/photo6.jpeg", class: "img-responsive")
-        =# image_tag("agreements/photo3.jpeg", class: "img-responsive")
-        =# image_tag("agreements/photo4.jpeg", class: "img-responsive")
-      .col-md-6.col-sm-6.col-xs-12
+      -#
+        .col-md-6.col-sm-6.hidden-xs.peace-hashtag
+
+          .col-md-5
+            = image_tag("agreements/soypaztweet.png", class: "peace")
+          .col-md-7
+            = image_tag("agreements/photo1.jpeg", class: "img-responsive")
+            = image_tag("agreements/photo2.jpeg", class: "img-responsive")
+          = image_tag("agreements/photo5.jpeg", class: "img-responsive")
+          = image_tag("agreements/photo6.jpeg", class: "img-responsive")
+          =# image_tag("agreements/photo3.jpeg", class: "img-responsive")
+          =# image_tag("agreements/photo4.jpeg", class: "img-responsive")
+      .col-md-8.col-sm-12.col-xs-12.col-md-offset-2
         %a.twitter-timeline{"data-widget-id" => "520232741699203076", :href => "https://twitter.com/hashtag/SoyPaz", :"data-chrome" => "nofooter noborders"}
         :javascript
           !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

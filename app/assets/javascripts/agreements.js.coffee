@@ -20,6 +20,35 @@ $ ->
 
   @mobileWeb = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i.test(navigator.userAgent)
 
+  $(document).on 'change', '#agreements_user_peace_signature_country', (e) ->
+    url = 'dashboard/' + $(this).val() + '/get_states'
+    selectbox2 = $('#agreements_user_peace_signature_state')
+    selectbox2.empty()
+    $('#agreements_user_peace_signature_state').append "<option value=0>-- Estado --</option>"
+    $.get url, ((data) ->
+
+      if data.length > 0
+
+        selectbox2.show()
+
+        $.each data, (key, value) ->
+
+          opt = $('<option/>')
+          # value is an array: [:id, :name]
+          opt.attr 'value', value[0]
+          # set text
+          opt.text value[1]
+          # append to select
+          opt.appendTo selectbox2
+        return
+      else
+        selectbox2.hide()
+      return
+
+    ), 'json'
+    return
+
+
   $('a#event-handler').on 'click', (event) ->
     $anchor = $(this)
     target = $($anchor.attr('href'))
@@ -35,21 +64,21 @@ $ ->
 
   $("#peace-form").validate
     rules:
-      'agreements_user_peace_signature[name]': 
+      'agreements_user_peace_signature[name]':
         required: true
-      'agreements_user_peace_signature[place]':
+      'agreements_user_peace_signature[country]':
         required: true
-      'agreements_user_peace_signature[email]': 
+      'agreements_user_peace_signature[email]':
         required: true
         email: true
     messages:
-      'agreements_user_peace_signature[email]': 
+      'agreements_user_peace_signature[email]':
         email: "Ingrese un correo electrónico válido"
 
   do ->
   'use strict'
-  
-  module = 
+
+  module =
     ratio: 1.38
     init: (id) ->
       me = this
@@ -63,7 +92,7 @@ $ ->
           $(me.el).turn 'size', size.width, size.height
           return
       return
-    
+
     resize: ->
       @el.style.width = ''
       @el.style.height = ''
@@ -94,4 +123,3 @@ $ ->
   module.init 'book'
   module.init 'book2'
   return
-

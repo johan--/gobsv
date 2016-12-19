@@ -1,10 +1,12 @@
 domain = 'localhost.com'          if Rails.env.development?
 
-constraints subdomain: 'paz' do
+constraints DomainConstraint.new(domain) do
   scope module: 'agreements', as: 'agreements' do
-    defaults subdomain: 'paz' do
-      resources :dashboard, only: [:index, :create]
-      root to: 'dashboard#index'
+    resources :dashboard, only: [:index, :create] do
+      member do
+        get 'get_states'
+      end
     end
+    root to: 'dashboard#index'
   end
 end

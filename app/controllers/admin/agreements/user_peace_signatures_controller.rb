@@ -12,12 +12,20 @@ class Admin::Agreements::UserPeaceSignaturesController < Admin::AgreementsContro
 
   end
 
+  def conditions(conditions = {})
+    conditions
+  end
+
   def model
     ::Agreements::UserPeaceSignature
   end
 
+  def index_url
+    url_for action: :index
+  end
+
   def table_columns
-    %w(name place email created_at)
+    %w(name country state email phone created_at)
   end
 
 end
