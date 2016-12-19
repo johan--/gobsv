@@ -8,7 +8,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700');
 
-@white #fff;
+$white: #fff;
+$dark-blue: #343980;
+$sky-blue: #00b5ff;
+$gray: #333;
+$light-red: #cd4c30;
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -33,13 +37,13 @@ h5 {
 }
 
 #wrapper-header {
-  background: image-url('agreements/background.jpeg') no-repeat top center #00B5FF;
-  padding: 50px 0 30px;
+  background: image-url('agreements/background.jpeg') no-repeat top center $sky-blue;
   margin-top: 15px;
+  padding: 50px 0 30px;
 }
 
 #sign-for-peace {
-  background: #00B5FF;
+  background: $sky-blue;
 }
 
 a#event-handler {
@@ -58,7 +62,7 @@ a#event-handler {
 
 footer {
   background: #022B3F;
-  color: #fff;
+  color: $white;
   padding-top: 25px;
 
   p.contact-info {
@@ -77,7 +81,7 @@ footer {
         margin: 20px 0;
 
         a {
-          color: #fff;
+          color: $white;
           text-decoration: none;
         }
       }
@@ -86,7 +90,7 @@ footer {
 
   .footer-cc-logo,
   .footer-social-media,
-  p.contact-info {
+  .contact-info {
     padding: 5px 15px 5px 10px;
   }
 
@@ -156,16 +160,16 @@ footer {
 }
 
 .counter-title {
-  color: #fff;
+  color: $white;
   font-size: 30px;
   margin: 5px 0 30px;
 }
 
 .btn-download,
 .btn-download:hover {
-  background: image-url('agreements/button-download.png') repeat-x #cd4c30;
-  box-shadow: -3px 7px 16px -5px #333;
-  color: #fff;
+  background: image-url('agreements/button-download.png') repeat-x $light-red;
+  box-shadow: -3px 7px 16px -5px $gray;
+  color: $white;
   font-size: 20px;
   margin-top: 30px;
   padding: 15px 30px;
@@ -175,11 +179,11 @@ footer {
   padding: 48px 0 20px;
 
   .label-default {
-    background: #fff;
+    background: $white;
   }
 
   .label {
-    color: #4C4C4C;
+    color: #4c4c4c;
     border-radius: 4px;
     display: inline-block;
     font-size: 60px;
@@ -201,12 +205,12 @@ footer {
 .peace-space {
   margin: 20px 0 30px;
   h3 {
-    color: #343980;
+    color: $dark-blue;
     font-size: 20px;
     margin-bottom: 20px;
   }
   p {
-    color: #fff;
+    color: $white;
     font-size: 18px;
     line-height: 1.4;
     margin: 20px 0;
@@ -215,10 +219,10 @@ footer {
 
 .btn-sign,
 .btn-sign:hover {
-  background: image-url("agreements/button-sign.png") repeat-x #CD4C30;
+  background: image-url("agreements/button-sign.png") repeat-x $light-red;
   border: 1px solid #ddd;
-  box-shadow: -3px 7px 16px -5px #333;
-  color: #fff;
+  box-shadow: -3px 7px 16px -5px $gray;
+  color: $white;
   font-size: 20px;
   margin-top: 30px;
   padding: 15px 30px;
@@ -239,7 +243,7 @@ footer {
   }
 
   h2 {
-    color: #fff;
+    color: $white;
     font-size: 40px;
     margin: 20px 0 30px;
   }
@@ -251,7 +255,7 @@ footer {
     margin: 10px 0 50px;
 
     span {
-      color: #343980;
+      color: $dark-blue;
       font-size: 26px;
     }
   }
@@ -269,7 +273,7 @@ footer {
 }
 
 h2.events {
-  color: #343980;
+  color: $dark-blue;
   font-size: 36px;
   margin: 30px 0 20px;
   text-align: center;
@@ -285,7 +289,7 @@ h2.events {
 }
 
 .event {
-  background: #fff;
+  background: $white;
   margin: 15px 10px;
   padding: 20px;
 
@@ -299,13 +303,13 @@ h2.events {
     text-align: center;
 
     span {
-      color: #fff;
+      color: $white;
       font-size: 26px;
     }
   }
 
   h3 {
-    color: #343980;
+    color: $dark-blue;
     margin: 0 0 10px;
   }
 }
@@ -357,4 +361,25 @@ h2.events {
   .title-description {
     padding: 10px 20px;
   }
+
+
+  #counter {
+    padding: 48px 0 20px;
+
+    .label-default {
+      background: $white;
+    }
+
+    .label {
+      color: #4c4c4c;
+      border-radius: 4px;
+      display: inline-block;
+      font-size: 40px;
+      font-weight: normal;
+      margin: 0 3px;
+      padding: 4px 0;
+      width: 40px;
+    }
+  }
+
 }
