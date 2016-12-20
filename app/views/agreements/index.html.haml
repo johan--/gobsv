@@ -7,7 +7,7 @@
           = link_to image_tag("agreements/logo-paz.png", class: "img-responsive logo-image"), nil
 
         .col-xs-12.col-sm-6
-          %p.title-description
+          %p.title-descriptions
             El 16 de enero de 2017 se celebrará en El Salvador el XXV aniversario de la firma de los Acuerdos de Paz,
             fecha en que se conmemora una nueva etapa que puso fin al conflicto armando y que generó importantes cambios
             políticos e institucionales que marcaron el camino para el fortalecimiento de la democracia y el respeto de
@@ -102,7 +102,7 @@
               =# f.collection_select(:country, Country.all, :id, :name, {}, {:data => {  :remote => true, :url => url_for(:controller => "dashboard", :action => "display_states") }, { :type=>"json" } })
               = f.select :state, {}, {include_blank: '-- Estado (Departamento) --', hide_label: true}, {class: 'form-control hidden-state'}
               .form-group
-                = f.email_field :email, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.email')
+                = f.email_field :email, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.email') + " (opcional)"
               = f.text_field :phone, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.phone') + " (opcional)"
               = recaptcha_tags
               .text-center

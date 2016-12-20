@@ -69,7 +69,6 @@ $ ->
       'agreements_user_peace_signature[country]':
         required: true
       'agreements_user_peace_signature[email]':
-        required: true
         email: true
     messages:
       'agreements_user_peace_signature[email]':

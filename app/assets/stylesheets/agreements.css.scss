@@ -36,6 +36,13 @@ h5 {
   margin-bottom: 20px;
 }
 
+.title-descriptions {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+
 #wrapper-header {
   background: image-url('agreements/background.jpeg') no-repeat top center $white;
   margin-top: 15px;
@@ -346,8 +353,22 @@ h2.events {
     padding: 10px 20px;
   }
 
-  .title-description {
+  .title-descriptions {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
     padding: 10px 20px;
+  }
+
+  .peace-space {
+    h3 {
+      font-size: 18px;
+      margin: 20px 0;
+    }
+
+    p {
+      font-size: 16px;
+    }
   }
 
 }
@@ -359,11 +380,8 @@ h2.events {
   }
 
   .title-description {
-    padding: 10px 20px;
-  }
-
-  .title-description{
     font-size: 16px;
+    padding: 10px 20px;
   }
 
   .peace-space {
