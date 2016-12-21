@@ -3,6 +3,7 @@ class Agreements::DashboardController < AgreementsController
   def index
     @signed = ::Agreements::UserPeaceSignature.count rescue 0
     @user_signature = ::Agreements::UserPeaceSignature.new
+    @countries = Country.all.reorder(:name)
   end
 
   def create
