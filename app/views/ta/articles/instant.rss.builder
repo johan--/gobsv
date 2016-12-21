@@ -21,8 +21,9 @@ xml.rss version: '2.0', xmlns: 'http://purl.org/rss/2.0/' do
         xml.description article.summary
         xml.tag! 'content:encoded' do
           xml.cdata! sanitize(
-            absolutes_url!(article.content),
-            attributes: %w(href target src alt)
+            absolutes_url!(article),
+            tags: %w(a b img p strong em i u figure quote),
+            attributes: %w(href target src)
           )
         end
       end

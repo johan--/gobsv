@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117025049) do
+ActiveRecord::Schema.define(version: 20161216175516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 20161117025049) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   add_index "admins", ["role_id"], name: "index_admins_on_role_id", using: :btree
+
+  create_table "agreements_user_peace_signatures", force: :cascade do |t|
+    t.string   "name"
+    t.string   "country"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "state"
+  end
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -178,6 +188,12 @@ ActiveRecord::Schema.define(version: 20161117025049) do
   add_index "complaints_expedients", ["institution_id"], name: "index_complaints_expedients_on_institution_id", using: :btree
   add_index "complaints_expedients", ["kind"], name: "index_complaints_expedients_on_kind", using: :btree
   add_index "complaints_expedients", ["status"], name: "index_complaints_expedients_on_status", using: :btree
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "employments_areas", force: :cascade do |t|
     t.integer  "factor_score_id"
@@ -955,6 +971,13 @@ ActiveRecord::Schema.define(version: 20161117025049) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ta_articles", force: :cascade do |t|

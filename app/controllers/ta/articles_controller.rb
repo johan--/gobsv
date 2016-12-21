@@ -104,13 +104,19 @@ module Ta
 
     helper_method :absolutes_url!
     #
-    def absolutes_url!(html)
+    def absolutes_url!(article)
+      html = add_main_picture(article)
       doc = Nokogiri::HTML(html)
       replace_relatives_hrefs!(doc)
       replace_relatives_srcs!(doc)
       unwrap_images!(doc)
+      wrap_images!(doc)
       clear_empty_paragraphs!(doc)
       doc.to_html
+    end
+
+    def add_main_picture(article)
+      "<figure><img src='#{article.image.url}'></figure>#{article.content}"
     end
 
     def replace_relatives_srcs!(doc)
@@ -138,6 +144,12 @@ module Ta
     def unwrap_images!(doc)
       doc.css('img').each do |img|
         img.parent.replace(img) while img.parent.name == 'p'
+      end
+    end
+
+    def wrap_images!(doc)
+      doc.css('img').each do |img|
+        img.swap("<figure>#{img}</figure>") unless img.parent.name == 'figure'
       end
     end
 
