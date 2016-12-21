@@ -354,7 +354,7 @@ h2.events {
   }
 
   .title-descriptions {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;
     padding: 10px 20px;
@@ -362,7 +362,7 @@ h2.events {
 
   .peace-space {
     h3 {
-      font-size: 18px;
+      font-size: 16px;
       margin: 20px 0;
     }
 
@@ -374,6 +374,10 @@ h2.events {
 }
 
 @media (max-width: 480px) {
+
+  .counter-title {
+    font-size: 24px;
+  }
 
   .event-list {
     padding: 10px;

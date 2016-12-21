@@ -6,12 +6,19 @@
         .col-xs-12.col-sm-6
           = link_to image_tag("agreements/logo-paz.png", class: "img-responsive logo-image"), nil
 
-        .col-xs-12.col-sm-6
+        .col-xs-12.col-sm-6.hidden-xs
           %p.title-descriptions
             El 16 de enero de 2017 se celebrará en El Salvador el XXV aniversario de la firma de los Acuerdos de Paz,
             fecha en que se conmemora una nueva etapa que puso fin al conflicto armando y que generó importantes cambios
             políticos e institucionales que marcaron el camino para el fortalecimiento de la democracia y el respeto de
             los derechos humanos.
+        .col-xs-12.col-sm-6.visible-xs-block
+          %p.title-descriptions
+            Después de 25 años tenemos la oportunidad de reafirmar nuestro compromiso por la Paz y el diálogo democrático.
+            Hoy más que nunca es necesario que todas las fuerzas políticas y sociales busquen un nuevo Acuerdo de Nación
+            que permita edificar una sociedad progresista, justa, solidaria y respetuosa del Estado de derecho.
+
+
 
     =# Vertical aligned
     .row.vertical-align.hidden-xs.hidden-sm
@@ -23,51 +30,11 @@
           fecha en que se conmemora una nueva etapa que puso fin al conflicto armando y que generó importantes cambios
           políticos e institucionales que marcaron el camino para el fortalecimiento de la democracia y el respeto de
           los derechos humanos.
-    .row
+    .row.hidden-xs
       .col-md-12
         .issuuembed{"data-configid" => "7426582/42027427", :style => "width:100%; height:440px;"}
         %script{:async => "true", :src => "//e.issuu.com/embed.js", :type => "text/javascript"}
-
-        -#
-          .t
-            .tc.rel
-              #book.book
-                .hard
-                  = image_tag("agreements/book.png")
-                .page
-                  = image_tag("agreements/1.jpeg")
-                .page
-                  = image_tag("agreements/2.jpeg")
-                .page
-                  = image_tag("agreements/3.jpeg")
-                .page
-                  = image_tag("agreements/4.jpeg")
-                .page
-                  = image_tag("agreements/5.jpeg")
-                .page
-                  = image_tag("agreements/6.jpeg")
-                .page
-                  = image_tag("agreements/7.jpeg")
-                .page
-                  = image_tag("agreements/8.jpeg")
-                .page
-                  = image_tag("agreements/9.jpeg")
-                .page
-                  = image_tag("agreements/10.jpeg")
-                .page
-                  = image_tag("agreements/11.jpeg")
-                .page
-                  = image_tag("agreements/12.jpeg")
-                .page
-                  = image_tag("agreements/13.jpeg")
-                .page
-                  = image_tag("agreements/14.jpeg")
-                .page
-                  = image_tag("agreements/15.jpeg")
-                .page
-                  = image_tag("agreements/16.jpeg")
-    %br
-    .row
+      %br
       .col-md-12.text-center
         = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn btn-download", target: "_self"
 %section#sign-for-peace
@@ -80,25 +47,25 @@
             %span.label.label-default
               = num
         %h2.counter-title
-          Personas que quieren paz
+          Personas han reafirmado su compromiso por la paz
   #form
     .container
       .row
         .col-xs-12.col-sm-6.col-md-5.col-md-offset-1
           .peace-space
             = image_tag("agreements/reafirma.png", class: "img-responsive")
-            %p.form-description
+            %p.form-description.hidden-xs
               Después de 25 años tenemos la oportunidad de reafirmar nuestro compromiso por la Paz y el diálogo democrático.
               Hoy más que nunca es necesario que todas las fuerzas políticas y sociales busquen un nuevo Acuerdo de Nación
               que permita edificar una sociedad progresista, justa, solidaria y respetuosa del Estado de derecho.
 
         .col-xs-12.col-sm-6.col-md-5.col-md-offset-1
           .peace-space
-            %h3.form-title
+            %h3.form-title.hidden-xs
               Completa el formulario para firmar por la paz
             = bootstrap_nested_form_for @user_signature, url: agreements_dashboard_index_path(@user_signature), method: :post, html: {id: "peace-form", remote: true} do |f|
               = f.text_field :name, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.name')
-              = f.select :country, Country.all.map{|country| [country.name, country.id]}, {include_blank: '-- País --', hide_label: true}, {class: 'form-control'}
+              = f.select :country, @countries.map{|country| [country.name, country.id]}, {include_blank: '-- País --', hide_label: true}, {class: 'form-control'}
               =# f.collection_select(:country, Country.all, :id, :name, {}, {:data => {  :remote => true, :url => url_for(:controller => "dashboard", :action => "display_states") }, { :type=>"json" } })
               = f.select :state, {}, {include_blank: '-- Estado (Departamento) --', hide_label: true}, {class: 'form-control hidden-state'}
               .form-group
@@ -117,8 +84,20 @@
         .sharer
   .container
     .col-md-8.col-md-offset-2
-      %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :height => "415", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%"}
+      .hidden-xs
+        %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%", :height => "400"}
+      .visible-xs-block
+        %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%", :height => "250"}
   %br
+  %br
+
+=# Cambiar posicion solo para movil
+.row.visible-xs-block
+  .col-md-12
+    .issuuembed{"data-configid" => "7426582/42027427", :style => "width:100%; height:440px;"}
+    %script{:async => "true", :src => "//e.issuu.com/embed.js", :type => "text/javascript"}
+  .col-md-12.text-center
+    = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn btn-download", target: "_self"
   %br
 
 -#
@@ -191,18 +170,7 @@
 %section#peace-photos
   .container
     .row.row-no-padding
-      -#
-        .col-md-6.col-sm-6.hidden-xs.peace-hashtag
 
-          .col-md-5
-            = image_tag("agreements/soypaztweet.png", class: "peace")
-          .col-md-7
-            = image_tag("agreements/photo1.jpeg", class: "img-responsive")
-            = image_tag("agreements/photo2.jpeg", class: "img-responsive")
-          = image_tag("agreements/photo5.jpeg", class: "img-responsive")
-          = image_tag("agreements/photo6.jpeg", class: "img-responsive")
-          =# image_tag("agreements/photo3.jpeg", class: "img-responsive")
-          =# image_tag("agreements/photo4.jpeg", class: "img-responsive")
       .col-md-8.col-sm-12.col-xs-12.col-md-offset-2
         %a.twitter-timeline{"data-widget-id" => "520232741699203076", :href => "https://twitter.com/hashtag/SoyPaz", :"data-chrome" => "nofooter noborders"}
         :javascript
