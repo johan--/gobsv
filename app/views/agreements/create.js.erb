@@ -1,11 +1,11 @@
 <% if @success %>
   $("#form").hide();
-  $("#counter").html('<%=j render("agreements/counter", locals: {counter: @counter}) %>');
+  $(".counter").html('<%=j render("agreements/counter", locals: {counter: @counter}) %>');
   $("#you-signed").show();
 
- 
+
 <% else %>
-  
+
   form = $("form#peace-form");
   errors = $.parseJSON("<%= j @errors %>");
   new ErrorDisplayer(form, errors);

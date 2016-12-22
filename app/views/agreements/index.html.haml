@@ -38,16 +38,17 @@
       .col-md-12.text-center
         = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn btn-download", target: "_self"
 %section#sign-for-peace
-  .container
-    .row
-      .col-md-12.text-center
-        - @number = sprintf('%05d', @signed)
-        #counter
-          - @number.to_s.each_char do |num|
-            %span.label.label-default
-              = num
-        %h2.counter-title
-          Personas han reafirmado su compromiso por la paz
+  .hidden-xs
+    .container
+      .row
+        .col-md-12.text-center
+          - @number = sprintf('%05d', @signed)
+          .counter
+            - @number.to_s.each_char do |num|
+              %span.label.label-default
+                = num
+          %h2.counter-title
+            Personas han reafirmado su compromiso por la paz
   #form
     .container
       .row
@@ -74,6 +75,17 @@
               = recaptcha_tags
               .text-center
                 = f.submit "Firmar", class: 'btn btn-sign'
+  .visible-xs-block
+    .container
+      .row
+        .col-md-12.text-center
+          - @number = sprintf('%05d', @signed)
+          .counter
+            - @number.to_s.each_char do |num|
+              %span.label.label-default
+                = num
+          %h2.counter-title
+            Personas han reafirmado su compromiso por la paz
   #you-signed
     .container
       %h2
@@ -87,7 +99,7 @@
       .hidden-xs
         %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%", :height => "400"}
       .visible-xs-block
-        %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%", :height => "250"}
+        %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%", :height => "220"}
   %br
   %br
 
