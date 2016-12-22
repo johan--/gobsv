@@ -1,0 +1,16 @@
+.wrapper
+  %h1
+    = @article.title
+
+  %small
+    - unless @article.author.nil?
+      Por
+      = @article.author.name
+      |
+    = l @article.published_at.to_date, format: :long
+
+  %p.summary
+    = @article.summary
+
+  .content
+    = raw @article.content

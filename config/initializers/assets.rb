@@ -12,6 +12,7 @@ Rails.application.config.assets.precompile += %w( admin.css admin.js admin/login
 Rails.application.config.assets.precompile += %w( complaints.css complaints.js )
 Rails.application.config.assets.precompile += %w( www.css www.js )
 Rails.application.config.assets.precompile += %w( ta.css ta.js ta/*.js )
+Rails.application.config.assets.precompile += %w( ta_print.css )
 Rails.application.config.assets.precompile += %w( employments.css employments.js )
 Rails.application.config.assets.precompile += %w( forums.css forums.js )
 Rails.application.config.assets.precompile += %w( ver.css ver.js )

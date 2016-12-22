@@ -1,0 +1,20 @@
+!!! 5
+%html{ language: I18n.locale }
+  %head
+    %meta{ charset: 'utf-8' }
+    = display_meta_tags
+
+    %link{ href: image_path('ta/favicon.png'), sizes: '128x128', rel: 'shortcut icon' }
+    %link{ href: image_path('ta/favicon.png'), sizes: '128x128', rel: 'apple-touch-icon' }
+    %link{ href: image_path('ta/favicon.png'), sizes: '128x128', rel: 'apple-touch-icon-precomposed' }
+
+    = stylesheet_link_tag :ta_print
+    = stylesheet_link_tag :ta_print, media: 'print'
+
+  %body
+    = yield
+    :javascript
+      window.onload = function () {
+        window.print()
+        setTimeout(function(){ window.close() }, 100)
+      }

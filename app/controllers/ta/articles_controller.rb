@@ -26,6 +26,13 @@ module Ta
       add_breadcrumb 'Galerías', nil
     end
 
+    def print
+      @article = Ta::Article.find params[:id]
+      set_meta_tags title: "Transparencia Activa,
+        #{l(@article.published_at.to_date, format: :long)}"
+      render layout: 'ta_print'
+    end
+
     ##
     # GET ta/articles/:id
     def show

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+$gray: #474747;
+$black: #000;
+
+$normal: 400;
+$bold: 700;
+
+body {
+  margin: 1cm;
+}
+
+.wrapper {
+  font-family: 'Lato', sans-serif;
+  font-weight: $normal;
+  margin: 0 auto;
+}
+
+.summary {
+  color: $black;
+  font-weight: $bold;
+}
+
+.content {
+  color: $gray;
+}

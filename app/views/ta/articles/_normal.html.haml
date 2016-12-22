@@ -22,6 +22,9 @@
             = @article.summary
 
         .col-xs-12
+          = link_to print_ta_article_url(@article), target: '_blank', class: 'btn btn-primary btn-print' do
+            %i.fa.fa-print
+            Imprimir
           = render partial: 'layouts/ta/sharer'
 
         - if @article.image.present?

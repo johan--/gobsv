@@ -1,6 +1,6 @@
 domain = 'transparenciaactiva.gob.sv' if Rails.env.production?
 domain = 'ta.localhost.com'           if Rails.env.development?
-#domain = 'localhost.com' if Rails.env.development?
+# domain = 'localhost.com' if Rails.env.development?
 
 constraints DomainConstraint.new(domain) do
   scope module: 'ta', as: 'ta' do
@@ -10,6 +10,9 @@ constraints DomainConstraint.new(domain) do
       resources :comments, only: [:create]
       collection do
         get 'galleries'
+      end
+      member do
+        get 'print'
       end
     end
     get '/feed',    to: 'articles#feed',    defaults: { format: 'rss' }
