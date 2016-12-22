@@ -37,9 +37,9 @@ h5 {
 }
 
 .title-descriptions {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 10px 20px;
 }
 
@@ -182,7 +182,7 @@ footer {
   padding: 15px 30px;
 }
 
-#counter {
+.counter {
   padding: 48px 0 20px;
 
   .label-default {
@@ -354,9 +354,9 @@ h2.events {
   }
 
   .title-descriptions {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 10px 20px;
   }
 
@@ -399,7 +399,7 @@ h2.events {
     }
   }
 
-  #counter {
+  .counter {
     padding: 48px 0 20px;
 
     .label-default {
@@ -417,5 +417,4 @@ h2.events {
       width: 40px;
     }
   }
-
 }
