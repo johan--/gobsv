@@ -11,7 +11,7 @@ class Agreements::DashboardController < AgreementsController
     @user_signature.country = Country.find(params[:agreements_user_peace_signature][:country]).name rescue nil
     @user_signature.state = State.find(params[:agreements_user_peace_signature][:state]).name rescue nil
     @success = @user_signature.save
-    if verify_recaptcha(model: @user_signature) && @success
+    if @success # verify_recaptcha(model: @user_signature) &&
       @counter = sprintf('%05d', ::Agreements::UserPeaceSignature.count)
     else
       @error = "Ha ocurrido un error al guardar"

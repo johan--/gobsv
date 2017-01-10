@@ -11,6 +11,7 @@
 #= require 'jquery.slick'
 #= require 'complaints/error-displayer'
 #= require 'modernizr'
+#= require 'main'
 #= require 'turn.min'
 #= require 'hash'
 #= require 'scissor.min'

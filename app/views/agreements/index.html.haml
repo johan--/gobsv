@@ -1,5 +1,5 @@
-=# link_to image_tag("agreements/calendario.png"), "#peace-events", id: "event-handler", class: "hidden-xs"
-#wrapper-header
+= link_to image_tag("agreements/calendario.png"), "#peace-events", id: "event-handler", class: "hidden-xs"
+.wrapper-header
   .container
     .visible-xs-block.visible-sm-block
       .row.row-no-padding
@@ -14,10 +14,9 @@
             los derechos humanos.
         .col-xs-12.col-sm-6.visible-xs-block
           %p.title-descriptions
-            Después de 25 años tenemos la oportunidad de reafirmar nuestro compromiso por la Paz y el diálogo democrático.
             Hoy más que nunca es necesario que todas las fuerzas políticas y sociales busquen un nuevo Acuerdo de Nación
             que permita edificar una sociedad progresista, justa, solidaria y respetuosa del Estado de derecho.
-
+          = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn-download-white", target: "_self"
 
 
     =# Vertical aligned
@@ -30,6 +29,85 @@
           fecha en que se conmemora una nueva etapa que puso fin al conflicto armando y que generó importantes cambios
           políticos e institucionales que marcaron el camino para el fortalecimiento de la democracia y el respeto de
           los derechos humanos.
+        = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn-download-white", target: "_self"
+
+  .row
+    .col-md-12
+      .wrapper-timeline-titles
+        %h2
+          1981 - 1991
+        %h1
+          Proceso de paz
+.wrapper-timeline
+  .row
+    .col-md-12
+      #cd-timeline.cd-container
+        .cd-timeline-block
+          .cd-timeline-img
+          .cd-timeline-content
+            %h1
+              = "1981"
+            %p
+              = "Desde este momento el FMLN abrió la vía del diálogo."
+        .cd-timeline-block
+          .cd-timeline-img
+          .cd-timeline-content
+            %h1
+              = "1983"
+            %p
+              = "Aparece el Grupo Contadora, conformado por México, Panamá, Colombia y Venezuela, que impulsaron salidas negociadoras para Nicaragua y El Salvador."
+        .cd-timeline-block
+          .cd-timeline-img
+          .cd-timeline-content
+            %h1
+              = "1984"
+            %p
+              = "El gobierno demócrata cristiano inició la primera fase de negociación, pero no hubo resultados firmes."
+        .cd-timeline-block
+          .cd-timeline-img
+          .cd-timeline-content
+            %h1
+              = "1985"
+            %p
+              = "Brasil, Perú, Argentina y Uruguay forman el “Grupo de Apoyo” a Contadora."
+        .cd-timeline-block
+          .cd-timeline-img
+          .cd-timeline-content
+            %h1
+              = "1987"
+            %p
+              = "Costa Rica propone el acuerdo Esquipulas II, que contiene estrategias para eliminar obstáculos en países con conflictos. Este acuerdo es apoyado por todos los presidentes de la región centroamericana."
+        .cd-timeline-block
+          .cd-timeline-img
+          .cd-timeline-content
+            %h1
+              = "1989"
+            %p
+              = "ARENA y FMLN anuncian el inicio del proceso de diálogo para terminar la guerra."
+        .cd-timeline-block
+          .cd-timeline-img
+          .cd-timeline-content
+            %h1
+              = "1990"
+            %p
+              = "Se definen los objetivos y la agenda de acuerdos previos a la finalización del conflicto y de la firma de la paz."
+        .cd-timeline-block
+          .cd-timeline-img
+          .cd-timeline-content
+            %h1
+              = "1992"
+            %p
+              = "Firma del texto completo de los Acuerdos de Paz en el Castillo de Chapultepec (México)."
+
+%section.video-agreements
+  .container
+    .col-md-12
+      .fullscreen-bg
+        = video_tag("acuerdos.mp4", id: "video-background", autoplay: "", loop: "", muted: "")
+      = link_to "Quiero firmar por la paz", "#sign-for-peace", class: "btn-download-blue"
+      =# %video.fullscreen-bg__video{:autoplay => "", :loop => "", :muted => "") #, :poster => "img/videoframe.jpg"}
+
+  -#
     .row.hidden-xs
       .col-md-12
         .issuuembed{"data-configid" => "7426582/42027427", :style => "width:100%; height:440px;"}
@@ -72,7 +150,7 @@
               .form-group
                 = f.email_field :email, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.email') + " (opcional)"
               = f.text_field :phone, class: 'form-control', hide_label: true, placeholder: t('activerecord.attributes.agreements/user_peace_signature.phone') + " (opcional)"
-              = recaptcha_tags
+              =# recaptcha_tags
               .text-center
                 = f.submit "Firmar", class: 'btn btn-sign'
   .visible-xs-block
@@ -94,115 +172,239 @@
         = "¡Comparte para que otras personas, reafirmen su compromiso por la <span>PAZ</span> !".html_safe
       .col-xs-12
         .sharer
-  .container
-    .col-md-8.col-md-offset-2
-      .hidden-xs
-        %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%", :height => "400"}
-      .visible-xs-block
-        %iframe{:allowfullscreen => "true", :allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTransparenciaActiva%2Fvideos%2F1174036682633768%2F&show_text=0", :style => "border:none;overflow:hidden", :width => "100%", :height => "220"}
-  %br
-  %br
 
 =# Cambiar posicion solo para movil
-.row.visible-xs-block
-  .col-md-12
-    .issuuembed{"data-configid" => "7426582/42027427", :style => "width:100%; height:440px;"}
-    %script{:async => "true", :src => "//e.issuu.com/embed.js", :type => "text/javascript"}
-  .col-md-12.text-center
-    = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn btn-download", target: "_self"
-  %br
-
 -#
-  %section#peace-events
-    .container
-      .event-list
-        %h2.events Eventos
-        .row.row-no-padding
-          .col-md-6
-            .event
-              .row
-                .col-xs-4.col-sm-4.col-md-4.event-date
-                  06
-                  %br
-                  %span
-                    Ene
-                .col-xs-8.col-sm-8.col-md-8
-                  %h3
-                    Firmas en Chalatenango
-                  %p
-                    Lugar: Avenida Miguel Cortéz N156
-                    Alcaldia de Chalatenango
-                    Hora: 2:00pm a 3:00pm
-          .col-md-6
-            .event
-              .row
-                .col-xs-4.col-sm-4.col-md-4.event-date
-                  06
-                  %br
-                  %span
-                    Ene
-                .col-xs-8.col-sm-8.col-md-8
-                  %h3
-                    Firmas en Chalatenango
-                  %p
-                    Lugar: Avenida Miguel Cortéz N156
-                    Alcaldia de Chalatenango
-                    Hora: 2:00pm a 3:00pm
-          .col-md-6
-            .event
-              .row
-                .col-xs-4.col-sm-4.col-md-4.event-date
-                  06
-                  %br
-                  %span
-                    Ene
-                .col-xs-8.col-sm-8.col-md-8
-                  %h3
-                    Firmas en Chalatenango
-                  %p
-                    Lugar: Avenida Miguel Cortéz N156
-                    Alcaldia de Chalatenango
-                    Hora: 2:00pm a 3:00pm
-          .col-md-6
-            .event
-              .row
-                .col-xs-4.col-sm-4.col-md-4.event-date
-                  06
-                  %br
-                  %span
-                    Ene
-                .col-xs-8.col-sm-8.col-md-8
-                  %h3
-                    Firmas en Chalatenango
-                  %p
-                    Lugar: Avenida Miguel Cortéz N156
-                    Alcaldia de Chalatenango
-                    Hora: 2:00pm a 3:00pm
+  .row.visible-xs-block
+    .col-md-12
+      .issuuembed{"data-configid" => "7426582/42027427", :style => "width:100%; height:440px;"}
+      %script{:async => "true", :src => "//e.issuu.com/embed.js", :type => "text/javascript"}
+    .col-md-12.text-center
+      = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn btn-download", target: "_self"
+    %br
 
-%section#peace-photos
+%section#peace-events
   .container
-    .row.row-no-padding
+    .event-list
+      %h2.events Eventos
+      .row.row-no-padding
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                12
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Inauguración de la escultura y de la Plaza a la Bondad
+                %p
+                  Hora: 10:00 am
+                  %br
+                  Lugar: Aeropuerto Internacional, Plaza de Bienvenida
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                13
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Lanzamiento de sellos postales conmemorativos
+                %p
+                  Hora: 10:00 am
+                  %br
+                  Lugar: Salón de Honor de Cancillería
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                15
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Inauguración del Monumento a la Reconciliación
+                %p
+                  Hora: 4:00 pm
+                  %br
+                  Lugar: Bulevar Monseñor Romero
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                16
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Acto Conmemorativo Oficial
+                %p
+                  Hora: 8:00 am
+                  %br
+                  Lugar: CIFCO
+      .row
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                16
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Concierto Internacional Paz25
+                %p
+                  Hora: 7:00 pm
+                  %br
+                  Lugar: Teatro Presidente
 
-      .col-md-8.col-sm-12.col-xs-12.col-md-offset-2
-        %a.twitter-timeline{"data-widget-id" => "520232741699203076", :href => "https://twitter.com/hashtag/SoyPaz", :"data-chrome" => "nofooter noborders"}
-        :javascript
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                17
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Inauguración de Sala Museográfica temporal de Acuerdos de Paz
+                %p
+                  Hora: 10:00 am
+                  %br
+                  Lugar: MUNA
+                %br
+                %h3
+                  El Futuro de la Paz: Formación para las Artes
+                %p
+                  Hora: 5:00 pm
+                  %br
+                  Lugar: MUNA
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                18
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Sorteo conmemorativo “Acuerdos de Paz” de LNB
+                %p
+                  Hora: 12:30 pm
+                  %br
+                  Lugar: Auditorio Alfredo Martínez Moreno, Cancillería
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                19
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Foro “Cultura de Paz”. Reflexión sobre currículo educativo
+                %p
+                  Hora: 10:00 am
+                  %br
+                  Lugar: MUNA
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                22
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Carrera por la Paz
+                %p
+                  Hora: 6:30 am
+                  %br
+                  Lugar: Estadio Mágico González – Universidad de El Salvador
 
-    -#
-      .col-md-7.col-sm-6.col-sm-push-6
-        .row
-          .col-md-5
-            .peace-hashtag
-              = image_tag("agreements/soypaztweet.png")
-          .col-md-7
-            %a.twitter-timeline{"data-widget-id" => "520232741699203076", :href => "https://twitter.com/hashtag/SoyPaz", :"data-chrome" => "nofooter noborders"}
-            :javascript
-              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-
-        = image_tag("agreements/photo5.jpeg", class: "img-responsive")
-        = image_tag("agreements/photo6.jpeg", class: "img-responsive")
-      .col-md-5.col-sm-6.col-sm-pull-6
-        = image_tag("agreements/photo1.jpeg", class: "img-responsive")
-        = image_tag("agreements/photo2.jpeg", class: "img-responsive")
-        = image_tag("agreements/photo3.jpeg", class: "img-responsive")
-        = image_tag("agreements/photo4.jpeg", class: "img-responsive")
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                24
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Un ángel al centro (Intervención Urbana)
+                %p
+                  Hora: 10:00 am
+                  %br
+                  Lugar: Plaza Francisco Morazán, Centro Histórico de San Salvador
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                25
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Conversatorio con firmantes de los Acuerdos de Paz
+                %p
+                  Hora: 10:00 am
+                  %br
+                  Lugar: Biblioteca Nacional Francisco Gavidia
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                26
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Foro Internacional “El Salvador y el mundo: 25 años después de la firma de la Paz”
+                %p
+                  Hora: 9:00 am – 5:00 pm
+                  %br
+                  Lugar: CIFCO
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                27
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Continuación de Foro Internacional
+                %p
+                  Hora: 9:00 am – 5:00 pm
+                  %br
+                  Lugar: CIFCO
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                29
+                %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
+                %h3
+                  Festival Memoria y Palabra
+                %p
+                  3:00 pm
+                  %br
+                  Lugar: Plaza Cívica, Centro Histórico de San Salvador

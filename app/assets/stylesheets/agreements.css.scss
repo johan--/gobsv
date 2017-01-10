@@ -5,14 +5,19 @@
 @import 'font-awesome';
 @import 'jssocials';
 @import 'jssocials-theme-classic';
+@import 'timeline-alt';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 $white: #fff;
 $dark-blue: #343980;
 $sky-blue: #00b5ff;
 $gray: #333;
 $light-red: #cd4c30;
+$timeline: #29abe2;
+$main-title: #0071bc;
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -31,7 +36,8 @@ h5 {
 }
 
 .title-description {
-  font-size: 20px;
+  color: $white;
+  font-size: 18px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
@@ -41,12 +47,28 @@ h5 {
   line-height: 1.5;
   margin-bottom: 10px;
   padding: 10px 20px;
+  color: $white;
 }
 
-#wrapper-header {
-  background: image-url('agreements/background.jpeg') no-repeat top center $white;
-  margin-top: 15px;
+.wrapper-header {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: url('agreements/skybg.jpeg'), -webkit-linear-gradient(90deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
+  background: url('agreements/skybg.jpeg'), -moz-linear-gradient(0deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
+  background: url('agreements/skybg.jpeg'), linear-gradient(0deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover, auto auto;
+  background-size: cover, auto auto;
   padding: 50px 0 30px;
+
 }
 
 #sign-for-peace {
@@ -126,8 +148,54 @@ footer {
   position: relative;
 }
 
-// book
+.wrapper-timeline-titles {
+  margin: 30px 0 0;
+  text-align: center;
 
+  h1 {
+    color: $main-title;
+    font-family: 'Roboto';
+    font-size: 6em;
+    text-transform: uppercase;
+  }
+}
+
+.wrapper-timeline {
+  background: $white;
+}
+
+.fullscreen-bg {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%; // 16:9
+  position: relative;
+  z-index: 1;
+  .video-background {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    left: 50%;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+  }
+}
+
+video {
+  height: auto;
+  max-width: 1170px;
+  width: 100%;
+}
+
+.video-agreements {
+  background: image-url('agreements/fondovideo.png');
+}
+
+// book
 .book {
   height: 90%;
   margin: 0 auto;
@@ -172,14 +240,28 @@ footer {
   margin: 5px 0 30px;
 }
 
-.btn-download,
-.btn-download:hover {
-  background: image-url('agreements/button-download.png') repeat-x $light-red;
-  box-shadow: -3px 7px 16px -5px $gray;
+.btn-download-blue,
+.btn-download-white {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  width: 265px;
+}
+
+.btn-download-blue {
+  background: image-url('agreements/botonazul.png') no-repeat center center;
   color: $white;
-  font-size: 20px;
-  margin-top: 30px;
-  padding: 15px 30px;
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  z-index: 1000;
+}
+
+.btn-download-white {
+  background: image-url('agreements/botonblanco.png') no-repeat center center;
+  color: $timeline;
 }
 
 .counter {
@@ -303,7 +385,7 @@ h2.events {
   .event-date {
     background: image-url("agreements/event-date.png") no-repeat center center;
     color: #4D547F;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
     line-height: 1;
     padding: 25px 10px 15px;
@@ -311,12 +393,13 @@ h2.events {
 
     span {
       color: $white;
-      font-size: 26px;
+      font-size: 24px;
     }
   }
 
   h3 {
     color: $dark-blue;
+    font-size: 20px;
     margin: 0 0 10px;
   }
 }
@@ -374,6 +457,15 @@ h2.events {
 }
 
 @media (max-width: 480px) {
+  .wrapper-timeline-titles{
+    h1{
+      font-size: 4em;
+    }
+  }
+
+  .btn-download-white {
+    padding: 10px 0px;
+  }
 
   .counter-title {
     font-size: 24px;
