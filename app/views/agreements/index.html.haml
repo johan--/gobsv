@@ -105,16 +105,7 @@
       .fullscreen-bg
         = video_tag("acuerdos.mp4", id: "video-background", autoplay: "", loop: "", muted: "")
       = link_to "Quiero firmar por la paz", "#sign-for-peace", class: "btn-download-blue"
-      =# %video.fullscreen-bg__video{:autoplay => "", :loop => "", :muted => "") #, :poster => "img/videoframe.jpg"}
 
-  -#
-    .row.hidden-xs
-      .col-md-12
-        .issuuembed{"data-configid" => "7426582/42027427", :style => "width:100%; height:440px;"}
-        %script{:async => "true", :src => "//e.issuu.com/embed.js", :type => "text/javascript"}
-      %br
-      .col-md-12.text-center
-        = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn btn-download", target: "_self"
 %section#sign-for-peace
   .hidden-xs
     .container
@@ -172,16 +163,6 @@
         = "¡Comparte para que otras personas, reafirmen su compromiso por la <span>PAZ</span> !".html_safe
       .col-xs-12
         .sharer
-
-=# Cambiar posicion solo para movil
--#
-  .row.visible-xs-block
-    .col-md-12
-      .issuuembed{"data-configid" => "7426582/42027427", :style => "width:100%; height:440px;"}
-      %script{:async => "true", :src => "//e.issuu.com/embed.js", :type => "text/javascript"}
-    .col-md-12.text-center
-      = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn btn-download", target: "_self"
-    %br
 
 %section#peace-events
   .container
