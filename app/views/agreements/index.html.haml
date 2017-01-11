@@ -6,17 +6,13 @@
         .col-xs-12.col-sm-6
           = link_to image_tag("agreements/logo-paz.png", class: "img-responsive logo-image"), nil
 
-        .col-xs-12.col-sm-6.hidden-xs
+        .col-xs-12.col-sm-6
           %p.title-descriptions
             El 16 de enero de 2017 se celebrará en El Salvador el XXV aniversario de la firma de los Acuerdos de Paz,
             fecha en que se conmemora una nueva etapa que puso fin al conflicto armando y que generó importantes cambios
             políticos e institucionales que marcaron el camino para el fortalecimiento de la democracia y el respeto de
             los derechos humanos.
-        .col-xs-12.col-sm-6.visible-xs-block
-          %p.title-descriptions
-            Hoy más que nunca es necesario que todas las fuerzas políticas y sociales busquen un nuevo Acuerdo de Nación
-            que permita edificar una sociedad progresista, justa, solidaria y respetuosa del Estado de derecho.
-          = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn-download-white", target: "_self"
+          = link_to "Descargar los Acuerdos", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn-download-white", target: "_self"
 
 
     =# Vertical aligned
@@ -29,15 +25,16 @@
           fecha en que se conmemora una nueva etapa que puso fin al conflicto armando y que generó importantes cambios
           políticos e institucionales que marcaron el camino para el fortalecimiento de la democracia y el respeto de
           los derechos humanos.
-        = link_to "Descargar documento", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn-download-white", target: "_self"
+        = link_to "Descargar los Acuerdos", "http://api.gobiernoabierto.gob.sv/documents/125439/download", class: "btn-download-white", target: "_self"
 
   .row
     .col-md-12
       .wrapper-timeline-titles
         %h2
-          1981 - 1991
-        %h1
-          Proceso de paz
+          1981 - 1992
+        = image_tag("agreements/titulo-timeline.png", class: "img-responsive")
+        %p
+          Fuente: El Salvador. Historia mínima. Autores varios.
 .wrapper-timeline
   .row
     .col-md-12
@@ -99,9 +96,23 @@
             %p
               = "Firma del texto completo de los Acuerdos de Paz en el Castillo de Chapultepec (México)."
 
+.visible-xs-block
+  .video-title-xs.container
+    .row
+      .col-md-12
+        %h2
+          Firma de los acuerdos de paz
+        %p
+          Después de 25 años tenemos la oportunidad de reafirmar nuestro compromiso por la Paz y el diálogo democrático.
+
 %section.video-agreements
   .container
     .col-md-12
+      .video-title.hidden-xs
+        %h2
+          Firma de los acuerdos de paz
+        %p
+          Después de 25 años tenemos la oportunidad de reafirmar nuestro compromiso por la Paz y el diálogo democrático.
       .fullscreen-bg
         = video_tag("acuerdos.mp4", id: "video-background", autoplay: "", loop: "", muted: "")
       = link_to "Quiero firmar por la paz", "#sign-for-peace", class: "btn-download-blue"
@@ -125,7 +136,6 @@
           .peace-space
             = image_tag("agreements/reafirma.png", class: "img-responsive")
             %p.form-description.hidden-xs
-              Después de 25 años tenemos la oportunidad de reafirmar nuestro compromiso por la Paz y el diálogo democrático.
               Hoy más que nunca es necesario que todas las fuerzas políticas y sociales busquen un nuevo Acuerdo de Nación
               que permita edificar una sociedad progresista, justa, solidaria y respetuosa del Estado de derecho.
 
@@ -229,7 +239,7 @@
                   Hora: 8:00 am
                   %br
                   Lugar: CIFCO
-      .row
+      .row.row-no-padding
         .col-md-6
           .event
             .row
@@ -261,13 +271,22 @@
                   Hora: 10:00 am
                   %br
                   Lugar: MUNA
+        .col-md-6
+          .event
+            .row
+              .col-xs-4.col-sm-4.col-md-3.event-date
+                17
                 %br
+                %span
+                  ene
+              .col-xs-8.col-sm-8.col-md-9
                 %h3
                   El Futuro de la Paz: Formación para las Artes
                 %p
-                  Hora: 5:00 pm
-                  %br
-                  Lugar: MUNA
+                Hora: 5:00 pm
+                %br
+                Lugar: MUNA
+
         .col-md-6
           .event
             .row
@@ -313,7 +332,7 @@
                   Hora: 6:30 am
                   %br
                   Lugar: Estadio Mágico González – Universidad de El Salvador
-
+      .row.row-no-padding
         .col-md-6
           .event
             .row
@@ -328,7 +347,7 @@
                 %p
                   Hora: 10:00 am
                   %br
-                  Lugar: Plaza Francisco Morazán, Centro Histórico de San Salvador
+                  Lugar: Plaza Francisco Morazán, Centro Histórico
         .col-md-6
           .event
             .row
@@ -357,7 +376,6 @@
                   Foro Internacional “El Salvador y el mundo: 25 años después de la firma de la Paz”
                 %p
                   Hora: 9:00 am – 5:00 pm
-                  %br
                   Lugar: CIFCO
         .col-md-6
           .event
@@ -386,6 +404,14 @@
                 %h3
                   Festival Memoria y Palabra
                 %p
-                  3:00 pm
+                  Hora: 3:00 pm
                   %br
                   Lugar: Plaza Cívica, Centro Histórico de San Salvador
+
+%section.peace-photos
+  .container
+    .row
+      .col-md-8.col-sm-12.col-xs-12.col-md-offset-2
+        %a.twitter-timeline{"data-widget-id" => "520232741699203076", :href => "https://twitter.com/hashtag/SoyPaz", :"data-chrome" => "nofooter noborders"}
+        :javascript
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

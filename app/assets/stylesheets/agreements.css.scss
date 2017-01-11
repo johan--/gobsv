@@ -44,11 +44,12 @@ h5 {
 }
 
 .title-descriptions {
+  color: $white;
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 10px;
   padding: 10px 20px;
-  color: $white;
+  text-shadow: 1px 1px $gray;
 }
 
 .wrapper-header {
@@ -57,9 +58,9 @@ h5 {
   box-sizing: content-box;
   -o-text-overflow: clip;
   text-overflow: clip;
-  background: url('agreements/skybg.jpeg'), -webkit-linear-gradient(90deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
-  background: url('agreements/skybg.jpeg'), -moz-linear-gradient(0deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
-  background: url('agreements/skybg.jpeg'), linear-gradient(0deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
+  background: image-url('agreements/skybg.jpeg'), -webkit-linear-gradient(90deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
+  background: image-url('agreements/skybg.jpeg'), -moz-linear-gradient(0deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
+  background: image-url('agreements/skybg.jpeg'), linear-gradient(0deg, rgba(255,255,255,1) 0, #e4e4e4 100%);
   background-repeat: no-repeat;
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
@@ -153,10 +154,15 @@ footer {
   margin: 30px 0 0;
   text-align: center;
 
+  h2 {
+    font-size: 1.5em;
+  }
+
   h1 {
     color: $main-title;
     font-family: 'Roboto';
     font-size: 6em;
+    font-weight: bold;
     text-transform: uppercase;
   }
 }
@@ -194,6 +200,26 @@ video {
 
 .video-agreements {
   background: image-url('agreements/fondovideo.png');
+}
+
+.video-title {
+  color: $white;
+  height: 100px;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  width: 100%;
+  z-index: 1000;
+
+  h2, p {
+    color: inherit;
+    text-shadow: 1px 1px $gray;
+  }
+
+}
+
+.video-title-xs {
+  text-align: center;
 }
 
 // book
@@ -244,6 +270,7 @@ video {
 .btn-download-blue,
 .btn-download-white {
   display: block;
+  font-weight: bold;
   margin: 10px auto;
   padding: 10px 20px;
   text-align: center;
@@ -251,11 +278,17 @@ video {
   width: 265px;
 }
 
+.btn-download-blue:hover,
+.btn-download-white:hover {
+  text-decoration: none;
+}
+
+
 .btn-download-blue {
   background: image-url('agreements/botonazul.png') no-repeat center center;
   color: $white;
   position: absolute;
-  top: 40%;
+  top: 25%;
   width: 100%;
   z-index: 1000;
 }
@@ -380,6 +413,7 @@ h2.events {
 
 .event {
   background: $white;
+  height: 150px;
   margin: 15px 10px;
   padding: 20px;
 
@@ -423,8 +457,18 @@ h2.events {
   vertical-align: middle;
 }
 
+.peace-photos {
+  margin: 20px 0 40px;
+}
+
 #twitter-widget-0 {
   width: 100% !important;
+}
+
+@media (max-width: 1024px) {
+  .btn-download-blue {
+    top: 35%;
+  }
 }
 
 @media (max-width: 680px) {
@@ -458,6 +502,13 @@ h2.events {
 }
 
 @media (max-width: 480px) {
+
+  .video-title-xs {
+    h2 {
+      font-size: 1.5em;
+    }
+  }
+
   .wrapper-timeline-titles{
     h1{
       font-size: 4em;
@@ -465,7 +516,11 @@ h2.events {
   }
 
   .btn-download-white {
-    padding: 10px 0px;
+    padding: 10px 0;
+  }
+
+  .btn-download-blue {
+    top: 5%;
   }
 
   .counter-title {
@@ -474,6 +529,10 @@ h2.events {
 
   .event-list {
     padding: 10px;
+  }
+
+  .event {
+    height: auto;
   }
 
   .title-description {
