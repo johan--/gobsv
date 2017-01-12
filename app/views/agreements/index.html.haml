@@ -106,7 +106,7 @@
           Después de 25 años tenemos la oportunidad de reafirmar nuestro compromiso por la Paz y el diálogo democrático.
 
 %section.video-agreements
-  .container.hidden-sm
+  .container.hidden-sm.hidden-xs
     .col-md-12
       .video-title
         %h2
@@ -116,7 +116,7 @@
       .fullscreen-bg
         = video_tag("acuerdos.mp4", id: "video-background", autoplay: "", loop: "", muted: "")
       = link_to "Quiero firmar por la paz", "#sign-for-peace", class: "btn-download-blue"
-  .visible-sm-block
+  .visible-sm-block.visible-xs-block
     .fullscreen-bg
       = video_tag("acuerdos.mp4", id: "video-background", autoplay: "", loop: "", muted: "")
     = link_to "Quiero firmar por la paz", "#sign-for-peace", class: "btn-download-blue"
