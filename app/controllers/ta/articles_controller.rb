@@ -112,18 +112,26 @@ module Ta
     helper_method :absolutes_url!
     #
     def absolutes_url!(article)
-      html = add_main_picture(article)
+      html = template(article)
       doc = Nokogiri::HTML(html)
       replace_relatives_hrefs!(doc)
       replace_relatives_srcs!(doc)
-      unwrap_images!(doc)
-      wrap_images!(doc)
+      unwrap_frames_images!(doc)
+      wrap_frames_images!(doc)
+      frames_dimensions!(doc)
       clear_empty_paragraphs!(doc)
       doc.to_html
     end
 
-    def add_main_picture(article)
-      "<figure><img src='#{article.image.url}'></figure>#{article.content}"
+    def template(article)
+      "<article><header><figure><img src='#{article.image.url}'></figure>" \
+        "<h1>#{article.title}</h1>" \
+        '<h3 class=\"op-kicker\">' \
+        "#{article.pretitle.blank? ? article.category.name : article.pretitle}" \
+        '</h3>' \
+        "<time class=\"op-published\" datetime=\"#{article.created_at}\">" +
+        I18n.l(article.published_at.to_date, format: :long) +
+        "</time></header>#{article.content}</article>"
     end
 
     def replace_relatives_srcs!(doc)
@@ -148,15 +156,29 @@ module Ta
       url.match(%r{https?:\/\/})
     end
 
-    def unwrap_images!(doc)
-      doc.css('img').each do |img|
-        img.parent.replace(img) while img.parent.name == 'p'
+    def unwrap_frames_images!(doc)
+      doc.css('img, iframe').each do |e|
+        e.parent.replace(e) while e.parent.name == 'p'
       end
     end
 
-    def wrap_images!(doc)
-      doc.css('img').each do |img|
-        img.swap("<figure>#{img}</figure>") unless img.parent.name == 'figure'
+    def wrap_frames_images!(doc)
+      doc.css('img, iframe').each do |e|
+        e.swap("<figure>#{e}</figure>") unless e.parent.name == 'figure'
+      end
+    end
+
+    def frames_dimensions!(doc)
+      doc.css('iframe').each do |e|
+        e.attributes['width'].value = 320.to_s
+        e.attributes['height'].value = 180.to_s
+
+        u = URI(URI.decode(e.attributes['src'].value))
+        p = URI.decode_www_form(u.query || '')
+        p.delete(p.select { |x| x.include?('width') }.first)
+        p << %w(width 320) << %w(height 180)
+        u.query = URI.encode_www_form(p)
+        e.attributes['src'].value = u.to_s
       end
     end
 
