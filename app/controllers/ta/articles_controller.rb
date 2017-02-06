@@ -123,6 +123,25 @@ module Ta
       doc.to_html
     end
 
+    def sanitized_content(article)
+      view_context.sanitize(
+        absolutes_url!(article),
+        tags: %w(h1 h2 h3 a b img p strong em i u figure quote
+                 time header article iframe),
+        attributes: %w(href target src class datetime width height)
+      )
+    end
+
+    helper_method :parsed_content
+    #
+    def parsed_content(article)
+      '<html lang="es"><head><meta charset="utf-8">' \
+      "<title>#{article.title}</title>" \
+      "<meta name=\"description\" content=\"#{article.summary}\" />" \
+      "<link rel=\"canonical\" href=\"#{ta_article_url(article)}\" />" \
+      "</head><body>#{sanitized_content(article)}</body></html>"
+    end
+
     def template(article)
       "<article><header><figure><img src='#{article.image.url}'></figure>" \
         "<h1>#{article.title}</h1>" \
