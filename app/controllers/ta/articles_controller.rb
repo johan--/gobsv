@@ -127,7 +127,7 @@ module Ta
       view_context.sanitize(
         absolutes_url!(article),
         tags: %w(h1 h2 h3 a b img p strong em i u figure quote
-                 time header article iframe),
+                 time header article iframe address),
         attributes: %w(href target src class datetime width height)
       )
     end
@@ -145,9 +145,13 @@ module Ta
     def template(article)
       "<article><header><figure><img src='#{article.image.url}'></figure>" \
         "<h1>#{article.title}</h1>" \
-        '<h3 class=\"op-kicker\">' \
+        "<h2>#{article.summary}</h2>" \
+        '<h3 class="op-kicker">' \
         "#{article.pretitle.blank? ? article.category.name : article.pretitle}" \
         '</h3>' \
+        '<address>' \
+        "#{article.author.blank? ? 'Transparencia Activa' : article.author.name}" \
+        '</address>' \
         "<time class=\"op-published\" datetime=\"#{article.created_at}\">" +
         I18n.l(article.published_at.to_date, format: :long) +
         "</time></header>#{article.content}</article>"
