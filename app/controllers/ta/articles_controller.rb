@@ -66,6 +66,23 @@ module Ta
         @tweet = nil
       end
 
+      og_metas = {
+        title: @article.title,
+        description: @article.summary,
+        url: ta_article_url(@article)
+      }
+
+      if @article.image_width > 0
+        m = {
+          _: URI.join(request.url, @article.image.url(:medium)),
+          width: @article.image_width,
+          height: @article.image_height
+        }
+        og_metas[:image] = m
+      else
+        og_metas[:image] = URI.join(request.url, @article.image.url(:medium))
+      end
+
       set_meta_tags(
         title: @article.title,
         site: 'Transparencia Activa',
@@ -74,12 +91,7 @@ module Ta
         canonical: ta_article_url(@article),
         reverse: true,
         author: @article.author.try(:name),
-        og: {
-          title: @article.title,
-          image: URI.join(request.url, @article.image.url(:medium)),
-          description: @article.summary,
-          url: ta_article_url(@article)
-        }
+        og: og_metas
       )
 
       add_breadcrumb 'Inicio', ta_root_url

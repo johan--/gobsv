@@ -16,6 +16,14 @@ module Ta
 
     validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
 
+    after_post_process :save_image_dimensions
+    #
+    def save_image_dimensions
+      geo = Paperclip::Geometry.from_file(image.queued_for_write[:original])
+      self.image_width  = geo.width.to_i
+      self.image_height = geo.height.to_i
+    end
+
     belongs_to :category, class_name: '::Ta::Category'
     belongs_to :author,   class_name: '::Ta::Author'
 

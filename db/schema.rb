@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216175516) do
+ActiveRecord::Schema.define(version: 20170210165841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1001,6 +1001,8 @@ ActiveRecord::Schema.define(version: 20161216175516) do
     t.integer  "layout",             default: 0,     null: false
     t.string   "video_url",          default: "",    null: false
     t.string   "audio_url",          default: "",    null: false
+    t.integer  "image_width",        default: 0,     null: false
+    t.integer  "image_height",       default: 0,     null: false
   end
 
   add_index "ta_articles", ["author_id"], name: "index_ta_articles_on_author_id", using: :btree
