@@ -1,4 +1,4 @@
-domain = 'transparenciaactiva.gob.sv' if Rails.env.production?
+domain = 'transparenciaactiva.com' if Rails.env.production?
 domain = 'ta.localhost.com'           if Rails.env.development?
 # domain = 'localhost.com' if Rails.env.development?
 
