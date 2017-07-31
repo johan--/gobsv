@@ -36,18 +36,19 @@ class Forums::WelcomeController < ForumsController
   end
 
   def calculator
+
     #Params
     @salario = params[:wage].to_f.abs rescue 0
-    @gender = params[:gender].to_s
+    @gender  = params[:gender].to_s
   
     #Constantes
-    @esquema_actual = 11.27
-    @porcentaje_esquema_actual = 12.5 #cambiar nombre variable
-    @supuesto_rentabilidad_actual = 0.033 #3.3%
+    @esquema_actual                   = 11.27
+    @porcentaje_esquema_actual        = 12.5 #cambiar nombre variable
+    @supuesto_rentabilidad_actual     = 0.033 #3.3%
     @tasa_contribucion_cuenta_reforma = 0.111 #11.1%
-    @comision_seguros_reforma = 0.019 #1.9%
-    @dos_salarios_minimos = 251.7*2
-    @capital_tecnico_necesario = @gender == "male" ? 11.2718536995587 : 13.4152856651179
+    @comision_seguros_reforma         = 0.019 #1.9%
+    @dos_salarios_minimos             = 251.7*2
+    @capital_tecnico_necesario        = @gender == "male" ? 11.2718536995587 : 13.4152856651179
   
     #Esquema Actual
     @valor_1a = 0.108*12*@salario
@@ -81,6 +82,9 @@ class Forums::WelcomeController < ForumsController
     @porcentaje_respecto_salario_reforma = @pension_aproximada_reforma / @salario
     @financiamiento_asumido_por_estado_reforma = @gender == "male" ? 17*207.6*@porcentaje_esquema_actual : 29*207.6*@porcentaje_esquema_actual
     @dinero_para_gobierno_reforma = (@financiamiento_asumido_por_estado_reforma / @valor_final_actual).round(1)
+
+    render :layout => 'calculator'
+
   end
 
 end

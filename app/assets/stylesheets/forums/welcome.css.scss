@@ -11,6 +11,11 @@ h1.problem-title{
   padding: 20px 0 5px;
 }
 
+// STANDALONE
+h2{
+  color: #38873a !important;
+}
+
 h2{
   font-family: "Montserrat";
   font-size: 24px;
@@ -220,12 +225,13 @@ p.calc-description{
   width: auto;
 }
 
+//STANDALONE
 .header-calc-bg{
-  background: #2D3E50;
+  background: #5cb85c;
   padding: 10px 10px 20px;
   text-align: center;
   margin: 0px;
-  border-bottom: 7px solid #243140;
+  border-bottom: 7px solid #38873a;
   h1{
     font-family: 'Dosis', sans-serif;
     font-size: 32px;
