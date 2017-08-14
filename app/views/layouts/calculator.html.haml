@@ -4,10 +4,10 @@
     %meta{ charset: 'utf-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' }
     %meta{ name: 'robots', content: 'noindex' }
-    %meta{ name: 'title', content: 'Reforma de Pensiones El Salvador' }
-    %meta{ name: 'description', content: 'Descargá la propuesta de reforma de pensiones que presentó el gobierno del Presidente Sánchez Cerén, mirá lo que otros opinan y participá vos también.' }
+    %meta{ name: 'title', content: 'Calculadora de pensiones de El Salvador' }
+    %meta{ name: 'description', content: 'Compará cómo será tu pensión con el sistema actual y cómo sería si se aprueba la reforma impulsada por el Gobierno.' }
     %title
-      Reforma de Pensiones El Salvador
+      Calculadora de pensiones de El Salvador
     = display_meta_tags
 
     %link{ href: image_path('favicon.png'), sizes: '128x128', rel: 'shortcut icon' }
@@ -33,7 +33,10 @@
     = render partial: 'layouts/forums/header_calc'
     #wrapper
       = yield
-
+    %footer
+      .container
+        .col-md-6
+          = link_to image_tag("forums/sabesque.png"), "https://www.facebook.com/SabesQueSV/?ref=br_rs", target: "_blank"
     / Modal
     #mediaModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "aria-hidden"=>"true"}
       .modal-dialog{:role => "document"}

@@ -746,7 +746,6 @@ es:
   forums:
     welcome:
       calculator:
-        enter_wage: Ingresa tu salario inicial
         enter_gender: Por favor selecciona tu sexo
         mixed_system: Propuesta del Gobierno
         current_system: Sistema Actual

@@ -1,5 +1,8 @@
 class Forums::WelcomeController < ForumsController
+  layout 'calculator'
+
   def index
+=begin
     @main = Forum::Theme.active.main.first
     params[:q] ||= {}
     params[:q].reject!{|_, v| v.blank?}
@@ -19,6 +22,7 @@ class Forums::WelcomeController < ForumsController
       format.html
       format.js
     end
+=end
   end
 
   def download

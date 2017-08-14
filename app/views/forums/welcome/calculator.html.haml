@@ -3,7 +3,7 @@
   :javascript
     $("#shareButtonLabelCount").jsSocials({
       url: "#{forums_calculator_url}",
-      text: "Compara como sera tu pension en los dos sistemas #pensionsv",
+      text: "Compara de cuanto sera tu pension segun el sistema actual, propuesta del gobierno y propuesta ICP #pensionsv",
       showCount: true,
       showLabel: false,
       shares: ["twitter", "facebook"]
@@ -271,49 +271,21 @@
               .clearfix
 
       %br
-    -#
-      .row
-        %h2.analysis-title
-          Algunos datos que debes considerar sobre la reforma
--#
-  .wrapper-considerations
-    .container
-      .row
-        .col-md-7.col-sm-6.hidden-xs
-          = image_tag("forums/consideraciones.png", class: "img-responsive", title: "Consideraciones a tomar en cuenta")
-        .col-md-5.col-sm-6.col-xs-12
-
-.wrapper-form
+#considerations
   .container
     .row
-      .col-md-7.col-sm-6.hidden-xs
-        = image_tag("forums/omg.png", class: "img-responsive", title: "Calcula cuanto recibiras de pension")
-      .col-md-5.col-sm-6.col-xs-12
+      .col-md-6.col-sm-6.hidden-xs
+        = image_tag("forums/consideraciones.png", class: "img-responsive", title: "Consideraciones a tomar en cuenta")
+      .col-md-6.col-sm-6.col-xs-12
         .calculator-container
           %h2
-            = "Calcula cuánto recibirás de pensión"
-          .calc-description
-            = "Compará cómo será tu pensión con el sistema actual y cómo sería si se aprueba la reforma impulsada por el Gobierno."
-
-          = form_tag forums_calculator_path, method: :get, class: "form-horizontal", id: "calculator-form" do
-            .form-group
-              .input-group
-                .input-group-addon
-                  %span.glyphicon.glyphicon-usd
-                = number_field_tag :wage, "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", placeholder: t('.enter_wage'), class: 'form-control'
-
-              .gender
-                %label.radio-inline.left-0
-                  Sexo:
-                = label_tag 'gender', class: "radio-inline" do
-                  = radio_button_tag 'gender', 'female', true, { class: 'btn btn-primary' }
-                  Mujer
-
-                = label_tag 'gender', class: "radio-inline" do
-                  = radio_button_tag 'gender', 'male', false
-                  Hombre
-            .form-group
-              = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
-
-              %p
-                = "Los resultaddos que muestra esta calculadora se obtienen de #{link_to 'supuestos', nil} técnicos, en caso de ser modificados podrían variar los resultados.".html_safe
+            = "Algunas consideraciones..."
+          %ul
+            %li
+              = "En ambas propuesta se considera la creación de un fondo colectivo además del fondo de pensiones existentes, que también será administrado por las AFP."
+            %li
+              = "En la propuesta de la ICP se cotiza más y se ahorra menos, porque lo aportado a la reserva de pensión vitalicia no forma parte del ahorro de los cotizantes, ni puede heredarse."
+            %li
+              = "Con la nueva propuesta del Gobierno aumenta la pensión, ya que lo aportado al fondo colectivo es parte del ahorro de los cotizantes, devnga rentabilidad, se puede heredar, permite cobertura del ISSS y garantiza la pensión mínima vitalicia cuando se agota el ahorro individual."
+            %li
+              = "En la nueva propuesta del Gobierno, ninguna entidad pública o privada puede hacer uso de los fondos y se establece que, el Ministerio de Hacienda deberá contribuir con el 5% de los ingresos corrientes netos."

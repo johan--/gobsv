@@ -4,7 +4,7 @@ domain = 'localhost.com'          if Rails.env.development?
 constraints DomainConstraint.new(domain) do
   scope module: 'forums', as: 'forums' do
 
-    root to: 'welcome#calculator'
+    root to: 'welcome#index'
     resources :themes
     resources :entries
     get '/calculator' => 'welcome#calculator'

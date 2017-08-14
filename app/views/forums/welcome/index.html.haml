@@ -1,7 +1,44 @@
-=# TOPIC TYPE
-- if @main
-  = render @main
-- else
-  %h2
-    Actualmente no se encuentra una discusión activa
-  %br
+.wrapper-form
+  .container
+    .row
+      .col-md-7.col-sm-6.hidden-xs
+        = image_tag("forums/omg.png", class: "img-responsive", title: "Calcula cuanto recibiras de pension")
+      .col-md-5.col-sm-6.col-xs-12
+        .calculator-container
+          %h2
+            = "Calcula cuánto recibirás de pensión"
+          .calc-description
+            = "Compará cómo será tu pensión con el sistema actual y cómo sería si se aprueba la reforma impulsada por el Gobierno."
+
+          = form_tag forums_calculator_path, method: :get, class: "form-horizontal", id: "calculator-form" do
+            .form-group
+              .input-group
+                .input-group-addon
+                  %span.glyphicon.glyphicon-usd
+                = number_field_tag :wage, "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", placeholder: "Ingresa tu salario inicial", class: 'form-control'
+            .form-group
+              .gender
+                %label.radio-inline.left-0
+                  Sexo:
+                = label_tag 'gender', class: "radio-inline" do
+                  = radio_button_tag 'gender', 'female', true, { class: 'btn btn-primary' }
+                  Mujer
+
+                = label_tag 'gender', class: "radio-inline" do
+                  = radio_button_tag 'gender', 'male', false
+                  Hombre
+            .form-group
+              = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
+
+              %p
+                = "Los resultados que muestra esta calculadora se obtienen de #{link_to 'supuestos', forums_calculator_url(anchor: 'considerations'), target: '_blank'} técnicos, en caso de ser modificados podrían variar los resultados.".html_safe
+
+
+-#
+  =# TOPIC TYPE MODULO DE FOROS
+  - if @main
+    = render @main
+  - else
+    %h2
+      Actualmente no se encuentra una discusión activa
+    %br

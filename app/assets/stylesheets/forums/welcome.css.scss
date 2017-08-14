@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$white: #fff;
+$white-alt: #eee;
+$btn-border-green: #587d2f;
+$purple: #705671;
+$light-purple-bg: #e5dbcc;
+$purple-bg: #d8a7da;
+$green-bg: #5bb85d;
+$green-dark-title: #2a542b;
+$black: #000;
+
 h1.problem-title {
   color: $white;
   font-family: 'Roboto'; // ROBOTO
@@ -19,7 +29,7 @@ h2 {
 }
 
 h2.problem-description {
-  color: #000;
+  color: $black;
   font-size: 20px;
   line-height: 1.5;
   margin-bottom: 20px;
@@ -27,18 +37,18 @@ h2.problem-description {
 }
 
 p.pensions-calc {
-  color: #000;
+  color: $black;
   font-size: 14px;
   line-height: 1.5;
   padding: 0 10px 17px;
 }
 
 .reform-container {
-  background: #eee;
+  background: $white-alt;
   margin: 20px auto;
   max-width: 400px;
-  padding: 20px 20px 30px;
   opacity: .7;
+  padding: 20px 20px 30px;
   width: 100%;
 }
 
@@ -59,8 +69,13 @@ p.subject {
   position: relative;
 }
 
+footer {
+  background: $white;
+  padding: 10px 0;
+}
+
 #wrapper-positions {
-  background: #EEEEEF;
+  background: $white-alt;
   padding: 30px 0;
 }
 
@@ -143,9 +158,9 @@ li.slide:hover {
     h2.chart {
       font-family: 'Roboto', sans-serif;
       font-size: 20px;
-      text-align: left !important;
       line-height: 1.5;
       margin: 10px 0 !important;
+      text-align: left !important;
     }
   }
 }
@@ -157,52 +172,6 @@ li.slide:hover {
     font-weight: bold;
   }
 
-  .data-current-system-cons {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-
-    .custom-row-data {
-      min-height: 20px;
-
-      .normal-well {
-        background-color: #F5F5F5;
-        border: 1px solid #E3E3E3;
-        border-radius: 4px;
-        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
-        display: inline-block;
-        float: left;
-        height: 70px;
-        margin-bottom: 20px;
-        margin-right: 1%;
-        padding: 19px;
-        width: 77%;
-      }
-
-      .green-well {
-        background-color: #95CA46;
-        border: 1px solid #88BF44;
-        border-radius: 4px;
-        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
-        color: $white;
-        display: inline-block;
-        float: left;
-        font-size: 20px;
-        font-weight: bold;
-        height: 70px;
-        margin-bottom: 20px;
-        overflow: hidden;
-        padding: 14px;
-        text-align: left;
-        vertical-align: middle;
-        width: 22%;
-        span {
-          color: inherit;
-          font-size: 16px;
-        }
-      }
-    }
-  }
 }
 
 .calc-description {
@@ -223,35 +192,49 @@ li.slide:hover {
 
 //STANDALONE
 .header-calc-bg {
-  background: #5cb85c;
-  border-bottom: 7px solid #38873a;
+  background: $green-bg;
   margin: 0;
-  padding: 5px 10px 15px;
-  text-align: center;
+  padding: 5px 10px;
 
   h1 {
     color: $white;
     font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    margin: 10px;
-    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 7px 0 5px;
+    padding: 0;
+    text-align: left;
+
+    a {
+      color: $white;
+    }
   }
 
   h2 {
-    color: $white;
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    margin: 0;
+    font-size: 14px;
+    margin: 5px;
+    text-align: right;
+
+    a {
+      color: $green-dark-title;
+    }
   }
+
+
 }
 
 #wrapper-calculator {
   position: relative;
 }
 
-.wrapper-form,
-.wrapper-considerations {
+.wrapper-form {
   background: $light-purple-bg;
+  padding: 20px 0 0;
+}
+
+#considerations {
+  background: $purple-bg;
   padding: 20px 0 0;
 }
 
@@ -532,17 +515,28 @@ table.table.table-bordered.table-striped {
 }
 
 .calculator-container {
-  max-width: 400px;
-  width: 100%;
 
   h2 {
     color: $purple;
     font-size: 32px;
     font-weight: normal;
     line-height: 1.2;
+    margin-bottom: 20px;
     margin-left: -15px;
     text-align: left;
-    text-transform: uppercase;
+  }
+
+  ul {
+    color: $white-alt;
+    font-size: 16px;
+    font-weight: 1.5;
+    list-style: decimal;
+    margin-bottom: 25px;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 10px;
+    }
   }
 
 }
@@ -550,7 +544,7 @@ table.table.table-bordered.table-striped {
 .gender {
   display: inline-block;
   font-size: 15px;
-  margin: 15px 0;
+  margin: 5px 0 15px;
 
   .left-0 {
     padding-left: 0;
@@ -700,6 +694,15 @@ p.analysis {
 }
 
 @media (max-width: 720px) {
+
+  .header-calc-bg {
+    h1,
+    h2 {
+      text-align: center;
+    }
+  }
+
+
   h1.problem-title {
     font-size: 4em;
   }

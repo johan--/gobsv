@@ -1,5 +1,12 @@
 .header-calc-bg
-  %h1
-    = "Calculadora de Pensiones"
-  %h2
-    = "El Salvador"
+  .container
+    .row
+      .col-sm-6.col-xs-12
+        %h1
+          = link_to "Calculadora de Pensiones / El Salvador", forums_root_url()
+
+      .col-sm-6.col-xs-12
+        %h2
+          = link_to "https://www.facebook.com/SabesQueSV/?ref=br_rs" do
+            = image_tag("forums/fb.png")
+            = " Seguínos en Facebook"
