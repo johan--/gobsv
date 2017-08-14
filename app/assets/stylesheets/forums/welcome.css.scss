@@ -277,7 +277,7 @@ li.slide:hover {
 .canvas-holder-polar {
   margin: 0 auto;
   max-width: 800px;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   position: relative;
   text-align: center;
   width: 100%;
@@ -564,18 +564,22 @@ table.table.table-bordered.table-striped {
 @media (max-width: 960px) {
   .canvas-holder {
     .chart-current-system,
-    .chart-new-system {
+    .chart-new-system,
+    .chart-afp-proposal {
       font-size: 16px;
+      top: 55%;
     }
 
     .chart-current-system {
       left: 15%;
-      top: 45%;
     }
 
     .chart-new-system {
-      right: 10%;
-      top: 45%;
+      left: 42%;
+    }
+
+    .chart-afp-proposal {
+      right: 15%;
     }
 
     .chart-legend-new-system,
@@ -702,6 +706,39 @@ p.analysis {
     }
   }
 
+  .canvas-holder {
+
+    .chart-title-current-system,
+    .chart-title-new-system,
+    .chart-title-afp-proposal {
+      font-size: 12px;
+      height: 70px;
+      top: -10%;
+      width: 100px;
+    }
+
+    .chart-current-system,
+    .chart-new-system,
+    .chart-afp-proposal,
+    {
+      font-size: 12px;
+      top: 60%;
+    }
+
+    .chart-current-system {
+      left: 12%;
+    }
+
+    .chart-new-system {
+      left: 40%;
+    }
+
+    .chart-afp-proposal {
+      right: 14%;
+    }
+
+  }
+
 
   h1.problem-title {
     font-size: 4em;
@@ -757,23 +794,6 @@ p.analysis {
     .chart-legend-current-system {
       bottom: 8%;
       width: 160px;
-    }
-  }
-
-  .current-system-cons {
-    .data-current-system-cons {
-      .custom-row-data {
-        .green-well {
-          font-size: 16px;
-          padding: 14px 0;
-          text-align: center;
-
-          span {
-            color: inherit;
-            font-size: 14px;
-          }
-        }
-      }
     }
   }
 
