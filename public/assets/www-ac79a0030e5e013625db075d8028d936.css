@@ -1,0 +1,91 @@
+/*
+@import 'twitter-bootstrap-static/bootstrap';
+@import 'www/icons';
+*/
+/*
+[class^="col-"], [class*=" col-"] {
+  border: 1px $red dashed;
+}
+*/
+/* line 15, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+.btn {
+  border: 1px rgba(0, 0, 0, 0.1) solid;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+/* line 21, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+.btn.btn-primary {
+  background-color: #29abe2;
+}
+/* line 25, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+.btn.btn-default {
+  background-color: #f2f2f2;
+  border: 1px gray solid;
+}
+
+/* line 31, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+body {
+  font-family: ubuntu;
+}
+
+/* line 36, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+h1,
+h2 {
+  font-weight: bold;
+}
+
+/* line 41, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+a,
+a:hover {
+  text-decoration: none;
+}
+
+/* line 45, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+#apps {
+  background: white linear-gradient(to bottom, #29abe2 -80%, white 20%);
+  padding-bottom: 2em;
+}
+/* line 49, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+#apps small {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1em;
+}
+/* line 54, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+#apps .app {
+  color: #29abe2;
+  display: inline-block;
+  font-weight: bold;
+  padding: 1em 0;
+  text-transform: uppercase;
+  width: 130px;
+}
+/* line 63, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+#apps i {
+  background: white;
+  border: 1px #29abe2 solid;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 5em;
+  height: 130px;
+  line-height: 130px;
+  margin-bottom: 8px;
+  width: 130px;
+}
+
+/* line 76, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+#whatis {
+  background: #29abe2;
+  color: white;
+  padding-bottom: 2em;
+}
+
+/* line 83, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+#whattodo [class^="icon-"], #whattodo [class*=" icon-"] {
+  color: #29abe2;
+  font-size: 26px;
+}
+/* line 88, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/www.css.scss */
+#whattodo [class^="col-"], #whattodo [class*=" col-"] {
+  padding-top: 1em;
+}

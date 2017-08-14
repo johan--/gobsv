@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+/* line 9, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/ta_print.scss */
+body {
+  margin: 1cm;
+}
+
+/* line 13, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/ta_print.scss */
+.wrapper {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  margin: 0 auto;
+}
+
+/* line 19, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/ta_print.scss */
+.summary {
+  color: black;
+  font-weight: 700;
+}
+
+/* line 24, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/ta_print.scss */
+.content {
+  color: #474747;
+}

@@ -1,0 +1,34 @@
+/* line 1, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/admin/login.css.scss */
+body.login {
+  background: #00b9bc;
+}
+
+/* line 5, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/admin/login.css.scss */
+.form-group {
+  margin: 0;
+}
+
+/* line 10, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/admin/login.css.scss */
+input[type=email],
+input[type=password] {
+  border: none;
+  height: 3em;
+  font-size: 1.2em;
+}
+
+/* line 16, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/admin/login.css.scss */
+span.glyphicon {
+  font-size: 1.2em;
+}
+
+/* line 20, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/admin/login.css.scss */
+.input-group-addon {
+  background-color: white;
+  border: 0;
+}
+
+/* line 25, /home/oscar/Projects/Rails/gobsv/gobsv/app/assets/stylesheets/admin/login.css.scss */
+.btn-login {
+  border: 1px solid white;
+  width: 100%;
+}
