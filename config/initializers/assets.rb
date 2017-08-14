@@ -26,3 +26,4 @@ Rails.application.config.assets.precompile += %w( *.png *.jpeg *.jpg *.gif )
 
 Rails.application.config.assets.precompile += %w( ckeditor/* )
 Rails.application.config.assets.paths << "#{Rails.root}/app/assets/videos"
+Rails.application.config.assets.paths << "#{Rails.root}/app/assets/fonts"
