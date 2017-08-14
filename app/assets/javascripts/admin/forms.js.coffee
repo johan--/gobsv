@@ -12,8 +12,7 @@ makePreviewer = (obj) ->
   img = $(self).next("img")
   a = $("<a />").
         addClass("input-file").
-        addClass("btn").
-        addClass("btn-default").
+        addClass("button").
         text("Seleccione una imagen")
 
   $(self).before(
