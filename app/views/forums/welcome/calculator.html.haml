@@ -1,5 +1,5 @@
 #wrapper-calculator
-  #%div{id: "shareButtonLabelCount", class: "social-share-inline"}
+  =#%div{id: "shareButtonLabelCount", class: "social-share-inline"}
   :javascript
     $("#shareButtonLabelCount").jsSocials({
       url: "#{forums_calculator_url}",
@@ -118,7 +118,7 @@
         .col-sm-12
           %h2
             Ahorro individual
-          .canvas-holder
+          .canvas-holder-savings
             .chart-title-current-system
               = t('.current_system')
             .chart-current-system
@@ -163,17 +163,6 @@
                   },
                   title: {
                     display: false,
-                  },
-                  layout: {
-                    padding: {
-                      left: 0,
-                      right: 0,
-                      top: 0,
-                      bottom: 0
-                    }
-                  },
-                  tooltips: {
-                    mode: 'point'
                   },
                   scales: {
                     yAxes: [{

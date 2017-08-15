@@ -274,6 +274,7 @@ li.slide:hover {
 }
 
 .canvas-holder,
+.canvas-holder-savings,
 .canvas-holder-polar {
   margin: 0 auto;
   max-width: 800px;
@@ -562,7 +563,8 @@ table.table.table-bordered.table-striped {
 }
 
 @media (max-width: 960px) {
-  .canvas-holder {
+  .canvas-holder,
+  .canvas-holder-savings {
     .chart-current-system,
     .chart-new-system,
     .chart-afp-proposal {
@@ -607,7 +609,8 @@ p.analysis {
 }
 
 @media (max-width: 800px) {
-  .canvas-holder {
+  .canvas-holder,
+  .canvas-holder-savings {
     .chart-current-system,
     .chart-new-system,
     .chart-afp-proposal,
@@ -718,7 +721,8 @@ p.analysis {
     }
   }
 
-  .canvas-holder {
+  .canvas-holder,
+  .canvas-holder-savings {
 
     .chart-title-current-system,
     .chart-title-new-system,
@@ -793,13 +797,34 @@ p.analysis {
     }
 
     .chart-new-system {
+      left: 38%;
+    }
+
+    .chart-afp-proposal {
+      right: 10%;
+    }
+
+  }
+
+  .canvas-holder-savings {
+    .chart-current-system,
+    .chart-new-system,
+    .chart-afp-proposal, {
+      bottom: 30%;
+      font-size: 10px;
+    }
+
+    .chart-current-system {
+      left: 12%;
+    }
+
+    .chart-new-system {
       left: 40%;
     }
 
     .chart-afp-proposal {
       right: 11%;
     }
-
   }
 
   .canvas-holder-polar {
@@ -837,8 +862,8 @@ p.analysis {
 
   }
 
-
-  .canvas-holder {
+  .canvas-holder,
+  .canvas-holder-savings {
 
     .chart-title-current-system,
     .chart-title-new-system,
@@ -849,13 +874,31 @@ p.analysis {
       width: 85px;
     }
 
-
     .chart-current-system,
     .chart-new-system,
     .chart-afp-proposal, {
       font-size: 9px;
       top: 55%;
     }
+
+  }
+
+  .canvas-holder {
+
+    .chart-current-system {
+      left: 7%;
+    }
+
+    .chart-new-system {
+      left: 33%;
+    }
+
+    .chart-afp-proposal {
+      right: 8%;
+    }
+  }
+
+  .canvas-holder-savings {
 
     .chart-current-system {
       left: 10%;
@@ -868,7 +911,6 @@ p.analysis {
     .chart-afp-proposal {
       right: 8%;
     }
-
   }
 
 }
@@ -876,21 +918,8 @@ p.analysis {
 
 @media (max-width: 320px) {
 
-  .header-calc-bg {
-
-    h1 {
-      font-size: 14px;
-    }
-
-    h2 {
-      font-size: 12px;
-    }
-
-  }
-
-
-  .canvas-holder {
-
+  .canvas-holder,
+  .canvas-holder-savings {
     .chart-title-current-system,
     .chart-title-new-system,
     .chart-title-afp-proposal {
@@ -904,6 +933,9 @@ p.analysis {
       right: 0;
     }
 
+  }
+
+  .canvas-holder {
 
     .chart-current-system,
     .chart-new-system,
@@ -922,6 +954,28 @@ p.analysis {
 
     .chart-afp-proposal {
       right: 2%;
+    }
+  }
+
+  .canvas-holder-savings {
+
+    .chart-current-system,
+    .chart-new-system,
+    .chart-afp-proposal, {
+      font-size: 9px;
+      top: 35%;
+    }
+
+    .chart-current-system {
+      left: 10%;
+    }
+
+    .chart-new-system {
+      left: 37%;
+    }
+
+    .chart-afp-proposal {
+      right: -1%;
     }
 
   }
