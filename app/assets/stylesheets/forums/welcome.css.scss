@@ -268,7 +268,7 @@ li.slide:hover {
 
   h2 {
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 45px;
+    margin-bottom: 25px;
     text-align: center;
   }
 }
@@ -698,6 +698,18 @@ p.analysis {
 }
 
 @media (max-width: 720px) {
+  .container {
+    width: 100%;
+
+    .col-sm-12 {
+      padding: 0;
+    }
+
+  }
+
+  .btn-calculate {
+    margin: 0 auto 20px;
+  }
 
   .header-calc-bg {
     h1,
@@ -758,6 +770,7 @@ p.analysis {
 }
 
 @media (max-width: 480px) {
+
   .modal-dialog {
     width: 360px;
   }
@@ -766,16 +779,82 @@ p.analysis {
     height: 450px;
   }
 
-  .wrapper-wage-video {
-    height: 770px;
-  }
   .canvas-holder {
 
     .chart-current-system,
     .chart-new-system,
     .chart-afp-proposal, {
+      bottom: 30%;
+      font-size: 10px;
+    }
+
+    .chart-current-system {
+      left: 12%;
+    }
+
+    .chart-new-system {
+      left: 40%;
+    }
+
+    .chart-afp-proposal {
+      right: 11%;
+    }
+
+  }
+
+  .canvas-holder-polar {
+
+    .chart-donut-current-system,
+    .chart-donut-goverment-reform,
+    .chart-donut-afp-reform, {
+      font-size: 14px;
+    }
+
+    .chart-donut-current-system,
+    .chart-donut-afp-reform {
+      top: 26%;
+    }
+
+    .chart-donut-goverment-reform {
+      bottom: 10%;
+      left: 35%;
+    }
+
+  }
+}
+
+@media (max-width: 360px) {
+
+  .header-calc-bg {
+
+    h1 {
+      font-size: 14px;
+    }
+
+    h2 {
       font-size: 12px;
-      top: 50%;
+    }
+
+  }
+
+
+  .canvas-holder {
+
+    .chart-title-current-system,
+    .chart-title-new-system,
+    .chart-title-afp-proposal {
+      font-size: 9px;
+      height: 70px;
+      top: -10%;
+      width: 85px;
+    }
+
+
+    .chart-current-system,
+    .chart-new-system,
+    .chart-afp-proposal, {
+      font-size: 9px;
+      top: 55%;
     }
 
     .chart-current-system {
@@ -783,18 +862,13 @@ p.analysis {
     }
 
     .chart-new-system {
-      left: 37%;
+      left: 35%;
     }
 
     .chart-afp-proposal {
-      right: 12%;
+      right: 8%;
     }
 
-    .chart-legend-new-system,
-    .chart-legend-current-system {
-      bottom: 8%;
-      width: 160px;
-    }
   }
 
 }

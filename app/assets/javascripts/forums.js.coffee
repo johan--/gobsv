@@ -18,9 +18,9 @@
 $(document).ready ->
   $('#calculator-form').validate
     rules:
-      wage: 
+      wage:
         required: true
-      gender: 
+      gender:
         required: true
     errorPlacement: (error, element) ->
       error.insertAfter element.parents('.input-group')
@@ -34,6 +34,19 @@ $(document).ready ->
     item:4,
     controls:false,
     responsive : [{ breakpoint:800, settings: { item:3, slideMove:1, slideMargin:6, } }, { breakpoint:480, settings: { item:2, slideMove:1 } }],
+
+  $('a#supuestos').on 'click', (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+
+    $('#htmlModal').on 'show.bs.modal', ->
+      # Add video width to left and right padding, to get new width of modal window
+      modalBody = $(this).find('.modal-body')
+      modalDialog = $(this).find('.modal-dialog')
+
+      return
+    # Open Modal
+    $('#htmlModal').modal()
 
 
   $('a.play-video').on 'click', (e) ->

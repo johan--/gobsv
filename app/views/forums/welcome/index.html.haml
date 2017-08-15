@@ -31,7 +31,40 @@
               = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
 
               %p
-                = "Los resultados que muestra esta calculadora se obtienen de #{link_to 'supuestos', forums_calculator_url(anchor: 'considerations'), target: '_blank'} técnicos, en caso de ser modificados podrían variar los resultados.".html_safe
+                = "Los resultados que muestra esta calculadora se obtienen de #{link_to 'supuestos', nil, target: '_blank', id: "supuestos"} técnicos, en caso de ser modificados podrían variar los resultados.".html_safe
+
+        .col-xs-12.visible-xs
+          = image_tag("forums/omg.png", class: "img-responsive", title: "Calcula cuanto recibiras de pension")
+
+#htmlModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "aria-hidden"=>"true"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4
+          #myModalLabel.modal-title
+            = "Supuestos tecnicos"
+      .modal-body
+        .calculator-container{style: "color: #000;"}
+          %ul{style: "list-style: circle; color: #000; padding: 10px 15px;"}
+            %li
+              ="Se parte del supuesto que, el cotizante no tiene dependientes, pues estos disminuyen el monto de la pensión asignada."
+            %li
+              ="Es un cálculo que aplica únicamente para los obligados puros del actual sistema, es decir, aquellos que no tienen ningún beneficio del Estado más que la pensión mínima."
+            %li
+              ="Los cálculos se basan en un supuesto de rentabilidad de 4% para el esquema actual y las dos propuestas analizadas."
+            %li
+              ="Se ha retomado de las propuestas los datos de la comisión por administración y seguros: Sistema actual:  2.2% de la cotización mensual. <br>Propuesta de ICP: 2.0% de la cotización mensual. <br>Propuesta del Gobierno: 1.5% de la cotización mensual. <br>No se consideran otras comisiones vigentes como la comisión de la rentabilidad obtenida ante inmovilidad de las cuentas o la comisión por otorgamiento de las pensiones en curso que actualmente cobran las AFP, porque no aplica para toda la población afiliada.".html_safe
+            %li
+              ="El capital técnico necesario, fue calculado con base en las tablas de mortalidad RVMES y RVGES - #{link_to 'https://goo.gl/V631aW', 'https://goo.gl/V631aW', target: '_blank'} - en el acuerdo SAP 2998."
+            %li
+              ="La densidad de cotización considerada es del 0.75 para el esquema actual y las dos propuestas analizadas y permite identificar la proporción de tiempo que una persona ha cotizado al sistema de pensiones durante la vida laboral."
+            %li
+              ="El salario que se introduce en la calculadora se utiliza como salario inicial. Para el cálculo de pensión mensual, ahorro total y comisión de AFP, se estima una tasa de crecimiento salarial anual del 2% para el esquema actual y las propuestas analizadas."
+
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
 
 
 -#

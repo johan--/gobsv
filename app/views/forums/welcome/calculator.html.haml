@@ -12,14 +12,6 @@
 - unless @salario.nil? || @salario <= 0
   #results
     .container
-      -#
-        .row
-          .col-sm-12
-            .charts-description
-              .well.graphic-legend
-                %h2.chart
-                  = "Lo que te descuentan mensualmente se reparte en tu ahorro y comisiones por administración que cobran las AFP, conoce las diferencias entre el sistema actual y el sistema de reparto."
-      %br
       .row
         .col-md-12.col-sm-12
           %h2
@@ -29,7 +21,7 @@
             .chart-title-current-system
               = t('.current_system')
             .chart-current-system
-              = "#{number_to_currency(@pension_minima_con_subsidio)}"
+              = "#{number_to_currency(@pension_segun_ahorros_actual)}"
             .chart-title-new-system
               = t('.mixed_system')
             .chart-new-system
@@ -37,39 +29,19 @@
             .chart-title-afp-proposal
               = t('.afp_system')
             .chart-afp-proposal
-              = "#{number_to_currency(@pension_final_asafondos)}"
-            -#
-              .chart-legend-current-system
-                .items
-                  .color-item-gray
-                    .square
-                  .item-description
-                    = t('.pension_current_system', pension_savings: @pension_segun_ahorros_actual.round(2), goverment_subsidy: (@pension_minima_con_subsidio-@pension_segun_ahorros_actual).round(2))
-                    =# @pension_segun_ahorros_actual <= 207.6 ? "$#{@pension_segun_ahorros_actual.round(2)} de tu ahorro de pensión + subsidio del gobierno de $#{(@pension_minima_con_subsidio-@pension_segun_ahorros_actual).round(2)}" : t('.minimal_pension_subsidy')
-                    =# t('.minimal_pension_subsidy')
-              .chart-legend-new-system
-                .items
-                  .color-item-green
-                    .square
-                  .item-description
-                    = t('.approximate_on_mixed_pensions_system')
-              .chart-legend-afp-proposal
-                .items
-                  .color-item-red
-                    .square
-                  .item-description
-                    = t('.approximate_on_mixed_pensions_system')
+              = "#{number_to_currency(@pension_aproximada_asafondos)}"
+
             %canvas{id: "pension"}
             :javascript
               var pensionChart = document.getElementById("pension");
               var barChartDataPension = new Chart(pensionChart, {
                 type: 'bar',
                 data: {
-                  labels: ["Sistema actual", "Propuesta gobierno", "Propuesta AFP's"],
+                  labels: ["Actual", "Prop. gobierno", "Prop. AFP's"],
                   datasets: [
                     {
                       label: 'Pension a recibir',
-                      data: [#{@pension_minima_con_subsidio.round(2)}, #{@pension_aproximada_reforma.round(2)}, #{@pension_aproximada_asafondos.round(2)}],
+                      data: [#{@pension_segun_ahorros_actual.round(2)}, #{@pension_aproximada_reforma.round(2)}, #{@pension_aproximada_asafondos.round(2)}],
                       backgroundColor: [
                         'rgba(233,143,111,0.8)',
                         'rgba(128,185,66,0.8)',
@@ -91,17 +63,6 @@
                   title: {
                     display: false,
                   },
-                  layout: {
-                    padding: {
-                      left: 0,
-                      right: 0,
-                      top: 0,
-                      bottom: 0
-                    }
-                  },
-                  tooltips: {
-                    mode: 'point'
-                  },
                   scales: {
                     yAxes: [{
                       ticks: {
@@ -112,7 +73,7 @@
                 }
               });
 
-          - if @pension_segun_ahorros_actual <= 207.6
+          - if @pension_segun_ahorros_actual <= 207.6 || @pension_aproximada_reforma <= 207.6 || @pension_aproximada_asafondos <= 207.6
             .chart-special-legend
               = t('.clarification_current_system')
         .col-md-12.col-sm-12
@@ -126,26 +87,13 @@
             .chart-donut-afp-reform
               = number_to_currency(@comisiones_pagadas_a_afp_asafondos.round(2))
 
-            -#
-              .chart-legend-current-system
-                .items
-                  .color-item-gray
-                    .square
-                  .item-description
-                    = t('.insurance_and_payments_to_afp')
-              .chart-legend-new-system
-                .items
-                  .color-item-red
-                    .square
-                  .item-description
-                    = t('.insurance_and_payments_to_afp_reform')
             %canvas{id: "bar-comision-afp"}
             :javascript
               var comissionChart = document.getElementById("bar-comision-afp");
               var barChartDataCommission = new Chart(comissionChart, {
                 type: 'doughnut',
                 data: {
-                  labels: ["Sistema actual", "Propuesta gobierno", "Propuesta AFP's"],
+                  labels: ["Actual", "Prop. gobierno", "Prop. AFP's"],
                   datasets: [
                     {
                       label: 'Comision para AFP´s',
@@ -165,9 +113,7 @@
                     },
                   ]
                 },
-
               });
-
 
         .col-sm-12
           %h2
@@ -191,7 +137,7 @@
               var barChartDataSavings = new Chart(savingsChart, {
                 type: 'bar',
                 data: {
-                  labels: ["Sistema actual", "Propuesta gobierno", "Propuesta AFP's"],
+                  labels: ["Actual", "Prop. gobierno", "Prop. AFP's"],
                   datasets: [
                     {
                       label: 'Total ahorros',
@@ -238,38 +184,6 @@
                   }
                 }
               });
-      -#
-        .row.current-system-cons
-          .col-sm-12
-            %h2.analysis-title
-              Tu pensión de acuerdo al sistema actual
-            .data-current-system-cons
-              .custom-row-data
-                .normal-well
-                  = t('.personal_saves_on_afp')
-                .green-well
-                  = number_to_currency(@pension_segun_ahorros_actual)
-              .clearfix
-              - if (@pension_minima_con_subsidio-@pension_segun_ahorros_actual) > 0
-                .custom-row-data
-                  .normal-well
-                    = t('.goverment_subsidy')
-                  .green-well
-                    = number_to_currency(@pension_minima_con_subsidio-@pension_segun_ahorros_actual)
-                .clearfix
-              .custom-row-data
-                .normal-well
-                  = t('.approximate_lasting_years_private')
-                .green-well
-                  = "#{@anios_de_pension_a_recibir.to_s} <span>años</span>".html_safe
-              .clearfix
-              .custom-row-data
-                .normal-well
-                  = t('.approximate_years_goverment_assumption')
-                .green-well
-                  = "#{@anios_financiaria_estado.to_s} <span>años</span>".html_safe
-              .clearfix
-
       %br
 #considerations
   .container
