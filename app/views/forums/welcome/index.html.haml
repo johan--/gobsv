@@ -8,14 +8,14 @@
           %h2
             = "Calcula cuánto recibirás de pensión"
           .calc-description
-            = "Compará como será tu pensión con el sistema actual y como sería si se aprueba la reforma impulsada por el Gobierno o la presentada por la Iniciativa Ciudadana de Pensiones (ICP)"
+            = "Compará como será tu pensión con el sistema actual y como sería si se aprueba la reforma impulsada por el Gobierno o la presentada por la Iniciativa Ciudadana de Pensiones (ICP)."
 
           = form_tag forums_calculator_path, method: :get, class: "form-horizontal", id: "calculator-form" do
             .form-group
               .input-group
                 .input-group-addon
                   %span.glyphicon.glyphicon-usd
-                = number_field_tag :wage, "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", placeholder: "Ingresa tu salario inicial", class: 'form-control'
+                = number_field_tag :wage, "#{params[:wage].nil? ? '' : params[:wage].to_f.abs }", placeholder: "* Ingresa tu salario inicial", class: 'form-control'
             .form-group
               .gender
                 %label.radio-inline.left-0
@@ -31,8 +31,10 @@
               = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
 
               %p
-                = "Los resultados que muestra esta calculadora se obtienen de #{link_to 'supuestos', nil, target: '_blank', id: "supuestos"} técnicos, en caso de ser modificados podrían variar los resultados.".html_safe
+                = "* Salario aproximado con el que empezaste a cotizar a la AFP."
 
+              %p
+                = "Los resultados que muestra esta calculadora se obtienen de #{link_to 'supuestos', nil, target: '_blank', id: "supuestos"} técnicos, en caso de ser modificados podrían variar los resultados.".html_safe
         .col-xs-12.visible-xs
           = image_tag("forums/omg.png", class: "img-responsive", title: "Calcula cuanto recibiras de pension")
 

@@ -40,7 +40,7 @@
                   labels: ["Actual", "Prop. gobierno", "Prop. AFP"],
                   datasets: [
                     {
-                      label: 'Pension a recibir',
+                      label: 'Comision para AFP',
                       data: [#{@pension_segun_ahorros_actual.round(2)}, #{@pension_aproximada_reforma.round(2)}, #{@pension_aproximada_asafondos.round(2)}],
                       backgroundColor: [
                         'rgba(233,143,111,0.8)',
@@ -79,24 +79,31 @@
         .col-md-12.col-sm-12
           %h2
             Comisión para AFP
-          .canvas-holder-polar
-            .chart-donut-current-system
-              = number_to_currency(@comisiones_pagadas_a_afp_actual.round(2))
-            .chart-donut-goverment-reform
-              = number_to_currency(@comisiones_pagadas_a_afp_reforma.round(2))
-            .chart-donut-afp-reform
-              = number_to_currency(@comisiones_pagadas_a_afp_asafondos.round(2))
 
-            %canvas{id: "bar-comision-afp"}
+          .canvas-holder
+            .chart-title-current-system
+              = t('.current_system')
+            .chart-current-system
+              = "#{number_to_currency(@comisiones_pagadas_a_afp_actual)}"
+            .chart-title-new-system
+              = t('.mixed_system')
+            .chart-new-system
+              = "#{number_to_currency(@comisiones_pagadas_a_afp_reforma)}"
+            .chart-title-afp-proposal
+              = t('.afp_system')
+            .chart-afp-proposal
+              = "#{number_to_currency(@comisiones_pagadas_a_afp_asafondos)}"
+
+            %canvas{id: "comision"}
             :javascript
-              var comissionChart = document.getElementById("bar-comision-afp");
-              var barChartDataCommission = new Chart(comissionChart, {
-                type: 'doughnut',
+              var comisionChart = document.getElementById("comision");
+              var barChartDataComision = new Chart(comisionChart, {
+                type: 'bar',
                 data: {
                   labels: ["Actual", "Prop. gobierno", "Prop. AFP"],
                   datasets: [
                     {
-                      label: 'Comision para AFP´s',
+                      label: 'Pension a recibir',
                       data: [#{@comisiones_pagadas_a_afp_actual.round(2)}, #{@comisiones_pagadas_a_afp_reforma.round(2)}, #{@comisiones_pagadas_a_afp_asafondos.round(2)}],
                       backgroundColor: [
                         'rgba(233,143,111,0.8)',
@@ -104,16 +111,85 @@
                         'rgba(176,120,175,0.8)',
                       ],
                       borderColor: [
-                        'rgba(255,255,255,1)',
-                        'rgba(255,255,255,1)',
-                        'rgba(255,255,255,1)',
-
+                        'rgba(233,143,111,1)',
+                        'rgba(128,185,66,1)',
+                        'rgba(176,120,175,1)',
                       ],
-                      borderWidth: 2
+                      borderWidth: 1
                     },
                   ]
                 },
+                options: {
+                  legend: {
+                    display: false,
+                  },
+                  title: {
+                    display: false,
+                  },
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero:true
+                      }
+                    }]
+                  }
+                }
               });
+
+          .comision-savings
+            %h3= "Comisión de la AFP como porcentaje del ahorro total individual: "
+            .row
+              .col-sm-4.col-xs-4
+                .info
+                  .square.light-red
+                  %p
+                    = "#{@porcentaje_ahorro_comision_actual}%"
+              .col-sm-4.col-xs-4
+                .info
+                  .square.light-green
+                  %p
+                    = "#{@porcentaje_ahorro_comision_reforma}%"
+              .col-sm-4.col-xs-4
+                .info
+                  .square.light-purple
+                  %p
+                    = "#{@porcentaje_ahorro_comision_asafondos}%"
+          -#
+            .canvas-holder-polar
+              .chart-donut-current-system
+                = number_to_currency(@comisiones_pagadas_a_afp_actual.round(2))
+              .chart-donut-goverment-reform
+                = number_to_currency(@comisiones_pagadas_a_afp_reforma.round(2))
+              .chart-donut-afp-reform
+                = number_to_currency(@comisiones_pagadas_a_afp_asafondos.round(2))
+
+              %canvas{id: "bar-comision-afp"}
+              :javascript
+                var comissionChart = document.getElementById("bar-comision-afp");
+                var barChartDataCommission = new Chart(comissionChart, {
+                  type: 'doughnut',
+                  data: {
+                    labels: ["Actual", "Prop. gobierno", "Prop. AFP"],
+                    datasets: [
+                      {
+                        label: 'Comision para AFP´s',
+                        data: [#{@comisiones_pagadas_a_afp_actual.round(2)}, #{@comisiones_pagadas_a_afp_reforma.round(2)}, #{@comisiones_pagadas_a_afp_asafondos.round(2)}],
+                        backgroundColor: [
+                          'rgba(233,143,111,0.8)',
+                          'rgba(128,185,66,0.8)',
+                          'rgba(176,120,175,0.8)',
+                        ],
+                        borderColor: [
+                          'rgba(255,255,255,1)',
+                          'rgba(255,255,255,1)',
+                          'rgba(255,255,255,1)',
+
+                        ],
+                        borderWidth: 2
+                      },
+                    ]
+                  },
+                });
 
         .col-sm-12
           %h2

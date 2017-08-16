@@ -104,6 +104,7 @@ class Forums::WelcomeController < ForumsController
     @porcentaje_respecto_salario_actual = @pension_segun_ahorros_actual/@salario
     @financiamiento_asumido_por_estado_actual = @anios_financiaria_estado * 207.6 * @porcentaje_esquema_actual
     @dinero_para_gobierno_actual = (@financiamiento_asumido_por_estado_actual / @valor_final_actual).round(1)
+    @porcentaje_ahorro_comision_actual = ((@comisiones_pagadas_a_afp_actual / @valor_final_actual) * 100).round(2)
 
     #Esquema segun propuesta gobierno
     @pension_aproximada_reforma = @valor_final_reforma / (@capital_tecnico_necesario*12.5 )
@@ -111,12 +112,15 @@ class Forums::WelcomeController < ForumsController
     @porcentaje_respecto_salario_reforma = @pension_aproximada_reforma / @salario
     @financiamiento_asumido_por_estado_reforma = @gender == "male" ? 17*207.6*@porcentaje_esquema_actual : 29*207.6*@porcentaje_esquema_actual
     @dinero_para_gobierno_reforma = (@financiamiento_asumido_por_estado_reforma / @valor_final_actual).round(1)
+    @porcentaje_ahorro_comision_reforma = ((@comisiones_pagadas_a_afp_reforma / @valor_final_reforma) * 100).round(2)
 
     #Esquema segun propuesta de Asafondos
     @pension_aproximada_asafondos = -pmt((@supuesto_rentabilidad_actual/12), (20*12), @valor_final_asafondos)
     @subsidio_gobierno = @pension_aproximada_asafondos >= 207.6 ? 0 : 207.6 - @pension_aproximada_asafondos
     @pension_final_asafondos = @pension_aproximada_asafondos + @subsidio_gobierno
     @comisiones_pagadas_a_afp_asafondos = 0.02*@anios_a_cotizar*12*@densidad_cotizacion*@salario
+    @porcentaje_ahorro_comision_asafondos = ((@comisiones_pagadas_a_afp_asafondos / @valor_final_asafondos) * 100).round(2)
+
     render :layout => 'calculator'
 
   end

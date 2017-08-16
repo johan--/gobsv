@@ -749,7 +749,7 @@ es:
         enter_gender: Por favor selecciona tu sexo
         mixed_system: Propuesta del Gobierno
         current_system: Sistema Actual
-        afp_system: Propuesta AFP's
+        afp_system: Propuesta AFP
         reform: Reforma
         minimal_pension_subsidy: "Pensión mensual con subsidio de pensión mínima si aplica, en sistema actual"
         pension_current_system: "Pensión mensual de $ %{pension_savings} + subsidio del gobierno de $ %{goverment_subsidy}"
