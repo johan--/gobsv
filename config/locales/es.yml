@@ -289,6 +289,9 @@ es:
       agreements/user_peace_signature:
         one: Firma de paz de usuario
         other: Firma de paz de usuarios
+      pensions/subscriber:
+        one: Suscriptor
+        other: Suscriptores
     attributes:
       id: ID
       created_at: Creado el
@@ -688,6 +691,10 @@ es:
         place: Lugar
         email: Correo electrónico
         phone: Teléfono
+      pensions/subscriber:
+        name: Nombre
+        email: Correo electrónico
+        phone: Teléfono
     enum:
       ta/article:
         status:
@@ -734,7 +741,7 @@ es:
     tracker: Registro
     msg: Mensajitos
     agreements: Acuerdos de paz
-
+    pensions: Pensiones
   recaptcha:
     errors:
       incorrect-captcha-sol: 'La autenticación ha fallado'

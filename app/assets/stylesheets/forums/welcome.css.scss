@@ -11,6 +11,8 @@ $purple-bg: #d8a7da;
 $green-bg: #5bb85d;
 $green-dark-title: #2a542b;
 $black: #000;
+$purple-btn: #4d3147;
+$green-light-bg: #d0ffd1;
 
 h1.problem-title {
   color: $white;
@@ -50,6 +52,11 @@ p.pensions-calc {
   opacity: .7;
   padding: 20px 20px 30px;
   width: 100%;
+}
+
+.other-calc {
+  padding: 30px 10px;
+  text-align: center;
 }
 
 p.subject {
@@ -262,15 +269,44 @@ li.slide:hover {
   width: 100%;
 }
 
+.btn-proposal,
+.btn-subscribe {
+  border-bottom: 3px solid $purple-btn;
+  display: block;
+  font-size: 16px;
+  margin: 20px auto 30px;
+  max-width: 300px;
+  padding: 15px 20px;
+}
+
+.ui-state-active {
+  background: $green-dark-title !important;
+  border: 1px solid $btn-border-green !important;
+}
+
+.ui-icon-background,
+.ui-state-active .ui-icon-background {
+  background: $white !important;
+  border: $white !important;
+}
+
 #results {
   background: #fafafa;
-  padding: 20px 0;
+  padding: 20px 0 0;
 
   h2 {
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 50px;
+    margin: 30px 0 40px;
     text-align: center;
   }
+  .no-margin-bottom {
+    margin-bottom: 10px;
+  }
+
+}
+
+.comision-savings-bg {
+  background: $green-light-bg;
 }
 
 .comision-savings {
@@ -307,8 +343,31 @@ li.slide:hover {
   }
 
   p {
+    font-size: 14px;
+    font-weight: bold;
     padding-left: 10px;
     vertical-align: middle;
+  }
+
+  .my-savings {
+    font-size: 16px;
+    font-weight: normal;
+    padding: 8px;
+  }
+
+  span {
+    display: inline;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px;
+  }
+
+  .glyphicon-arrow-down {
+    color: rgba(179,53,33,0.8);
+  }
+
+  .glyphicon-arrow-up {
+    color: rgba(128,185,66,0.8);
   }
 
   .light-red {
@@ -322,12 +381,6 @@ li.slide:hover {
   .light-purple {
     background-color: rgba(176,120,175,0.8);
   }
-
-  p {
-    font-size: 14px;
-    font-weight: bold;
-  }
-
 }
 
 .canvas-holder,
@@ -572,6 +625,26 @@ table.table.table-bordered.table-striped {
   color: #D9534F;
 }
 
+.field-with-errors {
+  background: $white;
+  border: 1px solid #ccc;
+  input {
+    border: 1px solid #D9534F;
+  }
+  label.message {
+    color: #D9534F;
+  }
+}
+
+.form-control.form-control.error {
+  border: 1px solid #AD2723;
+}
+
+.subscription-container {
+  min-height: 300px;
+  padding: 20px 10px;
+}
+
 .calculator-container {
 
   h2 {
@@ -758,6 +831,18 @@ p.analysis {
 }
 
 @media (max-width: 720px) {
+
+  .comision-savings {
+    .my-savings {
+      padding: 4px;
+      font-size: 12px;
+    }
+    span {
+      font-size: 12px;
+      padding: 4px;
+    }
+  }
+
   .container {
     width: 100%;
 
@@ -832,6 +917,11 @@ p.analysis {
 
 @media (max-width: 480px) {
 
+  .btn-subscribe {
+    width: 250px;
+    padding: 10px 15px;
+  }
+
   .comision-savings {
     margin: 0 auto 30px;
     padding: 10px;
@@ -857,6 +947,10 @@ p.analysis {
     p {
       font-size: 12px;
       font-weight: bold;
+    }
+
+    span {
+      font-size: 12px;
     }
 
   }

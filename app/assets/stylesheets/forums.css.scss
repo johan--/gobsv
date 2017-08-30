@@ -12,6 +12,12 @@
 @import 'jssocials-theme-classic';
 @import 'lightslider';
 @import 'timeline';
+@import 'jquery-ui';
+
+.centered {
+  text-align: center;
+  margin: 0 auto;
+}
 
 .header-bg{
   background: #2D3E50;

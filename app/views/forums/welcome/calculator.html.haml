@@ -1,12 +1,12 @@
 #wrapper-calculator
-  =#%div{id: "shareButtonLabelCount", class: "social-share-inline"}
+  %div{id: "shareButtonLabelCount", class: "social-share-inline"}
   :javascript
     $("#shareButtonLabelCount").jsSocials({
-      url: "#{forums_calculator_url}",
+      url: "#{forums_root_url}",
       text: "Compara de cuanto sera tu pension segun el sistema actual, propuesta del gobierno y propuesta ICP #pensionsv",
       showCount: true,
-      showLabel: false,
-      shares: ["twitter", "facebook"]
+      showLabel: true,
+      shares: [{ share: "twitter", label: "Twitear" }, { share: "facebook", label: "Compartir" }]
     })
 
 - unless @salario.nil? || @salario <= 0
@@ -14,9 +14,30 @@
     .container
       .row
         .col-md-12.col-sm-12
-          %h2
+          %h2.no-margin-bottom
             Pensión a recibir
-
+          .comision-savings.comision-savings-bg
+            .row
+              .col-xs-7.col-sm-6.col-sm-offset-1.col-md-6.col-md-offset-2
+                %p.my-savings
+                  = "Según sistema actual: "
+              .col-xs-5.col-sm-5.col-md-4
+                %span= number_to_currency(@pension_segun_ahorros_actual)
+            .row
+              .col-xs-7.col-sm-6.col-sm-offset-1.col-md-6.col-md-offset-2
+                %p.my-savings
+                  = "Según propuesta del gobierno: "
+              .col-xs-5.col-sm-5.col-md-4
+                %span= number_to_currency(@pension_aproximada_reforma)
+                %span.glyphicon.glyphicon-arrow-up
+            .row
+              .col-xs-7.col-sm-6.col-sm-offset-1.col-md-6.col-md-offset-2
+                %p.my-savings
+                  = "Según propuesta de AFP: "
+              .col-xs-5.col-sm-5.col-md-4
+                %span= number_to_currency(@pension_aproximada_asafondos)
+                %span.glyphicon.glyphicon-arrow-down
+          %br
           .canvas-holder
             .chart-title-current-system
               = t('.current_system')
@@ -80,7 +101,7 @@
           %h2
             Comisión para AFP
 
-          .canvas-holder
+          .canvas-holder-savings
             .chart-title-current-system
               = t('.current_system')
             .chart-current-system
@@ -246,10 +267,16 @@
                         beginAtZero:true
                       }
                     }]
-                  }
+                  },
                 }
               });
       %br
+
+.container
+  .row
+    .col-md-12
+      = link_to "Quiero conocer más", forums_subscribe_url(), class: "btn btn-success btn-subscribe"
+
 #considerations
   .container
     .row
@@ -268,3 +295,9 @@
               = "Con la nueva propuesta del Gobierno aumenta la pensión, ya que lo aportado al fondo colectivo es parte del ahorro de los cotizantes, devenga rentabilidad, se puede heredar, permite cobertura del ISSS y garantiza la pensión mínima vitalicia cuando se agota el ahorro individual."
             %li
               = "En la nueva propuesta del Gobierno, ninguna entidad pública o privada puede hacer uso de los fondos y se establece que, deberá destinarse el 5% del presupuesto general de la nación, al fondo colectivo."
+          .row
+            .col-md-12
+              = link_to forums_root_url << "PropuestaGob-reforma-pensiones.pdf", target: "_blank", class: "btn btn-default btn-proposal" do
+                %span.glyphicon.glyphicon-arrow-down
+                &nbsp;
+                = "Propuesta del Gobierno"

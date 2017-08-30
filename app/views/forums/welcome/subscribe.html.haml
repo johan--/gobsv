@@ -1,0 +1,27 @@
+.wrapper-form
+  .container
+    .row
+      .col-md-8.col-md-offset-2.col-sm-12.col-xs-12
+        .subscription-container
+          %h2
+            = "Quieres más información sobre la reforma de pensiones"
+          .calc-description
+            = "Recibe las últimas noticias relacionadas con el tema de pensiones."
+
+          = form_for(@subscriber, url: forums_save_subscriber_path(), html: {class: "form-horizontal", remote: true}) do |f|
+            .form-group
+              .input-group
+                .input-group-addon
+                  %span.glyphicon.glyphicon-user
+                = f.text_field :name, placeholder: "* Ingresa tu nombre", class: 'form-control', value: "#{params[:name].nil? ? '' : params[:name] }"
+            .form-group
+              .input-group
+                .input-group-addon
+                  %span.glyphicon.glyphicon-phone
+                = f.number_field :phone, placeholder: "* Ingresa tu número de celular", class: 'form-control', value: "#{params[:phone].nil? ? '' : params[:phone] }"
+            %br
+            .form-group
+              = f.submit 'Suscribirme', class: 'btn btn-success btn-calculate centered'
+            %br
+            .other-calc
+              = link_to "Quiero calcular mi pensión", forums_root_url()

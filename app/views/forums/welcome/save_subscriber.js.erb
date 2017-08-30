@@ -1,0 +1,10 @@
+<% if @success %>
+  $(".subscription-container").html('<h2>¡Gracias por suscribirte!</h2>');
+
+<% else %>
+
+  form = $("form#new_pensions_subscriber");
+  errors = $.parseJSON("<%= j @errors %>");
+  new ErrorDisplayer(form, errors);
+
+<% end %>

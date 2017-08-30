@@ -9,5 +9,7 @@ constraints DomainConstraint.new(domain) do
     resources :entries
     get '/calculator' => 'welcome#calculator'
     get '/download' => 'welcome#download'
+    get '/subscribe' => 'welcome#subscribe'
+    post '/save_subscriber' => 'welcome#save_subscriber'
   end
 end

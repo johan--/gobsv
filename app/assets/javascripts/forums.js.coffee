@@ -4,6 +4,7 @@
 
 #= require 'jquery'
 #= require 'jquery_ujs'
+#= require 'jquery-ui'
 #= require 'bootstrap-sprockets'
 #= require 'lightslider.min'
 #= require 'modernizr'
@@ -12,10 +13,22 @@
 #= require 'forums/jquery-queryParser.min'
 #= require 'chart.min'
 #= require 'jquery.validate.min'
+#= require 'complaints/error-displayer'
 #= require 'jssocials'
 #= require 'jssocials.shares'
 
 $(document).ready ->
+
+  $(".btn-radio").checkboxradio()
+
+  $("#new_pensions_subscriber").validate
+    rules:
+      'pensions_subscriber[name]':
+        required: true
+      'pensions_subscriber[phone]':
+        required: true
+    errorPlacement: (error, element) ->
+      error.insertAfter element.parents('.input-group')
   $('#calculator-form').validate
     rules:
       wage:

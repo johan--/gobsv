@@ -25,8 +25,29 @@ class Forums::WelcomeController < ForumsController
 =end
   end
 
+  def subscribe
+    @subscriber = ::Pensions::Subscriber.new
+  end
+
+  def save_subscriber
+    puts params.inspect
+    @subscriber = ::Pensions::Subscriber.new item_params
+    @success = @subscriber.save
+    unless @success
+      puts @subscriber.errors.inspect
+      @error = "Ha ocurrido un error al guardar"
+      @errors = @subscriber.errors.messages.to_json.html_safe
+    end
+  end
+
+  def item_params
+    params.require(:pensions_subscriber).permit(
+      :name,
+      :phone
+    )
+  end
+
   def download
-    @main = Forum::Theme.active.main.first
     if @main.asset.present?
       @main.update_column(:asset_downloads, @main.asset_downloads + 1)
       file_location = @main.asset.path

@@ -58,6 +58,9 @@ constraints subdomain: 'panel' do
         ],
         agreements: [
           :user_peace_signatures
+        ],
+        pensions: [
+          :subscribers
         ]
       }
 

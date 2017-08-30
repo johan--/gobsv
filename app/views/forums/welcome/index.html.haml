@@ -20,15 +20,15 @@
               .gender
                 %label.radio-inline.left-0
                   Sexo:
-                = label_tag 'gender', class: "radio-inline" do
-                  = radio_button_tag 'gender', 'female', true, { class: 'btn btn-primary' }
+                = label_tag 'female', class: "radio-inline" do
+                  = radio_button_tag 'gender', 'female', true, { class: 'btn-radio', id: "female" }
                   Mujer
 
-                = label_tag 'gender', class: "radio-inline" do
-                  = radio_button_tag 'gender', 'male', false
+                = label_tag 'male', class: "radio-inline" do
+                  = radio_button_tag 'gender', 'male', false, { class: 'btn-radio', id: "male" }
                   Hombre
             .form-group
-              = submit_tag 'Calcular', class: 'btn btn-success btn-calculate'
+              = submit_tag 'Calcula tu pensión', class: 'btn btn-success btn-calculate'
 
               %p
                 = "* Salario aproximado con el que empezaste a cotizar a la AFP."

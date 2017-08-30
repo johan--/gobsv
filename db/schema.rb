@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210165841) do
+ActiveRecord::Schema.define(version: 20170828175536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -926,6 +926,13 @@ ActiveRecord::Schema.define(version: 20170210165841) do
   add_index "paa_savings", ["financial_source_id"], name: "index_paa_savings_on_financial_source_id", using: :btree
   add_index "paa_savings", ["institution_id"], name: "index_paa_savings_on_institution_id", using: :btree
   add_index "paa_savings", ["state"], name: "index_paa_savings_on_state", using: :btree
+
+  create_table "pensions_subscribers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "req_product_requirements", force: :cascade do |t|
     t.integer  "requirement_id",             null: false
