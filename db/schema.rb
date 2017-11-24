@@ -634,16 +634,16 @@ ActiveRecord::Schema.define(version: 20170828175536) do
     t.string   "name"
     t.string   "color"
     t.string   "description"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.string   "picture_file_name",    limit: 255
-    t.string   "picture_content_type", limit: 255
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
   end
 
   create_table "ind_note_kinds", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -1126,33 +1126,33 @@ ActiveRecord::Schema.define(version: 20170828175536) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tracker_articles", force: :cascade do |t|
-    t.string   "name",         limit: 255,              null: false
-    t.text     "description",              default: "", null: false
-    t.datetime "publish_date",                          null: false
+    t.string   "name",                      null: false
+    t.text     "description",  default: "", null: false
+    t.datetime "publish_date",              null: false
     t.integer  "author_id"
     t.integer  "status_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "tracker_articles", ["author_id"], name: "index_tracker_articles_on_author_id", using: :btree
   add_index "tracker_articles", ["status_id"], name: "index_tracker_articles_on_status_id", using: :btree
 
   create_table "tracker_authors", force: :cascade do |t|
-    t.string   "name",       limit: 255, default: "", null: false
-    t.string   "email",      limit: 255, default: "", null: false
+    t.string   "name",       default: "", null: false
+    t.string   "email",      default: "", null: false
     t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "tracker_authors", ["user_id"], name: "index_tracker_authors_on_user_id", using: :btree
 
   create_table "tracker_statuses", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
+    t.string   "name",       null: false
     t.integer  "status_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "tracker_statuses", ["status_id"], name: "index_tracker_statuses_on_status_id", using: :btree
@@ -1166,14 +1166,6 @@ ActiveRecord::Schema.define(version: 20170828175536) do
     t.string   "secret"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "user_peace_signatures", force: :cascade do |t|
-    t.string   "name"
-    t.string   "place"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -151,7 +151,7 @@ module Ta
       "<title>#{article.title}</title>" \
       "<meta name=\"description\" content=\"#{article.summary}\" />" \
       "<link rel=\"canonical\" href=\"#{ta_article_url(article)}\" />" \
-      "</head><body>#{sanitized_content(article)}</body></html>"
+      "</head><body>#{sanitized_content(article)}#{analytics}</body></html>"
     end
 
     def template(article)
@@ -167,6 +167,21 @@ module Ta
         "<time class=\"op-published\" datetime=\"#{article.created_at}\">" +
         I18n.l(article.published_at.to_date, format: :long) +
         "</time></header>#{article.content}</article>"
+    end
+
+    def analytics
+      "<figure class='op-tracker'>
+          <iframe>
+            <script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+              ga('create', 'UA-29803538-1', 'auto');
+              ga('send', 'pageview');
+            </script>
+          </iframe>
+      </figure>"
     end
 
     def replace_relatives_srcs!(doc)
