@@ -127,7 +127,7 @@ gem 'acts-as-taggable-on', '~> 3.5.0'
 gem 'twitter-text', '~> 1.12.0'
 
 # Whitelist-based Ruby HTML and CSS sanitizer.
-gem 'sanitize', '~> 4.0.0'
+gem 'sanitize', '~> 5.2.1'
 
 # Search Engine Optimization (SEO) plugin for Ruby on Rails applications.
 gem 'meta-tags', '~> 2.0.0'
